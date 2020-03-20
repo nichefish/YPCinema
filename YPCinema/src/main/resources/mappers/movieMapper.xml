@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="movieMapper">
+	<cache />
+	<sql id="basecolumn">
+		movie_num, movie_title, movie_director, movie_nation, movie_date, movie_genre, movie_plot, movie_age, movie_runtime, movie_poster_url, movie_still_url, movie_aud_acc, movie_sales_acc, movie_score, movie_rating
+	</sql>
+	
+	<insert id="insertMovie" parameterType="model.DTO.MovieDTO">
+		insert into movie (<include refid="basecolumn" />)
+			values ( #{movie_num}, #{movie_title}, #{movie_director}, #{movie_nation}, #{movie_date}, #{movie_genre}, #{movie_plot}, #{movie_age}, #{movie_runtime}, #{movie_poster_url}, #{movie_still_url}, 0, 0, 0, 0)
+	</insert>
+	
+	<select id="selectByMovieNum" parameterType="model.DTO.MovieDTO" resultMap="baseMovieMap">
+		select <include refid="basecolumn" /> from movie where movie_num=#{movie_num}
+	</select>
+	
+	<resultMap type="model.DTO.MovieDTO" id="baseMovieMap">
+		<id column="movie_num" jdbcType="VARCHAR" property="movie_num" />	<!-- PK/FK.. -->
+		<result column="movie_title" jdbcType="VARCHAR" property="movie_title" />		<!-- 일반속성... -->
+		<result column="movie_director" jdbcType="VARCHAR" property="movie_director" />
+		<result column="movie_nation" jdbcType="VARCHAR" property="movie_nation" />
+		<result column="movie_date" jdbcType="DATE" property="movie_date" />
+		<result column="movie_genre" jdbcType="VARCHAR" property="movie_genre" />
+		<result column="movie_plot" jdbcType="VARCHAR" property="movie_plot" />
+		<result column="movie_age" jdbcType="VARCHAR" property="movie_age" />
+		<result column="movie_runtime" jdbcType="VARCHAR" property="movie_runtime" />
+		<result column="movie_poster_url" jdbcType="VARCHAR" property="movie_poster_url" />
+		<result column="movie_still_url" jdbcType="VARCHAR" property="movie_still_url" />
+		<result column="movie_aud_acc" jdbcType="VARCHAR" property="movie_aud_acc" />
+		<result column="movie_sales_acc" jdbcType="VARCHAR" property="movie_sales_acc" />
+		<result column="movie_score" jdbcType="VARCHAR" property="movie_score" />
+		<result column="movie_rating" jdbcType="VARCHAR" property="movie_rating" />
+	</resultMap>
+</mapper>

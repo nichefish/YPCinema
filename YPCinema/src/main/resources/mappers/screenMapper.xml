@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="screenMapper">
+	<cache />
+	<sql id="basecolumn">
+		screen_num, theater_num, screen_max_seat, screen_row, screen_rating
+	</sql>
+	
+	<insert id="insertScreen" parameterType="model.DTO.ScreenDTO">
+		insert into screen (<include refid="basecolumn" />) values ( #{screen_num}, #{theater_num}, #{screen_max_seat}, #{screen_row}, #{screen_rating})
+	</insert>
+	
+	<select id="selectScreenByTheaterNum" parameterType="string" resultMap="baseScreenMap">
+		select <include refid="basecolumn" /> from screen where theater_num=#{theater_num}
+	</select>
+	
+	<resultMap type="model.DTO.ScreenDTO" id="baseScreenMap">
+		<id column="screen_num" jdbcType="VARCHAR" property="screen_num" />
+		<id column="theater_num" jdbcType="VARCHAR" property="theater_num" />
+		<result column="screen_max_seat" jdbcType="BIGINT" property="screen_max_seat" />
+		<result column="screen_row" jdbcType="VARCHAR" property="screen_row" />
+		<result column="screen_rating" jdbcType="VARCHAR" property="screen_rating" />
+	</resultMap>
+</mapper>

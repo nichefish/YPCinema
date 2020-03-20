@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+	<cache />
+	
+	<!-- sql column-->
+	<sql id="TheaterColumns">
+		THEATER_NUM,THEATER_NAME,THEATER_ADDR1,THEATER_ADDR2,THEATER_ZIP,THEATER_PH,THEATER_SPECIAL,THEATER_RATING
+	</sql>
+	
+	<!-- Select Map Part -->
+	<resultMap type="tadto" id="baseTheaterMap">
+		<id column="THEATER_NUM" jdbcType="VARCHAR" property="theater_num"/>
+		<result column="THEATER_NAME" jdbcType="VARCHAR" property="theater_name"/>
+		<result column="THEATER_ADDR1" jdbcType="VARCHAR" property="theater_addr1"/>
+		<result column="THEATER_ADDR2" jdbcType="VARCHAR" property="theater_addr2"/>
+		<result column="THEATER_ZIP" jdbcType="VARCHAR" property="theater_zip"/>
+		<result column="THEATER_PH" jdbcType="VARCHAR" property="theater_ph"/>
+		<result column="THEATER_SPECIAL" jdbcType="VARCHAR" property="theater_special"/>
+		<result column="THEATER_RATING" jdbcType="VARCHAR" property="theater_rating"/>
+	</resultMap>
+	
+	<!-- Insert Part -->
+	<insert id="theaterInsert" parameterType="tadto">
+		insert into theater (<include refid="TheaterColumns" />)
+		values(nextval('seq'),#{theater_name},#{theater_addr1},#{theater_addr2},#{theater_zip},#{theater_ph},0,0)
+	</insert>
+	<!-- Select Part -->
+	<select id="selectTheater" resultMap="baseTheaterMap" parameterType="string">
+		select <include refid="TheaterColumns" /> from theater
+		<where>
+			THEATER_NUM=#{num}
+		</where>
+	</select>
+	<!-- Update Part -->
+	<update id="modifyTheater" parameterType="tadto">
+		update theater set THEATER_NAME=#{theater_name},THEATER_ADDR1=#{theater_addr1},THEATER_ADDR2=#{theater_addr2},THEATER_ZIP=#{theater_zip},THEATER_PH=#{theater_ph}
+		<where>
+			THEATER_NUM=#{theater_num}
+		</where>
+	</update>
+	
+</mapper>

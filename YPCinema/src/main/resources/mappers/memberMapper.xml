@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<cache />
+	<sql id="basecolumn">
+		m_num, m_id, m_pass, m_name, m_gen, m_birth, m_ph, m_addr1, m_addr2, m_zip, m_email, m_picture, m_class, m_yc, m_cc, m_date, m_admin
+	</sql>
+	
+	<insert id="insertMember" parameterType="model.DTO.MemberDTO">
+		insert into member (<include refid="basecolumn" />)
+			values ( CONCAT('M_', (LPAD((SELECT nextval('seq')),4,0))), #{m_id}, #{m_pass}, #{m_name}, #{m_gen}, #{m_birth}, #{m_ph}, #{m_addr1}, #{m_addr2}, #{m_zip}, #{m_email}, null, 'C', null, null, now(), '0')
+	</insert>
+	
+	<select id="selectByUserInfo" parameterType="model.DTO.MemberDTO" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member
+		<trim prefix="where" prefixOverrides="and">
+			<if test="m_id != null">and m_id = #{m_id}</if>
+			<if test="m_num != null">and m_num = #{m_num}</if>
+		</trim>
+	</select>
+	
+	<select id="selectMemberAll" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member
+	</select>
+	
+	<update id="modifyMember" parameterType="model.DTO.MemberDTO" >
+		update member
+		<trim prefix="set" suffixOverrides=",">
+			<if test="m_id != null || m_num != null">
+				m_name=#{m_name}, m_gen=#{m_gen}, m_birth=#{m_birth}, m_ph=#{m_ph}, m_addr1=#{m_addr1}, m_addr2=#{m_addr2}, m_zip=#{m_zip}, m_email=#{m_email},
+			</if>
+			<if test="m_picture != null">
+				m_picture = #{m_picture},
+			</if>
+		</trim>
+		<where>
+			<if test="m_id != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
+				m_id = #{m_id}
+			</if>
+			<if test="m_num != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
+				m_num = #{m_num}
+			</if>
+		</where>
+	</update>
+	
+	<resultMap type="model.DTO.MemberDTO" id="baseMemberMap">
+		<id column="m_num" jdbcType="VARCHAR" property="m_num" />	<!-- PK/FK.. -->
+		<result column="m_id" jdbcType="VARCHAR" property="m_id" />		<!-- 일반속성... -->
+		<result column="m_pass" jdbcType="VARCHAR" property="m_pass" />
+		<result column="m_name" jdbcType="VARCHAR" property="m_name" />
+		<result column="m_gen" jdbcType="VARCHAR" property="m_gen" />
+		<result column="m_birth" jdbcType="DATE" property="m_birth" />
+		<result column="m_ph" jdbcType="VARCHAR" property="m_ph" />
+		<result column="m_addr1" jdbcType="VARCHAR" property="m_addr1" />
+		<result column="m_addr2" jdbcType="VARCHAR" property="m_addr2" />
+		<result column="m_zip" jdbcType="VARCHAR" property="m_zip" />
+		<result column="m_email" jdbcType="VARCHAR" property="m_email" />
+		<result column="m_picture" jdbcType="VARCHAR" property="m_picture" />
+		<result column="m_class" jdbcType="VARCHAR" property="m_class" />
+		<result column="m_yc" jdbcType="VARCHAR" property="m_yc" />
+		<result column="m_cc" jdbcType="VARCHAR" property="m_cc" />
+		<result column="m_date" jdbcType="VARCHAR" property="m_date" />
+		<result column="m_admin" jdbcType="VARCHAR" property="m_admin" />
+	</resultMap>
+</mapper>

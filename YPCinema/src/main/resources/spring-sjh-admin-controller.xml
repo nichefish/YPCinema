@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Controller -->
+	<bean class="controller.admin.JicmuController" />
+	<bean class="controller.admin.TheaterController" />
+	
+	<!-- Service -->
+	<bean id="theaterAddService" class="service.admin.TheaterAddService" />
+	<bean id="jicmuListService" class="service.admin.JicmuListService" />
+	
+	<!-- Repository -->	
+	<bean id="theaterAddRepository" class="repository.admin.TheaterAddRepository" />
+	<bean id="jicmuRepository" class="repository.admin.JicmuRepository" />
+	
+</beans>

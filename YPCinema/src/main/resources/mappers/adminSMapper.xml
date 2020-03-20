@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminSMapper">
+	<cache />
+	
+	<!-- sql column-->
+	<sql id="TheaterColumns">
+		THEATER_NUM,THEATER_NAME,THEATER_ADDR1,THEATER_ADDR2,THEATER_ZIP,THEATER_PH,THEATER_SPECIAL,THEATER_RATING
+	</sql>
+	
+	<!-- Select Map Part -->
+	<resultMap type="tadto" id="baseTheaterMap">
+		<id column="THEATER_NUM" jdbcType="VARCHAR" property="theater_num"/>
+		<result column="THEATER_NAME" jdbcType="VARCHAR" property="theater_name"/>
+		<result column="THEATER_ADDR1" jdbcType="VARCHAR" property="theater_addr1"/>
+		<result column="THEATER_ADDR2" jdbcType="VARCHAR" property="theater_addr2"/>
+		<result column="THEATER_ZIP" jdbcType="VARCHAR" property="theater_zip"/>
+		<result column="THEATER_PH" jdbcType="VARCHAR" property="theater_ph"/>
+		<result column="THEATER_SPECIAL" jdbcType="VARCHAR" property="theater_special"/>
+		<result column="THEATER_RATING" jdbcType="VARCHAR" property="theater_rating"/>
+	</resultMap>
+	<resultMap type="jicdto" id="jicmuMap">
+		<id column="JIC_NUM" jdbcType="VARCHAR" property="jic_num"/>
+		<result column="JIC_NAME" jdbcType="VARCHAR" property="jic_name"/>
+	</resultMap>
+	
+	<!-- Select Part -->
+	<select id="selectTheaterList" resultMap="baseTheaterMap">
+		select <include refid="TheaterColumns" /> from theater
+	</select>
+	
+	<select id="selectJicmuList" resultMap="jicmuMap">
+		select jic_num, jic_name from jicmu
+	</select>
+	
+	<!-- Insert Part -->
+	<insert id="insertJicmu" parameterType="string">
+		insert into jicmu (JIC_NUM,JIC_NAME) values (nextval('seq'),#{jicmu})
+	</insert>
+</mapper>

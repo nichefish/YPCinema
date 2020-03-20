@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Controllers -->
+	<bean class="controller.movie.MovieController" />
+	
+	<bean class="controller.screen.ScreenAddController" />
+	<bean class="controller.screen.ScreenListController" />
+	
+	<bean class="controller.showtime.ShowtimeRegisterController" />
+	<bean class="controller.showtime.ShowtimeListController" />
+	<bean class="controller.showtime.ShowtimeReservationController" />
+	
+	<!-- Services -->
+	<bean id="movieInfoAPIService" class="service.movie.MovieInfoAPIService" />
+	<bean id="movieRegisterService" class="service.movie.MovieRegisterService" />
+	
+	<bean id="screenAddService" class="service.screen.ScreenAddService" />
+	<bean id="screenListService" class="service.screen.ScreenListService" />
+	
+	<bean id="showtimeRegisterService" class="service.showtime.ShowtimeRegisterService" />
+	<bean id="showtimeListService" class="service.showtime.ShowtimeListService" />
+	<bean id="showtimeDetailService" class="service.showtime.ShowtimeDetailService" />
+	<bean id="showtimeReservationService" class="service.showtime.ShowtimeReservationService" />
+	
+	<!-- Repositories -->
+	<bean id="movieRepository" class="repository.movie.MovieRepository" />
+	<bean id="screenRepository" class="repository.screen.ScreenRepository" />
+	<bean id="showtimeRepository" class="repository.showtime.ShowtimeRepository" />
+	
+	
+</beans>

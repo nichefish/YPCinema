@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Controllers -->
+	<bean class="controller.main.MainController" />
+	
+	<bean class="controller.member.LoginController" />
+	<bean class="controller.member.MemberJoinController" />
+	<bean class="controller.member.MemberDetailController" />
+	<bean class="controller.member.MemberListController" />
+	<bean class="controller.member.MemberModifyController" />
+	
+	<!-- Services -->
+	<bean id="memberJoinService" class="service.member.MemberJoinService" />
+	<bean id="memberRegMailService" class="service.member.MemberRegMailService" />
+	<bean id="loginCookieService" class="service.member.LoginCookieService" />
+	<bean id="authService" class="service.member.AuthService" />
+	<bean id="memberDetailService" class="service.member.MemberDetailService" />
+	<bean id="memberListService" class="service.member.MemberListService" />
+	<bean id="memberModifyService" class="service.member.MemberModifyService" />
+	
+	<!-- Repositories -->
+	<bean id="memberRepository" class="repository.member.MemberRepository" />
+	
+</beans>

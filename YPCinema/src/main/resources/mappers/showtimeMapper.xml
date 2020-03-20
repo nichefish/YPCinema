@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="showtimeMapper">
+	<cache />
+	<sql id="basecolumn">
+		show_num, theater_num, screen_num, movie_num, show_date, show_start, show_end
+	</sql>
+	
+	<insert id="insertShowtime" parameterType="model.DTO.ShowtimeDTO">
+		insert into showtime (<include refid="basecolumn" />) values ( #{show_num}, #{theater_num}, #{screen_num}, #{movie_num}, #{show_date}, #{show_start}, #{show_end})
+	</insert>
+	
+	<select id="selectAllShowtime" resultMap="baseShowtimeMap">
+		select <include refid="basecolumn" /> from showtime
+	</select>
+	
+	<select id="selectByShowId" parameterType="model.DTO.ShowtimeDTO" resultMap="baseShowtimeMap">
+		select <include refid="basecolumn" /> from showtime where show_num=#{show_num}
+	</select>
+	
+	<select id="selectByShowInfo" parameterType="model.DTO.ShowtimeDTO" resultMap="baseShowtimeMap">
+		select <include refid="basecolumn" /> from showtime
+		<trim prefix="where" prefixOverrides="and">
+			<if test="show_num != null">and show_num = #{show_num}</if>
+			<if test="theater_num != null">and theater_num = #{theater_num}</if>
+			<if test="screen_num != null">and screen_num = #{screen_num}</if>
+			<if test="movie_num != null">and movie_num = #{movie_num}</if>
+		</trim>
+	</select>
+	
+	<resultMap type="model.DTO.ShowtimeDTO" id="baseShowtimeMap">
+		<id column="show_num" jdbcType="VARCHAR" property="show_num" />
+		<id column="theater_num" jdbcType="VARCHAR" property="theater_num" />
+		<id column="screen_num" jdbcType="VARCHAR" property="screen_num" />
+		<id column="movie_num" jdbcType="VARCHAR" property="movie_num" />
+		<result column="show_date" jdbcType="DATE" property="show_date" />
+		<result column="show_start" jdbcType="VARCHAR" property="show_start" />
+		<result column="show_end" jdbcType="VARCHAR" property="show_end" />
+	</resultMap>
+</mapper>
