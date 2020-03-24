@@ -22,6 +22,8 @@ version="3.0">
   			classpath:spring-jm-movie-controller.xml
   			<!-- sjh꺼 -->
   			classpath:spring-sjh-admin-controller.xml
+  			<!-- yj -->
+  			classpath:spring-yj-controller.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

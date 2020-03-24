@@ -325,7 +325,7 @@ img {
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms; }
   .header-area .navbar {
-    border-bottom: 1px solid;
+    border-bottom: 0px solid;
     border-color: #ffffff;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
