@@ -8,34 +8,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-    <link rel="icon" href="../img/core-img/favicon.ico">
+<link rel="icon" href="../img/core-img/favicon.ico">
 
-    <!-- Style CSS -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/owl.carousel.css">
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Style CSS -->
+<link href="../css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/owl.carousel.css">
+<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     
-    <style type="text/css">
-    	body{
-    		padding-top:55px;
-    	}
-    	.header-area{
-    		margin-top:0px;
-    	}
-    </style>
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="../js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="../js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="../js/plugins.js"></script>
-    <!-- Active js -->
-    <script src="../js/active.js"></script>
+<style type="text/css">
+body{
+	padding-top:55px;
+}
+.header-area{
+	margin-top:0px;
+	background-color:#000000;
+}
+</style>
+<!-- jQuery (Necessary for All JavaScript Plugins) -->
+<script src="../js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="../js/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="../js/bootstrap.min.js"></script>
+<!-- Plugins js -->
+<script src="../js/plugins.js"></script>
+<!-- Active js -->
+<script src="../js/active.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -43,15 +44,12 @@
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg">
 					<!-- Logo -->
-					<a class="navbar-brand" href="index.html"><img src="../img/core-img/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="<c:url value='/main' />"><img src="../img/logo_1.png" alt="Logo" style="width:140px;"></a>
 					<!-- Navbar Toggler -->
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 					<!-- Navbar -->
 					<div class="collapse navbar-collapse" id="worldNav">
 						<ul class="navbar-nav ml-auto">
-							<li class="nav-item active">
-								<a class="nav-link" href="<c:url value='/main' />">Home <span class="sr-only">(current)</span></a>
-							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">

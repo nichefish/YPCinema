@@ -13,8 +13,9 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
-<%@ include file="../navigation.jsp" %>
-
+	<header class="header-area">
+		<%@ include file="../navigation.jsp" %>
+	</header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
 		<form:form action="memberJoinAction" name="frm" id="frm" method="post" commandName="memberCommand">

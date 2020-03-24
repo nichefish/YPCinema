@@ -40,15 +40,12 @@
 				<div class="col-12">
 					<nav class="navbar navbar-expand-lg">
 						<!-- Logo -->
-						<a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt="Logo"></a>
+						<a class="navbar-brand" href="<c:url value='/main' />"><img src="img/logo_1.png" alt="Logo" style="width:140px;"></a>
 						<!-- Navbar Toggler -->
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 						<!-- Navbar -->
 						<div class="collapse navbar-collapse" id="worldNav">
 							<ul class="navbar-nav ml-auto">
-								<li class="nav-item active">
-									<a class="nav-link" href="<c:url value='/main' />">Home <span class="sr-only">(current)</span></a>
-								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">

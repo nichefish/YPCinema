@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<header class="header-area" style=background-color:#000000>
+	<header class="header-area">
 		<%@ include file="../navigation.jsp" %>
     </header>
     
