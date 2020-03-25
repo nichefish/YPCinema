@@ -47,18 +47,31 @@
 						<div class="collapse navbar-collapse" id="worldNav">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item">
-									<a href="#" ><img src="<c:url value='/img/ticket2-5.png' />" alt="Logo" style="width:40px;"></a>
+									<a href="#" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:40px;"></a>
 								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="<c:url value='/movie/register' />">영화 등록</a>
-										<a class="dropdown-item" href="<c:url value='/member/list' />">멤버리스트</a>
-										<a class="dropdown-item" href="popcorn">영화후기</a>
-										<a class="dropdown-item" href="jobList">직원관리</a>
-										<a class="dropdown-item" href="regular-page.html">주차</a>
-										<a class="dropdown-item" href="regular-page.html">협력업체</a>
-										<a class="dropdown-item" href="world/contact.jsp">오시는 길 </a>
+										<c:if test="${authInfo.m_admin eq '0' || empty authInfo}">	<!-- 이용자 및 비로그인 -->
+										<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
+										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
+										<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
+										<a class="dropdown-item" href="<c:url value='/statistic' />">나의 영화관</a>
+										</c:if>
+										<c:if test="${authInfo.m_admin eq '1'}">	<!-- 관리자 -->
+										<!-- 관리자 -->
+										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
+										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
+										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
+										<a class="dropdown-item" href="<c:url value='/myStatistic/' />">통계</a>
+										</c:if>
+										<c:if test="${authInfo.m_admin eq '2'}">	<!-- 직원 -->
+										<!-- 직원-->
+										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 정보</a>
+										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 정보</a>
+										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 정보</a>
+										<a class="dropdown-item" href="<c:url value='/payment/list' />">결제 및 예매 관리</a>
+										</c:if>
 									</div>
 								</li>
 								<li class="nav-item">
