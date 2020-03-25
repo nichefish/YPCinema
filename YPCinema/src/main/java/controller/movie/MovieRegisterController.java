@@ -11,7 +11,7 @@ import service.movie.MovieInfoAPIService;
 import service.movie.MovieRegisterService;
 
 @Controller
-public class MovieController {
+public class MovieRegisterController {
 	@Autowired
 	private MovieInfoAPIService movieInfoAPIService;
 	@Autowired

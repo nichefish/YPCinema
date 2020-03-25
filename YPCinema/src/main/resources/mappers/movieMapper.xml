@@ -12,6 +12,10 @@
 			values ( #{movie_num}, #{movie_title}, #{movie_director}, #{movie_nation}, #{movie_date}, #{movie_genre}, #{movie_plot}, #{movie_age}, #{movie_runtime}, #{movie_poster_url}, #{movie_still_url}, 0, 0, 0, 0)
 	</insert>
 	
+	<select id="selectMovieAll" resultMap="baseMovieMap">
+		select <include refid="basecolumn" /> from movie
+	</select>
+	
 	<select id="selectByMovieNum" parameterType="model.DTO.MovieDTO" resultMap="baseMovieMap">
 		select <include refid="basecolumn" /> from movie where movie_num=#{movie_num}
 	</select>

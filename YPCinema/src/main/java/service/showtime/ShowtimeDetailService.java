@@ -12,10 +12,11 @@ public class ShowtimeDetailService {
 	@Autowired
 	private ShowtimeRepository showtimeRepository;
 	
-	public void selectByShowId(String show_num, Model model) {
+	public ShowtimeDTO selectByShowId(String show_num, Model model) {
 		ShowtimeDTO show = new ShowtimeDTO();
 		show.setShow_num(show_num);
 		show = showtimeRepository.selectByShowId(show);
 		model.addAttribute("show", show);
+		return show;
 	}
 }

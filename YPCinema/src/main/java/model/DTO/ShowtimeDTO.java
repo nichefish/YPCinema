@@ -1,6 +1,7 @@
 package model.DTO;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ public class ShowtimeDTO implements Serializable {
 	private String movie_num;
 	@DateTimeFormat(pattern="yyyy-MM-dd")		// 요런식으로.. 간단하게 포맷 설정..
 	private Date show_date;
+	private String show_date_string;
 	private Date show_start;
 	private Date show_end;
 	public String getShow_num() {
@@ -46,11 +48,18 @@ public class ShowtimeDTO implements Serializable {
 	public void setShow_date(Date show_date) {
 		this.show_date = show_date;
 	}
+	public String getShow_date_string() {
+		return show_date_string;
+	}
+	public void setShow_date_string(Date show_date) {
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		this.show_date_string = dt.format(show_date);
+	}
 	public Date getShow_start() {
 		return show_start;
 	}
-	public void setShow_start(Date date) {
-		this.show_start = date;
+	public void setShow_start(Date show_start) {
+		this.show_start = show_start;
 	}
 	public Date getShow_end() {
 		return show_end;

@@ -11,37 +11,21 @@
 <body>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
-		<form:form name="frm" id="frm" method="post" commandName="showReserveCommand">
-			날짜:
-			<input type="date" name="show_date">
-			지점: 
-			<select name="theater" id="theater">
-				<c:forEach items="${lists}" var="showtime">
-					<option value="${showtime.theater_num }">${showtime.theater_num }</option>
-				</c:forEach>
-			</select>
-			상영관: 
-			<select name="screen" id="screen">
-				<c:forEach items="${lists}" var="showtime">
-					<option value="${showtime.screen_num }">${showtime.screen_num }</option>
-				</c:forEach>
-			</select>
-			영화: 
-			<select name="movie" id="movie">
-				<c:forEach items="${lists}" var="showtime">
-					<option value="${showtime.movie_num}">${showtime.movie_num}</option>
-				</c:forEach>
-			</select>
-			<input type="submit" value="상영일정 보기">
-			<input type="reset" value="리셋">
-			<input type="button" value="취소">
+		<form:form name="frm" id="frm" method="post" commandName="showtimeCommand">
+			날짜: <form:input path="show_date" type="date" />
+			<input type="submit" value="날짜선택">
 		</form:form>
+		<form:form name="frm" id="frm" method="post" commandName="showtimeCommand">
+			지점:
+			<form:select path="theater_num">
+				<form:options path="theater_list" />
+			</form:select>			
+			<input type="submit" value="지점선택">
+		</form:form>
+		
+		
+
 		<table width=50% border="1" cellpadding="0" cellspacing="0" >
-			<tr align="center" valign="middle">
-				<td colspan=5>회원리스트</td>
-				<td align=right>회원수 : </td>
-	<!-- 			${count}  -->
-			</tr>
 			<tr align="center" valign="middle">
 				<td align="center">상영번호</td>
 				<td align="center">지점번호</td>
@@ -50,9 +34,10 @@
 				<td align="center">상영시작시간</td>
 				<td align="center">상영종료시간</td>
 			</tr>
-			<c:forEach items="${lists}" var="show">
+			
+			<c:forEach items="${showLists}" var="show">
 			<tr align="center" valign="middle">
-				<td align="center"><a href="reservation">${show.show_num}</a></td>
+				<td align="center"><a href="reservation?num=${show.show_num}">${show.show_num}</a></td>
 				<td align="center">${show.theater_num}</td>
 				<td align="center">${show.screen_num}</td>
 				<td align="center"><fmt:formatDate value="${show.show_date}" type="date" /></td>
@@ -60,6 +45,7 @@
 				<td align="center">${show.show_date}</td>
 			</tr>
 			</c:forEach>
+			
 			<tr align=center height=20>
 				<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
 					<c:if test="${page <= 1}">

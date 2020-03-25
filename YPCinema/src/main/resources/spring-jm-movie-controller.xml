@@ -4,31 +4,41 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controllers -->
-	<bean class="controller.movie.MovieController" />
+	<bean class="controller.movie.MovieRegisterController" />
+	<bean class="controller.movie.MovieListController" />
+	<bean class="controller.movie.MovieDetailController" />
+	<bean class="controller.movie.MovieModifyController" />
 	
 	<bean class="controller.screen.ScreenAddController" />
 	<bean class="controller.screen.ScreenListController" />
+	<bean class="controller.screen.ScreenDetailController" />
+	<bean class="controller.screen.ScreenModifyController" />
 	
 	<bean class="controller.showtime.ShowtimeRegisterController" />
 	<bean class="controller.showtime.ShowtimeListController" />
-	<bean class="controller.showtime.ShowtimeReservationController" />
+	<bean class="controller.showtime.ShowtimeReserveController" />
 	
 	<!-- Services -->
 	<bean id="movieInfoAPIService" class="service.movie.MovieInfoAPIService" />
 	<bean id="movieRegisterService" class="service.movie.MovieRegisterService" />
+	<bean id="movieListService" class="service.movie.MovieListService" />
+	<bean id="movieDetailService" class="service.movie.MovieDetailService" />
+	<bean id="movieModifyService" class="service.movie.MovieModifyService" />
 	
 	<bean id="screenAddService" class="service.screen.ScreenAddService" />
 	<bean id="screenListService" class="service.screen.ScreenListService" />
+	<bean id="screenDetailService" class="service.screen.ScreenDetailService" />
+	<bean id="screenModifyService" class="service.screen.ScreenModifyService" />
 	
 	<bean id="showtimeRegisterService" class="service.showtime.ShowtimeRegisterService" />
 	<bean id="showtimeListService" class="service.showtime.ShowtimeListService" />
 	<bean id="showtimeDetailService" class="service.showtime.ShowtimeDetailService" />
-	<bean id="showtimeReservationService" class="service.showtime.ShowtimeReservationService" />
+	<bean id="showtimeReserveService" class="service.showtime.ShowtimeReserveService" />
 	
 	<!-- Repositories -->
 	<bean id="movieRepository" class="repository.movie.MovieRepository" />
 	<bean id="screenRepository" class="repository.screen.ScreenRepository" />
 	<bean id="showtimeRepository" class="repository.showtime.ShowtimeRepository" />
-	
+	<bean id="showtimeReserveRepository" class="repository.showtime.ShowtimeReserveRepository" />
 	
 </beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="paymentMapper">
+	<cache />
+	<sql id="basecolumn">
+		payment_num, m_num, payment_email, payment_ph, payment_price, payment_date
+	</sql>
+	
+	<insert id="insertPayment" parameterType="model.DTO.PaymentDTO">
+		insert into payment (<include refid="basecolumn" />) values ( CONCAT('PAY_', (LPAD((SELECT nextval('seq')),4,0))), #{m_num}, #{payment_email}, #{payment_ph}, #{payment_price}, now())
+	</insert>
+	
+	<select id="selectLastPayment" parameterType="model.DTO.PaymentDTO" resultMap="basePaymentMap">
+		select <include refid="basecolumn" /> from payment where m_num = #{m_num} order by payment_date asc limit 1
+	</select>
+	
+	<select id="selectLastPaymentByInfo" parameterType="model.DTO.PaymentDTO" resultMap="basePaymentMap">
+		select <include refid="basecolumn" /> from payment where payment_num = #{payment_num}
+	</select>
+
+
+
+	<resultMap type="model.DTO.PaymentDTO" id="basePaymentMap">
+		<id column="payment_num" jdbcType="VARCHAR" property="payment_num" />
+		<id column="m_num" jdbcType="VARCHAR" property="m_num" />
+		<result column="payment_email" jdbcType="VARCHAR" property="payment_email" />
+		<result column="payment_ph" jdbcType="VARCHAR" property="payment_ph" />
+		<result column="payment_price" jdbcType="BIGINT" property="payment_price" />
+		<result column="payment_date" jdbcType="DATE" property="payment_date" />
+	</resultMap>
+</mapper>

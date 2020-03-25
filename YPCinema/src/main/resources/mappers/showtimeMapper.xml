@@ -26,6 +26,7 @@
 			<if test="theater_num != null">and theater_num = #{theater_num}</if>
 			<if test="screen_num != null">and screen_num = #{screen_num}</if>
 			<if test="movie_num != null">and movie_num = #{movie_num}</if>
+			<if test="show_date != null">and show_date = #{show_date_string}</if>
 		</trim>
 	</select>
 	

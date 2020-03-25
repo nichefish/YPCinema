@@ -1,9 +1,12 @@
 package command.showtime;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import model.DTO.TheaterAddDTO;
 
 public class ShowtimeCommand {
 	private String show_num;
@@ -14,6 +17,8 @@ public class ShowtimeCommand {
 	private Date show_date;
 	private String show_start;
 	private String show_end;
+	private List<TheaterAddDTO> theater_list;
+	
 	public String getShow_num() {
 		return show_num;
 	}
@@ -55,5 +60,11 @@ public class ShowtimeCommand {
 	}
 	public void setShow_end(String show_end) {
 		this.show_end = show_end;
+	}
+	public List<TheaterAddDTO> getTheater_list() {
+		return theater_list;
+	}
+	public void setTheater_list(List<TheaterAddDTO> theater_list) {
+		this.theater_list = theater_list;
 	}
 }

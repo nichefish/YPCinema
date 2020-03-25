@@ -12,61 +12,29 @@
  	<div class="container" align="center">
 		<table border="1">
 			<tr>
-				<td colspan="2" align="center">
-					<p>[${memberCommand.m_picture}]</p>
-					<p>프로필 이미지</p><br/>
+				<td>지점이름</td>
+				<td>${theaterAddCommand.theater_num}</td>
+			</tr>
+		</table>
+		<table border="1">
+			<tr align="center" valign="middle">
+				<td align="center">지점</td>
+				<td align="center">스크린</td>
+				<td align="center">회원연락처</td>
+				<td align="center">이메일</td>
+				<td align="center">등록일</td>
+			</tr>
+			
+			<c:forEach items="${lists}" var="screen">
+			<tr align="center" valign="middle">
+				<td align="center">${screen.theater_num}</td>
+				<td align="center">
+					<a href="<c:url value='/theater/detailScreen?num=${screen.screen_num}' />">${screen.screen_num}</a>
 				</td>
+				<td align="center">${screen.screen_max_seat}</td>
+				<td align="center">${screen.screen_row}</td>
 			</tr>
-			<tr>
-				<td>아이디</td>
-				<td>${memberCommand.m_id}</td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td>${memberCommand.m_name}</td>
-			</tr>
-			<tr>
-				<td>성별</td>
-				<td>
-					<c:choose >
-					  	<c:when test="${memberCommand.m_gen == 'M'}">남자</c:when>
-					  	<c:when test="${memberCommand.m_gen == 'F'}">여자</c:when>
-					</c:choose>
-				</td>
-			</tr>
-			<tr>
-				<td>생년월일</td>
-				<td><fmt:formatDate value='${memberCommand.m_birth}' type='date' pattern='yyyy-MM-dd' /></td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td>${memberCommand.m_ph}</td></tr>
-			<tr>
-				<td>이메일</td>
-				<td>${memberCommand.m_email}</td>
-			</tr>
-			<tr>
-				<td>우편번호</td>
-				<td>${memberCommand.m_zip}</td>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td>${memberCommand.m_addr1} ${memberCommand.m_addr2}</td>
-			</tr>
-			<tr>
-				<td>회원등급</td>
-				<td>${memberCommand.m_class}</td>
-			</tr>
-			<tr>
-				<td>회원가입일</td>
-				<td><fmt:formatDate value='${memberCommand.m_date}' type='date' pattern='yyyy-MM-dd' /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" onclick="location.href='modify?num=${memberCommand.m_num}'" name="modify" id="modify" value="회원정보 수정">
-					<input type="button" name="modify" id="modify" value="탈퇴">
-				</td>
-			</tr>
+			</c:forEach>
 		</table>
 	</div>
 </div>

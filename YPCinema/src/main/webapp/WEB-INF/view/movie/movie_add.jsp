@@ -115,7 +115,7 @@
 					<td colspan="2" align="center">
 						<input type="submit" value="영화정보 등록" />
 						<input type="reset" value="리셋" />
-						<input type="button" value="뒤로가기" />
+						<input type="button" onclick="location.href='list'" value="뒤로가기" />
 			 		</td>
 				</tr>
 			</table>

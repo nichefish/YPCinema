@@ -11,9 +11,17 @@
 		insert into screen (<include refid="basecolumn" />) values ( #{screen_num}, #{theater_num}, #{screen_max_seat}, #{screen_row}, #{screen_rating})
 	</insert>
 	
-	<select id="selectScreenByTheaterNum" parameterType="string" resultMap="baseScreenMap">
-		select <include refid="basecolumn" /> from screen where theater_num=#{theater_num}
+	<select id="selectScreenByTheaterNum" parameterType="model.DTO.TheaterAddDTO" resultMap="baseScreenMap">
+		select <include refid="basecolumn" /> from screen where theater_num=#{value}
 	</select>
+	
+	<select id="selectScreenByInfo" parameterType="model.DTO.ScreenDTO" resultMap="baseScreenMap">
+		select <include refid="basecolumn" /> from screen where screen_num=#{screen_num}
+	</select>
+	
+	<update id="modifyScreen" parameterType="model.DTO.ScreenDTO">
+		select <include refid="basecolumn" /> from screen where screen_num=#{screen_num}
+	</update>
 	
 	<resultMap type="model.DTO.ScreenDTO" id="baseScreenMap">
 		<id column="screen_num" jdbcType="VARCHAR" property="screen_num" />

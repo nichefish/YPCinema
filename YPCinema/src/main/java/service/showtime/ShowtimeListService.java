@@ -1,5 +1,6 @@
 package service.showtime;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,17 @@ public class ShowtimeListService {
 		List<ShowtimeDTO> lists = showtimeRepository.selectAllShowtime();
 		model.addAttribute("lists", lists);
 	}
-
+	
 	public void selectShowByInfo(ShowtimeCommand showtimeCommand, Model model) {
-		List<ShowtimeDTO> lists = showtimeRepository.selectByShowInfo(showtimeCommand);
-		
+		ShowtimeDTO show = new ShowtimeDTO();
+		show.setShow_num(showtimeCommand.getShow_num());
+		show.setTheater_num(showtimeCommand.getTheater_num());
+		show.setScreen_num(showtimeCommand.getScreen_num());
+		show.setMovie_num(showtimeCommand.getMovie_num());
+		show.setShow_date(showtimeCommand.getShow_date());
+		show.setShow_date_string(showtimeCommand.getShow_date());
+		System.out.println("날짜2: " + show.getShow_date());
+		List<ShowtimeDTO> lists = showtimeRepository.selectByShowInfo(show);
+		model.addAttribute("showLists", lists);
 	}
 }

@@ -1,10 +1,11 @@
-package command.showtime;
+package model.DTO;
 
-public class ShowtimeReserveCommand {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class ShowtimeReserveDTO implements Serializable {
 	private String show_num;
-	private String m_num;
-	private String theater_num;
-	private String screen_num;
+	public String m_num;
 	private Integer seat_num;
 	private String seat_name;
 	private Integer seat_price;
@@ -21,18 +22,6 @@ public class ShowtimeReserveCommand {
 	}
 	public void setM_num(String m_num) {
 		this.m_num = m_num;
-	}
-	public String getTheater_num() {
-		return theater_num;
-	}
-	public void setTheater_num(String theater_num) {
-		this.theater_num = theater_num;
-	}
-	public String getScreen_num() {
-		return screen_num;
-	}
-	public void setScreen_num(String screen_num) {
-		this.screen_num = screen_num;
 	}
 	public Integer getSeat_num() {
 		return seat_num;
