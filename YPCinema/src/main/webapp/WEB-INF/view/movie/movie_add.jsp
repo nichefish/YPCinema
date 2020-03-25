@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <!-- Style CSS -->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -17,9 +16,9 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 <body>
-   <header class="header-area">
-      <%@ include file="../navigation.jsp"%>
-   </header>
+<header class="header-area">
+	<%@ include file="../navigation.jsp"%>
+</header>
  
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">

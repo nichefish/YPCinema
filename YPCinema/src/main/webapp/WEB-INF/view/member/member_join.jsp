@@ -21,6 +21,7 @@
 		<form:form action="memberJoinAction" name="frm" id="frm" method="post" commandName="memberCommand">
 		<!-- <input type="hidden" name="confirmNum" id="confirmNum" value="1"> 여기 value 1! 중복체크 -->
 			<table width="600" align="center" border=1 >
+				
 			 	<tr>
 			 		<td width="200">사용자 ID</td>
 			 		<td width="400">
@@ -47,6 +48,7 @@
 			 		<td width="400">
 			 			<form:input path="m_name" id="userName" size="12" maxlength="10" />
 			 			<form:errors path="m_name" />
+			 			<input type="hidden" name="m_picture" value="<c:url value='/img/empty_person.png' />" >
 			 		</td>
 			 	</tr>
 			 	<tr>

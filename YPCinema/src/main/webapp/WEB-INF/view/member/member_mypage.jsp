@@ -13,7 +13,7 @@
 		<table border="1">
 			<tr>
 				<td colspan="2" align="center">
-					<p>[${memberCommand.m_picture}]</p>
+					<p>[<img src="${memberCommand.m_picture}">]</p>
 					<p>프로필 이미지</p><br/>
 				</td>
 			</tr>

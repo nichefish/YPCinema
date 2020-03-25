@@ -46,6 +46,9 @@
 						<!-- Navbar -->
 						<div class="collapse navbar-collapse" id="worldNav">
 							<ul class="navbar-nav ml-auto">
+								<li class="nav-item">
+									<a href="#" ><img src="<c:url value='/img/ticket2-5.png' />" alt="Logo" style="width:40px;"></a>
+								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -99,7 +102,7 @@
 									
 									<c:if test="${!empty authInfo}">
 										<a href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right:20px; float:right;">
-										<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" style="width:35px;length:35px;">&nbsp;&nbsp;&nbsp;
+										<img class="img-profile rounded-circle" src="${authInfo.m_picture }" style="width:35px;length:35px;">&nbsp;&nbsp;&nbsp;
 										<span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;">
 											<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white">"${authInfo.m_name}"</span>님</c:if>
 											<c:if test="${authInfo.m_admin eq '1'}"><span style="color:blue">관리자 "${authInfo.m_name}"님</span></c:if>

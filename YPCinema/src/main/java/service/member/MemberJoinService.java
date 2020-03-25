@@ -31,6 +31,7 @@ public class MemberJoinService {
 		dto.setM_birth(memberCommand.getM_birth());
 		dto.setM_ph(memberCommand.getM_ph());
 		dto.setM_email(memberCommand.getM_email());
+		dto.setM_picture("/YPCinema/img/empty_person.png");
 		dto.setM_zip(memberCommand.getM_zip());
 		dto.setM_addr1(memberCommand.getM_addr1());
 		dto.setM_addr2(memberCommand.getM_addr2());
