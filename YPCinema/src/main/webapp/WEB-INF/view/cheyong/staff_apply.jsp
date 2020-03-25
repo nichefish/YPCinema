@@ -58,23 +58,23 @@
                                  	※주의사항※ 장난으로 내면 디진다.
                                 </div>
                                 <br />
-                                <form:form method="post" commandName="gonggoCommand">
-								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;" frame="void">
+                                <form:form method="post" commandName="">
+								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;border:0px;" >
 									<tr>
-										<td>이름 :</td>
-										<td>회원이름 등장!</td>
+										<td>이름 </td>
+										<td><input type="text" id="" name=""></td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td>생년월일 등장!</td>
+										<td><input type="text" id="" name=""></td>
 									</tr>
 									<tr>
 										<td>전화번호</td>
-										<td>전화번호</td>
+										<td><input type="text" id="" name=""></td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>이메일</td>
+										<td><input type="text" id="" name=""></td>
 									</tr>
 									<tr>
 										<td>우편번호</td>
@@ -103,56 +103,59 @@
 									<tr>
 										<td>근무가능일</td>
 										<td>
-											<input type="text" name="che_person" id="che_person" > 명
+											<label><input type="checkbox" name="r_gadate"   value="월">월</label>
+											<label><input type="checkbox" name="r_gadate"   value="화">화</label>
+											<label><input type="checkbox" name="r_gadate"   value="수">수</label>
+											<label><input type="checkbox" name="r_gadate"   value="목">목</label>
+											<label><input type="checkbox" name="r_gadate"   value="금">금</label>
+											<label><input type="checkbox" name="r_gadate"   value="토">토</label>
+											<label><input type="checkbox" name="r_gadate"   value="일">일</label>
 										</td>
 									</tr>
 									<tr>
-										<td>근무 조건</td>
+										<td>근무가능시간</td>
+										<td><input type="text" id="" name=""></td>
+									</tr>
+									<tr>
+										<td>장애구분</td>
 										<td>
-											<textarea id="che_jogun" name="che_jogun" style="width:500px;height: 342px;" >
-											 ▪ 근로계약 : 무기근로계약 / 단시간근로 / 개인별 스케줄에 따른 근무
-											 ▪ 시급조건 : 20년 9,000원 / 단, 근무평가에 따른 시급 조정
-											 ▪ 초과근로 : 50% 가산	▪ 야간근로 : 22시 이후 50% 가산
-											 ▪ 연차유급휴가 부여(미 사용시 연차수당 지급)
-											 ▪ 사회보험 : 관련 법령에 따라 고용보험, 산재보험, 국민연금, 건강보험 적용
-											 ▪ 퇴 직 금 : 1년 이상 근무시 지급
-											</textarea>
+											<input type="radio" name="r_dis" id="r_dis_y"value="네">네
+											<input type="radio" name="r_dis" id="r_dis_n" value="아니요">아니요
+											&nbsp;
+											<input type="text" name="hahahaho" id="hahahaho" placeholder="장애등급번호를 입력해 주세요." style="width:250px;">
+												
+											
 										</td>
 									</tr>
 									<tr>
-										<td>복리후생</td>
+										<td>보훈대상</td>
+										<td>
+											<input type="radio" name="r_price" id="r_price_y" value="네">네
+											<input type="radio" name="r_price" id="r_price_n" value="아니요">아니요
+											&nbsp;
+											<input type="text" name="hahahahi" id="hahahahi" placeholder="보훈번호를 입력해 주세요." style="width:250px;">
+											
+										</td>
+									</tr>
+									<tr>
+										<td>경력사항</td>
 										<td>
 											<textarea id="che_bocri" name="che_bocri" style="width:500px;height: 218px;" >
-											 ▪ 전국 CGV 영화관람 무료(일부 특별관 제외)
-											 ▪ 전국 CGV 매점 메뉴 50%할인(일부 제외)
-											 ▪ 유니폼, 명찰, 모자 등 근무 時 착용 물품 제공
-											 ▪ 드리미 휴게공간 및 락커 제공
 											</textarea>
 										</td>
 									</tr>
 					
 									<tr>
-										<td>지원자격</td>
+										<td>성격의 장단점</td>
 										<td>
 											<textarea id="che_jagyuc" name="che_jagyuc"style="width:500px;height: 154px;" >
-											 ▪ 고등학교 졸업 이상 (단, 졸업예정자/미성년자 제외)
-											 ▪ 미성년자(검정고시 합격자, 대학 미 진학자)경우 만19세가 되는 해 1월 1일부터 지원가능
+											
 											</textarea>
 										</td>
 									</tr>
-									<tr>
-										<td>기타사항</td>
-										<td>
-											<textarea id="che_gita" name="che_gita"style="width:500px;height: 154px;" >이력서 必</textarea>
-										</td>
-									</tr>
-									<tr>
-										<td>진행기간</td>
-										<td><input type="date" name="che_sijac_string" id="che_sijac_string" min="${sysdate}">~<input type="date" name="che_magam_string" id="che_magam_string" min="${sysdate}"></td>
-									</tr>
 								</table>
-								<input type="reset" value="리셋"> 
-								<input type="submit" value="등록">
+								<input type="reset" value="리셋">
+								<input type="submit" value="지원">
 								<input type="button" value="취소" onclick="location.href='staff_postList'" >
 								</form:form>
                             </div>
@@ -194,8 +197,25 @@
 var w = 400;
 var h = 300;
 $(document).ready(function(){
+	//숨김
+	$("#hahahahi").hide();
+	$("#hahahaho").hide();
+
 	$("#jijomgumsec").click(function(){
 		window.open('http://localhost:8080/YPCinema/jijom_gumsec','_blank',"top=0,left=500,width="+w+",height="+h+",toolbar=0,status=0,scrollbars=1,resizable=0");
+	});
+	//눌렀을 때 보이게 & 안보이게
+	$("input:radio[id=r_price_y]").click(function(){
+		$("#hahahahi").show();
+	});
+	$("input:radio[id=r_price_n]").click(function(){
+		$("#hahahahi").hide();
+	});
+	$("input:radio[id=r_dis_y]").click(function(){
+		$("#hahahaho").show();
+	});
+	$("input:radio[id=r_dis_n]").click(function(){
+		$("#hahahaho").hide();
 	});
 });
 </script>
