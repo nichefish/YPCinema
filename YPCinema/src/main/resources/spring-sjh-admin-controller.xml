@@ -6,6 +6,7 @@
 	<!-- Controller -->
 	<bean class="controller.admin.JicmuController" />
 	<bean class="controller.admin.TheaterController" />
+
 	
 	<!-- Service -->
 	<bean id="theaterAddService" class="service.admin.TheaterAddService" />
@@ -15,4 +16,14 @@
 	<bean id="theaterAddRepository" class="repository.admin.TheaterAddRepository" />
 	<bean id="jicmuRepository" class="repository.admin.JicmuRepository" />
 	
+	<!-- Cheyong Controller -->
+	<bean class="controller.cheyong.CheyongController" />
+	<bean class="controller.cheyong.CheyongAddController" />
+	
+	<!-- Cheyong Service -->
+	<bean id="cheyongService" class="service.cheyong.CheyongService" />
+	<bean id="cheyongAddService" class="service.cheyong.CheyongAddService"/>
+	
+	<!-- Cheyong Repository -->
+	<bean id="cheyongRepository" class="repository.cheyong.CheyongRepository" />
 </beans>

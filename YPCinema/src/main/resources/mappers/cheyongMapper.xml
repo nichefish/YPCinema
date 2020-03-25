@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cheyongMapper">
+	<cache />
+	
+	<!-- sql colums -->
+	<sql id="CheyongColumns">
+		CHE_NUM,CHE_SUBJECT,CHE_JIJOM,CHE_PERSON,CHE_JOGUN,CHE_BOCRI,CHE_JAGYUC,CHE_GITA,CHE_SIJAC,CHE_MAGAM
+	</sql>
+	
+	<!-- Select Map Part -->
+	<resultMap type="model.DTO.CheyongAddDTO" id="baseCheyongMap">
+		<id column="CHE_NUM" jdbcType="VARCHAR" property="che_num"/>
+		<result column="CHE_SUBJECT" jdbcType="VARCHAR" property="che_subject"/>
+		<result column="CHE_JIJOM" jdbcType="VARCHAR" property="che_jijom" />
+		<result column="CHE_PERSON" jdbcType="BIGINT" property="che_person" />
+		<result column="CHE_JOGUN" jdbcType="VARCHAR" property="che_jogun"/>
+		<result column="CHE_BOCRI" jdbcType="VARCHAR" property="che_bocri"/>
+		<result column="CHE_JAGYUC" jdbcType="VARCHAR" property="che_jagyuc"/>
+		<result column="CHE_GITA" jdbcType="VARCHAR" property="che_gita"/>
+		<result column="CHE_SIJAC" jdbcType="DATE" property="che_sijac_string"/>
+		<result column="CHE_MAGAM" jdbcType="DATE" property="che_magam_string"/>
+	</resultMap>
+	<resultMap type="tadto" id="baseTheaterMap">
+		<id column="THEATER_NUM" jdbcType="VARCHAR" property="theater_num"/>
+		<result column="THEATER_NAME" jdbcType="VARCHAR" property="theater_name"/>
+		<result column="THEATER_ADDR1" jdbcType="VARCHAR" property="theater_addr1"/>
+		<result column="THEATER_ADDR2" jdbcType="VARCHAR" property="theater_addr2"/>
+		<result column="THEATER_ZIP" jdbcType="VARCHAR" property="theater_zip"/>
+		<result column="THEATER_PH" jdbcType="VARCHAR" property="theater_ph"/>
+		<result column="THEATER_SPECIAL" jdbcType="VARCHAR" property="theater_special"/>
+		<result column="THEATER_RATING" jdbcType="VARCHAR" property="theater_rating"/>
+	</resultMap>
+	
+	<!-- Select Part! -->
+	<select id="selectOneCheyong" parameterType="string" resultMap="baseCheyongMap">
+		select <include refid="CheyongColumns" /> from gonggo
+		<where>
+			CHE_NUM = #{num}
+		</where>
+	</select>
+	<select id="selectAllCheyong" resultMap="baseCheyongMap">
+		select <include refid="CheyongColumns" /> from gonggo
+	</select>
+	<select id="selectJijom" parameterType="string" resultMap="baseTheaterMap">
+		select THEATER_NUM,THEATER_NAME from theater
+		<where>
+			THEATER_NAME like concat('%', #{jj}, '%')
+		</where>
+	</select>
+	
+	<!-- Insert Part! -->
+	<insert id="insertCheyong" parameterType="model.DTO.CheyongAddDTO">
+		insert into gonggo(<include refid="CheyongColumns" />)
+		 values(nextval('seq'),#{che_subject},#{che_jijom},#{che_person},#{che_jogun},#{che_bocri},#{che_jagyuc},#{che_gita},#{che_sijac_string},#{che_magam_string})
+	</insert>
+</mapper>

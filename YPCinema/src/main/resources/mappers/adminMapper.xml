@@ -39,5 +39,9 @@
 			THEATER_NUM=#{theater_num}
 		</where>
 	</update>
+	<!-- Delete Part -->
+	<delete id="deleteTheater" parameterType="string">
+		delete from theater <where>THEATER_NUM=#{num}</where>
+	</delete>
 	
 </mapper>

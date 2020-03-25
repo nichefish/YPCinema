@@ -14,6 +14,7 @@ import service.admin.TheaterAddService;
 public class TheaterController {
 	@Autowired
 	TheaterAddService theaterAddService;
+	
 	@RequestMapping(value="/theater_add", method=RequestMethod.GET)
 	public String TheaterAdd() {
 		return "admin/theater_add";
@@ -39,4 +40,10 @@ public class TheaterController {
 		theaterAddService.execute(num, model);
 		return "admin/theater_detail";
 	}
+	@RequestMapping("/theater_del")
+	public String TheaterDel(@RequestParam(value="num")String num) {
+		theaterAddService.delete(num);
+		return "redirect:jobList";
+	}
+	
 }

@@ -40,12 +40,12 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!--내용넣는거 시작!-->
-					<h1 class="h3 mb-2 text-gray-800">
+					<h1 class="h3 mb-2 text-gray-800" style="margin-left: 35%;">
 						<b>Movie Theater Registration</b>
 					</h1>
 					<!-- DataTales Example -->
 					
-					<div class="card shadow mb-4" style="width: 50%;">
+					<div class="card shadow mb-4" style="width: 50%; margin-left: 25%;">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">극장등록</h6>
 						</div>

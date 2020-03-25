@@ -12,6 +12,9 @@ import repository.admin.TheaterAddRepository;
 public class TheaterAddService {
 	@Autowired
 	TheaterAddRepository theaterAddRepository;
+	public void delete(String num) {
+		theaterAddRepository.deleteTheater(num);
+	}
 	public void addPost(TheaterAddCommand theaterAddCommand) {
 		TheaterAddDTO dto = new TheaterAddDTO();
 		dto.setTheater_name(theaterAddCommand.getTheater_name());

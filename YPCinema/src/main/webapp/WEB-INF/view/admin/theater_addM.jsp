@@ -40,7 +40,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!--내용넣는거 시작!-->
-					<h1 class="h3 mb-2 text-gray-800">
+					<h1 class="h3 mb-2 text-gray-800" style="margin-left: 35%;">
 						<b>Movie Theater Modification</b>
 					</h1>
 					<!-- DataTales Example -->

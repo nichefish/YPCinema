@@ -15,7 +15,6 @@ public class JicmuController {
 	@RequestMapping("/jobList")
 	public String jobList(Model model) {
 		jicmuListService.showList(model);
-		jicmuListService.showJicmuList(model);
 		return "admin/theater_jobList";
 	}
 	@RequestMapping("/jicmu_add")
@@ -23,5 +22,9 @@ public class JicmuController {
 		jicmuListService.jicmuAdd(jicmu);
 		return "redirect:jobList";
 	}
-	
+	@RequestMapping("/theater_ajax2")
+	public String Tajax2(Model model) {
+		jicmuListService.showJicmuList(model);
+		return "admin/theater_ajax2";
+	}
 }

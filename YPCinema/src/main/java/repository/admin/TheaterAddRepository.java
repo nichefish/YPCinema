@@ -15,6 +15,10 @@ public class TheaterAddRepository {
 		String statement = namespace + ".theaterInsert";
 		sqlSession.insert(statement, dto);
 	}
+	public void deleteTheater(String num) {
+		String statement = namespace + ".deleteTheater";
+		sqlSession.delete(statement,num);
+	}
 	public TheaterAddDTO selectTheater(String num) {
 		String statement = namespace + ".selectTheater";
 		return sqlSession.selectOne(statement,num);

@@ -80,11 +80,12 @@ div.card-body {
                   	<c:forEach items="${theaters}" var="t" step="1">
                   		<tr>
                   			<td>
-                  				<input type="button" name="theater_name" id="theater_name" value="${t.theater_name}" onclick="location.href='theater_detail?num=${t.theater_num}'">
+                  				<input type="button" name="theater_name" id="theater_name" value="${t.theater_name}">
                   			</td>
                   			<td>
+                  				<input type="button" name="theater_addM" id="theater_addM" value="상세" onclick="location.href='theater_detail?num=${t.theater_num}'"><br />
                   				<input type="button" name="theater_addM" id="theater_addM" value="수정" onclick="location.href='theater_addM?num=${t.theater_num}'"><br />
-                  				<input type="button" name="" id="" value="삭제">
+                  				<input type="button" name="theater_del" id="theater_del" value="삭제" onclick="location.href='theater_del?num=${t.theater_num}'">
                   			</td>
                   		</tr>
                  	</c:forEach>
@@ -96,48 +97,17 @@ div.card-body {
           </div>
 		<!-- 222222222222222222222 -->
           <!-- DataTales Example -->
+          <div id="theater2">
           <div class="card shadow mb-4"style="width:30%;float: left; margin-right: 20px;">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">직무별</h6>
             </div>
             <div class="card-body" height:367.6px;>
               <div class="table-responsive">
-              
-                <table class="table table-bordered" id="dataTable"cellspacing="0" >
-                    <tr>
-                      <th colspan="2">Job Type</th>
-                    </tr>
-                  <tfoot>
-                    <tr>
-                      <th colspan="2">Job Type</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                  	<c:forEach items="${jicmuList}" var="j" step="1">
-                  		<tr>
-                  			<td>
-                  				<input type="button" name="jic_name" id="jic_name" value="${j.jic_name}">
-                  			</td>
-                  			<td>
-                  				<input type="button" name="jic_del" id="jic_del" value="삭제">
-                  			</td>
-                  		</tr>
-                 	</c:forEach>
-                  </tbody>
-                </table>
-               
-            	<input type ="button" id= "job_add" value= "직무추가">
-            	<div id="loadingDiv">
-            		<form action ="jicmu_add" method="post" >
-            			Job Name:<input type="text" name="job_plus" id="job_plus">
-            			<input type ="submit" value="추가" >
-            		</form>
-					<input type ="button" id="btnss" value="취소">
-            	</div>
               </div>
             </div>
           </div>
-		
+		</div>
 		<!-- 2222222222222222222222222 -->
 		<!-- 3333333333333333333333333 -->
 		<!-- DataTales Example -->
@@ -240,6 +210,21 @@ div.card-body {
 
 <!-- script -->
 <script type="text/javascript">
+$(function(){
+	$("#theater_name").click(function(){
+		$.ajax({
+			type:"POST",
+			url:"theater_ajax2",
+			data:"num=" + $("#theater_name").val(),
+			datatype:"html",
+			success: function(data1){
+				$("#theater2").html(data1);
+			}
+			
+		});
+	});
+});
+
  	$(function(){
  		$("#theater_add").click(function(){
  			location.href="theater_add";

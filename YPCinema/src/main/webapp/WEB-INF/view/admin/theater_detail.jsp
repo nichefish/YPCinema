@@ -40,7 +40,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!--내용넣는거 시작!-->
-					<h1 class="h3 mb-2 text-gray-800">
+					<h1 class="h3 mb-2 text-gray-800" style="margin-left: 35%;">
 						<b>Movie Theater Modification</b>
 					</h1>
 					<!-- DataTales Example -->
@@ -53,8 +53,8 @@
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" cellspacing="0">
 									<tr>
-										<th colspan="2" style="text-align: center;">
-											Information
+										<th colspan="2">
+											Theater
 											<input type="hidden" name="theater_num" id="theater_num" value="${numTheater.theater_num}">
 										</th>
 									</tr>
