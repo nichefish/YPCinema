@@ -24,6 +24,7 @@
 	<!-- Cheyong Service -->
 	<bean id="cheyongService" class="service.cheyong.CheyongService" />
 	<bean id="cheyongAddService" class="service.cheyong.CheyongAddService"/>
+	<bean id="cheyongApplyService" class="service.cheyong.CheyongApplyService" />
 	
 	<!-- Cheyong Repository -->
 	<bean id="cheyongRepository" class="repository.cheyong.CheyongRepository" />

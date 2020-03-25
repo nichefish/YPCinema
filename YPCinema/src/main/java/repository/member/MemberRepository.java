@@ -33,4 +33,10 @@ public class MemberRepository {
 		String statement = namespace + ".modifyMember";
 		return sqlSession.update(statement, member);
 	}
+	//sjh가 사용함요.
+	public MemberDTO selectUseNum(String num) {
+		String statement = namespace + ".selectUseNum";
+		return sqlSession.selectOne(statement,num);
+	}
+	//sjh가 사용함 끝.
 }

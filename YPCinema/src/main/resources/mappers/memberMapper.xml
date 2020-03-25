@@ -43,7 +43,13 @@
 			</if>
 		</where>
 	</update>
-	
+	<!-- sjh가 사용쓰 -->
+	<select id="selectUseNum" parameterType="string" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member
+		<where>
+			m_num = #{num}
+		</where>
+	</select>
 	<resultMap type="model.DTO.MemberDTO" id="baseMemberMap">
 		<id column="m_num" jdbcType="VARCHAR" property="m_num" />	<!-- PK/FK.. -->
 		<result column="m_id" jdbcType="VARCHAR" property="m_id" />		<!-- 일반속성... -->

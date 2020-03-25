@@ -62,33 +62,33 @@
 								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;border:0px;" >
 									<tr>
 										<td>이름 </td>
-										<td><input type="text" id="" name=""></td>
+										<td>${userInfo.m_name}</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td><input type="text" id="" name=""></td>
+										<td>${userInfo.m_birth}</td>
 									</tr>
 									<tr>
 										<td>전화번호</td>
-										<td><input type="text" id="" name=""></td>
+										<td>${userInfo.m_ph}</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td><input type="text" id="" name=""></td>
+										<td>${userInfo.m_email}</td>
 									</tr>
 									<tr>
 										<td>우편번호</td>
 										<td>
-											<input type="hidden" name="theater_zip" id="theater_zip" >
-											<input type="text" name="user_zip_show" id="user_zip_show"  disabled> 
+											<input type="hidden" name="theater_zip" id="theater_zip" value="${userInfo.m_email}">
+											<input type="text" name="user_zip_show" id="user_zip_show"  value="${userInfo.m_email}" disabled> 
 											<input type="button" onclick="sample4_execDaumPostcode()" value="검색" >
 										</td>
 									</tr>
 									<tr>
 										<td>상세주소</td>
 										<td>
-											<input type="hidden" name="theater_addr1" id="theater_addr1" > 
-											<input type="text" name="user_addr1_show" id="user_addr1_show"  disabled>
+											<input type="hidden" name="theater_addr1" id="theater_addr1" value="${userInfo.m_addr1}"> 
+											<input type="text" name="user_addr1_show" id="user_addr1_show" value="${userInfo.m_addr1}" disabled>
 										</td>
 									</tr>
 									<tr>
