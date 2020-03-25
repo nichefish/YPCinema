@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="showReserveMapper">
+	<cache />
+	
+	<sql id="basecolumn">
+		seat_reserve_num, show_num, payment_num, m_num, seat_num, seat_name, seat_price
+	</sql>
+	
+	<insert id="insertReserve" parameterType="model.DTO.ShowReserveDTO">
+		insert into movie_reserve (<include refid="basecolumn" />) values ( CONCAT('ST_', (LPAD((SELECT nextval('seq')),4,0))), #{show_num}, #{payment_num}, #{m_num}, #{seat_num}, #{seat_num}, #{seat_price})
+	</insert>
+	<!-- 임시로 seat_name을 seat_num으로 대충 줬음... -->
+	
+	<select id="selectShowReserveListByPayInfo" parameterType="model.DTO.PaymentDTO" resultMap="baseShowReserveMap">
+		select <include refid="basecolumn" /> from movie_reserve
+		<trim prefix="where" prefixOverrides="and">
+			<if test="show_num != null">and show_num = #{show_num}</if>
+			<if test="theater_num != null">and theater_num = #{theater_num}</if>
+			<if test="screen_num != null">and screen_num = #{screen_num}</if>
+			<if test="movie_num != null">and movie_num = #{movie_num}</if>
+			<if test="payment_num != null">and payment_num=#{payment_num}</if>
+		</trim>
+	</select>
+
+	<select id="selectShowReserveListByShowInfo" parameterType="model.DTO.ShowtimeDTO" resultMap="baseShowReserveMap">
+		select <include refid="basecolumn" /> from movie_reserve
+		<trim prefix="where" prefixOverrides="and">
+			<if test="show_num != null">and show_num = #{show_num}</if>
+			<if test="theater_num != null">and theater_num = #{theater_num}</if>
+			<if test="screen_num != null">and screen_num = #{screen_num}</if>
+			<if test="movie_num != null">and movie_num = #{movie_num}</if>
+			<if test="show_num != null">and show_num=#{show_num}</if>
+		</trim>
+	</select>
+
+	<resultMap type="model.DTO.ShowReserveDTO" id="baseShowReserveMap">
+		<id column="seat_reserve_num" jdbcType="VARCHAR" property="seat_reserve_num" />
+		<id column="show_num" jdbcType="VARCHAR" property="show_num" />
+		<id column="payment_num" jdbcType="VARCHAR" property="payment_num" />
+		<id column="m_num" jdbcType="VARCHAR" property="m_num" />
+		<result column="seat_num" jdbcType="BIGINT" property="seat_num" />
+		<result column="seat_name" jdbcType="VARCHAR" property="seat_name" />
+		<result column="seat_price" jdbcType="BIGINT" property="seat_price" />
+	</resultMap>
+	
+</mapper>

@@ -4,19 +4,23 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controllers -->
+	<bean class="controller.theater.TheaterListController" />
+	<bean class="controller.theater.TheaterDetailController" />
+	
+	<bean class="controller.screen.ScreenAddController" />
+	<bean class="controller.screen.ScreenDetailController" />
+	<bean class="controller.screen.ScreenModifyController" />
+	
 	<bean class="controller.movie.MovieRegisterController" />
 	<bean class="controller.movie.MovieListController" />
 	<bean class="controller.movie.MovieDetailController" />
 	<bean class="controller.movie.MovieModifyController" />
 	
-	<bean class="controller.screen.ScreenAddController" />
-	<bean class="controller.screen.ScreenListController" />
-	<bean class="controller.screen.ScreenDetailController" />
-	<bean class="controller.screen.ScreenModifyController" />
-	
 	<bean class="controller.showtime.ShowtimeRegisterController" />
 	<bean class="controller.showtime.ShowtimeListController" />
-	<bean class="controller.showtime.ShowtimeReserveController" />
+	
+	<bean class="controller.showReserve.ShowReserveRegisterController" />
+	<bean class="controller.showReserve.ShowReserveListController" />
 	
 	<!-- Services -->
 	<bean id="movieInfoAPIService" class="service.movie.MovieInfoAPIService" />
@@ -33,12 +37,14 @@
 	<bean id="showtimeRegisterService" class="service.showtime.ShowtimeRegisterService" />
 	<bean id="showtimeListService" class="service.showtime.ShowtimeListService" />
 	<bean id="showtimeDetailService" class="service.showtime.ShowtimeDetailService" />
-	<bean id="showtimeReserveService" class="service.showtime.ShowtimeReserveService" />
+	
+	<bean id="showReserveRegisterService" class="service.showReserve.ShowReserveRegisterService" />
+	<bean id="showReserveListService" class="service.showReserve.ShowReserveListService" />
 	
 	<!-- Repositories -->
 	<bean id="movieRepository" class="repository.movie.MovieRepository" />
 	<bean id="screenRepository" class="repository.screen.ScreenRepository" />
 	<bean id="showtimeRepository" class="repository.showtime.ShowtimeRepository" />
-	<bean id="showtimeReserveRepository" class="repository.showtime.ShowtimeReserveRepository" />
+	<bean id="showReserveRepository" class="repository.showReserve.ShowReserveRepository" />
 	
 </beans>

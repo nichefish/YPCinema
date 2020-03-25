@@ -1,5 +1,6 @@
 package command.payment;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +13,7 @@ public class PaymentCommand {
 	private Integer payment_price;
 	@DateTimeFormat(pattern="yyyy-MM-dd")		// 요런식으로.. 간단하게 포맷 설정..
 	private Date payment_date;
+	private String payment_date_string;
 	
 	public String getPayment_num() {
 		return payment_num;
@@ -49,4 +51,14 @@ public class PaymentCommand {
 	public void setPayment_date(Date payment_date) {
 		this.payment_date = payment_date;
 	}
+	public String getPayment_date_string() {
+		return payment_date_string;
+	}
+	public void setPayment_date_string(Date payment_date) {
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		this.payment_date_string = dt.format(payment_date);
+	}
+	
+	
+	
 }

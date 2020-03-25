@@ -27,4 +27,8 @@ public class TheaterAddRepository {
 		String statement = namespace + ".modifyTheater";
 		sqlSession.update(statement,dto);
 	}
+	public void modifySpecial(TheaterAddDTO dto) {
+		String statement = namespace + ".modifySpecial";
+		sqlSession.update(statement,dto);
+	}
 }

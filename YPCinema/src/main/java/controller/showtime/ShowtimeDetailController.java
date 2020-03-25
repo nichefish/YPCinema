@@ -17,6 +17,6 @@ public class ShowtimeDetailController {
 	@RequestMapping(value="/showtime/detail", method=RequestMethod.POST)
 	public String showDetail(@RequestParam("num") String show_num, Model model) {
 		showtimeDetailService.selectByShowId(show_num, model);
-		return "movie/movie_reserve_seatview";
+		return "movie/show_reserve_seatview";
 	}
 }

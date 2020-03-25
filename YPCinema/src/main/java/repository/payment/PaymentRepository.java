@@ -1,5 +1,7 @@
 package repository.payment;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,9 +25,19 @@ public class PaymentRepository {
 		return sqlSession.selectOne(statement, paymentCommand);
 	}
 
-	public PaymentDTO selectPaymentByInfo(PaymentCommand paymentCommand) {
+	public PaymentDTO selectPaymentByInfo(String payment_num) {
 		String statement = namespace + ".selectPaymentByInfo";
-		return sqlSession.selectOne(statement, paymentCommand);
+		return sqlSession.selectOne(statement, payment_num);
+	}
+
+	public List<PaymentDTO> selectPaymentAll() {
+		String statement = namespace + ".selectPaymentAll";
+		return sqlSession.selectList(statement);
+	}
+
+	public List<PaymentDTO> selectPaymentListByInfo(PaymentCommand paymentCommand) {
+		String statement = namespace + ".selectPaymentListByInfo";
+		return sqlSession.selectList(statement);
 	}
 
 }

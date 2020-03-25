@@ -3,7 +3,8 @@ package model.DTO;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class ShowtimeReserveDTO implements Serializable {
+public class ShowReserveDTO implements Serializable {
+	private String seat_reserve_num;
 	private String show_num;
 	public String m_num;
 	private Integer seat_num;
@@ -11,6 +12,12 @@ public class ShowtimeReserveDTO implements Serializable {
 	private Integer seat_price;
 	private String payment_num;
 	
+	public String getSeat_reserve_num() {
+		return seat_reserve_num;
+	}
+	public void setSeat_reserve_num(String seat_reserve_num) {
+		this.seat_reserve_num = seat_reserve_num;
+	}
 	public String getShow_num() {
 		return show_num;
 	}

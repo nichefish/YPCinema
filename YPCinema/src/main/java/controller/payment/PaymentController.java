@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.payment.PaymentCommand;
-import command.showtime.ShowtimeReserveCommand;
+import command.showtime.ShowReserveCommand;
 import service.payment.OrderListService;
 import service.payment.PaymentDetailService;
 import service.payment.PaymentInsertService;
+import service.showReserve.ShowReserveListService;
+import service.showReserve.ShowReserveRegisterService;
 
 @Controller
 public class PaymentController {
@@ -22,6 +24,10 @@ public class PaymentController {
 	private PaymentInsertService paymentInsertService;
 	@Autowired
 	private PaymentDetailService paymentDetailService;
+	@Autowired
+	private ShowReserveRegisterService showReserveRegisterService;
+	@Autowired
+	private ShowReserveListService showReserveListService;
 	
 	@RequestMapping("/orderList")
 	public String orderList(HttpSession session, Model model) {
@@ -37,12 +43,12 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/payment_success")
-	public String paymentSuccess(PaymentCommand paymentCommand, Model model) {
+	public String paymentSuccess(PaymentCommand paymentCommand, Model model, HttpSession session) {
 		paymentInsertService.insertPayment(paymentCommand);
-		paymentDetailService.selectLastPayment(paymentCommand, model);
-		
-		
-//		paymentDetailService.selectPaymentByInfo(paymentCommand, model);
-		return "payment/payment_success";
+		String payment_num = paymentDetailService.selectLastPayment(paymentCommand, model);
+		paymentCommand.setPayment_num(payment_num);
+		showReserveRegisterService.insertReserve(session, payment_num);
+		showReserveListService.selectShowReserveListByPayInfo(paymentCommand, model);
+		return "payment/payment_detail";
 	}
 }

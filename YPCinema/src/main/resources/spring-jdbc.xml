@@ -17,7 +17,6 @@
         <property name="password" value="1234"></property>
     </bean>
         
-
 <!-- 	<bean id = "dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  -->
 <!-- 		destroy-method="close"> -->
 <!-- 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" /> -->

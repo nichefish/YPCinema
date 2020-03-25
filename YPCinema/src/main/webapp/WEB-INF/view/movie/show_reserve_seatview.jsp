@@ -25,7 +25,7 @@
 				<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}"></c:set>
 			</tr>
 		</table>
-		<form:form action="orderList" method="post" commandName="showtimeReserveCommand">
+		<form:form action="orderList" method="post" commandName="showReserveCommand">
 			<form:hidden path="show_num" />
 			<form:hidden path="theater_num" />
 			<form:hidden path="screen_num" />

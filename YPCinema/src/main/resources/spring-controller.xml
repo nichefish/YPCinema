@@ -13,6 +13,8 @@
 	<bean class="controller.member.MemberModifyController" />
 	
 	<bean class="controller.payment.PaymentController" />
+	<bean class="controller.payment.PaymentListController" />
+	<bean class="controller.payment.PaymentDetailController" />
 	
 	<!-- Services -->
 	<bean id="memberJoinService" class="service.member.MemberJoinService" />
@@ -25,6 +27,7 @@
 	
 	<bean id="orderListService" class="service.payment.OrderListService" />
 	<bean id="paymentInsertService" class="service.payment.PaymentInsertService" />
+	<bean id="paymentListService" class="service.payment.PaymentListService" />
 	<bean id="paymentDetailService" class="service.payment.PaymentDetailService" />
 	
 	<!-- Repositories -->

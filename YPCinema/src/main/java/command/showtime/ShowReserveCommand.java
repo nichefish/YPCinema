@@ -1,6 +1,7 @@
 package command.showtime;
 
-public class ShowtimeReserveCommand {
+public class ShowReserveCommand {
+	private String seat_reserve_num;
 	private String show_num;
 	private String m_num;
 	private String theater_num;
@@ -10,6 +11,12 @@ public class ShowtimeReserveCommand {
 	private Integer seat_price;
 	private String payment_num;
 	
+	public String getSeat_reserve_num() {
+		return seat_reserve_num;
+	}
+	public void setSeat_reserve_num(String seat_reserve_num) {
+		this.seat_reserve_num = seat_reserve_num;
+	}
 	public String getShow_num() {
 		return show_num;
 	}

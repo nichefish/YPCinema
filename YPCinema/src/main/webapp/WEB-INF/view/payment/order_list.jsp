@@ -13,11 +13,11 @@
  		<form action="/YPCinema/kakaoPay" method="post">
 			<table border="1">
 				<tr>
-					<td><input type="hidden" name="show_num" value="${showtimeReserveStored.show_num}" /> 상영번호: ${showtimeReserveStored.show_num}</td>
-					<td><input type="hidden" name="m_num" value="${showtimeReserveStored.m_num}"/> 회원번호: ${showtimeReserveStored.m_num}</td>
-					<td><input type="hidden" name="seat_num" value="${showtimeReserveStored.seat_num}"/> 좌석번호: ${showtimeReserveStored.seat_num}</td>
-					<td><input type="hidden" name="seat_name" value="${showtimeReserveStored.seat_name}"/> 좌석이름: ${showtimeReserveStored.seat_name}</td>
-					<td><input type="hidden" name="seat_price" value="${showtimeReserveStored.seat_price}"/> 좌석가격: ${showtimeReserveStored.seat_price}</td>
+					<td><input type="hidden" name="show_num" value="${showReserveStored.show_num}" /> 상영번호: ${showReserveStored.show_num}</td>
+					<td><input type="hidden" name="m_num" value="${showReserveStored.m_num}"/> 회원번호: ${showReserveStored.m_num}</td>
+					<td><input type="hidden" name="seat_num" value="${showReserveStored.seat_num}"/> 좌석번호: ${showReserveStored.seat_num}</td>
+					<td><input type="hidden" name="seat_name" value="${showReserveStored.seat_name}"/> 좌석이름: ${showReserveStored.seat_name}</td>
+					<td><input type="hidden" name="seat_price" value="${showReserveStored.seat_price}"/> 좌석가격: ${showReserveStored.seat_price}</td>
 				</tr>
 				<tr>
 					<td>회원번호: <input type="text" name="m_num" value="${authInfo.m_num }"> (${authInfo.m_num })</td>

@@ -15,11 +15,24 @@
 		select <include refid="basecolumn" /> from payment where m_num = #{m_num} order by payment_date asc limit 1
 	</select>
 	
-	<select id="selectLastPaymentByInfo" parameterType="model.DTO.PaymentDTO" resultMap="basePaymentMap">
+	<select id="selectPaymentByInfo" parameterType="String" resultMap="basePaymentMap">
 		select <include refid="basecolumn" /> from payment where payment_num = #{payment_num}
 	</select>
-
-
+	
+	<select id="selectPaymentAll" resultMap="basePaymentMap">
+		select <include refid="basecolumn" /> from payment
+	</select>
+	
+	<select id="selectPaymentListByInfo" parameterType="model.DTO.PaymentDTO" resultMap="basePaymentMap">
+		select <include refid="basecolumn" /> from payment
+		<trim prefix="where" prefixOverrides="and">
+			<if test="show_num != null">and show_num = #{show_num}</if>
+			<if test="theater_num != null">and theater_num = #{theater_num}</if>
+			<if test="screen_num != null">and screen_num = #{screen_num}</if>
+			<if test="movie_num != null">and movie_num = #{movie_num}</if>
+			<if test="payment_date != null">and payment_date = #{payment_date_string}</if>
+		</trim>
+	</select>
 
 	<resultMap type="model.DTO.PaymentDTO" id="basePaymentMap">
 		<id column="payment_num" jdbcType="VARCHAR" property="payment_num" />
