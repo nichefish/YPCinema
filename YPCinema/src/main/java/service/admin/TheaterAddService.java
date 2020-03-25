@@ -38,8 +38,9 @@ public class TheaterAddService {
 		dto.setTheater_ph(theaterAddCommand.getTheater_ph());
 		theaterAddRepository.updateTheater(dto);
 	}
-	public void modifySpecial(String theater_special) {
+	public void modifySpecial(String theater_num, String theater_special) {
 		TheaterAddDTO dto = new TheaterAddDTO();
+		dto.setTheater_num(theater_num);
 		dto.setTheater_special(theater_special);
 		theaterAddRepository.modifySpecial(dto);
 	}

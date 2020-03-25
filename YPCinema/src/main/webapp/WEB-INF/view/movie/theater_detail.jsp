@@ -42,11 +42,7 @@
 			<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
 			<select name="theater_special">
 				<option value="0">0</option>
-				<option value="스릴러" <c:if test="${theater_special eq '스릴러' }"> disabled="disabled"</c:if> >스릴러</option>
-				<option value="" />
-				<option value="" />
-				<option value="" />
-				<option value="" />
+				<option value="스릴러">스릴러</option>
 			</select>
 			<input type="submit" value="지점특화장르 수정" />
 		</form>

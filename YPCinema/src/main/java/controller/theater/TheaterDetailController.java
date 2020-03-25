@@ -26,7 +26,7 @@ public class TheaterDetailController {
 	
 	@RequestMapping(value="/theater/detail", method=RequestMethod.POST)
 	public String theaterModifySpecial(@RequestParam("theater_num") String theater_num, @RequestParam("theater_special") String theater_special, Model model) {
-		theaterAddService.modifySpecial(theater_special);
+		theaterAddService.modifySpecial(theater_num, theater_special);
 		theaterAddService.execute(theater_num, model);
 		screenListService.listScreen(theater_num, model);
 		return "movie/theater_detail";
