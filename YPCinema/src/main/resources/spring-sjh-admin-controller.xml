@@ -19,6 +19,7 @@
 	<!-- Cheyong Controller -->
 	<bean class="controller.cheyong.CheyongController" />
 	<bean class="controller.cheyong.CheyongAddController" />
+	<bean class="controller.cheyong.CheyongApplyController" />
 	
 	<!-- Cheyong Service -->
 	<bean id="cheyongService" class="service.cheyong.CheyongService" />
