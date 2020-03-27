@@ -64,4 +64,10 @@ public class AuthService {
 		response.addCookie(autoLoginCookie);
 		session.invalidate();
 	}
+
+	public void changeMode(String mode, HttpSession session) {
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		authInfo.setMode(mode);
+		session.setAttribute("authInfo", authInfo);
+	}
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -23,61 +23,67 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
-		<table border="1">
+ 		<p>양평시네마 <b>${numTheater.theater_name}</b> 상세정보</p>
+ 		<p>주소로 지도.. 찾아오는 길.. 넣을꺼냐...</p>
+		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<tr>
-				<td>지점이름</td>
-				<td>${numTheater.theater_num}</td>
+				<td align="center" width="160">지점 고유번호</td>
+				<td colspan="2">${numTheater.theater_num}</td>
 			</tr>
 			<tr>
-				<td>지점이름</td>
-				<td>${numTheater.theater_name}</td>
+				<td align="center" width="160">지점 주소</td>
+				<td colspan="2">${numTheater.theater_addr1} ${numTheater.theater_addr2} ${numTheater.theater_zip}</td>
 			</tr>
 			<tr>
-				<td>지점주소</td>
-				<td>${numTheater.theater_addr1} ${numTheater.theater_addr2} ${numTheater.theater_zip}</td>
+				<td align="center" width="160">지점 연락처</td>
+				<td colspan="2">☎${numTheater.theater_ph}</td>
 			</tr>
 			<tr>
-				<td>지점연락처</td>
-				<td>${numTheater.theater_ph}</td>
-			
+				<td align="center" width="160">지점 특화장르</td>
+				<td>
+					<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
+					<form method="post">
+						<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
+						<select name="theater_special">
+							<option value="${numTheater.theater_special}" selected>${numTheater.theater_special}</option>
+							<option value="0">0</option>
+							<option value="스릴러">스릴러</option>
+						</select>
+						<input type="submit" value="특화장르 수정" />
+					</form>
+					</c:if>
+					<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
+						${numTheater.theater_special}
+					</c:if>
+				</td>
 			</tr>
 			<tr>
-				<td>지점특화장르</td>
-				<td>${numTheater.theater_special}</td>
-			</tr>
-			<tr>
-				<td>지점등급</td>
-				<td>${numTheater.theater_rating}</td>
+				<td align="center" >지점 규모등급</td>
+				<td colspan="2">${numTheater.theater_rating}</td>
 			</tr>
 		</table>
-		<form method="post">
-			<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
-			<select name="theater_special">
-				<option value="0">0</option>
-				<option value="스릴러">스릴러</option>
-			</select>
-			<input type="submit" value="지점특화장르 수정" />
-		</form>
-		<table border="1">
-			<tr align="center" valign="middle">
-				<td align="center">지점</td>
-				<td align="center">스크린</td>
-				<td align="center">최대좌석</td>
-				<td align="center">좌석배치 열</td>
-			</tr>
-			
+		<p><br /></p>
+		<p>
+			양평시네마 <b>${numTheater.theater_name}</b> 상영관 정보
+			<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
+			<input type="button" onclick="location.href='addScreen?num=${numTheater.theater_num}'" value="상영관 등록" />
+			</c:if>
+		</p>
+		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<c:forEach items="${lists}" var="screen">
 			<tr align="center" valign="middle">
-				<td align="center">${screen.theater_num}</td>
-				<td align="center">
-					<a href="<c:url value='/theater/detailScreen?num=${screen.screen_num}' />">${screen.screen_num}</a>
-				</td>
-				<td align="center">${screen.screen_max_seat}</td>
-				<td align="center">${screen.screen_row}</td>
+				<td align="center" width="160"><a href="<c:url value='/theater/detailScreen?num=${screen.screen_num}' />">${screen.screen_name}</a></td>
+				<td align="center">${screen.screen_max_seat}석 (${screen.screen_row})</td>
 			</tr>
 			</c:forEach>
 		</table>
-		<input type="button" onclick="location.href='addScreen?num=${numTheater.theater_num}'" value="상영관 추가" />
+		<p><br /></p>
+		<p>
+			<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
+			<input type="button" onclick="location.href='../showtime/list?num=${numTheater.theater_num}'" value="지점 상영일정 보기" />
+			</c:if>
+			<input type="button" onclick="location.href='list'" value="목록으로" />
+		</p>
 	</div>
 </div>
 <footer class="footer-area">

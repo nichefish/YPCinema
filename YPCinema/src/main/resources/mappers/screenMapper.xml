@@ -4,11 +4,11 @@
 <mapper namespace="screenMapper">
 	<cache />
 	<sql id="basecolumn">
-		screen_num, theater_num, screen_max_seat, screen_row, screen_rating
+		screen_num, screen_name, theater_num, theater_name, screen_max_seat, screen_row, screen_rating
 	</sql>
 	
 	<insert id="insertScreen" parameterType="model.DTO.ScreenDTO">
-		insert into screen (<include refid="basecolumn" />) values ( #{screen_num}, #{theater_num}, #{screen_max_seat}, #{screen_row}, #{screen_rating})
+		insert into screen (<include refid="basecolumn" />) values ( CONCAT('SC_', (LPAD((SELECT nextval('seq')),4,0))), #{screen_name}, #{theater_num}, #{theater_name}, #{screen_max_seat}, #{screen_row}, #{screen_rating})
 	</insert>
 	
 	<select id="selectScreenByTheaterNum" parameterType="model.DTO.TheaterAddDTO" resultMap="baseScreenMap">
@@ -26,6 +26,8 @@
 	<resultMap type="model.DTO.ScreenDTO" id="baseScreenMap">
 		<id column="screen_num" jdbcType="VARCHAR" property="screen_num" />
 		<id column="theater_num" jdbcType="VARCHAR" property="theater_num" />
+		<result column="screen_name" jdbcType="VARCHAR" property="screen_name" />
+		<result column="theater_name" jdbcType="VARCHAR" property="theater_name" />
 		<result column="screen_max_seat" jdbcType="BIGINT" property="screen_max_seat" />
 		<result column="screen_row" jdbcType="VARCHAR" property="screen_row" />
 		<result column="screen_rating" jdbcType="VARCHAR" property="screen_rating" />

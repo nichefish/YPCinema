@@ -18,9 +18,8 @@ public class ScreenRepository {
 	public Integer insertScreen(ScreenDTO screen) {
 		String statement = namespace + ".insertScreen";
 		return sqlSession.insert(statement, screen);
-		
 	}
-
+	
 	public List<ScreenDTO> selectScreenByTheaterNum(String theater_num) {
 		String statement = namespace + ".selectScreenByTheaterNum";
 		return sqlSession.selectList(statement, theater_num);

@@ -77,7 +77,9 @@ public class MovieInfoAPIService {
 						}
 						if (eElement.getTagName() == "posters") {			// 포스터url, |로 구분
 							System.out.println("tagname = " + eElement.getTagName());
-							movieCommand.setMovie_poster_url(eElement.getTextContent().replaceAll(" ", ""));
+							String posterUrl = eElement.getTextContent().replaceAll(" ", "");
+							posterUrl = posterUrl.substring(0, posterUrl.indexOf("|"));
+							movieCommand.setMovie_poster_url(posterUrl);
 						}
 						if (eElement.getTagName() == "stlls") {			// 스틸url, |로 구분
 							System.out.println("tagname = " + eElement.getTagName());

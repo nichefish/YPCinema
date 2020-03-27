@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -22,30 +23,37 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
-		<table width=50% border="1" cellpadding="0" cellspacing="0" >
+ 		<p>양평시네마 영화 정보</p>
+ 		<form:form method="get">
+ 			<input type="text">
+ 			<input type="button" value="영화 검색? (구현안함)">
+ 			<p>
+ 				!@#!#@...
+ 				<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
+ 				<input type="button" onclick="location.href='register'" value="영화 등록"></p>
+ 				</c:if>
+ 			<p>ㅂㅂ$!@#$!....</p>
+ 		</form:form>
+		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<tr align="center" valign="middle">
-				<td colspan=4>회원리스트</td>
-				<td align=right>회원수 : </td>
-	<!-- 			${count}  -->
-			</tr>
-			<tr align="center" valign="middle">
-				<td align="center">회원아이디</td>
-				<td align="center">회원이름</td>
-				<td align="center">회원연락처</td>
-				<td align="center">이메일</td>
-				<td align="center">등록일</td>
+				<td align="center">영화번호</td>
+				<td align="center" width="180">영화제목<br/>(감독, 년도)</td>
+				<td align="center">장르</td>
+				<td align="center">관람연령가</td>
+				<td align="center">상영시간</td>
+				<td align="center">편성등급</td>
 			</tr>
 			<c:forEach items="${lists}" var="movie">
 			<tr align="center" valign="middle">
+				<td align="center">${movie.movie_num}</td>
 				<td align="center">
-					<a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_num}</a>
+					<a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_title}</a><br />
+					(${movie.movie_director}, <fmt:formatDate value="${movie.movie_date}" type="date" pattern="yyyy" />)
 				</td>
-				<td align="center">${movie.movie_title}</td>
-				<td align="center">${movie.movie_director}</td>
-				<td align="center">${movie.movie_plot}</td>
-				<td align="center">
-					<fmt:formatDate value="${movie.movie_date}" type="date" />
-				</td>
+				<td align="center">${movie.movie_genre}</td>
+				<td align="center">${movie.movie_age}</td>
+				<td align="center">${movie.movie_runtime}분</td>
+				<td align="center">${movie.movie_rating}</td>
 			</tr>
 			</c:forEach>
 			<tr align=center height=20>
@@ -57,7 +65,7 @@
 					<a href="list?page=${page-1}">[이전]</a>&nbsp;
 					</c:if>
 					<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-						<a href="list?page=${i}">[${i}]</a>
+						<a href="list?page=${i}">[${i}]</a> 페이징 구현안함...
 					</c:forEach>
 						<a href="#"></a>&nbsp;
 					<c:if test="${page == maxPage}">

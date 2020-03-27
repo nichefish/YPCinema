@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -22,31 +23,24 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
-		<table width=50% border="1" cellpadding="0" cellspacing="0" >
-			<tr align="center" valign="middle">
-				<td align="center">지점이름</td>
-				<td align="center">지점주소</td>
-				<td align="center">지점 전화번호</td>
-				<td align="center">지점 특화장르</td>
-				<td align="center">지점 등급</td>
-			</tr>
+ 		<p>양평시네마 지점 정보</p>
+ 		<form:form method="get">
+ 			<input type="text">
+ 			<input type="button" value="지점 검색">
+ 			<p>지점 검색? (구현안함)</p>
+ 			<p>지도로 지점분포... 구현할 수 있을까...</p>
+ 		</form:form>
+		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<c:forEach items="${theaters}" var="theater">
 			<tr align="center" valign="middle">
-				<td align="center">
-					<a href="<c:url value='/theater/detail?num=${theater.theater_num}' />">${theater.theater_name}</a>
-				</td>
-				<td align="center">
-					${theater.theater_addr1} ${theater.theater_addr2} ${theater.theater_zip}</a>
-				</td>
-				<td align="center">
-					${theater.theater_ph}</a>
-				</td>
-				<td align="center">
-					${theater.theater_special}</a>
-				</td>
-				<td align="center">
-					${theater.theater_rating}</a>
-				</td>
+				<td rowspan="2" align="center"><a href="<c:url value='/theater/detail?num=${theater.theater_num}' />">${theater.theater_name}</a></td>
+				<td align="center">${theater.theater_addr1} ${theater.theater_addr2} ${theater.theater_zip}</td>
+				<td align="center">☎${theater.theater_ph}</td>
+			<tr>
+				<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
+				<td align="center">지점 특화장르: ${theater.theater_special}</td>
+				<td align="center">규모등급: ${theater.theater_rating}</td>
+				</c:if>
 			</tr>
 			</c:forEach>
 			<tr align=center height=20>
@@ -58,7 +52,7 @@
 					<a href="list?page=${page-1}">[이전]</a>&nbsp;
 					</c:if>
 					<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-						<a href="list?page=${i}">[${i}]</a>
+						<a href="list?page=${i}">[${i}]</a> (페이징 구현안함)
 					</c:forEach>
 						<a href="#"></a>&nbsp;
 					<c:if test="${page == maxPage}">

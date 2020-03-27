@@ -9,27 +9,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import command.screen.ScreenCommand;
 import service.admin.JicmuListService;
+import service.admin.TheaterAddService;
 import service.screen.ScreenAddService;
 
 @Controller
 public class ScreenAddController {
 	@Autowired
-	private JicmuListService jicmuListService;
-	
+	private TheaterAddService theaterAddService;
 	@Autowired
 	private ScreenAddService screenAddService;
 	
 	@RequestMapping(value="theater/addScreen", method=RequestMethod.GET)
 	public String screenAddForm(@RequestParam("num") String theater_num, ScreenCommand screenCommand, Model model) {
-		jicmuListService.showList(model);
+		theaterAddService.execute(theater_num, model);
 		return "movie/screen_add";
 	}
 	
 	@RequestMapping(value="theater/addScreen", method=RequestMethod.POST)
 	public String screenAddAction(ScreenCommand screenCommand) {
 		screenAddService.insertScreen(screenCommand);
-		return "movie/screen_add";
+		return "redirect:/theater/detail?num=" + screenCommand.getTheater_num();
 	}
-	
-	
 }

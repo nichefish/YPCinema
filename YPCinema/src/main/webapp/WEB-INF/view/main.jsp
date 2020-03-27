@@ -40,32 +40,32 @@
 				<div class="col-12">
 					<nav class="navbar navbar-expand-lg">
 						<!-- Logo -->
-						<a class="navbar-brand" href="<c:url value='/main' />"><img src="img/logo_1.png" alt="Logo" style="width:140px;"></a>
+						<a class="navbar-brand" href="<c:url value='/main' />"><img src="<c:url value='/img/logo_1.png' />" alt="Logo" style="width:160px;"></a>
 						<!-- Navbar Toggler -->
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 						<!-- Navbar -->
 						<div class="collapse navbar-collapse" id="worldNav">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item">
-									<a href="#" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:40px;"></a>
+									<a href="#" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:50px;"></a>
 								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<c:if test="${authInfo.m_admin eq '0' || empty authInfo}">	<!-- 이용자 및 비로그인 -->
+										<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 이용자 및 비로그인 -->
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
 										<a class="dropdown-item" href="<c:url value='/statistic' />">나의 영화관</a>
 										</c:if>
-										<c:if test="${authInfo.m_admin eq '1'}">	<!-- 관리자 -->
+										<c:if test="${authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 -->
 										<!-- 관리자 -->
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
 										<a class="dropdown-item" href="<c:url value='/myStatistic/' />">통계</a>
 										</c:if>
-										<c:if test="${authInfo.m_admin eq '2'}">	<!-- 직원 -->
+										<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
 										<!-- 직원-->
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 정보</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 정보</a>
@@ -92,37 +92,51 @@
 									<a class="nav-link" href="#">협력업체</a>
 								</li>
 							</ul>
-	                            <!-- Search Form  -->
-	<!--                             <div id="search-wrapper"> -->
-	<!--                                 <form action="#"> -->
-	<!--                                     <input type="text" id="search" placeholder="Search something..."> -->
-	<!--                                     <div id="close-icon"></div> -->
-	<!--                                     <input class="d-none" type="submit" value=""> -->
-	<!--                                 </form> -->
-	<!--                             </div> -->
+                           <!-- Search Form  -->
+<!--                             <div id="search-wrapper"> -->
+<!--                                 <form action="#"> -->
+<!--                                     <input type="text" id="search" placeholder="Search something..."> -->
+<!--                                     <div id="close-icon"></div> -->
+<!--                                     <input class="d-none" type="submit" value=""> -->
+<!--                                 </form> -->
+<!--                             </div> -->
 							<!-- userId & photo -->
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item dropdown no-arrow">
-	       							<c:if test="${empty authInfo}">
+		       						<c:if test="${empty authInfo}">
 										<a href="<c:url value='/login' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;">로그인</a>
-										<a href="#" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;">고객센터</a>									
+										<a href="#" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;">고객센터</a>
 									</c:if>
 									<c:if test="${!empty authInfo}">
-										<a href="<c:url value='/logout' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">로그아웃</a>
-										<a href="<c:url value='/myPage' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">마이페이지</a>
-										<a href="#" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">고객센터</a>
-									</c:if>
-									
-									<c:if test="${!empty authInfo}">
-										<a href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right:20px; float:right;">
-										<img class="img-profile rounded-circle" src="${authInfo.m_picture }" style="width:35px;length:35px;">&nbsp;&nbsp;&nbsp;
-										<span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;">
-											<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white">"${authInfo.m_name}"</span>님</c:if>
-											<c:if test="${authInfo.m_admin eq '1'}"><span style="color:blue">관리자 "${authInfo.m_name}"님</span></c:if>
-											<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue">직원 "${authInfo.m_name}"님</span></c:if>
-											환영합니다.<br />
-										</span>
-										</a>
+										<div href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right:20px; float:right;">
+											<img class="img-profile rounded-circle" src="${authInfo.m_picture }" style="display:inline; width:35px;length:35px;">&nbsp;&nbsp;
+											<span style="font-size:10px; display:inline-block;" valign="center">
+												<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">"${authInfo.m_name}"</span></c:if>
+												<c:if test="${authInfo.m_admin eq '1'}"><span style="color:#6495ED;">관리자 "${authInfo.m_name}"</span></c:if>
+												<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
+												<span style="color:grey;">님 환영합니다.</span><br />
+												<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
+													<c:if test="${authInfo.m_admin ne '0' && authInfo.mode eq '0'}">
+														<input type="hidden" name="mode" value="1">
+														&nbsp;&nbsp;<div style="display:inline-block" id="mode_change">
+															<input type="button" id="mode_btn" value="[이용자 모드]">
+															<input type="button" value="[마이페이지]">
+															<input type="button" value="[고객센터]">
+															<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+														</div>
+													</c:if>
+													<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0'}">
+														<input type="hidden" name="mode" value="0">
+														&nbsp;&nbsp;<div style="display:inline" id="mode_change">
+															<input type="button" id="mode_btn" value="[관리자 모드]">
+															<input type="button" value="[마이페이지]">
+															<input type="button" value="[고객센터]">
+															<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+														</div>
+													</c:if>
+												</form>
+											</span>
+										</div>
 									</c:if>
 								</li>
 							</ul>
@@ -2863,7 +2877,16 @@
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-
-
+    
+	<script type="text/javascript">
+	$(function() {
+		$("#mode_btn").click(function() {
+			var test = confirm("관리자/이용자 모드를 전환하시겠습니까?\n(메인 페이지로 이동합니다.");
+			if (test) {
+				$("#mode_form").submit();
+			}
+		})
+	});
+	</script>
 </body>
 </html>

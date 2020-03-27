@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -19,60 +19,47 @@
 <header class="header-area">
 	<%@ include file="../navigation.jsp"%>
 </header>
- 
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
-		<c:forEach items="${theaters}" var="theater">
-			<tr align="center" valign="middle">
-				<td align="center">
-					<a href="<c:url value='/theater/detail?num=${theater.theater_num}' />">${theater.theater_name}</a>
-				</td>
-			</tr>
-		</c:forEach>
-		
-		
+ 		<p>양평시네마 <b>${numTheater.theater_name}</b> 상영관 등록</p>
 		<form:form name="frm" id="frm" method="POST" commandName="screenCommand">
-			<table width="600" align="center" border=1 >
+			<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
+			<input type="hidden" name="theater_name" value="${numTheater.theater_name}">
+			<table width="60%" border="1" align="center" >
 			 	<tr>
-			 		<td width="200">스크린번호(호실번호)</td>
-			 		<td width="400">
-			 			<form:input path="screen_num" id="userPw" size="12" maxlength="10" />
-			 			<form:errors path="screen_num" />
+			 		<td width="200">상영관 이름</td>
+			 		<td>
+			 			<form:input path="screen_name" id="userPw" size="12" maxlength="10" />
+			 			<form:errors path="screen_name" />
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="200">지점번호</td>
-			 		<td width="400">
-			 			<form:input path="theater_num" id="userPw" size="12" maxlength="10" />
-			 			<form:errors path="theater_num" />
-			 		</td>
-			 	</tr>
-			 	<tr>
-			 		<td width="200">최대좌석</td>
-			 		<td width="400">
-			 			<form:input path="screen_max_seat" id="userPwCon" size="12" maxlength="10" />
+			 		<td width="200">총 좌석 수</td>
+			 		<td>
+			 			<form:input path="screen_max_seat" id="screen_max_seat" size="12" maxlength="10" />
 			 			<form:errors path="screen_max_seat" />
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="200">스크린 행(?-?-?)</td>
-			 		<td width="400">
+			 		<td width="200">좌석 배치 행(?-?-?)</td>
+			 		<td>
 			 			<form:input path="screen_row" id="userName" size="12" maxlength="10" />
 			 			<form:errors path="screen_row" />
 			 		</td>
 			 	</tr>
 				<tr>
 					<td width="200">스크린 규모등급</td>
-					<td width="400">
-						<form:input path="screen_rating" id="userPh1" size="30" maxlength="28" />
-						<form:errors path="screen_rating" />
+					<td>
+						<input type="hidden" name="screen_rating" id="screen_rating">
+						<input type="text" name="screen_rating_show" id="screen_rating_show" size="12" value="" disabled>
+						(60- D, 60~120 C, 120~200 B, 200+ A)
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="상영관 정보 등록" />
 						<input type="reset" value="리셋" />
-						<input type="button" value="뒤로가기" />
+						<input type="button" onclick="location.href='detail?num=${numTheater.theater_num}'" value="뒤로가기" />
 			 		</td>
 				</tr>
 			</table>
@@ -82,7 +69,7 @@
 <footer class="footer-area">
       <%@ include file="../footer.jsp"%>
    </footer>
-<script src="js/jquery/jquery-2.2.4.min.js"></script>
+   <script src="js/jquery/jquery-2.2.4.min.js"></script>
    <!-- Popper js -->
    <script src="js/popper.min.js"></script>
    <!-- Bootstrap js -->
@@ -91,5 +78,42 @@
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
+   
+<script type="text/javascript">
+$(function() {
+	$("#screen_max_seat").blur(function() {
+	    var val = $("#screen_max_seat").val();
+	    if (val < 60) {
+	    	$("#screen_rating").val('D');
+	    	$("#screen_rating_show").val('D');
+	    } else if (val >= 60 & val < 120) {
+	    	$("#screen_rating").val('C');
+	    	$("#screen_rating_show").val('C');
+	    } else if (val >= 120 & val < 200) {
+	    	$("#screen_rating").val('B');
+	    	$("#screen_rating_show").val('B');
+	    } else if (val >= 200) {
+	    	$("#screen_rating").val('A');
+	    	$("#screen_rating_show").val('A');
+	    };
+	})
+	$("#frm").submit(function() {
+	    var val = $("#screen_max_seat").val();
+	    if (val < 60) {
+	    	$("#screen_rating").val('D');
+	    	$("#screen_rating_show").val('D');
+	    } else if (val >= 60 & val < 120) {
+	    	$("#screen_rating").val('C');
+	    	$("#screen_rating_show").val('C');
+	    } else if (val >= 120 & val < 200) {
+	    	$("#screen_rating").val('B');
+	    	$("#screen_rating_show").val('B');
+	    } else if (val >= 200) {
+	    	$("#screen_rating").val('A');
+	    	$("#screen_rating_show").val('A');
+	    };
+	})
+});
+</script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package controller.member;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.member.LoginCommand;
 import service.member.AuthService;
@@ -36,6 +36,13 @@ public class LoginController {
 //		}
 		authService.authenticate(loginCommand, session, errors, response);
 		System.out.println("로그인!!!");
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/changeMode", method=RequestMethod.POST)
+	public String changeMode(@RequestParam("mode") String mode, HttpSession session) {
+		authService.changeMode(mode, session);
+		System.out.println("mode: " + mode);
 		return "redirect:/main";
 	}
 	

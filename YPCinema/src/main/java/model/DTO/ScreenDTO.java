@@ -5,7 +5,9 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class ScreenDTO implements Serializable {
 	private String screen_num;
+	private String screen_name;
 	private String theater_num;
+	private String theater_name;
 	private Integer screen_max_seat;
 	private String screen_row;
 	private String [] screen_row_array;
@@ -17,11 +19,26 @@ public class ScreenDTO implements Serializable {
 	public void setScreen_num(String screen_num) {
 		this.screen_num = screen_num;
 	}
+	public String getScreen_name() {
+		return screen_name;
+	}
+	public void setScreen_name(String screen_name) {
+		this.screen_name = screen_name;
+	}
+	public void setScreen_row_array(String[] screen_row_array) {
+		this.screen_row_array = screen_row_array;
+	}
 	public String getTheater_num() {
 		return theater_num;
 	}
 	public void setTheater_num(String theater_num) {
 		this.theater_num = theater_num;
+	}
+	public String getTheater_name() {
+		return theater_name;
+	}
+	public void setTheater_name(String theater_name) {
+		this.theater_name = theater_name;
 	}
 	public Integer getScreen_max_seat() {
 		return screen_max_seat;
