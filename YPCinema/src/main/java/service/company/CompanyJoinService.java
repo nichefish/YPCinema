@@ -37,6 +37,7 @@ public class CompanyJoinService {
 		dto.setC_ceoph(companyCommand.getC_ceoph());
 		dto.setC_comph(companyCommand.getC_comph());
 		dto.setC_email(companyCommand.getC_email());
+		dto.setC_picture("/YPCinema/img/empty_person.png");
 		dto.setC_zip(companyCommand.getC_zip());
 		dto.setC_zip1(companyCommand.getC_zip1());
 		dto.setC_addr1(companyCommand.getC_addr1());

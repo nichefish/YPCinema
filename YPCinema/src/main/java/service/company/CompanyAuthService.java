@@ -33,7 +33,7 @@ public class CompanyAuthService {
 		}
 		response.addCookie(storeIdCookie);		// 로그인 시도시 아이디저장 쿠키 추가-
 		
-		company=companyRepository.selectByUserInfo(company);		// 아이디만 갖고 찾는거임...
+		company = companyRepository.selectByUserInfo(company);		// 아이디만 갖고 찾는거임...
 		if (company == null) {				// 아이디 없음
 			System.out.println("아이디 없음!");
 //			errors.rejectValue("id","notId");
@@ -42,6 +42,10 @@ public class CompanyAuthService {
 				CompanyAuthInfo companyAuthInfo = new CompanyAuthInfo();
 				companyAuthInfo.setC_id(company.getC_id());
 				companyAuthInfo.setC_num(company.getC_num());
+				System.out.println("get_num: " + company.getC_num());
+				
+				companyAuthInfo.setC_comname(company.getC_comname());
+				System.out.println("getcomname: " + company.getC_comname());
 				companyAuthInfo.setC_name(company.getC_name());
 				companyAuthInfo.setC_picture(company.getC_picture());
 				companyAuthInfo.setC_admin(company.getC_admin());
@@ -52,6 +56,8 @@ public class CompanyAuthService {
 				response.addCookie(adminSelectCookie);
 				
 				session.setAttribute("companyAuthInfo", companyAuthInfo);
+				System.out.println(companyAuthInfo.getC_name());
+				System.out.println(companyAuthInfo.getC_comname());
 			} else {
 //				errors.rejectValue("pw","wrong");		// 비밀번호가 틀린 거-
 			}

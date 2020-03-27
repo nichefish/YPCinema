@@ -110,12 +110,17 @@
 									</c:if>
 									<c:if test="${!empty authInfo || !empty companyAuthInfo}">
 										<div href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right:20px; float:right;">
+											<c:if test="${!empty authInfo}">
 											<img class="img-profile rounded-circle" src="${authInfo.m_picture }" style="display:inline; width:35px;length:35px;">&nbsp;&nbsp;
+											</c:if>
+											<c:if test="${!empty companyAuthInfo}">
+											<img class="img-profile rounded-circle" src="${companyAuthInfo.c_picture }" style="display:inline; width:35px;length:35px;">&nbsp;&nbsp;
+											</c:if>
 											<span style="font-size:10px; display:inline-block;" valign="center">
 												<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">"${authInfo.m_name}"</span></c:if>
 												<c:if test="${authInfo.m_admin eq '1'}"><span style="color:#6495ED;">관리자 "${authInfo.m_name}"</span></c:if>
 												<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
-												<c:if test="${!empty companyAuthInfo}">협력업체 ${companyAuthInfo.c_comname}</c:if>
+												<c:if test="${!empty companyAuthInfo}"><span style="color:yellow;">"${companyAuthInfo.c_comname}"사 소속</span> <span style="color:white;">"${companyAuthInfo.c_name}"</span></c:if>
 												<span style="color:grey;">님 환영합니다.</span><br />
 												<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
 													<c:if test="${authInfo.m_admin ne '0' && authInfo.mode eq '0'}">
@@ -140,13 +145,6 @@
 											</span>
 										</div>
 									</c:if>
-									
-									<c:if test="${}">
-									<a href="<c:url value='/companyLogout' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">로그아웃</a>
-									<a href="<c:url value='/companyMyPage' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">마이페이지</a>
-								</c:if>
-									
-									
 								</li>
 							</ul>
 						</div>

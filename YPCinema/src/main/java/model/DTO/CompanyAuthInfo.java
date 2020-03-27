@@ -7,10 +7,10 @@ public class CompanyAuthInfo implements Serializable {
 	private String c_id;			// id..
 	private String c_num;		// 회원번호...
 	private String c_name;		// 이름...
+	private String c_comname;		// 이름...
 	private String c_picture;
 	private String c_admin;		// 회원유형...
 	private String mode;	// 직원 또는 관리자일 때. 이용자모드/관리자모드...
-	
 	
 	public String getC_id() {
 		return c_id;
@@ -29,6 +29,12 @@ public class CompanyAuthInfo implements Serializable {
 	}
 	public void setC_name(String c_name) {
 		this.c_name = c_name;
+	}
+	public String getC_comname() {
+		return c_comname;
+	}
+	public void setC_comname(String c_comname) {
+		this.c_comname = c_comname;
 	}
 	public String getC_picture() {
 		return c_picture;

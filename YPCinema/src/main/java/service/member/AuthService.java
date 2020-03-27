@@ -38,7 +38,7 @@ public class AuthService {
 			System.out.println("아이디 없음!");
 //			errors.rejectValue("id","notId");
 		} else {
-			if (bcryptPasswordEncoder.matches(loginCommand.getPass() , member.getM_pass())) {	// 패스워드 두개 비교- 맞으면-
+			if (bcryptPasswordEncoder.matches(loginCommand.getPass(), member.getM_pass())) {	// 패스워드 두개 비교- 맞으면-
 				AuthInfo authInfo = new AuthInfo();
 				authInfo.setM_id(member.getM_id());
 				authInfo.setM_num(member.getM_num());

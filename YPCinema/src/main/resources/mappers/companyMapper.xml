@@ -55,6 +55,7 @@
 		<result column="c_companynum" jdbcType="VARCHAR" property="c_companynum" />
 		<result column="c_name" jdbcType="VARCHAR" property="c_name" />
 		<result column="c_ceoname" jdbcType="VARCHAR" property="c_ceoname" />
+		<result column="c_comname" jdbcType="VARCHAR" property="c_comname" />
 		<result column="c_gen" jdbcType="VARCHAR" property="c_gen" />
 		<result column="c_birth" jdbcType="DATE" property="c_birth" />
 		<result column="c_ceoph" jdbcType="VARCHAR" property="c_ceoph" />
