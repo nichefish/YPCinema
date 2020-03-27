@@ -124,22 +124,24 @@
 												<span style="color:grey;">님 환영합니다.</span><br />
 												<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
 													<c:if test="${authInfo.m_admin ne '0' && authInfo.mode eq '0'}">
-														<input type="hidden" name="mode" value="1">
-														&nbsp;&nbsp;<div style="display:inline-block" id="mode_change">
-															<input type="button" id="mode_btn" value="[이용자 모드]">
-															<input type="button" value="[마이페이지]">
-															<input type="button" value="[고객센터]">
-															<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+													<input type="hidden" name="mode" value="1">
+													&nbsp;&nbsp;<div style="display:inline-block" id="mode_change">
+														<input type="button" id="mode_btn" value="[이용자 모드]">
+														<input type="button" value="[마이페이지]">
+														<input type="button" value="[고객센터]">
+														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 														</div>
 													</c:if>
-													<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0'}">
-														<input type="hidden" name="mode" value="0">
-														&nbsp;&nbsp;<div style="display:inline" id="mode_change">
-															<input type="button" id="mode_btn" value="[관리자 모드]">
-															<input type="button" value="[마이페이지]">
-															<input type="button" value="[고객센터]">
-															<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
-														</div>
+													<c:if test="${authInfo.m_admin eq '0' || authInfo.mode ne '0'}">
+													<input type="hidden" name="mode" value="0">
+													&nbsp;&nbsp;<div style="display:inline" id="mode_change">
+														<c:if test="${authInfo.m_admin ne '0'}">
+														<input type="button" id="mode_btn" value="[관리자 모드]">
+														</c:if>
+														<input type="button" value="[마이페이지]">
+														<input type="button" value="[고객센터]">
+														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+													</div>
 													</c:if>
 												</form>
 											</span>
