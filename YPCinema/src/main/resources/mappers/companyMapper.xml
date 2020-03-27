@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="companyMapper">
+	<cache />
+	<sql id="basecolumn">
+		c_num, c_companynum, c_id, c_pass,  c_name, c_ceoname, c_comname, c_gen,
+		c_birth, c_ceoph, c_comph, c_addr1, c_addr2, c_comaddr, c_comaddr2, c_ceoaddr, c_ceoaddr2,
+		c_zip, c_zip1, c_email,c_picture, c_class, c_yc, c_cc, c_date,	c_admin
+	</sql>
+		
+	<insert id="insertCompany" parameterType="model.DTO.CompanyDTO">
+		insert into company (<include refid="basecolumn" />)
+			values (CONCAT('C_', (LPAD((SELECT nextval('seq')),4,0))), 
+			#{c_companynum}, #{c_id}, #{c_pass}, #{c_name}, #{c_ceoname}, #{c_comname}, #{c_gen}, 
+			#{c_birth}, #{c_ceoph}, #{c_comph}, #{c_addr1}, #{c_addr2}, #{c_comaddr}, #{c_comaddr2}, 
+			#{c_ceoaddr},#{c_ceoaddr2}, #{c_zip}, #{c_zip1}, #{c_email}, null, 'C', null, null, now(), '0')
+	</insert>
+	
+	<select id="selectByUserInfo" parameterType="model.DTO.CompanyDTO" resultMap="baseCompanyMap">
+		select <include refid="basecolumn" /> from company
+		<trim prefix="where" prefixOverrides="and">
+			<if test="c_id != null">and c_id = #{c_id}</if>
+			<if test="c_num != null">and c_num = #{c_num}</if>
+		</trim>
+	</select>
+	<select id="selectCompanyAll" resultMap="baseCompanyMap">
+		select <include refid="basecolumn" /> from company
+	</select>
+	
+	<update id="modifyCompany" parameterType="model.DTO.CompanyDTO" >
+		update company
+		<trim prefix="set" suffixOverrides=",">
+			<if test="C_id != null || C_num != null">
+				c_name=#{c_name},c_companynum=#{c_companynum}, c_ceoname=#{c_ceoname}, c_comname=#{c_comname}, c_gen=#{c_gen}, c_birth=#{c_birth}, c_ceoph=#{c_ceoph},c_comph=#{c_comph}, c_addr1=#{c_addr1}, c_addr2=#{c_addr2}, c_ceoaddr=#{c_ceoaddr}, c_ceoaddr2=#{c_ceoaddr2}, c_comaddr=#{c_comaddr},c_comaddr2=#{c_comaddr2},c_zip=#{c_zip},c_zip1=#{c_zip1}, c_email=#{c_email},
+			</if>
+			<if test="c_picture != null">
+				c_picture = #{c_picture},
+			</if>
+		</trim>
+		<where>
+			<if test="c_id != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
+				c_id = #{c_id}
+			</if>
+			<if test="c_num != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
+				c_num = #{c_num}
+			</if>
+		</where>
+	</update>
+	
+	<resultMap type="model.DTO.CompanyDTO" id="baseCompanyMap">
+		<id column="c_num" jdbcType="VARCHAR" property="c_num" />	<!-- PK/FK.. -->
+		<result column="c_id" jdbcType="VARCHAR" property="c_id" />		<!-- 일반속성... -->
+		<result column="c_pass" jdbcType="VARCHAR" property="c_pass" />
+		<result column="c_companynum" jdbcType="VARCHAR" property="c_companynum" />
+		<result column="c_name" jdbcType="VARCHAR" property="c_name" />
+		<result column="c_ceoname" jdbcType="VARCHAR" property="c_ceoname" />
+		<result column="c_gen" jdbcType="VARCHAR" property="c_gen" />
+		<result column="c_birth" jdbcType="DATE" property="c_birth" />
+		<result column="c_ceoph" jdbcType="VARCHAR" property="c_ceoph" />
+		<result column="c_comph" jdbcType="VARCHAR" property="c_comph" />
+		<result column="c_addr1" jdbcType="VARCHAR" property="c_addr1" />
+		<result column="c_addr2" jdbcType="VARCHAR" property="c_addr2" />
+		<result column="c_ceoaddr" jdbcType="VARCHAR" property="c_ceoaddr" />
+		<result column="c_ceoaddr2" jdbcType="VARCHAR" property="c_ceoaddr2" />
+		<result column="c_comaddr" jdbcType="VARCHAR" property="c_comaddr" />
+		<result column="c_comaddr2" jdbcType="VARCHAR" property="c_comaddr2" />
+		<result column="c_zip" jdbcType="VARCHAR" property="c_zip" />
+		<result column="c_zip1" jdbcType="VARCHAR" property="c_zip1" />
+		<result column="c_email" jdbcType="VARCHAR" property="c_email" />
+		<result column="c_picture" jdbcType="VARCHAR" property="c_picture" />
+		<result column="c_class" jdbcType="VARCHAR" property="c_class" />
+		<result column="c_yc" jdbcType="VARCHAR" property="c_yc" />
+		<result column="c_cc" jdbcType="VARCHAR" property="c_cc" />
+		<result column="c_date" jdbcType="VARCHAR" property="c_date" />
+		<result column="c_admin" jdbcType="VARCHAR" property="c_admin" />
+	</resultMap>
+</mapper>

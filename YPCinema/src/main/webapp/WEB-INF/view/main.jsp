@@ -141,7 +141,6 @@
 										</div>
 									</c:if>
 									
-									
 									<c:if test="${}">
 									<a href="<c:url value='/companyLogout' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">로그아웃</a>
 									<a href="<c:url value='/companyMyPage' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;padding-top:10px;">마이페이지</a>

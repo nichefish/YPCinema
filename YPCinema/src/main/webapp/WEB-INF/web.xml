@@ -24,6 +24,8 @@ version="3.0">
   			classpath:spring-sjh-admin-controller.xml
   			<!-- yj -->
   			classpath:spring-yj-controller.xml
+  			<!-- yks -->
+  			classpath:spring-yks-company-controller.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
