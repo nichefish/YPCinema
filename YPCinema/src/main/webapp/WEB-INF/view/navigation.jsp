@@ -107,17 +107,19 @@ body{
 						<!-- userId & photo -->
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item dropdown no-arrow">
-	       						<c:if test="${empty authInfo}">
+	       						<c:if test="${empty companyAuthInfo && empty authInfo}">
+	       							<a href="<c:url value='/companyLogin' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;"> 협력업체 로그인</a>
 									<a href="<c:url value='/login' />" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;">로그인</a>
 									<a href="#" class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:10px;float:right;">고객센터</a>
 								</c:if>
-								<c:if test="${!empty authInfo}">
+								<c:if test="${!empty authInfo || !empty companyAuthInfo}">
 									<div href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right:20px; float:right;">
 										<img class="img-profile rounded-circle" src="${authInfo.m_picture }" style="display:inline; width:35px;length:35px;">&nbsp;&nbsp;
 										<span style="font-size:10px; display:inline-block;" valign="center">
 											<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">"${authInfo.m_name}"</span></c:if>
 											<c:if test="${authInfo.m_admin eq '1'}"><span style="color:#6495ED;">관리자 "${authInfo.m_name}"</span></c:if>
 											<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
+											<c:if test="${!empty companyAuthInfo}">협력업체 ${companyAuthInfo.c_comname}</c:if>
 											<span style="color:grey;">님 환영합니다.</span><br />
 											<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
 												<c:if test="${authInfo.m_admin ne '0' && authInfo.mode eq '0'}">
