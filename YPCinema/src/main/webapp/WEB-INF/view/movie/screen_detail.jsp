@@ -51,7 +51,7 @@
 				<td colspan="2" align="center">
 					<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
 					<input type="button" onclick="location.href='modifyScreen?num=${screenCommand.screen_num}'" value="수정" />
-					<input type="button" onclick="location.href='deleteScreen?num=${screenCommand.screen_num}'" value="삭제(구현안함)" />
+					<input type="button" id="deleteBtn" value="삭제" />
 					</c:if>
 					<input type="button" onclick="location.href='detail?num=${screenCommand.theater_num}'" value="뒤로가기" />
 		 		</td>
@@ -71,5 +71,17 @@
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+   	$("#deleteBtn").click(function() {
+   		var del = confirm("정말 삭제하시겠습니까?");
+   		if (del) {
+   			alert("deleteScreen?num=${screenCommand.screen_num}");
+   			location.href = "deleteScreen?num=${screenCommand.screen_num}";
+   		}
+   	})
+});
+</script>
 </body>
 </html>

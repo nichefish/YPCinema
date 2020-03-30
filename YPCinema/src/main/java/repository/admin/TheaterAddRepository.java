@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.DTO.ScreenDTO;
 import model.DTO.TheaterAddDTO;
 
 @Repository
@@ -29,6 +30,18 @@ public class TheaterAddRepository {
 	}
 	public void modifySpecial(TheaterAddDTO dto) {
 		String statement = namespace + ".modifySpecial";
+		sqlSession.update(statement,dto);
+	}
+	public Integer countTheaterScreen(String theater_num) {
+		String statement = namespace + ".countTheaterScreen";
+		return sqlSession.selectOne(statement, theater_num);
+	}
+	public Integer countTheaterMaxSeat(String theater_num) {
+		String statement = namespace + ".countTheaterMaxSeat";
+		return sqlSession.selectOne(statement, theater_num);
+	}
+	public void modifyRating(TheaterAddDTO dto) {
+		String statement = namespace + ".modifyRating";
 		sqlSession.update(statement,dto);
 	}
 }

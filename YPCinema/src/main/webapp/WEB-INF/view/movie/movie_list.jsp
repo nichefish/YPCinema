@@ -25,20 +25,16 @@
  	<div class="container" align="center">
  		<p>양평시네마 상영영화 정보</p>
  		<form:form method="get">
- 			<input type="text">
- 			<input type="button" value="영화 검색? (구현안함)">
  			<p>
+ 				<input type="text"> <input type="button" value="영화 검색? (구현안함...)"><br/>
  				!@#!#@...
- 				<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
- 				
- 				</c:if>
  			<p>ㅂㅂ$!@#$!....</p>
  		</form:form>
  		<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
  		<table width="60%" border="0" cellpadding="0" cellspacing="0" >
  			<tr>
  			<td align="right">
- 				<p><input type="button" onclick="location.href='register'" value="영화 등록"></p>
+ 				<p><input type="button" onclick="location.href='register'" value="영화정보 등록"></p>
  			</td>
  			</tr>
  		</table>
@@ -54,7 +50,7 @@
 			</tr>
 			<c:forEach items="${lists}" var="movie">
 			<tr align="center" valign="middle">
-				<td align="center">${movie.movie_num}</td>
+				<td align="center"><a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_num}</a></td>
 				<td align="center">
 					<a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_title}</a><br />
 					(${movie.movie_director}, <fmt:formatDate value="${movie.movie_date}" type="date" pattern="yyyy" />)

@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import command.screen.ScreenCommand;
 import model.DTO.ScreenDTO;
+import model.DTO.TheaterAddDTO;
 import repository.screen.ScreenRepository;
+import service.admin.TheaterAddService;
 
 @Service
 public class ScreenAddService {

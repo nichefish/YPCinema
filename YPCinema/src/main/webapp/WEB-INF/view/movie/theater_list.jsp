@@ -25,8 +25,7 @@
  	<div class="container" align="center">
  		<p>양평시네마 지점 정보</p>
  		<form:form method="get">
- 			<input type="text">
- 			<input type="button" value="지점 검색">
+ 			<p><input type="text"> <input type="button" value="지점 검색"></p>
  			<p>지점 검색? (구현안함)</p>
  			<p>지도로 지점분포... 구현할 수 있을까...</p>
  		</form:form>

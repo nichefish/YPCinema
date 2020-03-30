@@ -46,6 +46,22 @@
 			THEATER_NUM=#{theater_num}
 		</where>
 	</update>
+	
+	<select id="countTheaterScreen" parameterType="string" resultType="int">
+		select count(*) from screen where theater_num=#{value}
+	</select>
+	
+	<select id="countTheaterMaxSeat" parameterType="string" resultType="int">
+		select sum(screen_max_seat) from screen where theater_num=#{value}
+	</select>
+	
+	<update id="modifyRating" parameterType="tadto">
+		update theater set THEATER_RATING=#{theater_rating}
+		<where>
+			THEATER_NUM=#{theater_num}
+		</where>
+	</update>
+	
 	<!-- Delete Part -->
 	<delete id="deleteTheater" parameterType="string">
 		delete from theater <where>THEATER_NUM=#{num}</where>

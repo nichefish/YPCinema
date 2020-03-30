@@ -30,9 +30,13 @@ public class ScreenRepository {
 		return sqlSession.selectOne(statement, screen_num);
 	}
 
-	public Integer modifyScreen(ScreenCommand screenCommand) {
+	public Integer modifyScreen(ScreenDTO screen) {
 		String statement = namespace + ".modifyScreen";
-		return sqlSession.update(statement, screenCommand);
+		return sqlSession.update(statement, screen);
 	}
 
+	public Integer deleteScreen(String screen_num) {
+		String statement = namespace + ".deleteScreen";
+		return sqlSession.update(statement, screen_num);
+	}
 }

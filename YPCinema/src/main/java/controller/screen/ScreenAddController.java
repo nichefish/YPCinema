@@ -28,6 +28,7 @@ public class ScreenAddController {
 	@RequestMapping(value="theater/addScreen", method=RequestMethod.POST)
 	public String screenAddAction(ScreenCommand screenCommand) {
 		screenAddService.insertScreen(screenCommand);
+		theaterAddService.modifyRating(screenCommand.getTheater_num());
 		return "redirect:/theater/detail?num=" + screenCommand.getTheater_num();
 	}
 }

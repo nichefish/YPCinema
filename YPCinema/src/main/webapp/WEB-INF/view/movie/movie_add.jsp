@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -22,16 +22,17 @@
  
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
+ 		<p>양평시네마 상영영화 등록</p>
 		<form:form method="GET" commandName="movieCommand">
-			<p>(한국영화데이터베이스KMDb 영화정보API)</p>
-			<p>영화번호 검색: <form:input path="movie_num" id="movie_num" maxlength="6" placeholder="영화번호(MovieId) 6자리(ex. K14382)를 입력하세요." /></p>
-			<input type="submit" value="검색" />
-			<input type="reset" value="리셋" />
+			<p>
+				영화번호 검색: <form:input path="movie_num" id="movie_num" maxlength="6" placeholder="영화번호(MovieId) 6자리(ex. K14382)를 입력하세요." /> <input type="submit" value="검색" /> <input type="reset" value="리셋" />
+				<br />(한국영화데이터베이스KMDb 영화정보API)
+			</p>
 			<p>https://www.kmdb.or.kr/info/api/apiDetail/6</p>
 		</form:form>
 	
 		<form:form name="frm" id="frm" method="POST" commandName="movieCommand">
-			<table width="600" align="center" border=1 >
+			<table width="60%" align="center" border=1 >
 			 	<tr>
 			 		<td width="200">영화번호</td>
 			 		<td width="400">
@@ -109,11 +110,15 @@
 						<form:errors path="movie_still_url" />
 					</td>
 				</tr>
+			</table>
+			<table width="60%" align="center" border="0">
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="영화정보 등록" />
-						<input type="reset" value="리셋" />
-						<input type="button" onclick="location.href='list'" value="뒤로가기" />
+						<p><br />
+							<input type="submit" value="영화정보 등록" />
+							<input type="reset" value="리셋" />
+							<input type="button" onclick="location.href='list'" value="뒤로가기" />
+						</p>
 			 		</td>
 				</tr>
 			</table>

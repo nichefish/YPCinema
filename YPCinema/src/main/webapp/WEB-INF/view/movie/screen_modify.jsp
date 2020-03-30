@@ -27,6 +27,8 @@
 			 	<tr>
 			 		<td width="200">상영관 이름</td>
 			 		<td width="400">
+			 			<form:hidden path="screen_num" />
+			 			<form:hidden path="theater_num" />
 			 			<form:input path="screen_name" id="userPw" size="12" maxlength="10" />
 			 			<form:errors path="screen_name" />
 			 		</td>

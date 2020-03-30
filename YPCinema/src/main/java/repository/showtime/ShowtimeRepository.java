@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import command.showtime.ShowtimeCommand;
+import command.showtime.ShowtimeListCommand;
 import model.DTO.ShowtimeDTO;
 
 @Repository
@@ -38,7 +39,7 @@ public class ShowtimeRepository {
 		return sqlSession.selectOne(statement, show);
 	}
 
-	public List<ShowtimeDTO> selectByShowInfo(ShowtimeDTO show) {
+	public List<ShowtimeDTO> selectByShowInfo(ShowtimeListCommand show) {
 		String statement = namespace + ".selectByShowInfo";
 		return sqlSession.selectList(statement, show);
 	}

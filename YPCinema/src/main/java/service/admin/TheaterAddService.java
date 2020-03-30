@@ -12,6 +12,7 @@ import repository.admin.TheaterAddRepository;
 public class TheaterAddService {
 	@Autowired
 	TheaterAddRepository theaterAddRepository;
+	
 	public void delete(String num) {
 		theaterAddRepository.deleteTheater(num);
 	}
@@ -43,5 +44,22 @@ public class TheaterAddService {
 		dto.setTheater_num(theater_num);
 		dto.setTheater_special(theater_special);
 		theaterAddRepository.modifySpecial(dto);
+	}
+	public void modifyRating(String theater_num) {
+		TheaterAddDTO dto = new TheaterAddDTO();
+		String theater_rating = "D";
+		Integer countScreen = theaterAddRepository.countTheaterScreen(theater_num);
+		Integer countMaxSeat = theaterAddRepository.countTheaterMaxSeat(theater_num);
+		if (countScreen >= 6 && countMaxSeat >= 1200) {
+			theater_rating = "A";
+		} else if (countScreen >= 4 && countMaxSeat >= 800) {
+			theater_rating = "B";
+		} else if (countScreen >= 2 && countMaxSeat >= 400) {
+			theater_rating = "C";
+		}
+		System.out.println("등급..." + theater_rating);
+		dto.setTheater_num(theater_num);
+		dto.setTheater_rating(theater_rating);
+		theaterAddRepository.modifyRating(dto);
 	}
 }

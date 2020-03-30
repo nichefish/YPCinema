@@ -8,7 +8,7 @@
 	</sql>
 	
 	<insert id="insertShowtime" parameterType="model.DTO.ShowtimeDTO">
-		insert into showtime (<include refid="basecolumn" />) values ( #{show_num}, #{theater_num}, #{screen_num}, #{movie_num}, #{show_date}, #{show_start}, #{show_end})
+		insert into showtime (<include refid="basecolumn" />) values ( CONCAT('SHW_', (LPAD((SELECT nextval('seq')),4,0))), #{theater_num}, #{screen_num}, #{movie_num}, #{show_date}, #{show_start}, #{show_end})
 	</insert>
 	
 	<select id="selectAllShowtime" resultMap="baseShowtimeMap">
@@ -24,7 +24,6 @@
 		<trim prefix="where" prefixOverrides="and">
 			<if test="show_num != null">and show_num = #{show_num}</if>
 			<if test="theater_num != null">and theater_num = #{theater_num}</if>
-			<if test="screen_num != null">and screen_num = #{screen_num}</if>
 			<if test="movie_num != null">and movie_num = #{movie_num}</if>
 			<if test="show_date != null">and show_date = #{show_date_string}</if>
 		</trim>

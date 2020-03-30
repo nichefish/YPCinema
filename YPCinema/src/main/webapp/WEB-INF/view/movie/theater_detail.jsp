@@ -25,6 +25,19 @@
  	<div class="container" align="center">
  		<p>양평시네마 <b>${numTheater.theater_name}</b> 상세정보</p>
  		<p>주소로 지도.. 찾아오는 길.. 넣을꺼냐...</p>
+ 		
+ 		<table width="60%" border="0">
+ 			<tr>
+ 				<td align="right">
+ 					<p>
+						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
+						<input type="button" onclick="location.href='../showtime/list?theater=${numTheater.theater_num}'" value="지점 상영일정 보기" />
+						</c:if>
+						<input type="button" onclick="location.href='list'" value="목록으로" />
+					</p>
+ 				</td>
+ 			</tr>
+ 		</table>
 		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<tr>
 				<td align="center" width="160">지점 고유번호</td>
@@ -46,7 +59,7 @@
 						<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
 						<select name="theater_special">
 							<option value="${numTheater.theater_special}" selected>${numTheater.theater_special}</option>
-							<option value="0">0</option>
+							<option value="0" label="없음">0</option>
 							<option value="스릴러">스릴러</option>
 						</select>
 						<input type="submit" value="특화장르 수정" />
@@ -78,12 +91,6 @@
 			</c:forEach>
 		</table>
 		<p><br /></p>
-		<p>
-			<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
-			<input type="button" onclick="location.href='../showtime/list?num=${numTheater.theater_num}'" value="지점 상영일정 보기" />
-			</c:if>
-			<input type="button" onclick="location.href='list'" value="목록으로" />
-		</p>
 	</div>
 </div>
 <footer class="footer-area">

@@ -20,7 +20,11 @@
 	</select>
 	
 	<update id="modifyScreen" parameterType="model.DTO.ScreenDTO">
-		select <include refid="basecolumn" /> from screen where screen_num=#{screen_num}
+		update screen set screen_name=#{screen_name}, screen_max_seat=#{screen_max_seat}, screen_row=#{screen_row} where screen_num=#{screen_num}
+	</update>
+	
+	<update id="deleteScreen" parameterType="string">
+		delete from screen where screen_num=#{screen_num}
 	</update>
 	
 	<resultMap type="model.DTO.ScreenDTO" id="baseScreenMap">
