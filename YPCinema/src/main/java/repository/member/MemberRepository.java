@@ -38,5 +38,9 @@ public class MemberRepository {
 		String statement = namespace + ".selectUseNum";
 		return sqlSession.selectOne(statement,num);
 	}
+	public MemberDTO selectFindUser(String text) {
+		String statement = namespace + ".selectFindUser";
+		return sqlSession.selectOne(statement,text);
+	}
 	//sjh가 사용함 끝.
 }

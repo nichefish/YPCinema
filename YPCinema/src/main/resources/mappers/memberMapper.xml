@@ -50,6 +50,13 @@
 			m_num = #{num}
 		</where>
 	</select>
+	<select id="selectFindUser" parameterType="string" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member
+		<where>
+			m_num like concat('%', #{text}, '%')
+		</where>
+	</select>
+	<!-- sjh가 사용쓰 끝-->
 	<resultMap type="model.DTO.MemberDTO" id="baseMemberMap">
 		<id column="m_num" jdbcType="VARCHAR" property="m_num" />	<!-- PK/FK.. -->
 		<result column="m_id" jdbcType="VARCHAR" property="m_id" />		<!-- 일반속성... -->
