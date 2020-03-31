@@ -26,14 +26,42 @@
 <!-- Active js -->
 <script src="js/active.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	var theater = window.location.search.split("=").pop();
-	$("#theater_num").val(theater);
-// 	$("#theater").attr("selected", "selected");
-});
+// $(document).ready(function() {
+// 	var theater = window.location.search.split("=").pop();
+// 	$("#theater_num").val(theater);
+// // 	$("#theater").attr("selected", "selected");
+// });
 $(function() {
 	$("#theater").change(function() {
-		location.href="register?theater=" + this.value;
+		$.ajax({
+			type : "post",
+			url : "registerB",
+			data : "theater=" + $("#theater").val(),
+			datatype : "html",
+			success : function(data) {
+				$("#selectScreen").html(data);
+			},
+			error : function(data) {
+				$("#selectScreen").append(data);
+			}
+// 			location.href = "register?theater=" + $("#theater").val();
+		})
+	});
+// 	$("#screen").change(function() {
+// 		location.href="register?theater=" + $("#theater").val() + "&screen=" + this.value;
+// 	});
+	$("#show_date").change(function(){
+		var dt = new Date();
+		var today = dt.getFullYear() + ("00"+(dt.getMonth() + 1)).slice(-2) + ("00" + dt.getDate()).slice(-2);
+		today = Number(today);
+		var selectedDate = $("#show_date").val().replace(/-/g, "");
+		selectedDate = Number(selectedDate);
+		var dateCheck = selectedDate - today;	// 작으면 안됨...
+		if (dateCheck <= 0) {
+			alert("당일 혹은 이전 날짜에는 상영일정을 등록할 수 없습니다.");
+			$("#show_date").val("");
+			return false;
+		}
 	});
 });
 </script>
@@ -49,52 +77,49 @@ $(function() {
 		<form:form name="frm" id="frm" method="post" commandName="showtimeCommand">
 			<table width="60%" align="center" border="1">
 			 	<tr>
-			 		<td width="160">상영위치</td>
-			 		<td>
-			 			지점: 
-			 			<select name="theater" id="theater">
+			 		<td align="center">
+			 			지점: <br/>
+			 			<form:select path="theater_num" size="4" id="theater">
 			 				<option label="지점 선택" />
 			 				<c:forEach items="${theaters}" var="theater">
-			 				<option value="${theater.theater_num}" label="${theater.theater_name}"
-			 					<c:if test="${theater.theater_num eq param}">
-			 						selected
-			 					</c:if>  />
+			 				<form:option value="${theater.theater_num}" label="${theater.theater_name} ${theater.theater_rating }" />
 			 				</c:forEach>
-			 			</select>
-			 			상영관: 
-						<select name="screen_num" id="screen">
-							<option value="${screen.screen_num}" label="상영관  선택" />
-			 				<c:forEach items="${lists}" var="screen">
-			 				<option value="${screen.screen_num}" label="${screen.screen_name}" />
-			 				</c:forEach>
-			 			</select>
-			 			<input type="text" name="theater_num" id="theater_num" value="${screen.theater_num }">
+			 			</form:select>
 			 		</td>
-			 	</tr>
-			 	<tr>
-			 		<td width="160">영화번호</td>
-			 		<td>
-			 			<form:input path="movie_num" size="12" maxlength="10" />
+			 		<td align="center">
+			 			<div id="selectScreen">
+			 			상영관: <br/>
+						<form:select path="screen_num" size="4" id="screen">
+							<option label="상영관 선택" />
+			 			</form:select>
+			 			</div>
+			 		</td>
+			 		<td align="center">
+			 			영화: <br/>
+			 			<
+			 			<form:select path="movie_num" size="4"  maxlength="10" >
+			 				<option label="영화 선택" />
+			 			</form:select>
 			 			<form:errors path="movie_num" />
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="160">상영일자</td>
-			 		<td>
-			 			<form:input path="show_date" type="date" id="userBirth" size="12" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
+			 		<td>상영일자</td>
+			 		<td colspan="2">
+			 			<form:input path="show_date" type="date" id="show_date" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
 			 			<form:errors path="show_date" />
 			 			(<u>yyyy-MM-dd</u>)
 			 		</td>
 			 	</tr>
 				<tr>
-					<td width="160">상영시작시간</td>
+					<td>상영시작시간</td>
 					<td>
 						<form:input path="show_start" id="userPh1" size="16.5" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
 						<form:errors path="show_start" />
 					</td>
 				</tr>
 			 	<tr>
-			 		<td width="160">상영종료시간</td>
+			 		<td>상영종료시간</td>
 					<td>
 						<form:input path="show_end" id="userPh1" size="16.5" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
 						<form:errors path="show_end" />
@@ -111,7 +136,6 @@ $(function() {
 			</tr>
 		</table>
 		</form:form>
-
 	</div>
 </div>
 <footer class="footer-area">

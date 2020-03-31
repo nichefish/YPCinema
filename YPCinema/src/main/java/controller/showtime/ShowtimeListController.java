@@ -18,8 +18,6 @@ import service.showtime.ShowtimeListService;
 @Controller
 public class ShowtimeListController {
 //	@Autowired
-//	private TheaterListService theaeterListService;
-//	@Autowired
 //	private ScreenListService screenListService;
 	@Autowired
 	private JicmuListService jicmuListService;

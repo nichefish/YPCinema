@@ -25,11 +25,23 @@ public class ShowtimeRegisterController {
 	private ShowtimeRegisterService showtimeRegisterService;
 	
 	@RequestMapping(value="/showtime/register", method=RequestMethod.GET)
-	public String showtimeRegisterForm(@RequestParam(value="theater", required=false) String theater_num, @RequestParam(value="screen", required=false) String screen_num, ShowtimeCommand showtimeCommand, Model model) {
+	public String showtimeRegisterForm(@RequestParam(value="theater", required=false) String theater_num, @RequestParam(value="screen", required=false) String screen_num, @RequestParam(value="movie", required=false) String movie_num, ShowtimeCommand showtimeCommand, Model model) {
 		jicmuListService.showList(model);
-		screenListService.listScreen(theater_num, model);
-		model.addAttribute("param", theater_num);
+//		if (theater_num != null) {
+//			screenListService.listScreen(theater_num, model);
+//		}
+		showtimeCommand.setTheater_num(theater_num);
+		showtimeCommand.setScreen_num(screen_num);
+		showtimeCommand.setMovie_num(movie_num);
 		return "movie/showtime_add";
+	}
+	
+	@RequestMapping("/showtime/registerB")
+	public String showtimeRegisterB(@RequestParam(value="theater", required=false) String theater_num, ShowtimeCommand showtimeCommand, Model model) {
+		if (theater_num != null) {
+			screenListService.listScreen(theater_num, model);
+		}
+		return "movie/showtime_addB";
 	}
 	
 	@RequestMapping(value="/showtime/register", method=RequestMethod.POST)

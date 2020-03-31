@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
 import command.company.CompanyLoginCommand;
+import command.member.LoginCommand;
 import model.DTO.CompanyAuthInfo;
 import model.DTO.CompanyDTO;
 import repository.company.CompanyRepository;
@@ -21,11 +22,11 @@ public class CompanyAuthService {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	public void authenticate(CompanyLoginCommand companyLoginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
+	public void authenticate(LoginCommand loginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
 		CompanyDTO company = new CompanyDTO();
-		company.setC_id(companyLoginCommand.getId());
-		Cookie storeIdCookie = new Cookie("storeId", companyLoginCommand.getId());
-		if (companyLoginCommand.getIdStore()) {		// 쿠키추가..
+		company.setC_id(loginCommand.getId());
+		Cookie storeIdCookie = new Cookie("storeId", loginCommand.getId());
+		if (loginCommand.getIdStore()) {		// 쿠키추가..
 			storeIdCookie.setMaxAge(60*60*24*30);	// 여기서 시간조절.. 필요에 따라 바꿔주면 된다.. 초단위...
 			// 여기서 조건 줘가지고. 한참 나중에 와도 쿠키만 있으면 자동으로 체크되어 있게..?
 		} else {
@@ -38,7 +39,7 @@ public class CompanyAuthService {
 			System.out.println("아이디 없음!");
 //			errors.rejectValue("id","notId");
 		} else {
-			if (bcryptPasswordEncoder.matches(companyLoginCommand.getPass() , company.getC_pass())) {	// 패스워드 두개 비교- 맞으면-
+			if (bcryptPasswordEncoder.matches(loginCommand.getPass() , company.getC_pass())) {	// 패스워드 두개 비교- 맞으면-
 				CompanyAuthInfo companyAuthInfo = new CompanyAuthInfo();
 				companyAuthInfo.setC_id(company.getC_id());
 				companyAuthInfo.setC_num(company.getC_num());
@@ -52,7 +53,7 @@ public class CompanyAuthService {
 				companyAuthInfo.setMode(company.getC_admin());
 				Cookie autoLoginCookie = new Cookie("autoLogin", company.getC_id());		// 자동로그인 쿠키...
 				response.addCookie(autoLoginCookie);
-				Cookie adminSelectCookie = new Cookie("adminSelect", companyLoginCommand.getAdmin());		// 자동로그인 쿠키...
+				Cookie adminSelectCookie = new Cookie("adminSelect", loginCommand.getAdmin());		// 자동로그인 쿠키...
 				response.addCookie(adminSelectCookie);
 				
 				session.setAttribute("companyAuthInfo", companyAuthInfo);

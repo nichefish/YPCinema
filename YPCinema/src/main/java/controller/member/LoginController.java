@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.member.LoginCommand;
+import service.company.CompanyAuthService;
+import service.company.CompanyLoginCookieService;
 import service.member.AuthService;
 import service.member.LoginCookieService;
 
@@ -20,11 +22,16 @@ public class LoginController {
 	@Autowired
 	private LoginCookieService loginCookieService;
 	@Autowired
+	private CompanyLoginCookieService companyLoginCookieService;
+	@Autowired
 	private AuthService authService;
+	@Autowired
+	private CompanyAuthService companyAuthService;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(LoginCommand loginCommand, HttpServletRequest request, HttpSession session) {
 		loginCookieService.execute(request, session);
+		companyLoginCookieService.execute(request, session);
 		return "login";
 	}
 	
@@ -34,7 +41,12 @@ public class LoginController {
 //		if (errors.hasErrors()) {
 //			return "main";
 //		}
-		authService.authenticate(loginCommand, session, errors, response);
+		if (loginCommand.getAdmin().equals("0")) {
+			authService.authenticate(loginCommand, session, errors, response);
+		} else {
+			companyAuthService.authenticate(loginCommand, session, errors, response);
+		}
+		
 		System.out.println("로그인!!!");
 		return "redirect:/main";
 	}
@@ -48,7 +60,11 @@ public class LoginController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
-		authService.logout(session, response);
+		if (session.getAttribute("authInfo") != null) {
+			authService.logout(session, response);
+		} else if (session.getAttribute("companyAuthInfo") != null) {
+			companyAuthService.companyLogout(session, response);
+		}
 		return "redirect:/main";
 	}
 }

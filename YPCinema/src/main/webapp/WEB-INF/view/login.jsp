@@ -15,6 +15,21 @@
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+	$("#user").click(function() {
+		$("#id").css('background-color', 'white');
+		$("#pass").css('background-color', 'white');
+// 		$("#user").closest("table").css('background-color', 'white');
+	});
+	$("#company").click(function() {
+		$("#id").css('background-color', 'blue');
+		$("#pass").css('background-color', 'blue');
+// 		$("#user").closest("table").css('background-color', 'blue');
+	});
+});
+</script>
 </head>
 <body>
 <header class="header-area">
@@ -23,25 +38,35 @@
 <c:if test="${empty authInfo}">
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
+ 		<p>양평시네마에 오신 걸 환영합니다.</p>
 		<form:form action="login" name="frm" id="frm" method="POST" commandName="loginCommand">
-			<table border="1">
+			<div width="60%">
+			<table border="0">
 				<tr>
-					<td colspan="3" align="right">
-						<input type="radio" name="admin">회원
-						<input type="radio" name="admin">외부업체
-						<form:checkbox path="autoLogin" />자동 로그인
+					<td >
+					</td>
+					<td align="center">
+						회원 <input type="radio" name="admin" id="user" value="0" checked="true">
+						외부업체 <input type="radio" name="admin" id="company" value="1">&nbsp;
+					</td>
+					<td rowspan="2">
+						<form:checkbox path="autoLogin" />자동 로그인<br />
+						<form:checkbox path="idStore" />아이디 저장
 					</td>
 				</tr>
 				<tr>
 					<td>아이디 입력</td>
 					<td><form:input path="id" id="id" /><form:errors path="id" /></td>
-					<td><form:checkbox path="idStore" />아이디 저장</td>
+					
 				</tr>
 				<tr>
 					<td>비밀번호 입력</td>
 					<td><form:password path="pass" id="pass" /><form:errors path="pass" /></td>
-					<td><input type="submit" id="btn" value="로그인" /></td>
+					<td>&nbsp;&nbsp;<input type="submit" id="btn" value="로그인" /></td>
 				</tr>
+			</table>
+			</div>
+			<table border="0">
 				<tr>
 					<td colspan="3" align="right">
 						<a href="#">아이디 찾기</a>
