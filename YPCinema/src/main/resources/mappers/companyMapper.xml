@@ -32,7 +32,9 @@
 		update company
 		<trim prefix="set" suffixOverrides=",">
 			<if test="C_id != null || C_num != null">
-				c_name=#{c_name},c_companynum=#{c_companynum}, c_ceoname=#{c_ceoname}, c_comname=#{c_comname}, c_gen=#{c_gen}, c_birth=#{c_birth}, c_ceoph=#{c_ceoph},c_comph=#{c_comph}, c_addr1=#{c_addr1}, c_addr2=#{c_addr2}, c_ceoaddr=#{c_ceoaddr}, c_ceoaddr2=#{c_ceoaddr2}, c_comaddr=#{c_comaddr},c_comaddr2=#{c_comaddr2},c_zip=#{c_zip},c_zip1=#{c_zip1}, c_email=#{c_email},
+			c_companynum=#{c_companynum}, c_pass=#{c_pass}, c_name=#{c_name}, c_ceoname=#{c_ceoname}, c_comname=#{c_comname}, c_gen=#{c_gen}, 
+			c_birth=#{c_birth}, c_ceoph=#{c_ceoph}, c_comph=#{c_comph}, c_addr1=#{c_addr1}, c_addr2=#{c_addr2}, c_comaddr=#{c_comaddr}, c_comaddr2=#{c_comaddr2}, 
+			c_ceoaddr=#{c_ceoaddr}, c_ceoaddr2=#{c_ceoaddr2}, c_zip=#{c_zip}, c_zip1=#{c_zip1}, c_email=#{c_email},
 			</if>
 			<if test="c_picture != null">
 				c_picture = #{c_picture},

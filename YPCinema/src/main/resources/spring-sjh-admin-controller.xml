@@ -6,15 +6,21 @@
 	<!-- Controller -->
 	<bean class="controller.admin.JicmuController" />
 	<bean class="controller.admin.TheaterController" />
+	<bean class="controller.admin.CouponController" />
+	<bean class="controller.admin.CouponIssueController" />
 
 	
 	<!-- Service -->
 	<bean id="theaterAddService" class="service.admin.TheaterAddService" />
 	<bean id="jicmuListService" class="service.admin.JicmuListService" />
+	<bean id="couponAddService" class="service.admin.CouponAddService" />
+	<bean id="couponIssueService" class="service.admin.CouponIssueService" />
 	
 	<!-- Repository -->	
 	<bean id="theaterAddRepository" class="repository.admin.TheaterAddRepository" />
 	<bean id="jicmuRepository" class="repository.admin.JicmuRepository" />
+	<bean id="couponRepository" class="repository.admin.CouponRepository" />
+	<bean id="couponIssueRepository" class="repository.admin.CouponIssueRepository" />
 	
 	<!-- Cheyong Controller -->
 	<bean class="controller.cheyong.CheyongController" />

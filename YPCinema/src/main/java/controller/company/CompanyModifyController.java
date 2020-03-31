@@ -31,7 +31,7 @@ public class CompanyModifyController {
 	@RequestMapping(value="/companyMyPage/modify", method=RequestMethod.POST)
 	public String myModifyAction(CompanyCommand companyCommand, HttpSession session, Errors errors) {
 		companyModifyService.modifyMyInfo(companyCommand, session, errors);
-		return "redirect:/compnay_myPage";
+		return "redirect:/company_myPage";
 	}
 	
 	@RequestMapping(value="/company/modify", method=RequestMethod.GET)

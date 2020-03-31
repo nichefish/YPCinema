@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.DTO.CheyongAddDTO;
+import model.DTO.CheyongApplyDTO;
 import model.DTO.TheaterAddDTO;
 
 @Repository
@@ -33,5 +34,17 @@ public class CheyongRepository {
 	public CheyongAddDTO selectOneList(String num) {
 		String statement = namespace + ".selectOneCheyong";
 		return sqlSession.selectOne(statement,num);
+	}
+	public void insertJiwon(CheyongApplyDTO dto) {
+		String statement = namespace + ".insertCheyongApply";
+		sqlSession.insert(statement,dto);
+	}
+	public List<CheyongApplyDTO> selectJiwonList_M(String num){
+		String statement = namespace + ".selectMyResumes";
+		return sqlSession.selectList(statement,num);
+	}
+	public CheyongApplyDTO selectApplyOne(String r_num) {
+		String statement = namespace + ".selectApplyOne";
+		return sqlSession.selectOne(statement,r_num);
 	}
 }
