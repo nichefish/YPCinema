@@ -96,7 +96,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"align="center">
-						<input type="submit" value="수정 헉인" />
+						<input type="submit" value="수정 확인" />
 						<input type="reset" value="리셋" />
 						<input type="button" value="뒤로가기" />
 			 		</td>
