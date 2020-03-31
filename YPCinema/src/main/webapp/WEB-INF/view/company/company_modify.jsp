@@ -45,6 +45,12 @@
 								size="12" maxlength="10" /> <form:errors path="c_pass" /></td>
 					</tr>
 					<tr>
+						<td width="200">사업자 번호</td>
+						<td width="400"><form:input path="c_companynum" size="12"
+								maxlength="10" id="companynum" /> <form:errors
+								path="c_companynum" /></td>
+					</tr>
+					<tr>
 						<td width="200">대표자 이름</td>
 						<td width="400"><form:input path="c_ceoname" id="ceoName"
 								size="12" maxlength="10" /> <form:errors path="c_ceoname" /></td>

@@ -31,8 +31,7 @@
 							<p>[${companyCommand.c_picture}]</p>
 							<p>
 								프로필 이미지: <input type="file" name="goodsImage" id="goodsImage">
-							</p>
-							<br />
+							</p> <br />
 						</td>
 					</tr>
 					<tr>
@@ -44,6 +43,12 @@
 						<td width="200">비밀번호</td>
 						<td width="400"><form:password path="c_pass" id="userPw"
 								size="12" maxlength="10" /> <form:errors path="c_pass" /></td>
+					</tr>
+					<tr>
+						<td width="200">사업자 번호</td>
+						<td width="400"><form:input path="c_companynum" size="12"
+								maxlength="10" id="companynum" /> <form:errors
+								path="c_companynum" /></td>
 					</tr>
 					<tr>
 						<td width="200">대표자 이름</td>
@@ -72,13 +77,13 @@
 					</tr>
 					<tr>
 						<td width=200><b> 대표자 연락처</b> (휴대폰 번호)</td>
-						<td width=400><form:input path="c_ceoph" id="ceoph"
-								size="30" maxlength="28" /> <form:errors path="c_ceoph" /></td>
+						<td width=400><form:input path="c_ceoph" id="ceoph" size="30"
+								maxlength="28" /> <form:errors path="c_ceoph" /></td>
 					</tr>
 					<tr>
 						<td width=200><b> 협력업체 연락처</b> (휴대폰 번호)</td>
-						<td width=400><form:input path="c_comph" id="comph"
-								size="30" maxlength="28" /> <form:errors path="c_comph" /></td>
+						<td width=400><form:input path="c_comph" id="comph" size="30"
+								maxlength="28" /> <form:errors path="c_comph" /></td>
 					</tr>
 					<tr>
 						<td width=200><b>*이메일 주소</b></td>
@@ -126,8 +131,9 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="수정 확인" /> <input
-							type="reset" value="리셋" /> <input type="button" value="뒤로가기" />
-						</td>
+							type="reset" value="리셋" /> <input type="button"
+							onclick="javascript:history.back();" name="modify" id="modify"
+							value="뒤로가기"></td>
 					</tr>
 				</table>
 			</form:form>
