@@ -104,17 +104,17 @@
 					</td>
 				</tr>
 				<tr>
-			 		<td width="200">상영등급 가산점 (0~20)</td>
+			 		<td width="200">url</td>
 					<td width="400">
-						<form:input path="movie_rating_plus" id="m_email" size="30" maxlength="28" placeholder="0" />
-						<form:errors path="movie_rating_plus" />
+						<form:input path="movie_still_url" id="m_email" size="30" maxlength="28" />
+						<form:errors path="movie_still_url" />
 					</td>
 				</tr>
 				<tr>
-			 		<td width="200">url</td>
+			 		<td width="200">상영등급 가산점 (0~20)</td>
 					<td width="400">
-						<form:input path="movie_still_url" id="m_email" size="12" maxlength="28" />
-						<form:errors path="movie_still_url" />
+						<form:input path="movie_rating_plus" id="m_email" size="12" maxlength="28" placeholder="0" />
+						<form:errors path="movie_rating_plus" />
 					</td>
 				</tr>
 			</table>
