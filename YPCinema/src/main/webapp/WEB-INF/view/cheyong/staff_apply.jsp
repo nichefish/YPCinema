@@ -58,7 +58,8 @@
                                  	※주의사항※ 장난으로 내면 디진다.
                                 </div>
                                 <br />
-                                <form:form method="post" commandName="">
+                                <form:form method="post">
+                                <input type="hidden" id="r_m_num" name="m_num" value="${m_num}">
 								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;border:0px;" >
 									<tr>
 										<td>이름 </td>
@@ -66,7 +67,7 @@
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td>${userInfo.m_birth}</td>
+										<td><fmt:formatDate value='${userInfo.m_birth}' type='date' pattern='yyyy-MM-dd' /></td>
 									</tr>
 									<tr>
 										<td>전화번호</td>
@@ -78,25 +79,18 @@
 									</tr>
 									<tr>
 										<td>우편번호</td>
-										<td>
-											<input type="hidden" name="theater_zip" id="theater_zip" value="${userInfo.m_email}">
-											<input type="text" name="user_zip_show" id="user_zip_show"  value="${userInfo.m_email}" disabled> 
-											<input type="button" onclick="sample4_execDaumPostcode()" value="검색" >
-										</td>
+										<td>${userInfo.m_zip}</td>
 									</tr>
 									<tr>
 										<td>상세주소</td>
-										<td>
-											<input type="hidden" name="theater_addr1" id="theater_addr1" value="${userInfo.m_addr1}"> 
-											<input type="text" name="user_addr1_show" id="user_addr1_show" value="${userInfo.m_addr1}" disabled>
-										</td>
+										<td>${userInfo.m_addr1} / ${userInfo.m_addr2}</td>
 									</tr>
 									<tr>
 										<td>희망근무지역</td>
 										<td>
 											
 											<input type="text" name="che_jijom_show" id="che_jijom_show" placeholder="영화관을 검색해 주세요." disabled>
-											<input type="hidden" name="che_jijom" id="che_jijom" placeholder="영화관을 검색해 주세요." > 
+											<input type="hidden" name="r_hijijom" id="che_jijom" placeholder="영화관을 검색해 주세요." > 
 											<input type="button" name="jijomgumsec" id="jijomgumsec" value="검색" >
 										</td>
 									</tr>
@@ -114,7 +108,7 @@
 									</tr>
 									<tr>
 										<td>근무가능시간</td>
-										<td><input type="text" id="" name=""></td>
+										<td><input type="text" id="r_time" name="r_time"></td>
 									</tr>
 									<tr>
 										<td>장애구분</td>
@@ -140,7 +134,7 @@
 									<tr>
 										<td>경력사항</td>
 										<td>
-											<textarea id="che_bocri" name="che_bocri" style="width:500px;height: 218px;" >
+											<textarea id="r_career" name="r_career" style="width:500px;height: 218px;" >
 											</textarea>
 										</td>
 									</tr>
@@ -148,8 +142,15 @@
 									<tr>
 										<td>성격의 장단점</td>
 										<td>
-											<textarea id="che_jagyuc" name="che_jagyuc"style="width:500px;height: 154px;" >
+											<textarea id="r_per" name="r_per" style="width:500px;height: 154px;" >
 											
+											</textarea>
+										</td>
+									</tr>
+									<tr>
+										<td>지원동기 및 포부</td>
+										<td>
+											<textarea id="r_jiwon" name="r_jiwon" style="width:500px;height: 218px;" >
 											</textarea>
 										</td>
 									</tr>
@@ -193,7 +194,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="js/map-active.js"></script>
     -->
-<script type="text/javascript">
+<script text/javascript>
 var w = 400;
 var h = 300;
 $(document).ready(function(){

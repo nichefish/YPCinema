@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CouponIssueMapper">
+	<cache />
+	<sql id="CouponColumns">
+		C_NUM,C_SPE,C_NAME,C_CONTENT,C_SCORE,C_SYMBOL
+	</sql>
+	<!-- Select Map Part -->
+	<resultMap type="model.DTO.CouponDTO" id="couponMap">
+		<id column="C_NUM" jdbcType="VARCHAR" property="c_num"/>
+		<result column="C_SPE" jdbcType="VARCHAR" property="c_spe"/>
+		<result column="C_NAME" jdbcType="VARCHAR" property="c_name"/>
+		<result column="C_CONTENT" jdbcType="VARCHAR" property="c_content"/>
+		<result column="C_SCORE" jdbcType="VARCHAR" property="c_score"/>
+		<result column="C_SYMBOL" jdbcType="VARCHAR" property="c_symbol"/>
+		<result column="MENU_NAME" jdbcType="VARCHAR" property="menu_name"/>
+		<result column="MENU_TYPE" jdbcType="VARCHAR" property="menu_type"/>
+	</resultMap>
+	<!-- Select Part! -->
+	<select id="selectCoupons" parameterType="string" resultMap="couponMap">
+		select c.C_NUM,c.C_SPE,c.C_NAME,c.C_CONTENT,c.C_SCORE,C_SYMBOL
+		from coupon c, menu m
+		<where>
+			c.C_SPE=m.MENU_NAME and m.MENU_TYPE=#{type}
+		</where>
+	</select>
+	<select id="selectCouponsM" parameterType="string" resultMap="couponMap">
+		select <include refid="CouponColumns" /> from coupon
+		<where>
+			C_SPE = #{type}
+		</where>
+	</select>
+	<!-- Insert Part! -->
+	
+</mapper>

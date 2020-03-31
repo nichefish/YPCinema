@@ -7,8 +7,26 @@
 	<sql id="CheyongColumns">
 		CHE_NUM,CHE_SUBJECT,CHE_JIJOM,CHE_PERSON,CHE_JOGUN,CHE_BOCRI,CHE_JAGYUC,CHE_GITA,CHE_SIJAC,CHE_MAGAM
 	</sql>
+	<sql id="CheyongApplyColumns">
+		R_NUM,CHE_NUM,M_NUM,R_HIJIJOM,R_GADATE,R_TIME,R_DIS,R_PRICE,R_CAREER,R_PER,R_JIWON,R_NALJA,R_JIN
+	</sql>
 	
 	<!-- Select Map Part -->
+	<resultMap type="model.DTO.CheyongApplyDTO" id="baseCheyongApplyMap" >
+		<id column="R_NUM" jdbcType="VARCHAR" property="r_num"/>
+		<id column="CHE_NUM" jdbcType="VARCHAR" property="che_num"/>
+		<id column="M_NUM" jdbcType="VARCHAR" property="m_num"/>
+		<result column="R_HIJIJOM" jdbcType="VARCHAR" property="r_hijijom"/>
+		<result column="R_GADATE" jdbcType="VARCHAR" property="r_gadate"/>
+		<result column="R_TIME" jdbcType="VARCHAR" property="r_time"/>
+		<result column="R_DIS" jdbcType="VARCHAR" property="r_dis"/>
+		<result column="R_PRICE" jdbcType="VARCHAR" property="r_price"/>
+		<result column="R_CAREER" jdbcType="VARCHAR" property="r_career"/>
+		<result column="R_PER" jdbcType="VARCHAR" property="r_per"/>
+		<result column="R_JIWON" jdbcType="VARCHAR" property="r_jiwon"/>
+		<result column="R_NALJA" jdbcType="DATE" property="r_nalja"/>
+		<result column="R_JIN" jdbcType="VARCHAR" property="r_jin"/>
+	</resultMap>
 	<resultMap type="model.DTO.CheyongAddDTO" id="baseCheyongMap">
 		<id column="CHE_NUM" jdbcType="VARCHAR" property="che_num"/>
 		<result column="CHE_SUBJECT" jdbcType="VARCHAR" property="che_subject"/>
@@ -33,6 +51,18 @@
 	</resultMap>
 	
 	<!-- Select Part! -->
+	<select id="selectApplyOne" parameterType="string" resultMap="baseCheyongApplyMap">
+		select <include refid="CheyongApplyColumns" /> from resume
+		<where>
+			r_num = #{r_num}
+		</where>
+	</select>
+	<select id="selectMyResumes" parameterType="string" resultMap="baseCheyongApplyMap">
+		select <include refid="CheyongApplyColumns" /> from resume
+		<where>
+			M_NUM = #{num}
+		</where>
+	</select>
 	<select id="selectOneCheyong" parameterType="string" resultMap="baseCheyongMap">
 		select <include refid="CheyongColumns" /> from gonggo
 		<where>
@@ -50,6 +80,10 @@
 	</select>
 	
 	<!-- Insert Part! -->
+	<insert id="insertCheyongApply" parameterType="model.DTO.CheyongApplyDTO">
+		insert into resume (<include refid="CheyongApplyColumns"/>)
+		values(nextval('seq'),#{che_num},#{m_num},#{r_hijijom},#{r_gadate},#{r_time},#{r_dis},#{r_price},#{r_career},#{r_per},#{r_jiwon},now(),0)
+	</insert>
 	<insert id="insertCheyong" parameterType="model.DTO.CheyongAddDTO">
 		insert into gonggo(<include refid="CheyongColumns" />)
 		 values(nextval('seq'),#{che_subject},#{che_jijom},#{che_person},#{che_jogun},#{che_bocri},#{che_jagyuc},#{che_gita},#{che_sijac_string},#{che_magam_string})
