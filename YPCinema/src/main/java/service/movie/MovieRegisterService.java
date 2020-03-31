@@ -1,9 +1,6 @@
 package service.movie;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import command.movie.MovieCommand;
@@ -28,6 +25,7 @@ public class MovieRegisterService {
 		movie.setMovie_runtime(movieCommand.getMovie_runtime());
 		movie.setMovie_poster_url(movieCommand.getMovie_poster_url());
 		movie.setMovie_still_url(movieCommand.getMovie_still_url());
+		movie.setMovie_rating((Math.random()*50));	// 0-49까지의 더블...
 		return movieRepository.insertMovie(movie);
 	}
 	

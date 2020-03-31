@@ -23,6 +23,7 @@ public class MovieDTO implements Serializable {
 	private Integer movie_sales_acc;
 	private Integer movie_score;
 	private Double movie_rating;
+	private Integer movie_rating_plus;
 	
 	public String getMovie_num() {
 		return movie_num;
@@ -113,5 +114,11 @@ public class MovieDTO implements Serializable {
 	}
 	public void setMovie_rating(Double movie_rating) {
 		this.movie_rating = movie_rating;
+	}
+	public Integer getMovie_rating_plus() {
+		return movie_rating_plus;
+	}
+	public void setMovie_rating_plus(Integer movie_rating_plus) {
+		this.movie_rating_plus = movie_rating_plus;
 	}
 }

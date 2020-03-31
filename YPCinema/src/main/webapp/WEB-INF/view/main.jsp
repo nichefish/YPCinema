@@ -123,28 +123,52 @@
 												<c:if test="${!empty companyAuthInfo}"><span style="color:yellow;">"${companyAuthInfo.c_comname}"사 소속</span> <span style="color:white;">"${companyAuthInfo.c_name}"</span></c:if>
 												<span style="color:grey;">님 환영합니다.</span><br />
 												<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
-													<c:if test="${authInfo.m_admin ne '0' && authInfo.mode eq '0'}">
-													<input type="hidden" name="mode" value="1">
-													&nbsp;&nbsp;<div style="display:inline-block" id="mode_change">
-														<input type="button" id="mode_btn" value="[이용자 모드]">
+													<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">	<!-- 관리자 -> 관리자 모드 -->
+													<input type="hidden" name="mode" value="1">&nbsp;&nbsp;
+													<div style="display:inline-block" id="mode_change">		
+														<input type="button" id="mode_btn" value="[관리자 모드]">
 														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
 														<input type="button" value="[고객센터]">
 														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 														</div>
 													</c:if>
-													<c:if test="${!empty authInfo && (authInfo.m_admin eq '0' || authInfo.mode ne '0')}">
-													<input type="hidden" name="mode" value="0">
-													&nbsp;&nbsp;<div style="display:inline" id="mode_change">
-														<c:if test="${authInfo.m_admin ne '0'}">
-														<input type="button" id="mode_btn" value="[관리자 모드]">
-														</c:if>
+													<c:if test="${authInfo.m_admin eq '2' && authInfo.mode eq '0'}">	<!-- 직원 -> 직원 모드 -->
+													<input type="hidden" name="mode" value="2">&nbsp;&nbsp;
+													<div style="display:inline-block" id="mode_change">		
+														<input type="button" id="mode_btn" value="[직원 모드]">
+														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
+														<input type="button" value="[고객센터]">
+														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+														</div>
+													</c:if>
+													<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!--  직원 또는 관리자 -> 이용자 모드 -->
+													<input type="hidden" name="mode" value="0">&nbsp;&nbsp;
+													<div style="display:inline" id="mode_change">
+														<input type="button" id="mode_btn" value="[이용자 모드]">
 														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
 														<input type="button" value="[고객센터]">
 														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 													</div>
 													</c:if>
-													<c:if test="${empty authInfo && !empty companyAuthInfo}">
-													<input type="button" value="[관리자 모드]">
+													<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!--  직원 또는 관리자 -> 이용자 모드 -->
+													<input type="hidden" name="mode" value="0">&nbsp;&nbsp;
+													<div style="display:inline" id="mode_change">
+														<input type="button" id="mode_btn" value="[이용자 모드]">
+														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
+														<input type="button" value="[고객센터]">
+														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+													</div>
+													</c:if>
+													<c:if test="${authInfo.m_admin eq '0' }">	<!-- 이용자 -->
+													<input type="hidden" name="mode" value="0">&nbsp;&nbsp;
+													<div style="display:inline" id="mode_change">	
+														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
+														<input type="button" value="[고객센터]">
+														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
+													</div>
+													</c:if>
+													<c:if test="${empty authInfo && !empty companyAuthInfo}">	<!-- 협력업체 -->
+													<input type="button" value="[협력업체 모드]">
 													<input type="button" onclick="location.href='/YPCinema/companyMyPage'" value="[마이페이지]">
 													<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 													</c:if>
@@ -2895,7 +2919,7 @@
 	<script type="text/javascript">
 	$(function() {
 		$("#mode_btn").click(function() {
-			var test = confirm("관리자/이용자 모드를 전환하시겠습니까?\n(메인 페이지로 이동합니다.");
+			var test = confirm("관리자/이용자 모드로 전환하시겠습니까?\n(메인 페이지로 이동합니다.");
 			if (test) {
 				$("#mode_form").submit();
 			}

@@ -44,7 +44,6 @@ $(function() {
 			error : function(data) {
 				$("#selectScreen").append(data);
 			}
-// 			location.href = "register?theater=" + $("#theater").val();
 		})
 	});
 // 	$("#screen").change(function() {
@@ -77,27 +76,26 @@ $(function() {
 		<form:form name="frm" id="frm" method="post" commandName="showtimeCommand">
 			<table width="60%" align="center" border="1">
 			 	<tr>
-			 		<td align="center">
+			 		<td width="20%" align="center">
 			 			지점: <br/>
-			 			<form:select path="theater_num" size="4" id="theater">
+			 			<form:select path="theater_num" size="6" id="theater">
 			 				<option label="지점 선택" />
 			 				<c:forEach items="${theaters}" var="theater">
 			 				<form:option value="${theater.theater_num}" label="${theater.theater_name} ${theater.theater_rating }" />
 			 				</c:forEach>
 			 			</form:select>
 			 		</td>
-			 		<td align="center">
+			 		<td width="20%" align="center">
 			 			<div id="selectScreen">
 			 			상영관: <br/>
-						<form:select path="screen_num" size="4" id="screen">
+						<form:select path="screen_num" size="6" id="screen">
 							<option label="상영관 선택" />
 			 			</form:select>
 			 			</div>
 			 		</td>
-			 		<td align="center">
+			 		<td width="20%" align="center">
 			 			영화: <br/>
-			 			<
-			 			<form:select path="movie_num" size="4"  maxlength="10" >
+			 			<form:select path="movie_num" size="6"  maxlength="10" >
 			 				<option label="영화 선택" />
 			 			</form:select>
 			 			<form:errors path="movie_num" />
@@ -113,14 +111,14 @@ $(function() {
 			 	</tr>
 				<tr>
 					<td>상영시작시간</td>
-					<td>
+					<td colspan="3">
 						<form:input path="show_start" id="userPh1" size="16.5" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
 						<form:errors path="show_start" />
 					</td>
 				</tr>
 			 	<tr>
 			 		<td>상영종료시간</td>
-					<td>
+					<td colspan="3">
 						<form:input path="show_end" id="userPh1" size="16.5" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
 						<form:errors path="show_end" />
 					</td>

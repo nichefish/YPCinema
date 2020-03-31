@@ -45,7 +45,7 @@ public class AuthService {
 				authInfo.setM_name(member.getM_name());
 				authInfo.setM_picture(member.getM_picture());
 				authInfo.setM_admin(member.getM_admin());
-				authInfo.setMode(member.getM_admin());
+				authInfo.setMode("0");
 				Cookie autoLoginCookie = new Cookie("autoLogin", member.getM_id());		// 자동로그인 쿠키...
 				response.addCookie(autoLoginCookie);
 				Cookie adminSelectCookie = new Cookie("adminSelect", loginCommand.getAdmin());		// 자동로그인 쿠키...

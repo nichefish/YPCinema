@@ -27,7 +27,6 @@ public class MovieRegisterController {
 	
 	@RequestMapping(value="/movie/register", method=RequestMethod.POST)
 	public String movieRegisterAction(MovieCommand movieCommand) {
-		System.out.println("movie_num: " + movieCommand.getMovie_num());
 		Integer result = movieRegisterService.movieRegister(movieCommand);	
 		return "redirect:/main";
 	}
