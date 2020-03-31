@@ -28,5 +28,4 @@ public class MemberDetailController {
 		memberDetailService.memberDetail(m_num, model);
 		return "member/member_detail";
 	}
-	
 }

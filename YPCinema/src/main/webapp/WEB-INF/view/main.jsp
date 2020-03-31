@@ -127,21 +127,26 @@
 													<input type="hidden" name="mode" value="1">
 													&nbsp;&nbsp;<div style="display:inline-block" id="mode_change">
 														<input type="button" id="mode_btn" value="[이용자 모드]">
-														<input type="button" value="[마이페이지]">
+														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
 														<input type="button" value="[고객센터]">
 														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 														</div>
 													</c:if>
-													<c:if test="${authInfo.m_admin eq '0' || authInfo.mode ne '0'}">
+													<c:if test="${!empty authInfo && (authInfo.m_admin eq '0' || authInfo.mode ne '0')}">
 													<input type="hidden" name="mode" value="0">
 													&nbsp;&nbsp;<div style="display:inline" id="mode_change">
 														<c:if test="${authInfo.m_admin ne '0'}">
 														<input type="button" id="mode_btn" value="[관리자 모드]">
 														</c:if>
-														<input type="button" value="[마이페이지]">
+														<input type="button" onclick="location.href='/YPCinema/myPage'" value="[마이페이지]">
 														<input type="button" value="[고객센터]">
 														<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 													</div>
+													</c:if>
+													<c:if test="${empty authInfo && !empty companyAuthInfo}">
+													<input type="button" value="[관리자 모드]">
+													<input type="button" onclick="location.href='/YPCinema/companyMyPage'" value="[마이페이지]">
+													<input type="button" onclick="location.href='/YPCinema/logout'" value="[로그아웃]">
 													</c:if>
 												</form>
 											</span>
