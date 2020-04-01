@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+	   xmlns:xsi ="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation = "http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	    
+	    <!-- Service -->
+	    <bean id="menuWriterService" class = "service.popcorn.MenuWriterService" />
+	    <bean id="goodsListService" class = "service.popcorn.GoodsListService" />
+	    <bean id="goodsWriteService" class = "service.popcorn.GoodsWriteService" />
+	    <bean id="goodsDetailService" class = "service.popcorn.GoodsDetailService" />
+	    <bean id="goodsModifyService" class = "service.popcorn.GoodsModifyService" />
+	    <bean id="menuListService" class = "service.popcorn.MenuListService" />
+	    <bean id="menuDeleteService" class = "service.popcorn.MenuDeleteService" />
+	   
+	    
+	    <!-- Repository -->
+		<bean id="menuRepository" class = "repository.popcorn.MenuRepository" />
+		<bean id="goodsRepository" class = "repository.popcorn.GoodsRepository" />
+		
+	
+	
+</beans>

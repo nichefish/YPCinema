@@ -26,6 +26,9 @@ version="3.0">
   			classpath:spring-yj-controller.xml
   			<!-- yks -->
   			classpath:spring-yks-company-controller.xml
+  			<!-- 현주(매점)-->
+			classpath:spring-hj-goods-beans.xml
+			classpath:spring-hj-goods-controller.xml 
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

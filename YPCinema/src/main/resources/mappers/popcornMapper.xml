@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="popcornMapper">
+<cache />
+
+<!-- 컬럼 -->
+<sql id="baseMenuColumn">
+	MENU_NUM, THEATER_NUM, MENU_NAME, MENU_CONTENT, MENU_PRICE, MENU_IMG, MENU_TYPE
+</sql>
+
+<sql id="baseGoodsColumn">
+	GOODS_NUM, GOODS_NAME, GOODS_TYPE, GOODS_PRICE, GOODS_IMG
+</sql>
+
+<!-- Insert -->
+<insert id="menuInsert" parameterType="menu" >
+	insert into menu ( <include refid="baseMenuColumn" /> )
+	values(nextval('seq'), #{theaterNum}, #{menuName},  #{menuContent},
+	#{menuPrice},  #{menuImage},  #{menuType})
+</insert>
+
+<resultMap type="menu" id="menuBaseMap">
+	<id column="MENU_NUM" jdbcType="VARCHAR" property="menuNum"/>
+	<result column="THEATER_NUM" jdbcType="VARCHAR" property="theaterNum" />
+	<result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
+	<result column="MENU_CONTENT" jdbcType="VARCHAR" property="menuContent" />
+	<result column="MENU_PRICE" jdbcType="BIGINT" property="menuPrice" />
+	<result column="MENU_TYPE" jdbcType="VARCHAR" property="menuType" />
+	<result column="MENU_IMG" jdbcType="VARCHAR" property="menuImage" />
+</resultMap>
+
+<insert id="goodsInsert" parameterType="goods" >
+	insert into goods ( <include refid="baseGoodsColumn" /> )
+	values(nextval('seq'), #{goodsName}, #{goodsType}, #{goodsPrice}, #{goodsImage})
+</insert>
+
+<resultMap type="goods" id="goodsBaseMap">
+	<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+	<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+	<result column="GOODS_TYPE" jdbcType="VARCHAR" property="goodsType" />
+	<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice" />
+	<result column="GOODS_IMG" jdbcType="VARCHAR" property="goodsImage" />
+</resultMap>
+
+<!--  select  -->
+<select id="goodsList" resultMap="goodsBaseMap" parameterType="string">
+	select <include refid="baseGoodsColumn" /> from goods
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			GOODS_NUM = #{goodsNum}  
+		</if>
+	</trim>
+</select>
+
+<select id="menuList" resultMap="menuBaseMap" parameterType="string">
+	select <include refid="baseMenuColumn" /> from menu
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			MENU_NUM = #{menuNum}  
+		</if>
+	</trim>
+</select>
+
+<select id="goodsModify" resultMap="goodsBaseMap">
+	select  <include refid="baseGoodsColumn" /> from goods
+	where GOODS_NUM = #{goodsNum}
+</select>
+	
+<select id="menuType" resultMap="menuBaseMap" parameterType="string">
+	select <include refid="baseMenuColumn" /> from menu
+	where MENU_TYPE = #{menuType}
+</select>
+	
+<!-- update -->
+<update  id="goodsModifyPro" parameterType="goods">
+	update goods set GOODS_TYPE =  #{goodsType}, GOODS_NAME =  #{goodsName}, GOODS_PRICE =  #{goodsPrice}, GOODS_IMG=#{goodsImage}
+	where GOODS_NUM = #{goodsNum}
+</update>
+	
+<!-- Delete -->
+<delete id="menuDelete" parameterType="string">
+	delete from menu
+	where MENU_NUM = #{menuNum}
+</delete>
+	
+	
+
+</mapper>
