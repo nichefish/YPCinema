@@ -35,4 +35,17 @@ public class CouponRepository {
 		String statement = namespace + ".deleteCoupons";
 		sqlSession.delete(statement,nums);
 	}
+	//member_couponLists
+	public List<CouponDTO> selectListsM(String num) {
+		String statement = namespace + ".selectListsM";
+		return sqlSession.selectList(statement,num);
+	}
+	public List<CouponDTO> selectListsForMemberM(CouponDTO dto){
+		String statement = namespace + ".selectListsForMemberM";
+		return sqlSession.selectList(statement,dto);
+	}
+	public List<CouponDTO> selectListsForMemberS(CouponDTO dto){
+		String statement = namespace + ".selectListsForMemberS";
+		return sqlSession.selectList(statement,dto);
+	}
 }

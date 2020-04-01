@@ -5,6 +5,9 @@
 	<sql id="CouponColumns">
 		C_NUM,C_SPE,C_NAME,C_CONTENT,C_SCORE,C_SYMBOL
 	</sql>
+	<sql id="BalcuColumns">
+		BALCU_NUM,C_NUM,M_NUM,C_DATE,C_EDATE,C_USED
+	</sql>
 	<!-- Select Map Part -->
 	<resultMap type="model.DTO.CouponDTO" id="couponMap">
 		<id column="C_NUM" jdbcType="VARCHAR" property="c_num"/>
@@ -15,8 +18,25 @@
 		<result column="C_SYMBOL" jdbcType="VARCHAR" property="c_symbol"/>
 		<result column="MENU_NAME" jdbcType="VARCHAR" property="menu_name"/>
 		<result column="MENU_TYPE" jdbcType="VARCHAR" property="menu_type"/>
+		<result column="BALCU_NUM" jdbcType="VARCHAR" property="balcuNum"/>
+		<result column="M_NUM" jdbcType="VARCHAR" property="mNum"/>
+		<result column="C_DATE" jdbcType="DATE" property="cDate"/>
+		<result column="C_EDATE" jdbcType="DATE" property="cEDate"/>
+		<result column="C_USED" jdbcType="VARCHAR" property="cUsed"/>
 	</resultMap>
 	<!-- Select Part! -->
+	<select id="selectListsForMemberS" parameterType="model.DTO.CouponDTO" resultMap="couponMap">
+		select b.BALCU_NUM,c.C_NAME,c.C_SPE,c.C_CONTENT,c.C_SCORE,c.C_SYMBOL,b.M_NUM,b.C_DATE,b.C_EDATE,b.C_USED 
+		from balcu b,coupon c where c.C_NUM=b.C_NUM and b.M_NUM=#{mNum} and c.C_SPE not like concat('%', #{c_spe} , '%')
+	</select>
+	<select id="selectListsForMemberM" parameterType="model.DTO.CouponDTO" resultMap="couponMap">
+		select b.BALCU_NUM,c.C_NAME,c.C_SPE,c.C_CONTENT,c.C_SCORE,c.C_SYMBOL,b.M_NUM,b.C_DATE,b.C_EDATE,b.C_USED 
+		from balcu b,coupon c where c.C_NUM=b.C_NUM and b.M_NUM=#{mNum} and c.C_SPE=#{c_spe}
+	</select>
+	<select id="selectListsM" parameterType="string" resultMap="couponMap">
+		select b.BALCU_NUM,c.C_NAME,c.C_SPE,c.C_CONTENT,c.C_SCORE,c.C_SYMBOL,b.M_NUM,b.C_DATE,b.C_EDATE,b.C_USED 
+		from balcu b,coupon c where c.C_NUM=b.C_NUM and b.M_NUM=#{num}
+	</select>
 	<select id="selectLists" resultMap="couponMap">
 		select <include refid="CouponColumns" /> from coupon
 	</select>

@@ -1,7 +1,7 @@
 package controller.admin;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,9 +38,19 @@ public class CouponController {
 		return "admin/coupon_add2";
 	}
 	@RequestMapping("/couponDelete")
-	public String deleteCoupon(HttpServletResponse response, HttpServletRequest request,@RequestParam(value="nums")String [] nums) {
+	public String deleteCoupon(@RequestParam(value="nums")String [] nums) {
 		couponAddService.deleteCoupon(nums);
 		return "redirect:coupon_addList";
 	}
-
+	//member_couponList
+	@RequestMapping("/memeber_couponList")
+	public String memeberCoupon(HttpSession session, Model model) {
+		couponAddService.selectListsM(session, model);
+		return "admin/memeber_couponList";
+	}
+	@RequestMapping("/memeber_couponList2")
+	public String memberCoupon2(HttpSession session, Model model,@RequestParam(value="type")String type) {
+		couponAddService.selectListsForMember(session,model,type);
+		return "admin/memeber_couponList2";
+	}
 }

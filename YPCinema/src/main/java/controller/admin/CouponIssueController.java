@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import command.admin.CouponCommand;
 import service.admin.CouponAddService;
 import service.admin.CouponIssueService;
 
@@ -31,10 +30,17 @@ public class CouponIssueController {
 		couponIssueService.selectCoupons(model,type,userNum);
 		return "admin/coupon_issue2";
 	}
+	@RequestMapping("/CouponIssue")
 	public String couponIssue(@RequestParam(value="hiddenUserNum")String mNum,
-							  @RequestParam(value="cNum")String cNum,
+							  @RequestParam(value="cNum")String[] cNum,
 							  @RequestParam(value="manryo")String manryo) {
 		couponIssueService.couponIssue(mNum,cNum,manryo);
-		return "redirect:coupon_addList";
+		return "redirect:find_user?findUserText='"+mNum+"'";
+	}
+	//전체 생일쿠폰, 전체 맴버쉽쿠폰
+	@RequestMapping("/happyBirthDay")
+	public String happyBirthDayCoupon() {
+		couponIssueService.happyBirthDayCoupon();
+		return "redirect:coupon_issue";
 	}
 }
