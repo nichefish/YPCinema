@@ -29,6 +29,10 @@
 		</trim>
 	</select>
 	
+	<select id="selectEarliestShowByDate" parameterType="model.DTO.ShowtimeDTO" resultMap="baseShowtimeMap">
+		select <include refid="basecolumn" /> from showtime where show_date = #{show_date_string} and screen_num = #{screen_num} order by show_start desc limit 1
+	</select>
+	
 	<resultMap type="model.DTO.ShowtimeDTO" id="baseShowtimeMap">
 		<id column="show_num" jdbcType="VARCHAR" property="show_num" />
 		<id column="theater_num" jdbcType="VARCHAR" property="theater_num" />

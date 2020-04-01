@@ -28,6 +28,6 @@ public class MovieRegisterController {
 	@RequestMapping(value="/movie/register", method=RequestMethod.POST)
 	public String movieRegisterAction(MovieCommand movieCommand) {
 		Integer result = movieRegisterService.movieRegister(movieCommand);	
-		return "redirect:/main";
+		return "redirect:/movie/list";
 	}
 }

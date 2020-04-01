@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import model.DTO.MovieDTO;
+import model.DTO.MovieRatingDTO;
 
 @Repository
 public class MovieRepository {
@@ -27,6 +29,11 @@ public class MovieRepository {
 	public MovieDTO selectByMovieNum(String movie_num) {
 		String statement = namespace + ".selectByMovieNum";
 		return sqlSession.selectOne(statement, movie_num);
+	}
+
+	public List<MovieDTO> selectMovieByRating(MovieRatingDTO movieRatingDTO, Model model) {
+		String statement = namespace + ".selectMovieByRating";
+		return sqlSession.selectList(statement, movieRatingDTO);
 	}
 
 }

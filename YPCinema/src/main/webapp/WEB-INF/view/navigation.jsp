@@ -51,38 +51,43 @@ body{
 					<div class="collapse navbar-collapse" id="worldNav">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">
-								<a href="#" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:50px;">　　</a>
+									<c:if test="${(empty authInfo && empty companyAuthInfo) || authInfo.m_admin eq '0' || authInfo.mode eq '0'}">
+									<a href="/YPCinema/showtime/list" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:50px;">　　</a>
+									</c:if>
+									<c:if test="${(!empty authInfo || !empty companyAuthInfo) && authInfo.m_admin eq '0' || authInfo.mode ne '0'}">
+									<a href="#" ><img src="<c:url value='/img/픽토픽토/4-2.png' />" alt="Logo" style="width:30px;">　　</a>
+									</c:if>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 이용자 및 비로그인 -->
-										<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
-										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
-										<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
-										<a class="dropdown-item" href="<c:url value='/statistic' />">나의 영화관</a>
-										</c:if>
-										<c:if test="${authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 -->
-										<!-- 관리자 -->
-										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
-										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
-										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
-										<a class="dropdown-item" href="<c:url value='/myStatistic/' />">통계</a>
-										</c:if>
-										<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
-										<!-- 직원-->
-										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 정보</a>
-										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 정보</a>
-										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 정보</a>
-										<a class="dropdown-item" href="<c:url value='/payment/list' />">결제 및 예매 관리</a>
-										</c:if>
-									</div>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 이용자 및 비로그인 -->
+									<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
+									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
+									<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
+									<a class="dropdown-item" href="<c:url value='/statistic' />">나의 영화관</a>
+									</c:if>
+									<c:if test="${authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 -->
+									<!-- 관리자 -->
+									<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
+									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
+									<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
+									<a class="dropdown-item" href="<c:url value='/myStatistic/' />">통계</a>
+									</c:if>
+									<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
+									<!-- 직원-->
+									<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 정보</a>
+									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 정보</a>
+									<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 정보</a>
+									<a class="dropdown-item" href="<c:url value='/payment/list' />">결제 및 예매 관리</a>
+									</c:if>
+								</div>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="popcorn">매점</a>
+								<a class="nav-link" href="<c:url value='/popcorn' />">매점</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="jobList">직원관리</a>
+								<a class="nav-link" href="<c:url value='/jobList' />">직원관리</a>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">주차</a>
@@ -146,25 +151,25 @@ body{
 														<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">	
 														<input type="hidden" name="mode" value="1">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>관리자 모드로 변환</small></span>
+														<span style="display:inline"><small>[관리자 모드]로 변환</small></span>
 														</c:if>
 														<!-- 직원 -> 직원 모드 -->
 														<c:if test="${authInfo.m_admin eq '2' && authInfo.mode eq '0'}">	
 														<input type="hidden" name="mode" value="2">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>직원 모드로 변환</small></span>
+														<span style="display:inline"><small>[직원 모드]로 변환</small></span>
 														</c:if>
 														<!--  관리자 -> 이용자 모드 -->
 														<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	
 														<input type="hidden" name="mode" value="0">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>이용자 모드로 변환</small></span>
+														<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
 														</c:if>
 														<!--  직원 -> 이용자 모드 -->
 														<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	
 														<input type="hidden" name="mode" value="0">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>이용자 모드로 변환</small></span>
+														<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
 														</c:if>
 														<!-- 이용자: 없음 -->
 													</a>	
@@ -192,6 +197,7 @@ body{
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 	<script type="text/javascript">
 	$(function() {
 		$("#mode_btn").click(function() {

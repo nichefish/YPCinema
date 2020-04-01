@@ -133,8 +133,8 @@
 	</div>
 </div>
 <footer class="footer-area">
-      <%@ include file="../footer.jsp"%>
-   </footer>
+	<%@ include file="../footer.jsp"%>
+</footer>
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
    <!-- Popper js -->
    <script src="js/popper.min.js"></script>

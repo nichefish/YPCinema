@@ -55,6 +55,9 @@ public class ShowtimeDTO implements Serializable {
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 		this.show_date_string = dt.format(show_date);
 	}
+	public void setShow_date_string(String show_date) {
+		this.show_date_string = show_date;
+	}
 	public Date getShow_start() {
 		return show_start;
 	}

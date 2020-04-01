@@ -25,9 +25,10 @@ public class TheaterAddService {
 		dto.setTheater_ph(theaterAddCommand.getTheater_ph());
 		theaterAddRepository.insertTheaterAdd(dto);
 	}
-	public void execute(String num, Model model) {
+	public TheaterAddDTO execute(String num, Model model) {
 		TheaterAddDTO dto = theaterAddRepository.selectTheater(num);
 		model.addAttribute("numTheater",dto);
+		return dto;
 	}
 	public void Modify(TheaterAddCommand theaterAddCommand) {
 		TheaterAddDTO dto = new TheaterAddDTO();

@@ -43,4 +43,9 @@ public class ShowtimeRepository {
 		String statement = namespace + ".selectByShowInfo";
 		return sqlSession.selectList(statement, show);
 	}
+
+	public ShowtimeDTO selectEarliestShowByDate(ShowtimeDTO show) {
+		String statement = namespace + ".selectEarliestShowByDate";
+		return sqlSession.selectOne(statement, show);
+	}
 }

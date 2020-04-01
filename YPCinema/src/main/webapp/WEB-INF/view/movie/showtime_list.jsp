@@ -88,8 +88,8 @@ $(function() {
 				<td align="center">${show.screen_num}</td>
 				<td align="center">${show.movie_num}</td>
 				<td align="center"><fmt:formatDate value="${show.show_date}" type="date" /></td>
-				<td align="center">${show.show_date}</td>
-				<td align="center">${show.show_date}</td>
+				<td align="center"><fmt:formatDate value='${show.show_start}' type='time' pattern='HH:mm' /></td>
+				<td align="center"><fmt:formatDate value='${show.show_end}' type='time' pattern='HH:mm' /></td>
 			</tr>
 			</c:forEach>
 			

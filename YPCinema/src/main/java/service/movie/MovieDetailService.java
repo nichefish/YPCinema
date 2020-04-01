@@ -12,8 +12,9 @@ public class MovieDetailService {
 	@Autowired
 	private MovieRepository movieRepository;
 	
-	public void selectByMovieNum(String movie_num, Model model) {
+	public MovieDTO selectByMovieNum(String movie_num, Model model) {
 		MovieDTO movie = movieRepository.selectByMovieNum(movie_num);
 		model.addAttribute("movieCommand", movie);
+		return movie;
 	}
 }

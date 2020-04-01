@@ -4,13 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+	$("#movie").change(function() {
+		$.ajax({
+			type : "post",
+			url : "registerD",
+			data : "theater=" + $("#theater").val() + "&screen=" + $("#screen").val() + "&movie=" + $("#movie").val(),
+			datatype : "html",
+			success : function(data3) {
+				$("#selectDate").html(data3);
+			},
+			error : function(data3) {
+				$("#selectDate").html(data3);
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 	영화: <br/>
-	<select name="screen_num" size="4" id="screen">
-		<option label="상영관 선택" />
-		<c:forEach items="${lists}" var="screen">
-		<option value="${screen.screen_num}" label="${screen.screen_name} ${screen.screen_rating }" />
+	<select name="movie_num" size="8" id="movie">
+		<c:forEach items="${lists}" var="movie">
+		<option value="${movie.movie_num}" label="${movie.movie_title} (${movie.movie_rating})" />
 		</c:forEach>
 	</select>
 </body>

@@ -26,6 +26,7 @@ public class MovieRegisterService {
 		movie.setMovie_poster_url(movieCommand.getMovie_poster_url());
 		movie.setMovie_still_url(movieCommand.getMovie_still_url());
 		movie.setMovie_rating((Math.random()*50));	// 0-49까지의 더블...
+		movie.setMovie_rating_plus(movieCommand.getMovie_rating_plus());	// 0-49까지의 더블...
 		return movieRepository.insertMovie(movie);
 	}
 	

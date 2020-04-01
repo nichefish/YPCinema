@@ -38,17 +38,14 @@ $(function() {
 			url : "registerB",
 			data : "theater=" + $("#theater").val(),
 			datatype : "html",
-			success : function(data) {
-				$("#selectScreen").html(data);
+			success : function(data1) {
+				$("#selectScreen").html(data1);
 			},
-			error : function(data) {
-				$("#selectScreen").append(data);
+			error : function(data1) {
+				$("#selectScreen").html(data1);
 			}
 		})
 	});
-// 	$("#screen").change(function() {
-// 		location.href="register?theater=" + $("#theater").val() + "&screen=" + this.value;
-// 	});
 	$("#show_date").change(function(){
 		var dt = new Date();
 		var today = dt.getFullYear() + ("00"+(dt.getMonth() + 1)).slice(-2) + ("00" + dt.getDate()).slice(-2);
@@ -78,61 +75,76 @@ $(function() {
 			 	<tr>
 			 		<td width="20%" align="center">
 			 			지점: <br/>
-			 			<form:select path="theater_num" size="6" id="theater">
-			 				<option label="지점 선택" />
+			 			<form:select path="theater_num" size="8" id="theater">
 			 				<c:forEach items="${theaters}" var="theater">
-			 				<form:option value="${theater.theater_num}" label="${theater.theater_name} ${theater.theater_rating }" />
+			 				<form:option value="${theater.theater_num}" label="${theater.theater_name} (${theater.theater_rating})" />
 			 				</c:forEach>
 			 			</form:select>
 			 		</td>
 			 		<td width="20%" align="center">
 			 			<div id="selectScreen">
 			 			상영관: <br/>
-						<form:select path="screen_num" size="6" id="screen">
-							<option label="상영관 선택" />
+						<form:select path="screen_num" size="8" id="screen">
+							<option label="----상영관 선택----"  selected />
 			 			</form:select>
 			 			</div>
 			 		</td>
 			 		<td width="20%" align="center">
+			 			<div id="selectMovie">
 			 			영화: <br/>
-			 			<form:select path="movie_num" size="6"  maxlength="10" >
-			 				<option label="영화 선택" />
+			 			<form:select path="movie_num" size="8" maxlength="10" id="movie">
+			 				<option label="-----영화 선택-----"  selected />
 			 			</form:select>
 			 			<form:errors path="movie_num" />
+			 			</div>
 			 		</td>
 			 	</tr>
-			 	<tr>
-			 		<td>상영일자</td>
-			 		<td colspan="2">
-			 			<form:input path="show_date" type="date" id="show_date" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
-			 			<form:errors path="show_date" />
-			 			(<u>yyyy-MM-dd</u>)
-			 		</td>
-			 	</tr>
+			</table>
+			<div style="width:60%; height:2px;">
+			</div>
+			<div style="width:60%; border:1px solid black;">
+				<div id="selectDate">
+				<table width="100%" align="center" border="0">
+					<tr>
+						<td width="240" align="center">상영예정일자</td>
+						<td colspan="2">
+							<input type="date" name="show_date" id="date" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
+							(<u>yyyy-MM-dd</u>)
+						</td>
+					</tr>
+				 </table>
+				 </div>
+				 <div id="selectTime">
+				 <table width="100%" align="center" border="0">
+					<tr>
+						<td width="240" align="center" >상영시작시간</td>
+						<td colspan="3">
+							<form:input path="show_start" id="userPh1" size="16" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
+							<form:errors path="show_start" />
+						</td>
+					</tr>
+				 	<tr>
+				 		<td width="240" align="center">상영종료시간</td>
+						<td colspan="3">
+							<input type="hidden" name="show_end" id="show_end">
+							<input type="text" name="show_end_show" id="show_end_show" size="16" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}" disabled="disabled" />
+							<form:errors path="show_end" />
+						</td>
+					</tr>
+				</table>
+				</div>
+			</div>
+			<table width="100%" align="center" border="0">
 				<tr>
-					<td>상영시작시간</td>
-					<td colspan="3">
-						<form:input path="show_start" id="userPh1" size="16.5" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
-						<form:errors path="show_start" />
-					</td>
-				</tr>
-			 	<tr>
-			 		<td>상영종료시간</td>
-					<td colspan="3">
-						<form:input path="show_end" id="userPh1" size="16.5" maxlength="28" placeholder="hh:mm" pattern="\d{2}:\d{2}"/>
-						<form:errors path="show_end" />
+					<td align="center">
+					<p>
+						<input type="submit" value="상영일정 등록" />
+						<input type="reset" value="리셋" />
+						<input type="button" value="뒤로가기" />
+					</p>
 					</td>
 				</tr>
 			</table>
-					<table width="60%" align="center" border="0">
-			<tr>
-				<td align="center">
-					<input type="submit" value="상영일정 등록" />
-					<input type="reset" value="리셋" />
-					<input type="button" value="뒤로가기" />
-				</td>
-			</tr>
-		</table>
 		</form:form>
 	</div>
 </div>

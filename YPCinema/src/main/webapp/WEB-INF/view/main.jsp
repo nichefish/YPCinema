@@ -48,7 +48,12 @@
 						<div class="collapse navbar-collapse" id="worldNav">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item">
+									<c:if test="${(empty authInfo && empty companyAuthInfo) || authInfo.m_admin eq '0' || authInfo.mode eq '0'}">
 									<a href="/YPCinema/showtime/list" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:50px;">　　</a>
+									</c:if>
+									<c:if test="${!empty companyAuthInfo || (!empty authInfo && authInfo.m_admin ne '0' && authInfo.mode ne '0')}">
+									<a href="#" ><img src="<c:url value='/img/픽토픽토/4-2.png' />" alt="Logo" style="width:29px;">　　</a>
+									</c:if>
 								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영화</a>
@@ -76,10 +81,10 @@
 									</div>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="popcorn">매점</a>
+									<a class="nav-link" href="<c:url value='/popcorn' />">매점</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="jobList">직원관리</a>
+									<a class="nav-link" href="<c:url value='/jobList' />">직원관리</a>
 								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">주차</a>
@@ -148,25 +153,25 @@
 														<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">	
 														<input type="hidden" name="mode" value="1">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>관리자 모드로 변환</small></span>
+														<span style="display:inline"><small>[관리자 모드]로 변환</small></span>
 														</c:if>
 														<!-- 직원 -> 직원 모드 -->
 														<c:if test="${authInfo.m_admin eq '2' && authInfo.mode eq '0'}">	
 														<input type="hidden" name="mode" value="2">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>직원 모드로 변환</small></span>
+														<span style="display:inline"><small>[직원 모드]로 변환</small></span>
 														</c:if>
 														<!--  관리자 -> 이용자 모드 -->
 														<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	
 														<input type="hidden" name="mode" value="0">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>이용자 모드로 변환</small></span>
+														<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
 														</c:if>
 														<!--  직원 -> 이용자 모드 -->
 														<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	
 														<input type="hidden" name="mode" value="0">
 														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>이용자 모드로 변환</small></span>
+														<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
 														</c:if>
 														<!-- 이용자: 없음 -->
 													</a>	
