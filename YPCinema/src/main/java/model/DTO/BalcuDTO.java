@@ -11,7 +11,14 @@ public class BalcuDTO implements Serializable{
 	private Date cDate;
 	private Date cEDate;
 	private String cUsed;
+	private String manryo;
 	
+	public String getManryo() {
+		return manryo;
+	}
+	public void setManryo(String manryo) {
+		this.manryo = manryo;
+	}
 	public String getBalcuNum() {
 		return balcuNum;
 	}

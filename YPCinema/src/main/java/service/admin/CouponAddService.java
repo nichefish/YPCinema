@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import command.admin.CouponCommand;
+import model.DTO.AuthInfo;
 import model.DTO.CouponDTO;
 import repository.admin.CouponRepository;
 
@@ -47,5 +50,26 @@ public class CouponAddService {
 		Map<String,Object> numms = new HashMap<String,Object>();
 		numms.put("seqs", str);
 		couponRepository.deleteCoupon(numms);
+	}
+	public void selectListsM(HttpSession session, Model model) {
+		String num = ((AuthInfo)session.getAttribute("authInfo")).getM_num();
+		List<CouponDTO> lists = couponRepository.selectListsM(num);
+		model.addAttribute("selectLists",lists);
+	}
+	public void selectListsForMember(HttpSession session,Model model,String type) {
+		String num = ((AuthInfo)session.getAttribute("authInfo")).getM_num();
+		CouponDTO dto = new CouponDTO();
+		dto.setmNum(num);
+		if(type.equals("영화")) {
+			dto.setC_spe(type);
+			List<CouponDTO> lists = couponRepository.selectListsForMemberM(dto);
+			model.addAttribute("selectLists",lists);
+		}else {
+			dto.setC_spe("영화");
+			List<CouponDTO> lists = couponRepository.selectListsForMemberS(dto);
+			model.addAttribute("selectLists",lists);
+		}
+		
+		
 	}
 }

@@ -14,6 +14,7 @@
                       <th style="width:5px;height:5px">
 					  	<input type = "checkBox" class = "select_all" name = "couponSelect">
         			  </th>
+        			  <th>쿠폰번호</th>
 					  <th>쿠폰종류</th>
         			  <th>쿠폰이름</th>
                       <th>내용</th>
@@ -21,12 +22,13 @@
                       <th>할인률</th>
                     </tr>
                   <tbody>
-                  <c:if test="${!empty selectCouponsM}">
+
                   	<c:forEach items="${selectCouponsM}" var="scm" step="1">
                   		<tr>
                   			<td>
-                  				<input type = "checkBox" class = "select" name = "cNum" id="cNum" value="${sc.c_num}">
+                  				<input type = "checkBox" class = "select" name = "cNum" id="cNum" value="${scm.c_num}">
                   			</td>
+                  			<td>${scm.c_num}</td>
                   	  		<td>${scm.c_spe}</td>
 					  		<td>${scm.c_name}</td>
                       		<td>${scm.c_content}</td>
@@ -34,19 +36,6 @@
                      		<td>${scm.c_score}</td>
                   		</tr>
                   	</c:forEach>
-                  </c:if>
-                  <c:forEach items="${selectCoupons}" var="sc" step="1">
-                  	<tr>
-                  		<td>
-                  			<input type = "checkBox" class = "select" name = "cNum" id="cNum" value="${sc.c_num}">
-                  		</td>
-                  	  	<td>${sc.c_spe}</td>
-					  	<td>${sc.c_name}</td>
-                      	<td>${sc.c_content}</td>
-                      	<td>${sc.c_symbol}</td>
-                     	<td>${sc.c_score}</td>
-                  	</tr>
-                  </c:forEach>
                   </tbody>                         
                 </table>
                 

@@ -5,6 +5,9 @@
 	<sql id="CouponColumns">
 		C_NUM,C_SPE,C_NAME,C_CONTENT,C_SCORE,C_SYMBOL
 	</sql>
+	<sql id="BalcuColumns">
+		BALCU_NUM,C_NUM,M_NUM,C_DATE,C_EDATE,C_USED
+	</sql>
 	<!-- Select Map Part -->
 	<resultMap type="model.DTO.CouponDTO" id="couponMap">
 		<id column="C_NUM" jdbcType="VARCHAR" property="c_num"/>
@@ -15,21 +18,57 @@
 		<result column="C_SYMBOL" jdbcType="VARCHAR" property="c_symbol"/>
 		<result column="MENU_NAME" jdbcType="VARCHAR" property="menu_name"/>
 		<result column="MENU_TYPE" jdbcType="VARCHAR" property="menu_type"/>
+		<result column="BALCU_NUM" jdbcType="VARCHAR" property="balcuNum"/>
+		<result column="M_NUM" jdbcType="VARCHAR" property="mNum"/>
+		<result column="C_DATE" jdbcType="DATE" property="cDate"/>
+		<result column="C_EDATE" jdbcType="DATE" property="cEDate"/>
+		<result column="C_USED" jdbcType="VARCHAR" property="cUsed"/>
 	</resultMap>
 	<!-- Select Part! -->
 	<select id="selectCoupons" parameterType="string" resultMap="couponMap">
 		select c.C_NUM,c.C_SPE,c.C_NAME,c.C_CONTENT,c.C_SCORE,C_SYMBOL
 		from coupon c, menu m
 		<where>
-			c.C_SPE=m.MENU_NAME and m.MENU_TYPE=#{type}
+			c.C_SPE=m.MENU_NAME and m.MENU_TYPE=#{type} 
+			and c.C_NAME not like concat('%', 'VIP' , '%')
+			and c.C_NAME not like concat('%', '생일' , '%')
+		</where>
+	</select>
+	<select id="selectCouponsEvent" parameterType="string" resultMap="couponMap">
+		select <include refid="CouponColumns" /> from coupon
+		<where>
+			C_NAME like concat('%', #{type} , '%')
 		</where>
 	</select>
 	<select id="selectCouponsM" parameterType="string" resultMap="couponMap">
 		select <include refid="CouponColumns" /> from coupon
 		<where>
 			C_SPE = #{type}
+			and C_NAME not like concat('%', 'VIP' , '%')
+			and C_NAME not like concat('%', '생일' , '%')
 		</where>
 	</select>
 	<!-- Insert Part! -->
+	<insert id="insertBalcu">
+		insert into balcu (<include refid="BalcuColumns" />) values
+		<foreach collection="cNums" item="cNums" index="index" separator=",">
+		(nextval('seq'),#{cNums},#{mNum},now(),now() + INTERVAL #{manryo} DAY,0)
+		</foreach>
+	</insert>
 	
+	<!--생일쿠폰과 맴버쉽쿠폰  -->
+	<select id="selectBirthMNum" resultType="string">
+		select M_NUM from member
+		<where>
+			date_format(M_BIRTH,'%m-%d') = date_format(now(),'%m-%d')
+		</where>
+	</select>
+	<insert id="insertBirthBalcu" parameterType="java.util.List">
+		insert into balcu (<include refid="BalcuColumns" />) values
+		<trim suffixOverrides=",">
+		<foreach collection="list" item="e" index="index" >
+			(nextval('seq'),#{e.c_num},#{e.mNum},now(),now() + INTERVAL 30 DAY,0),
+		</foreach>
+		</trim>
+	</insert>
 </mapper>

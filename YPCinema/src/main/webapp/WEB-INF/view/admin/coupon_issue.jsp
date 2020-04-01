@@ -70,6 +70,8 @@ div.card-body {
               <form>
                 회원검색 :&nbsp;<input type="text" id="findUserText" name="findUserText">
               <input type="submit" name="findUserTextS" value="검색" formaction="find_user">
+              <input type="button" value="생일쿠폰발급" onclick="location.href='happyBirthDay'">
+              <input type="button" value="맴버쉽발급" onclick="location.href='Membership'">
                 <table class="table table-bordered" id="dataTable" cellspacing="0">
                     <tr>
 					  <th>회원번호</th>
@@ -83,7 +85,7 @@ div.card-body {
                   	<tr>
                   	  	<td>
                   	  		${foundUser.m_num}
-                  	  		<input type="hidden" id="hiddenUserNum" name="mNum" value="${foundUser.m_num}">
+                  	  		<input type="hidden" id="hiddenUserNum" name="hiddenUserNum" value="${foundUser.m_num}">
                   	  	</td>
 					  	<td>${foundUser.m_id}</td>
                       	<td>${foundUser.m_name}</td>
@@ -97,6 +99,8 @@ div.card-body {
                 쿠폰선택 :&nbsp;<select name="choiceType" id="choiceType">
                 	<option>-----</option>
                 	<option value="영화">영화</option>
+                	<option value="생일">생일</option>
+                	<option value="VIP">맴버쉽</option>
                 <c:forEach items="${menuTypes}" var="mt" step="1">
                 	<option value="${mt.menu_type}">${mt.menu_type}</option>
                 </c:forEach>
@@ -105,6 +109,7 @@ div.card-body {
                <div id="findCoupon">
                 <table class="table table-bordered" id="dataTable" cellspacing="0">
                     <tr>
+                      <th>쿠폰번호</th>
 					  <th>쿠폰종류</th>
         			  <th>쿠폰이름</th>
                       <th>내용</th>
@@ -112,6 +117,7 @@ div.card-body {
                     </tr>
                   <tbody>
                   	<tr>
+                  		<td>쿠폰번호</td>
                   	  	<td>쿠폰종류</td>
 					  	<td>쿠폰이름</td>
                       	<td>내용</td>
@@ -121,7 +127,7 @@ div.card-body {
                 </table> 
                 </div>
               	만료일 : &nbsp;<input type = "text" id="manryo" name="manryo" placeholder="ex)5 => 오늘날짜 + 5일">
-                <input type="submit" value="발급" id="balgb" name="balgb" formaction="CouponIssue">
+                <input type="submit" value="발급" id="balgb" name="balgb" formaction="CouponIssue" formmethod="post">
               </form>
               </div>
             </div>

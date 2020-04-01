@@ -1,6 +1,7 @@
 package model.DTO;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class CouponDTO implements Serializable{
@@ -13,6 +14,45 @@ public class CouponDTO implements Serializable{
 	private String menu_name;
 	private String menu_type;
 	
+	private String balcuNum;
+	private String mNum;
+	private Date cDate;
+	private Date cEDate;
+	private String cUsed;
+	
+	public String getBalcuNum() {
+		return balcuNum;
+	}
+	public void setBalcuNum(String balcuNum) {
+		this.balcuNum = balcuNum;
+	}
+
+	public String getmNum() {
+		return mNum;
+	}
+	public void setmNum(String mNum) {
+		this.mNum = mNum;
+	}
+	public Date getcDate() {
+		return cDate;
+	}
+	public void setcDate(Date cDate) {
+		this.cDate = cDate;
+	}
+	public Date getcEDate() {
+		return cEDate;
+	}
+	public void setcEDate(Date cEDate) {
+		this.cEDate = cEDate;
+	}
+	public String getcUsed() {
+		return cUsed;
+	}
+	public void setcUsed(String cUsed) {
+		this.cUsed = cUsed;
+	}
+
+	// 끝
 	public String getC_num() {
 		return c_num;
 	}

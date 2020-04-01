@@ -64,7 +64,7 @@ div.card-body {
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Coupon List Page</h6>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="heigth:auto;">
               <div class="table-responsive">
               <form>
                 <table class="table table-bordered" id="dataTable" cellspacing="0">
@@ -73,8 +73,8 @@ div.card-body {
 					  	<input type = "checkBox" class = "select_all" name = "couponSelect">
         			  </th>
         			  <th>쿠폰번호</th>
-                      <th>이름</th>
                       <th>종류</th>
+                      <th>이름</th>
                       <th>내용</th>
                       <th>할인상태</th>
                       <th>할인률</th>
@@ -111,6 +111,7 @@ div.card-body {
                 	</c:if>
             		<input type ="button" value= "쿠폰추가" onclick="location.href='coupon_add'">
             		<input type ="submit" id= "coupon_delete" value= "쿠폰삭제" formaction="couponDelete">
+            		<input type="button" value =" 잠시 연습용 버튼 member" onclick="location.href='memeber_couponList'">
               	</div>
               </form>
               </div>
