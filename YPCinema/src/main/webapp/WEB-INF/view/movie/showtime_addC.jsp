@@ -20,6 +20,18 @@ $(function() {
 				$("#selectDate").html(data3);
 			}
 		});
+		$.ajax({
+			type : "post",
+			url : "registerE",
+			data : "theater=" + $("#theater").val() + "&screen=" + $("#screen").val() + "&movie=" + $("#movie").val(),
+			datatype : "html",
+			success : function(data3) {
+				$("#selectTime").html(data3);
+			},
+			error : function(data3) {
+				$("#selectTime").html(data3);
+			}
+		});
 	});
 });
 </script>

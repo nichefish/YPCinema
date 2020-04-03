@@ -18,15 +18,34 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script>
 $(function() {
+	$("#id").focus();
+	$("#btn").click(function(){
+		if($("#id").val() == "") {
+			alert("아이디를 입력하세요.");
+			$("#id").focus();
+			return false;
+		}
+		if($("#pass").val() == "") {
+			alert("비밀번호를 입력하세요.");
+			$("#pass").focus();
+			return false;
+		}
+		$("#frm").submit();
+	});
 	$("#user").click(function() {
+		$("#id").val("");
+		$("#pass").val("");
 		$("#id").css('background-color', 'white');
 		$("#pass").css('background-color', 'white');
-// 		$("#user").closest("table").css('background-color', 'white');
+		$("#register").html("&nbsp;<a href='register'>회원가입</a>");
+		
 	});
 	$("#company").click(function() {
+		$("#id").val("");
+		$("#pass").val("");
 		$("#id").css('background-color', 'blue');
 		$("#pass").css('background-color', 'blue');
-// 		$("#user").closest("table").css('background-color', 'blue');
+		$("#register").html("&nbsp;<a href='companyRegister'>외부업체가입</a>");
 	});
 });
 </script>
@@ -50,14 +69,13 @@ $(function() {
 						외부업체 <input type="radio" name="admin" id="company" value="1">&nbsp;
 					</td>
 					<td rowspan="2">
-						<form:checkbox path="autoLogin" />자동 로그인<br />
-						<form:checkbox path="idStore" />아이디 저장
+						&nbsp;<form:checkbox path="idStore" />아이디 저장<br />
+						&nbsp;<form:checkbox path="autoLogin" />자동 로그인
 					</td>
 				</tr>
 				<tr>
 					<td>아이디 입력</td>
 					<td><form:input path="id" id="id" /><form:errors path="id" /></td>
-					
 				</tr>
 				<tr>
 					<td>비밀번호 입력</td>
@@ -68,16 +86,18 @@ $(function() {
 			</div>
 			<table border="0">
 				<tr>
-					<td colspan="3" align="right">
+					<td colspan="4" align="right">
 						<a href="#">아이디 찾기</a>
 						<a href="#">비밀번호 찾기</a>
-						<a href="register">회원가입</a>
-						<a href="companyRegister">협력업체 회원가입</a>
+						</td>
+					<td align="right">
+						<div id="register" style="display:inline;">
+							&nbsp;<a href="register">회원가입</a>
+						</div>
 					</td>
 				</tr>
 			</table>
 		</form:form>
-		현재 ID: <c:out value="${authInfo.id}" />
 	</div>
 </div>
 </c:if>

@@ -6,47 +6,54 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<title>YPCinema</title>
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/themify-icons.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
-	<header class="header-area">
-		<%@ include file="../navigation.jsp" %>
-	</header>
+<header class="header-area">
+	<%@ include file="../navigation.jsp"%>
+</header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
 		<form:form action="memberJoinAction" name="frm" id="frm" method="post" commandName="memberCommand">
 		<!-- <input type="hidden" name="confirmNum" id="confirmNum" value="1"> 여기 value 1! 중복체크 -->
+			<p>회원가입</p>
 			<table width="600" align="center" border=1 >
-				
 			 	<tr>
 			 		<td width="200">사용자 ID</td>
 			 		<td width="400">
-			 			<form:input path="m_id" size="12" maxlength="10" id="userId" />
+			 			<form:input path="m_id" size="14" maxlength="10" id="m_id" />
 			 			<form:errors path="m_id" />
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">비밀번호</td>
 			 		<td width="400">
-			 			<form:password path="m_pass" id="userPw" size="12" maxlength="10" />
+			 			<form:password path="m_pass" id="userPw" size="14" maxlength="10" />
 			 			<form:errors path="m_pass" />
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">비밀번호 확인</td>
 			 		<td width="400">
-			 			<form:password path="m_pass_con" id="userPwCon" size="12" maxlength="10" />
+			 			<form:password path="m_pass_con" id="userPwCon" size="14" maxlength="10" />
 			 			<form:errors path="m_pass_con" />
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">사용자 이름</td>
 			 		<td width="400">
-			 			<form:input path="m_name" id="userName" size="12" maxlength="10" />
+			 			<form:input path="m_name" id="userName" size="14" maxlength="10" />
 			 			<form:errors path="m_name" />
 			 			<input type="hidden" name="m_picture" value="<c:url value='/img/empty_person.png' />" >
 			 		</td>
@@ -61,21 +68,21 @@
 			 	<tr>
 			 		<td width="200">생년월일 (<u>yyyy-MM-dd</u>)</td>
 			 		<td width="400">
-			 			<form:input path="m_birth" id="userBirth" size="12" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
+			 			<form:input path="m_birth" id="userBirth" size="14" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
 			 			<form:errors path="m_birth" />
 			 		</td>
 			 	</tr>
 				<tr>
-					<td width = 200 ><b>*연락처</b> (휴대폰 번호)</td>
-					<td width = 400 >
-						<form:input path="m_ph" id="userPh1" size="30" maxlength="28" />
+					<td width="200"><b>*연락처</b> (000-0000-0000)</td>
+					<td width="400">
+						<form:input path="m_ph" id="userPh" size="14" maxlength="28" />
 						<form:errors path="m_ph" />
 					</td>
 				</tr>
 			 	<tr>
-			 		<td width=200><b>*이메일 주소</b></td>
-					<td width=400>
-						<form:input path="m_email" id="m_email" size="30" maxlength="28" />
+			 		<td width="200"><b>*이메일 주소</b></td>
+					<td width="400">
+						<form:input path="m_email" id="m_email" size="24" maxlength="28" />
 						<form:errors path="m_email" />
 					</td>
 				</tr>
@@ -131,5 +138,17 @@ function sample4_execDaumPostcode() {
 	}).open();
 }
 </script>
+<footer class="footer-area">
+	<%@ include file="../footer.jsp"%>
+</footer>
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+   <!-- Popper js -->
+   <script src="js/popper.min.js"></script>
+   <!-- Bootstrap js -->
+   <script src="js/bootstrap.min.js"></script>
+   <!-- Plugins js -->
+   <script src="js/plugins.js"></script>
+   <!-- Active js -->
+   <script src="js/active.js"></script>
 </body>
 </html>

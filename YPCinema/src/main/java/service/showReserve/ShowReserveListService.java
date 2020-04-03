@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 
 import command.payment.PaymentCommand;
 import command.showtime.ShowtimeCommand;
+import model.DTO.ScreenDTO;
 import model.DTO.ShowReserveDTO;
+import model.DTO.ShowtimeDTO;
 import repository.showReserve.ShowReserveRepository;
 
 @Service
@@ -24,6 +26,14 @@ public class ShowReserveListService {
 	public void selectShowReserveListByShowInfo(ShowtimeCommand showtimeCommand, Model model) {
 		List<ShowReserveDTO> lists = showReserveRepository.selectShowReserveListByShowInfo(showtimeCommand);
 		model.addAttribute("showReserveList", lists);
+	}
+
+	public List<ShowReserveDTO> selectShowReserveListByPaymentNum(String payment_num, Model model) {
+		PaymentCommand paymentCommand = new PaymentCommand();
+		paymentCommand.setPayment_num(payment_num);
+		List<ShowReserveDTO> lists = showReserveRepository.selectShowReserveListByPayInfo(paymentCommand);
+		model.addAttribute("showReserveList", lists);
+		return lists;
 	}
 	
 	

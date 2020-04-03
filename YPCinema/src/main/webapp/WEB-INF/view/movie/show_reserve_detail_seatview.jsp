@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -37,7 +37,7 @@
 				<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}"></c:set>
 			</tr>
 		</table>
-		<form:form action="orderList" method="post" commandName="showReserveCommand">
+		<form:form method="post" id="frm" commandName="showReserveCommand">
 			<form:hidden path="show_num" />
 			<form:hidden path="theater_num" />
 			<form:hidden path="screen_num" />
@@ -51,6 +51,9 @@
 					<td align="center" border="1" width="20">
 						${status.count}	<br/>
 						<input type="radio" name="seat_num" id="seat_num" value="${status.count}">
+						<c:forEach items="${showReserveList}" var="showReserve">
+							<c:if test="${status.count eq showReserve.seat_num }">@</c:if>
+						</c:forEach>
 					</td>
 					<c:if test="${rowCount1 eq screenCommand.screen_row_array[0] || rowCount1 eq screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] }">
 					<td width="20" border="0">-</td>
@@ -64,8 +67,11 @@
 			<table border="1">
 				<tr>
 					<td>
-						<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 및 관리자모드 -->
-						<!--  -->
+						<input type="hidden" value="seat_issue">
+						<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 관리자 및 관리자모드 -->
+						<input type="button" id="ticket_issue" value="발권" />
+						<input type="button" id="ticket_enter" value="입장확인" />
+						<input type="button" id="ticket_refund" value="환불처리..." />
 						</c:if>
 						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
 						<input type="submit" value="예매신청" /> 
@@ -89,5 +95,25 @@
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+	$("#ticket_issue").click(function() {
+		alert("발권! (구현안함)");
+		$("ticket_issue").val("1");
+		$("#frm").submit();
+	});
+	$("#ticket_enter").click(function() {
+		alert("입장! (구현안함)");
+		$("ticket_issue").val("2");
+		$("#frm").submit();
+	});
+	$("#ticket_refund").click(function() {
+		alert("환불! (구현안함)");
+		$("ticket_issue").val("3");
+		$("#frm").submit();
+	});
+});
+</script>
 </body>
 </html>

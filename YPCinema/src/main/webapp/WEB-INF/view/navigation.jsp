@@ -65,7 +65,7 @@ body{
 									<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
 									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
 									<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
-									<a class="dropdown-item" href="<c:url value='/statistic' />">나의 영화관</a>
+									<a class="dropdown-item" href="<c:url value='/myStatistic' />">나의 영화관</a>
 									</c:if>
 									<c:if test="${authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 -->
 									<!-- 관리자 -->
@@ -79,7 +79,7 @@ body{
 									<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 정보</a>
 									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 정보</a>
 									<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 정보</a>
-									<a class="dropdown-item" href="<c:url value='/payment/list' />">결제 및 예매 관리</a>
+									<a class="dropdown-item" href="<c:url value='/showReserve/check' />">결제 및 예매 관리</a>
 									</c:if>
 								</div>
 							</li>

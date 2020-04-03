@@ -134,4 +134,10 @@ public class MemberCommand {
 	public void setM_admin(String m_admin) {
 		this.m_admin = m_admin;
 	}
+	public boolean isPwEqualToPwCon() {
+		if (m_pass.equals(m_pass_con)) {
+			return true;
+		}
+		return false;
+	}
 }

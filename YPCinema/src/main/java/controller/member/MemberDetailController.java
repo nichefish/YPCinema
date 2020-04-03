@@ -19,8 +19,19 @@ public class MemberDetailController {
 	
 	@RequestMapping("/myPage")
 	public String memberMyPage(HttpSession session, Model model) {
+		if (session.getAttribute("authInfo") == null) {
+			return "redirect:/login";
+		}
 		memberDetailService.memberMypage(session, model);
 		return "member/member_mypage";
+	}
+	
+	@RequestMapping("/myStatistic")
+	public String memberStatistic(HttpSession session) {
+		if (session.getAttribute("authInfo") == null) {
+			return "redirect:/login";
+		}
+		return "member/member_statistic";
 	}
 	
 	@RequestMapping("/member/detail")
@@ -28,4 +39,6 @@ public class MemberDetailController {
 		memberDetailService.memberDetail(m_num, model);
 		return "member/member_detail";
 	}
+	
+
 }

@@ -26,7 +26,7 @@
 		<table border="1">
 			<tr>
 				<td colspan="2" align="center">
-					<p>[<img src="${memberCommand.m_picture}">]</p>
+					<p>[<img src="${memberCommand.m_picture}" width="240">]</p>
 					<p>프로필 이미지</p><br/>
 				</td>
 			</tr>
@@ -73,6 +73,11 @@
 			<tr>
 				<td>회원가입일</td>
 				<td><fmt:formatDate value='${memberCommand.m_date}' type='date' pattern='yyyy-MM-dd' /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" onclick="location.href='<c:url value="/myStatistic" />'" name="modify" id="modify" value="나의 내역">
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

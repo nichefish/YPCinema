@@ -42,6 +42,7 @@
 	
 	<bean id="showReserveRegisterService" class="service.showReserve.ShowReserveRegisterService" />
 	<bean id="showReserveListService" class="service.showReserve.ShowReserveListService" />
+	<bean id="showReserveModifyService" class="service.showReserve.ShowReserveModifyService" />
 	
 	<!-- Repositories -->
 	<bean id="movieRepository" class="repository.movie.MovieRepository" />

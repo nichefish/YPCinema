@@ -21,7 +21,7 @@ public class AuthService {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	public void authenticate(LoginCommand loginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
+	public String authenticate(LoginCommand loginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
 		MemberDTO member = new MemberDTO();
 		member.setM_id(loginCommand.getId());
 		Cookie storeIdCookie = new Cookie("storeId", loginCommand.getId());
@@ -32,11 +32,11 @@ public class AuthService {
 			storeIdCookie.setMaxAge(0);		// 수명을 0으로 주니까 바로 삭제된다...
 		}
 		response.addCookie(storeIdCookie);		// 로그인 시도시 아이디저장 쿠키 추가-
-		
+		String path = "";
 		member=memberRepository.selectByUserInfo(member);		// 아이디만 갖고 찾는거임...
 		if (member == null) {				// 아이디 없음
-			System.out.println("아이디 없음!");
-//			errors.rejectValue("id","notId");
+			errors.rejectValue("id","notId");
+			path = "login";
 		} else {
 			if (bcryptPasswordEncoder.matches(loginCommand.getPass(), member.getM_pass())) {	// 패스워드 두개 비교- 맞으면-
 				AuthInfo authInfo = new AuthInfo();
@@ -50,12 +50,14 @@ public class AuthService {
 				response.addCookie(autoLoginCookie);
 				Cookie adminSelectCookie = new Cookie("adminSelect", loginCommand.getAdmin());		// 자동로그인 쿠키...
 				response.addCookie(adminSelectCookie);
-				
 				session.setAttribute("authInfo", authInfo);
+				path = "redirect:/main";
 			} else {
-//				errors.rejectValue("pw","wrong");		// 비밀번호가 틀린 거-
+				errors.rejectValue("pass","wrong");		// 비밀번호가 틀린 거-
+				path = "login";
 			}
 		}
+		return path;
 	}
 
 	public void logout(HttpSession session, HttpServletResponse response) {

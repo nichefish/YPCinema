@@ -12,19 +12,21 @@
 $(function() {
 	$("#show_start").change(function() {
 		var standard = $("#previous_endtime").text();
-// 		alert("standard: " + standard);
 		var start = $("#show_start").val().replace(":", "");
 		if (Number(start) < 800) {
 			alert("영화관 오픈시간(8시) 이전으로 상영일정을 배정할 수 없습니다!");
 			$("#show_start").val(standard);
+			$("#show_end").val("");
 			return false;
 		} else if (Number(start) >= 2400) {
 			alert("24시 이후로 상영일정을 배정할 수 없습니다!");
 			$("#show_start").val(standard);
+			$("#show_end").val("");
 			return false;
 		} else if (Number(start) < Number(standard.replace(":", ""))) {
 			alert("이전 상영일정 종료시간과 겹치게 배정할 수 없습니다!");
 			$("#show_start").val(standard);
+			$("#show_end").val("");
 			return false;
 		}
 		alert("상영종료시간을 자동으로 산정합니다.");
@@ -33,39 +35,42 @@ $(function() {
 		var minute = parseInt(Number(runtime) % 60);
 		if (Number(start)%100 + minute >= 60) {
 			hour = hour + 1;
-			minute = minute + (Number(start)%100) - 60;
+			minute = minute - 60;
 		}
 		var temp = Number(start) + (hour*100) + minute;
-		alert(temp);
 		var result = lpad( String(temp), 4, 0).replace(/(.{2})/, "$1:");
-		alert("result: " + result);
 		$("#show_end").val(result);
 		$("#show_end_show").val(result);
 	});
 	$("#frm").submit(function() {
 		var standard = $("#previous_endtime").text();
-// 		alert("standard: " + standard);
 		var start = $("#show_start").val().replace(":", "");
 		if (Number(start) < 800) {
 			alert("영화관 오픈시간(8시) 이전으로 상영일정을 배정할 수 없습니다!");
 			$("#show_start").val(standard);
+			$("#show_end").val("");
 			return false;
 		} else if (Number(start) >= 2400) {
 			alert("24시 이후로 상영일정을 배정할 수 없습니다!");
 			$("#show_start").val(standard);
+			$("#show_end").val("");
 			return false;
 		} else if (Number(start) < Number(standard.replace(":", ""))) {
 			alert("이전 상영일정 종료시간과 겹치게 배정할 수 없습니다!");
 			$("#show_start").val(standard);
+			$("#show_end").val("");
 			return false;
 		}
 		alert("상영종료시간을 자동으로 산정합니다.");
 		var runtime = "${movieCommand.movie_runtime}";
 		var hour = parseInt(Number(runtime) / 60);
 		var minute = parseInt(Number(runtime) % 60);
+		if (Number(start)%100 + minute >= 60) {
+			hour = hour + 1;
+			minute = minute - 60;
+		}
 		var temp = Number(start) + (hour*100) + minute;
-		var result = String(temp).replace(/(.{2})/, "$1:");
-// 		alert("result: " + result);
+		var result = lpad( String(temp), 4, 0).replace(/(.{2})/, "$1:");
 		$("#show_end").val(result);
 		$("#show_end_show").val(result);
 	});

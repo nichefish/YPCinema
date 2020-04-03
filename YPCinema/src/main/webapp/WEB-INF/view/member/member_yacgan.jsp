@@ -1,22 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title><spring:message code="member.register" /></title>	<!-- 요런 식으로 코드를 집어넣고. 유지보수할 때 label.property만 건드리면 되는 거다.. -->
+<title>YPCinema</title>
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/themify-icons.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+	$("#pro").click(function() {
+		if ($("input:checkbox[name='agree']").is(":checked") == false) {
+			alert("약관에 동의하지 않으면 가입할 수 없습니다!");
+			$("#frm").submit();
+		} else {
+			alert("약관에 동의하셨습니다.");
+			$("#frm").submit();
+		}
+	});
+});
+</script>
 <body>
+<header class="header-area">
+	<%@ include file="../navigation.jsp"%>
+</header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
 		<h2>약관 내용</h2>
-		<p>약관!<spring:message code="term" /></p>
-		<form method="post">
+		<p>약관!</p>
+		<form:form method="post" id="frm" commandName="yakganCommand">
 			<label>
-				<input type="checkbox" name="agree" value="true">동의합니다.
+				<form:checkbox path="agree" id="agree" value="true" />&nbsp;동의합니다.<br/>
+				<span style="color:red;"> &nbsp;<form:errors path="agree" /></span>
+				<p><input type="button" id="pro" value="다음으로 진행하기" />&nbsp;<input type="button" onclick="location.href='/YPCinema/main'" value="메인으로"></p>
 			</label>
-			<input type="submit" value="다음으로 진행하기" />
-		</form>
+		</form:form>
 	</div>
 </div>
+<footer class="footer-area">
+	<%@ include file="../footer.jsp"%>
+</footer>
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+   <!-- Popper js -->
+   <script src="js/popper.min.js"></script>
+   <!-- Bootstrap js -->
+   <script src="js/bootstrap.min.js"></script>
+   <!-- Plugins js -->
+   <script src="js/plugins.js"></script>
+   <!-- Active js -->
+   <script src="js/active.js"></script>
 </body>
 </html>

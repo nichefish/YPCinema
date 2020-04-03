@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 </head>
 <body>
 <div class="main-content-wrapper section-padding-100">

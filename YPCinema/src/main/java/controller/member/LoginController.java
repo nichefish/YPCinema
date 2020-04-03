@@ -16,6 +16,7 @@ import service.company.CompanyAuthService;
 import service.company.CompanyLoginCookieService;
 import service.member.AuthService;
 import service.member.LoginCookieService;
+import validator.LoginCommandValidator;
 
 @Controller
 public class LoginController {
@@ -37,18 +38,17 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginPro(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) {
-//		new LoginCommandValidator().validate(loginCommand, errors);
-//		if (errors.hasErrors()) {
-//			return "main";
-//		}
-		if (loginCommand.getAdmin().equals("0")) {
-			authService.authenticate(loginCommand, session, errors, response);
-		} else {
-			companyAuthService.authenticate(loginCommand, session, errors, response);
+		new LoginCommandValidator().validate(loginCommand, errors);
+		if (errors.hasErrors()) {
+			return "login";
 		}
-		
-		System.out.println("로그인!!!");
-		return "redirect:/main";
+		String path = "";
+		if (loginCommand.getAdmin().equals("0")) {
+			path = authService.authenticate(loginCommand, session, errors, response);
+		} else {
+			path = companyAuthService.authenticate(loginCommand, session, errors, response);
+		}
+		return path;
 	}
 	
 	@RequestMapping(value="/changeMode", method=RequestMethod.POST)
