@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -55,6 +56,25 @@
 					</c:if>
 					<input type="button" onclick="location.href='detail?num=${screenCommand.theater_num}'" value="뒤로가기" />
 		 		</td>
+			</tr>
+		</table>
+		<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}"></c:set>
+		<table border="0">
+			<tr>
+				<c:forEach var="i" begin="1" end="${screenCommand.screen_max_seat}" varStatus="status">
+				<c:set var="rowCount1" value="${status.count % rowRow}" />
+				<c:set var="rowCount2" value="${status.count / rowRow}" />
+				<td align="center" border="1" width="20">
+					${status.count}	<br/>
+					<input type="radio" name="seat_num" id="seat_num" value="${status.count}">
+				</td>
+				<c:if test="${rowCount1 eq screenCommand.screen_row_array[0] || rowCount1 eq screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] }">
+				<td width="20" border="0">-</td>
+				</c:if>
+			<c:if test="${rowCount1 eq '0'}">
+			</tr> <tr>
+			</c:if>
+			</c:forEach>
 			</tr>
 		</table>
 	</div>

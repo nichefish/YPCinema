@@ -66,7 +66,7 @@
     });
     </script>
     
-<form:form action="payment_success" name="frm" id="frm" commandName="paymentCommand">
+<form:form action="payment_success" method="post" name="frm" id="frm" commandName="paymentCommand">
 	<input type="text" name="imp_uid" id="imp_uid" value="" />	<!-- 고유 아이디 -->
 	<form:input path="payment_price" id="payment_price" />	<!-- 고유 아이디 -->
 	<input type="text" name="m_num" id="m_num" value="${authInfo.m_num }" />	<!-- 고유 아이디 -->

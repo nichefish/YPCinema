@@ -14,14 +14,7 @@
 	<!-- 임시로 seat_name을 seat_num으로 대충 줬음... -->
 	
 	<select id="selectShowReserveListByPayInfo" parameterType="model.DTO.PaymentDTO" resultMap="baseShowReserveMap">
-		select <include refid="basecolumn" /> from movie_reserve
-		<trim prefix="where" prefixOverrides="and">
-			<if test="show_num != null">and show_num = #{show_num}</if>
-			<if test="theater_num != null">and theater_num = #{theater_num}</if>
-			<if test="screen_num != null">and screen_num = #{screen_num}</if>
-			<if test="movie_num != null">and movie_num = #{movie_num}</if>
-			<if test="payment_num != null">and payment_num=#{payment_num}</if>
-		</trim>
+		select <include refid="basecolumn" /> from movie_reserve where payment_num = #{payment_num}
 	</select>
 
 	<select id="selectShowReserveListByShowInfo" parameterType="model.DTO.ShowtimeDTO" resultMap="baseShowReserveMap">

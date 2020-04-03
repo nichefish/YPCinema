@@ -27,13 +27,13 @@
  				<td>결제 전화번호</td>
  				<td>${payment.payment_ph}</td>
  			</tr>
- 			 <tr>
+ 			<tr>
  				<td>결제가격</td>
- 				<td>${payment.payment_date}</td>
- 			</tr>
- 			</tr>
- 				<td>결제일자</td>
  				<td>${payment.payment_price}</td>
+ 			</tr>
+ 			<tr>
+ 				<td>결제일자</td>
+ 				<td>${payment.payment_date}</td>
  			</tr>
  		</table>
  		<table border="1">
@@ -55,6 +55,13 @@
  				<td>${showReserve.seat_price}</td>
  			</tr>
  			</c:forEach>
+ 		</table>
+ 		<table width="60%" border="0">
+ 			<tr>
+ 				<td align="center">
+ 					<input type="button" onclick="location.href='/YPCinema/main'" value="메인으로">
+ 				</td>
+ 			</tr>
  		</table>
  	</div>
 </div>

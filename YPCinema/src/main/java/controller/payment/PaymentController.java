@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.payment.PaymentCommand;
@@ -42,7 +43,7 @@ public class PaymentController {
 		return "payment/kakao_pay";
 	}
 	
-	@RequestMapping("/payment_success")
+	@RequestMapping(value="/payment_success", method=RequestMethod.POST)
 	public String paymentSuccess(PaymentCommand paymentCommand, Model model, HttpSession session) {
 		paymentInsertService.insertPayment(paymentCommand);
 		String payment_num = paymentDetailService.selectLastPayment(paymentCommand, model);

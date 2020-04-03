@@ -31,8 +31,14 @@ $(function() {
 		var runtime = "${movieCommand.movie_runtime}";
 		var hour = parseInt(Number(runtime) / 60);
 		var minute = parseInt(Number(runtime) % 60);
-		var result = String(Number(start) + (hour*100) + minute).replace(/(.{2})/, "$1:");
-// 		alert("result: " + result);
+		if (Number(start)%100 + minute >= 60) {
+			hour = hour + 1;
+			minute = minute + (Number(start)%100) - 60;
+		}
+		var temp = Number(start) + (hour*100) + minute;
+		alert(temp);
+		var result = lpad( String(temp), 4, 0).replace(/(.{2})/, "$1:");
+		alert("result: " + result);
 		$("#show_end").val(result);
 		$("#show_end_show").val(result);
 	});
@@ -57,12 +63,25 @@ $(function() {
 		var runtime = "${movieCommand.movie_runtime}";
 		var hour = parseInt(Number(runtime) / 60);
 		var minute = parseInt(Number(runtime) % 60);
-		var result = String(Number(start) + (hour*100) + minute).replace(/(.{2})/, "$1:");
+		var temp = Number(start) + (hour*100) + minute;
+		var result = String(temp).replace(/(.{2})/, "$1:");
 // 		alert("result: " + result);
 		$("#show_end").val(result);
 		$("#show_end_show").val(result);
 	});
 });
+function lpad(str, padLen, padStr) {
+    if (padStr.length > padLen) {
+        console.log("오류 : 채우고자 하는 문자열이 요청 길이보다 큽니다");
+        return str;
+    }
+    str += ""; // 문자로
+    padStr += ""; // 문자로
+    while (str.length < padLen)
+        str = padStr + str;
+    str = str.length >= padLen ? str.substring(0, padLen) : str;
+    return str;
+}
 </script>
 </head>
 <body>

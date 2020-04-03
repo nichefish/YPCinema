@@ -15,7 +15,7 @@ public class PaymentListController {
 	
 	@RequestMapping("/payment/list")
 	public String paymentList(PaymentCommand paymentCommand, Model model) {
-		paymentListService.selectPaymentListByInfo(paymentCommand, model);
+//		paymentListService.selectPaymentListByInfo(paymentCommand, model);
 		return "payment/payment_list";
 	}
 }

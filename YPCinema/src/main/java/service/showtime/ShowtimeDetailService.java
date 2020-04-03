@@ -2,6 +2,7 @@ package service.showtime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,6 @@ public class ShowtimeDetailService {
 		return show;
 	}
 
-	public void selectEarliestShowByDate(ShowtimeDTO show, Model model) {
-
-	}
-
 	public void selectEarliestShowByDate(String screen_num, String date, Model model) {
 		ShowtimeDTO show = new ShowtimeDTO();
 		show.setScreen_num(screen_num);
@@ -35,7 +32,7 @@ public class ShowtimeDetailService {
 		ShowtimeDTO showtime = showtimeRepository.selectEarliestShowByDate(show);
 		if (showtime == null) {
 			showtime = new ShowtimeDTO();
-			String str = "08:00:00";
+			String str = "07:50:00";
 			SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss");
 			Date show_date;
 			try {
@@ -44,7 +41,12 @@ public class ShowtimeDetailService {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-		}
+		} 
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(showtime.getShow_end());
+		cal.add(Calendar.MINUTE, 10);
+		Date d = new Date(cal.getTimeInMillis());
+		showtime.setShow_end(d);
 		System.out.println("showEnds..." + showtime.getShow_end());
 		model.addAttribute("show", showtime);
 	}

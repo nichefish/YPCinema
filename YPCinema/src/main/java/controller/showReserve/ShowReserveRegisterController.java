@@ -29,7 +29,10 @@ public class ShowReserveRegisterController {
 //	private ShowtimeReservationService showtimeReservationService;
 	
 	@RequestMapping(value="/showtime/reservation")
-	public String showReserve(@RequestParam("num") String show_num, ShowReserveCommand showReserveCommand, Model model) {
+	public String showReserve(@RequestParam("num") String show_num, HttpSession session, ShowReserveCommand showReserveCommand, Model model) {
+		if ( session.getAttribute("authInfo") == null) {
+			return "redirect:/login";
+		}
 		ShowtimeDTO showtime = showtimeDetailService.selectByShowId(show_num, model);
 		ScreenDTO screen = screenDetailService.getScreenByInfo(showtime.getScreen_num(), model);
 		showReserveRegisterService.setReserveInfo(showReserveCommand, show_num, screen.getTheater_num(), screen.getScreen_num(), model);

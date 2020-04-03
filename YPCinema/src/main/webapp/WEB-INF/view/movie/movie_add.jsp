@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/goodsUp.css" />
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -32,7 +33,9 @@
 		</form:form>
 	
 		<form:form name="frm" id="frm" method="POST" commandName="movieCommand">
+		<div class="table11" align="center">
 			<table width="60%" align="center" border=1 >
+				<tbody>
 			 	<tr>
 			 		<td width="200">영화번호</td>
 			 		<td width="400">
@@ -117,7 +120,9 @@
 						<form:errors path="movie_rating_plus" />
 					</td>
 				</tr>
+			</tbody>
 			</table>
+			</div>
 			<table width="60%" align="center" border="0">
 				<tr>
 					<td colspan="2" align="center">
