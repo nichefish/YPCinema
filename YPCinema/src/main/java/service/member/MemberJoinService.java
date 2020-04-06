@@ -1,9 +1,5 @@
 package service.member;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,15 +37,15 @@ public class MemberJoinService {
 			errors.rejectValue("userId", "duplicate");
 			return "member/member_join_form";
 		}
-//		memberRegMailService.sendMail(dto.getUserEmail(), dto.getUserId());
+		memberRegMailService.sendMail(dto.getM_email(), dto.getM_id());
 		return "member/memberWelcome";
 	}
 	
-//	public Integer numUpdate(String num, String receiver, String userId) {
-//		MemberDTO memberDTO = new MemberDTO();
-//		memberDTO.setJoinOk(num);
-//		memberDTO.setUserEmail(receiver);
-//		memberDTO.setUserId(userId);
-//		return memberRepository.joinOkUpdate(memberDTO);
-//	}
+	public Integer numUpdate(String num, String receiver, String userId) {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setJoin_ok(num);
+		memberDTO.setM_email(receiver);
+		memberDTO.setM_id(userId);
+		return memberRepository.joinOkUpdate(memberDTO);
+	}
 }

@@ -29,29 +29,36 @@
 			 	<tr>
 			 		<td width="200">상영관 이름</td>
 			 		<td>
-			 			<form:input path="screen_name" id="userPw" size="12" maxlength="10" />
-			 			<form:errors path="screen_name" />
-			 		</td>
-			 	</tr>
-			 	<tr>
-			 		<td width="200">총 좌석 수</td>
-			 		<td>
-			 			<form:input path="screen_max_seat" id="screen_max_seat" size="12" maxlength="10" />
-			 			<form:errors path="screen_max_seat" />
+			 			<form:input path="screen_name" id="screen_name" size="12" maxlength="10" />
+			 			<span style="color:red;"><form:errors path="screen_name" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">좌석 배치 행(?-?-?)</td>
 			 		<td>
-			 			<form:input path="screen_row" id="userName" size="12" maxlength="10" />
-			 			<form:errors path="screen_row" />
+			 			<form:input path="screen_row" id="screen_row" placeholder="0-0-0" size="12" maxlength="10" />
+			 			<span style="color:red;"><form:errors path="screen_row" /></span>
+			 		</td>
+			 	</tr>
+			 	<tr>
+			 		<td width="200">좌석 배치 열</td>
+			 		<td>
+			 			<form:input path="screen_col" id="screen_col" size="12" placeholder="0" value="0" maxlength="10" />
+			 			<span style="color:red;"><form:errors path="screen_col" /></span>
+			 		</td>
+			 	</tr>
+			 	<tr>
+			 		<td width="200">총 좌석 수</td>
+			 		<td>
+			 			<input type="hidden" name="screen_max_seat" id="screen_max_seat" size="12" maxlength="10" />
+			 			<input type="text" id="screen_max_seat_show" size="12" maxlength="10" placeholder="0" value="" disabled >
 			 		</td>
 			 	</tr>
 				<tr>
 					<td width="200">스크린 규모등급</td>
 					<td>
 						<input type="hidden" name="screen_rating" id="screen_rating">
-						<input type="text" name="screen_rating_show" id="screen_rating_show" size="12" value="" disabled>
+						<input type="text" id="screen_rating_show" size="12" value="" disabled >
 						(60- D, 60~120 C, 120~200 B, 200+ A)
 					</td>
 				</tr>
@@ -78,10 +85,37 @@
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
-   
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
 $(function() {
-	$("#screen_max_seat").blur(function() {
+	$("#screen_row").change(function() {
+		var strArray = $("#screen_row").val().split('-');
+		var number = Number(strArray[0]) + Number(strArray[1]) + Number(strArray[2]);
+		$("#screen_max_seat").val(number*Number($("#screen_col").val()));
+		
+		alert(number*Number($("#screen_col").val()));
+		
+		$("#screen_max_seat_show").val(number*Number($("#screen_col").val()));
+	    var val = $("#screen_max_seat").val();
+	    if (val < 60) {
+	    	$("#screen_rating").val('D');
+	    	$("#screen_rating_show").val('D');
+	    } else if (val >= 60 & val < 120) {
+	    	$("#screen_rating").val('C');
+	    	$("#screen_rating_show").val('C');
+	    } else if (val >= 120 & val < 200) {
+	    	$("#screen_rating").val('B');
+	    	$("#screen_rating_show").val('B');
+	    } else if (val >= 200) {
+	    	$("#screen_rating").val('A');
+	    	$("#screen_rating_show").val('A');
+	    };
+	})
+	$("#screen_col").change(function() {
+		var strArray = $("#screen_row").val().split('-');
+		var number = Number(strArray[0]) + Number(strArray[1]) + Number(strArray[2]);
+		$("#screen_max_seat").val(number*Number($("#screen_col").val()));
+		$("#screen_max_seat_show").val(number*Number($("#screen_col").val()));
 	    var val = $("#screen_max_seat").val();
 	    if (val < 60) {
 	    	$("#screen_rating").val('D');
@@ -98,20 +132,24 @@ $(function() {
 	    };
 	})
 	$("#frm").submit(function() {
-	    var val = $("#screen_max_seat").val();
-	    if (val < 60) {
-	    	$("#screen_rating").val('D');
-	    	$("#screen_rating_show").val('D');
-	    } else if (val >= 60 & val < 120) {
-	    	$("#screen_rating").val('C');
-	    	$("#screen_rating_show").val('C');
-	    } else if (val >= 120 & val < 200) {
-	    	$("#screen_rating").val('B');
-	    	$("#screen_rating_show").val('B');
-	    } else if (val >= 200) {
-	    	$("#screen_rating").val('A');
-	    	$("#screen_rating_show").val('A');
-	    };
+		if ($("#screen_max_seat").val() == 0 || $("#screen_row").val() == "0-0-0") {
+			alert("좌석 수는 0이 될 수 없습니다.");
+		} else {
+		    var val = $("#screen_max_seat").val();
+		    if (val < 60) {
+		    	$("#screen_rating").val('D');
+		    	$("#screen_rating_show").val('D');
+		    } else if (val >= 60 & val < 120) {
+		    	$("#screen_rating").val('C');
+		    	$("#screen_rating_show").val('C');
+		    } else if (val >= 120 & val < 200) {
+		    	$("#screen_rating").val('B');
+		    	$("#screen_rating_show").val('B');
+		    } else if (val >= 200) {
+		    	$("#screen_rating").val('A');
+		    	$("#screen_rating_show").val('A');
+		    };
+		}
 	})
 });
 </script>

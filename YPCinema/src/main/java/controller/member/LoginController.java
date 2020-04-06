@@ -31,8 +31,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(LoginCommand loginCommand, HttpServletRequest request, HttpSession session) {
-		loginCookieService.execute(request, session);
-		companyLoginCookieService.execute(request, session);
+		loginCookieService.execute(loginCommand, request, session);
 		return "login";
 	}
 	
@@ -60,11 +59,7 @@ public class LoginController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
-		if (session.getAttribute("authInfo") != null) {
-			authService.logout(session, response);
-		} else if (session.getAttribute("companyAuthInfo") != null) {
-			companyAuthService.companyLogout(session, response);
-		}
+		authService.logout(session, response);
 		return "redirect:/main";
 	}
 }

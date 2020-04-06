@@ -16,6 +16,7 @@
 	<bean class="controller.movie.MovieListController" />
 	<bean class="controller.movie.MovieDetailController" />
 	<bean class="controller.movie.MovieModifyController" />
+	<bean class="controller.movie.MovieDeleteController" />
 	
 	<bean class="controller.showtime.ShowtimeRegisterController" />
 	<bean class="controller.showtime.ShowtimeListController" />
@@ -29,6 +30,7 @@
 	<bean id="movieListService" class="service.movie.MovieListService" />
 	<bean id="movieDetailService" class="service.movie.MovieDetailService" />
 	<bean id="movieModifyService" class="service.movie.MovieModifyService" />
+	<bean id="movieDeleteService" class="service.movie.MovieDeleteService" />
 	
 	<bean id="screenAddService" class="service.screen.ScreenAddService" />
 	<bean id="screenListService" class="service.screen.ScreenListService" />

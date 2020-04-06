@@ -25,14 +25,17 @@ public class CompanyAuthService {
 	public String authenticate(LoginCommand loginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
 		CompanyDTO company = new CompanyDTO();
 		company.setC_id(loginCommand.getId());
-		Cookie storeIdCookie = new Cookie("storeId", loginCommand.getId());
+		Cookie idStoreCookie = new Cookie("idStore", loginCommand.getId());
+		Cookie adminSelectCookie = new Cookie("adminSelect", loginCommand.getAdmin());		// 자동로그인 쿠키...
 		if (loginCommand.getIdStore()) {		// 쿠키추가..
-			storeIdCookie.setMaxAge(60*60*24*30);	// 여기서 시간조절.. 필요에 따라 바꿔주면 된다.. 초단위...
-			// 여기서 조건 줘가지고. 한참 나중에 와도 쿠키만 있으면 자동으로 체크되어 있게..?
+			idStoreCookie.setMaxAge(60*60*24*30);	// 여기서 시간조절.. 필요에 따라 바꿔주면 된다.. 초단위...
+			adminSelectCookie.setMaxAge(60*60*24*30);
 		} else {
-			storeIdCookie.setMaxAge(0);		// 수명을 0으로 주니까 바로 삭제된다...
+			idStoreCookie.setMaxAge(0);		// 수명을 0으로 주니까 바로 삭제된다...
+			adminSelectCookie.setMaxAge(0);
 		}
-		response.addCookie(storeIdCookie);		// 로그인 시도시 아이디저장 쿠키 추가-
+		response.addCookie(idStoreCookie);		// 쿠키추가..
+		response.addCookie(adminSelectCookie);
 		String path = "";
 		company = companyRepository.selectByUserInfo(company);		// 아이디만 갖고 찾는거임...
 		if (company == null) {				// 아이디 없음
@@ -43,18 +46,14 @@ public class CompanyAuthService {
 				CompanyAuthInfo companyAuthInfo = new CompanyAuthInfo();
 				companyAuthInfo.setC_id(company.getC_id());
 				companyAuthInfo.setC_num(company.getC_num());
-				System.out.println("get_num: " + company.getC_num());
-				
 				companyAuthInfo.setC_comname(company.getC_comname());
-				System.out.println("getcomname: " + company.getC_comname());
 				companyAuthInfo.setC_name(company.getC_name());
 				companyAuthInfo.setC_picture(company.getC_picture());
 				companyAuthInfo.setC_admin(company.getC_admin());
 				companyAuthInfo.setMode(company.getC_admin());
 				Cookie autoLoginCookie = new Cookie("autoLogin", company.getC_id());		// 자동로그인 쿠키...
+				autoLoginCookie.setMaxAge(60*60*24*30);
 				response.addCookie(autoLoginCookie);
-				Cookie adminSelectCookie = new Cookie("adminSelect", loginCommand.getAdmin());		// 자동로그인 쿠키...
-				response.addCookie(adminSelectCookie);
 				session.setAttribute("companyAuthInfo", companyAuthInfo);
 				path = "redirect:/main";
 			} else {
@@ -63,12 +62,5 @@ public class CompanyAuthService {
 			}
 		}
 		return path;
-	}
-
-	public void companyLogout(HttpSession session, HttpServletResponse response) {
-		Cookie autoLoginCookie = new Cookie("autoLogin", "0");		// 세션 지우기 전에 해야된다..
-		autoLoginCookie.setMaxAge(0);								// 자동로그인 쿠키 삭제... 안하면 로그아웃 안됨.. 
-		response.addCookie(autoLoginCookie);
-		session.invalidate();
 	}
 }

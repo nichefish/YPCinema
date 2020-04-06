@@ -4,12 +4,12 @@
 <mapper namespace="memberMapper">
 	<cache />
 	<sql id="basecolumn">
-		m_num, m_id, m_pass, m_name, m_gen, m_birth, m_ph, m_addr1, m_addr2, m_zip, m_email, m_picture, m_class, m_yc, m_cc, m_date, m_admin
+		m_num, m_id, m_pass, m_name, m_gen, m_birth, m_ph, m_addr1, m_addr2, m_zip, m_email, m_picture, m_class, m_yc, m_cc, m_date, m_admin, join_ok
 	</sql>
 	
 	<insert id="insertMember" parameterType="model.DTO.MemberDTO">
 		insert into member (<include refid="basecolumn" />)
-			values ( CONCAT('M_', (LPAD((SELECT nextval('seq')),4,0))), #{m_id}, #{m_pass}, #{m_name}, #{m_gen}, #{m_birth}, #{m_ph}, #{m_addr1}, #{m_addr2}, #{m_zip}, #{m_email}, #{m_picture}, 'C', null, null, now(), '0')
+			values ( CONCAT('M_', (LPAD((SELECT nextval('seq')),4,0))), #{m_id}, #{m_pass}, #{m_name}, #{m_gen}, #{m_birth}, #{m_ph}, #{m_addr1}, #{m_addr2}, #{m_zip}, #{m_email}, #{m_picture}, 'C', null, null, now(), '0', null)
 	</insert>
 	
 	<select id="selectByUserInfo" parameterType="model.DTO.MemberDTO" resultMap="baseMemberMap">
@@ -43,6 +43,7 @@
 			</if>
 		</where>
 	</update>
+	
 	<!-- sjh가 사용쓰 -->
 	<select id="selectUseNum" parameterType="string" resultMap="baseMemberMap">
 		select <include refid="basecolumn" /> from member
@@ -57,6 +58,11 @@
 		</where>
 	</select>
 	<!-- sjh가 사용쓰 끝-->
+	
+	<update id="joinOkUpdate" parameterType="model.DTO.MemberDTO">	
+		update member set join_ok = #{join_ok} where m_id = #{m_id} and m_email = #{m_email} and join_ok is null
+	</update>
+	
 	<resultMap type="model.DTO.MemberDTO" id="baseMemberMap">
 		<id column="m_num" jdbcType="VARCHAR" property="m_num" />	<!-- PK/FK.. -->
 		<result column="m_id" jdbcType="VARCHAR" property="m_id" />		<!-- 일반속성... -->
@@ -75,5 +81,6 @@
 		<result column="m_cc" jdbcType="VARCHAR" property="m_cc" />
 		<result column="m_date" jdbcType="VARCHAR" property="m_date" />
 		<result column="m_admin" jdbcType="VARCHAR" property="m_admin" />
+		<result column="join_ok" jdbcType="VARCHAR" property="join_ok" />
 	</resultMap>
 </mapper>

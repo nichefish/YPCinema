@@ -17,6 +17,17 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script>
+$(document).ready(function() {
+	if ($("#user").is(":checked")) {
+		$("#id").css('background-color', 'white');
+		$("#pass").css('background-color', 'white');
+		$("#register").html("&nbsp;<a href='register'>회원가입</a>");
+	} else if ($("#company").is(":checked")) {
+		$("#id").css('background-color', 'blue');
+		$("#pass").css('background-color', 'blue');
+		$("#register").html("&nbsp;<a href='companyRegister'>외부업체가입</a>");
+	}
+})
 $(function() {
 	$("#id").focus();
 	$("#btn").click(function(){
@@ -29,6 +40,9 @@ $(function() {
 			alert("비밀번호를 입력하세요.");
 			$("#pass").focus();
 			return false;
+		}
+		if($("#autoLogin").prop('checked')) {
+			alert("자동로그인 기능이 체크되었습니다. 보안에 유의해주세요.");
 		}
 		$("#frm").submit();
 	});
@@ -57,7 +71,7 @@ $(function() {
 <c:if test="${empty authInfo}">
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마에 오신 걸 환영합니다.</p>
+ 		<p>생활의 즐거움 Life Theater<br/>양평시네마에 오신 걸 환영합니다.</p>
 		<form:form action="login" name="frm" id="frm" method="POST" commandName="loginCommand">
 			<div width="60%">
 			<table border="0">
@@ -65,22 +79,25 @@ $(function() {
 					<td >
 					</td>
 					<td align="center">
-						회원 <input type="radio" name="admin" id="user" value="0" checked="true">
-						외부업체 <input type="radio" name="admin" id="company" value="1">&nbsp;
+						회원 <form:radiobutton path="admin" id="user" value="0" checked="true" />
+						외부업체 <form:radiobutton path="admin" id="company" value="1" />&nbsp;
 					</td>
 					<td rowspan="2">
-						&nbsp;<form:checkbox path="idStore" />아이디 저장<br />
-						&nbsp;<form:checkbox path="autoLogin" />자동 로그인
+						&nbsp;<form:checkbox path="idStore" id="idStore" />아이디 저장<br />
+						&nbsp;<form:checkbox path="autoLogin" id="autoLogin" />자동 로그인
 					</td>
 				</tr>
 				<tr>
 					<td>아이디 입력</td>
-					<td><form:input path="id" id="id" /><form:errors path="id" /></td>
+					<td><form:input path="id" id="id" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호 입력</td>
-					<td><form:password path="pass" id="pass" /><form:errors path="pass" /></td>
+					<td><form:password path="pass" id="pass" /></td>
 					<td>&nbsp;&nbsp;<input type="submit" id="btn" value="로그인" /></td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><span style="color:red;"><form:errors path="id" /><form:errors path="pass" /></span></td>
 				</tr>
 			</table>
 			</div>

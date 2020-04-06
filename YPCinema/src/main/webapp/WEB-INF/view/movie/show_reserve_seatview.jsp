@@ -24,36 +24,95 @@
  	<div class="container" align="center">
 		<table border="1">
 			<tr>
-				<td>show_num=${show.show_num }</td>
-				<td>theater_num=${show.theater_num }</td>
-				<td>screen_num=${show.screen_num }</td>
-				<td>movie_num=${show.movie_num }</td>
-				<td>show_date=${show.show_date }</td>
+				<td>상영일정번호</td>
+				<td>${show.show_num }</td>
 			</tr>
 			<tr>
-				<td>screen_row=${screenCommand.screen_row}</td>
-				<td>screen_max_seat=${screenCommand.screen_max_seat}</td>
-				<td>${screenCommand.screen_row_array[0]} / ${screenCommand.screen_row_array[1]} / ${screenCommand.screen_row_array[2]} </td>
-				<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}"></c:set>
+				<td>지점</td>
+				<td>${show.theater_num}</td>
+			</tr>
+			<tr>
+				<td>상영관 번호</td>
+				<td>${show.screen_num}</td>
+			</tr>
+			<tr>
+				<td>영화번호</td>
+				<td>${show.movie_num}</td>
+			</tr>
+			<tr>
+				<td>상영일자</td>
+				<td>${show.show_date}</td>
+			</tr>
+			<tr>
+				<td>상영시간</td>
+				<td>${show.show_start} ~ ${show.show_end}</td>
+			</tr>
+			<tr>
+				<td>상영관 가로 행</td>
+				<td>
+					${screenCommand.screen_row} (${screenCommand.screen_row_array[0]} // ${screenCommand.screen_row_array[1]} // ${screenCommand.screen_row_array[2]})
+					<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}"></c:set>
+				</td>
+			</tr>
+			<tr>
+				<td>상영관 가로 열</td>
+				<td>${screenCommand.screen_col}</td>
+			</tr>
+			<tr>
+				<td>스크린 최대 좌석수</td>
+				<td>${screenCommand.screen_max_seat}</td>
 			</tr>
 		</table>
-		<form:form action="orderList" method="post" commandName="showReserveCommand">
+		<table border="0">
+			<tr>
+				<td>
+					<input type="button" onclick="location.href='list'" value="상영일정표로 돌아가기" >
+				</td>
+			</tr>
+		</table>
+		<p><br /></p>
+		<form:form action="orderList" id="select_seats" method="post" commandName="showReserveCommand">
 			<form:hidden path="show_num" />
 			<form:hidden path="theater_num" />
 			<form:hidden path="screen_num" />
-			<input type="text" name="seat_price" value="10000">
-			screen max seat = ${screenCommand.screen_max_seat }
+			인원수를 선택하세요: 
+			<select name="show_reserve_people" id="show_reserve_people">
+				<option value="1" label="1명" selected>1</option>
+				<option value="2" label="2명">2</option>
+				<option value="3" label="3명">3</option>
+				<option value="4" label="4명">4</option>
+			</select>
+			인원수 선택해야 되고.. selectbox...?<br />
+			일단 총 가격이... select하면 바로 보여야 되고...
+			<div id="total_price"></div>
+			
+			
+			<p><br /></p>
 			<table border="0">
 				<tr>
 					<c:forEach var="i" begin="1" end="${screenCommand.screen_max_seat}" varStatus="status">
 					<c:set var="rowCount1" value="${status.count % rowRow}" />
 					<c:set var="rowCount2" value="${status.count / rowRow}" />
+					
+
 					<td align="center" border="1" width="20">
 						${status.count}	<br/>
-						<input type="radio" name="seat_num" id="seat_num" value="${status.count}">
+						<input type="checkbox" class="check" name="seat_num" id="seat_num" value="${status.count}">
+						<c:if test="${rowCount2 <= 2 || ((rowCount2 > 2 && rowCount2 <= (screenCommand.screen_col - 2)) && ((rowCount1 <= screenCommand.screen_row_array[0]) || (rowCount1 > (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1])))) }">
+							<input type="hidden" name="seat_price" value="9000">
+							<div class="economy"></div>
+						</c:if>
+						<c:if test="${(((rowCount2 > 2 && rowCount2 <= (screenCommand.screen_col - 2)) && ((rowCount1 > screenCommand.screen_row_array[0]) && (rowCount1 <= screenCommand.screen_row_array[1] + screenCommand.screen_row_array[2]))) || ((rowCount2 > (screenCommand.screen_col - 2)) && ((rowCount1 <= screenCommand.screen_row_array[0]) || (rowCount1 > (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1]))))) }">
+							<input type="hidden" name="seat_price" value="10000">
+							<div class="normal"></div>
+						</c:if>
+						<c:if test="${(rowCount2 > (screenCommand.screen_col - 2)) && ((rowCount1 > screenCommand.screen_row_array[0]) && (rowCount1 <= (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1]))) }">
+							<input type="hidden" name="seat_price" value="11000">
+							<div class="prime"></div>
+						</c:if>
 					</td>
 					<c:if test="${rowCount1 eq screenCommand.screen_row_array[0] || rowCount1 eq screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] }">
-					<td width="20" border="0">-</td>
+					<td width="20" border="0">　</td>
 					</c:if>
 					<c:if test="${rowCount1 eq '0'}">
 						</tr> <tr>
@@ -61,6 +120,7 @@
 					</c:forEach>
 				</tr>
 			</table>
+			<p><br /></p>
 			<table border="1">
 				<tr>
 					<td>
@@ -70,7 +130,6 @@
 						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
 						<input type="submit" value="예매신청" /> 
  						</c:if>
-						<input type="button" onclick="location.href='list'" value="목록 보기">
 					</td>
 				</tr>
 			</table>
@@ -78,16 +137,18 @@
 	</div>
 </div>
 <footer class="footer-area">
-      <%@ include file="../footer.jsp"%>
-   </footer>
+	<%@ include file="../footer.jsp"%>
+</footer>
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
-   <!-- Popper js -->
-   <script src="js/popper.min.js"></script>
-   <!-- Bootstrap js -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- Plugins js -->
-   <script src="js/plugins.js"></script>
-   <!-- Active js -->
-   <script src="js/active.js"></script>
+
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/active.js"></script>
+<script>
+$(".economy").closest("td").css('background-color', 'yellow');
+$(".normal").closest("td").css('background-color', '#87ceeb');
+$(".prime").closest("td").css('background-color', '#ff8080');
+</script>
 </body>
 </html>

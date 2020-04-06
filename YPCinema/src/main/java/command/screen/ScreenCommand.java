@@ -8,6 +8,7 @@ public class ScreenCommand {
 	private Integer screen_max_seat;
 	private String screen_row;
 	private String [] screen_row_array;
+	private String screen_col;
 	private String screen_rating;
 	
 	public String getScreen_num() {
@@ -54,6 +55,12 @@ public class ScreenCommand {
 	}
 	public void setScreen_row_array(String screen_row) {
 		this.screen_row_array = this.getScreen_row().split("-");
+	}
+	public String getScreen_col() {
+		return screen_col;
+	}
+	public void setScreen_col(String screen_col) {
+		this.screen_col = screen_col;
 	}
 	public String getScreen_rating() {
 		return screen_rating;

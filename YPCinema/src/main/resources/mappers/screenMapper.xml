@@ -4,11 +4,11 @@
 <mapper namespace="screenMapper">
 	<cache />
 	<sql id="basecolumn">
-		screen_num, screen_name, theater_num, theater_name, screen_max_seat, screen_row, screen_rating
+		screen_num, screen_name, theater_num, theater_name, screen_max_seat, screen_row, screen_col, screen_rating
 	</sql>
 	
 	<insert id="insertScreen" parameterType="model.DTO.ScreenDTO">
-		insert into screen (<include refid="basecolumn" />) values ( CONCAT('SC_', (LPAD((SELECT nextval('seq')),4,0))), #{screen_name}, #{theater_num}, #{theater_name}, #{screen_max_seat}, #{screen_row}, #{screen_rating})
+		insert into screen (<include refid="basecolumn" />) values ( CONCAT('SC_', (LPAD((SELECT nextval('seq')),4,0))), #{screen_name}, #{theater_num}, #{theater_name}, #{screen_max_seat}, #{screen_row}, #{screen_col}, #{screen_rating})
 	</insert>
 	
 	<select id="selectScreenByTheaterNum" parameterType="model.DTO.TheaterAddDTO" resultMap="baseScreenMap">
@@ -20,7 +20,7 @@
 	</select>
 	
 	<update id="modifyScreen" parameterType="model.DTO.ScreenDTO">
-		update screen set screen_name=#{screen_name}, screen_max_seat=#{screen_max_seat}, screen_row=#{screen_row} where screen_num=#{screen_num}
+		update screen set screen_name=#{screen_name}, screen_max_seat=#{screen_max_seat}, screen_row=#{screen_row}, screen_col=#{screen_col} where screen_num=#{screen_num}
 	</update>
 	
 	<update id="deleteScreen" parameterType="string">
@@ -34,6 +34,7 @@
 		<result column="theater_name" jdbcType="VARCHAR" property="theater_name" />
 		<result column="screen_max_seat" jdbcType="BIGINT" property="screen_max_seat" />
 		<result column="screen_row" jdbcType="VARCHAR" property="screen_row" />
+		<result column="screen_col" jdbcType="VARCHAR" property="screen_col" />
 		<result column="screen_rating" jdbcType="VARCHAR" property="screen_rating" />
 	</resultMap>
 </mapper>

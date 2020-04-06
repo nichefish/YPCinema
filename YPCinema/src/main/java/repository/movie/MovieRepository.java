@@ -36,4 +36,9 @@ public class MovieRepository {
 		return sqlSession.selectList(statement, movieRatingDTO);
 	}
 
+	public Integer deleteMovie(String movie_num) {
+		String statement = namespace + ".deleteMovie";
+		return sqlSession.update(statement, movie_num);
+	}
+
 }

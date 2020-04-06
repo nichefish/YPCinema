@@ -32,6 +32,7 @@
 					<p>
 						<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 및 관리자모드 -->
 						<input type="button" onclick="location.href='modify?num=${movieCommand.movie_num}'" name="modify" id="modify" value="영화정보 수정">
+						<input type="button" name="delete" id="delete" value="영화정보 삭제">
 						</c:if>
 						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
 						<input type="button" onclick="location.href='../showtime/list?movie=${movieCommand.movie_num}'" value="지점 상영일정 보기" />
@@ -75,12 +76,11 @@
 				<td align="center" width="120">줄거리</td>
 				<td>${movieCommand.movie_plot}</td>
 			</tr>
-
 			<tr>
 				<td colspan="2" align="center">
-					<c:forTokens items="${movieCommand.movie_still_url}" var="url" delims="|">
-						<img src="${url}">
-					</c:forTokens>
+				  		<c:forTokens items="${movieCommand.movie_still_url}" var="url" delims="|">
+						      <img src="${url}" alt="First slide">
+						</c:forTokens>
 				</td>
 			</tr>
 		</table>
@@ -98,5 +98,17 @@
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+   	$("#delete").click(function() {
+   		var del = confirm("정말 삭제하시겠습니까?");
+   		if (del) {
+   			alert("삭제되었습니다.");
+   			location.href = "delete?num=${movieCommand.movie_num}";
+   		}
+   	})
+});
+</script>
 </body>
 </html>

@@ -26,6 +26,7 @@ public class MemberDTO implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")		// 요런식으로.. 간단하게 포맷 설정..
 	private Date m_date;
 	private String m_admin;
+	private String join_ok;
 	
 	public String getM_num() {
 		return m_num;
@@ -128,5 +129,11 @@ public class MemberDTO implements Serializable {
 	}
 	public void setM_admin(String m_admin) {
 		this.m_admin = m_admin;
+	}
+	public String getJoin_ok() {
+		return join_ok;
+	}
+	public void setJoin_ok(String join_ok) {
+		this.join_ok = join_ok;
 	}
 }

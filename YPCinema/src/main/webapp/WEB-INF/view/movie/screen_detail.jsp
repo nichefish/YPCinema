@@ -31,15 +31,21 @@
 		 		</td>
 		 	</tr>
 		 	<tr>
-		 		<td width="200">총 좌석 수</td>
-		 		<td width="400">
-		 			${screenCommand.screen_max_seat}
-		 		</td>
-		 	</tr>
-		 	<tr>
 		 		<td width="200">좌석 배치 행(?-?-?)</td>
 		 		<td width="400">
 		 			${screenCommand.screen_row}
+		 		</td>
+		 	</tr>
+		 	<tr>
+		 		<td width="200">좌석 배치 열</td>
+		 		<td width="400">
+		 			${screenCommand.screen_col}
+		 		</td>
+		 	</tr>
+		 	<tr>
+		 		<td width="200">총 좌석 수</td>
+		 		<td width="400">
+		 			${screenCommand.screen_max_seat}
 		 		</td>
 		 	</tr>
 			<tr>
@@ -97,7 +103,7 @@ $(function() {
    	$("#deleteBtn").click(function() {
    		var del = confirm("정말 삭제하시겠습니까?");
    		if (del) {
-   			alert("deleteScreen?num=${screenCommand.screen_num}");
+   			alert("삭제되었습니다.");
    			location.href = "deleteScreen?num=${screenCommand.screen_num}";
    		}
    	})

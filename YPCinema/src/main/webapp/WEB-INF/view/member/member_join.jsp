@@ -33,57 +33,59 @@
 			 		<td width="200">사용자 ID</td>
 			 		<td width="400">
 			 			<form:input path="m_id" size="14" maxlength="10" id="m_id" />
-			 			<form:errors path="m_id" />
+			 			<span style="color:red;"><form:errors path="m_id" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">비밀번호</td>
 			 		<td width="400">
 			 			<form:password path="m_pass" id="userPw" size="14" maxlength="10" />
-			 			<form:errors path="m_pass" />
+			 			<span style="color:red;"><form:errors path="m_pass" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">비밀번호 확인</td>
 			 		<td width="400">
 			 			<form:password path="m_pass_con" id="userPwCon" size="14" maxlength="10" />
-			 			<form:errors path="m_pass_con" />
+			 			<span style="color:red;"><form:errors path="m_pass_con" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">사용자 이름</td>
 			 		<td width="400">
-			 			<form:input path="m_name" id="userName" size="14" maxlength="10" />
-			 			<form:errors path="m_name" />
-			 			<input type="hidden" name="m_picture" value="<c:url value='/img/empty_person.png' />" >
+			 			<form:input path="m_name" size="14" maxlength="10" />
+			 			<span style="color:red;"><form:errors path="m_name" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">성별</td>
 			 		<td width="400">
-			 			남자 : <form:radiobutton path="m_gen" value="M" id="userGender" checked="checked" />
-			 			여자 : <form:radiobutton path="m_gen" value="F" id="userGender" />
+			 			남자 : <form:radiobutton path="m_gen" value="M" id="m_gen" />
+			 			여자 : <form:radiobutton path="m_gen" value="F" id="m_gen" />
+			 			<span style="color:red;"><form:errors path="m_gen" /></span>
+			 			
+			 			<input type="hidden" name="m_picture" value="<c:url value='/img/empty_person.png' />" >
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">생년월일 (<u>yyyy-MM-dd</u>)</td>
 			 		<td width="400">
 			 			<form:input path="m_birth" id="userBirth" size="14" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
-			 			<form:errors path="m_birth" />
+			 			<span style="color:red;"><form:errors path="m_birth" /></span>
 			 		</td>
 			 	</tr>
 				<tr>
 					<td width="200"><b>*연락처</b> (000-0000-0000)</td>
 					<td width="400">
 						<form:input path="m_ph" id="userPh" size="14" maxlength="28" />
-						<form:errors path="m_ph" />
+						<span style="color:red;"><form:errors path="m_ph" /></span>
 					</td>
 				</tr>
 			 	<tr>
 			 		<td width="200"><b>*이메일 주소</b></td>
 					<td width="400">
 						<form:input path="m_email" id="m_email" size="24" maxlength="28" />
-						<form:errors path="m_email" />
+						<span style="color:red;"><form:errors path="m_email" /></span>
 					</td>
 				</tr>
 				<tr>
@@ -101,7 +103,7 @@
 					<td colspan="2" align="center">
 						<input type="submit" value="회원가입" />
 						<input type="reset" value="리셋" />
-						<input type="button" value="뒤로가기" />
+						<input type="button" id="btn" value="메인으로" />
 			 		</td>
 				</tr>
 			</table>
@@ -109,9 +111,14 @@
 	</div>
 </div>
 <script>
-if("${err}" == "1") {
-	alert("입력이 되지 않았습니다.");
-}
+$(function() {
+	$("#btn").click(function() {
+		var test = confirm("회원가입을 포기하고 메인 화면으로 돌아가시겠습니까?");
+		if (test) {
+			location.href = "main";
+		}
+	})
+});
 </script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

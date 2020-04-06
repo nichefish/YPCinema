@@ -43,4 +43,9 @@ public class MemberRepository {
 		return sqlSession.selectOne(statement,text);
 	}
 	//sjh가 사용함 끝.
+	
+	public Integer joinOkUpdate(MemberDTO memberDTO) {
+		String statement = namespace + ".joinOkUpdate";
+		return sqlSession.update(statement, memberDTO);
+	}
 }

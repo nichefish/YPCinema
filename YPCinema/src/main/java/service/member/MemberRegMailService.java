@@ -16,12 +16,12 @@ public class MemberRegMailService {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	public void sendMail(String receiver, String userId) {
+	public void sendMail(String receiver, String m_id) {
 		MimeMessage msg = mailSender.createMimeMessage();	// 메세지를 차곡차곡 쌓아서 보내는 거라고...
 		SimpleDateFormat dateForm = new SimpleDateFormat("yyyyMMddHHmmss");
 		String num = dateForm.format(new Date());
-		String content = "<html><body>안녕하세요. '" + userId + "'님 가입을 환영합니다.<br />아래 링크를 눌러야 가입이 완료됩니다.<br />"
-				+ "<a href='http://192.168.4.113:8080/SpringMybatisMVCProject/memberMail?num=" + num + "&receiver=" + receiver + "&userId=" + userId + "'>"
+		String content = "<html><body>안녕하세요. '" + m_id + "'님 가입을 환영합니다.<br />아래 링크를 눌러야 가입이 완료됩니다.<br />"
+				+ "<a href='http://localhost:8080/YPCinema/memberMail?num=" + num + "&receiver=" + receiver + "&userId=" + m_id + "'>"
 				+ "<strong><b>가입을 완료하시려면 여기를 눌러주세요.</b></strong></body></html>";
 		String subject = "가입환영인사";
 		try {

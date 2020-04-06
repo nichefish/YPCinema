@@ -24,11 +24,37 @@
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
  		<p>양평시네마 <b>${numTheater.theater_name}</b> 상세정보</p>
- 		<p>주소로 지도.. 찾아오는 길.. 넣을꺼냐...</p>
- 		
+ 		찾아오는 길:
+		<div id="map" style="width:55%;height:350px; border:1px solid red;"></div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eda433c823b7e3d4d428f970b8755896&libraries=services"></script>
+		<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		geocoder.addressSearch("${numTheater.theater_addr1}", function(result, status) {
+		     if (status === kakao.maps.services.Status.OK) {
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${numTheater.theater_name}</div>'
+		        });
+		        infowindow.open(map, marker);
+		        map.setCenter(coords);
+		    } 
+		});    
+		</script>
  		<table width="60%" border="0">
  			<tr>
  				<td align="right">
+ 					<p><br /></p>
  					<p>
 						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
 						<input type="button" onclick="location.href='../showtime/list?theater=${numTheater.theater_num}'" value="지점 상영일정 보기" />
@@ -58,9 +84,17 @@
 					<form method="post">
 						<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
 						<select name="theater_special">
-							<option value="${numTheater.theater_special}" selected>${numTheater.theater_special}</option>
+							<option value="${numTheater.theater_special}" selected>[${numTheater.theater_special}]</option>
 							<option value="0" label="없음">0</option>
+							<option value="드라마">드라마</option>
+							<option value="판타지">판타지</option>
+							<option value="공포">공포</option>
 							<option value="스릴러">스릴러</option>
+							<option value="코미디">코미디</option>
+							<option value="액션">액션</option>
+							<option value="로맨스">로맨스</option>
+							<option value="가족">가족</option>
+							<option value="애니메이션">애니메이션</option>
 						</select>
 						<input type="submit" value="특화장르 수정" />
 					</form>
@@ -105,5 +139,8 @@
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
+   
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요&libraries=services"></script>
+
 </body>
 </html>

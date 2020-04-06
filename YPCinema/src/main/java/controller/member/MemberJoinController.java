@@ -2,9 +2,11 @@ package controller.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.member.MemberCommand;
 import command.member.YakganCommand;
@@ -42,8 +44,10 @@ public class MemberJoinController {
 		return "member/member_welcome";
 	}
 	
-	
-	
-	
-	
+	@RequestMapping("/memberMail")
+	public String memberMail(@RequestParam(value="num") String num, @RequestParam(value="receiver") String receiver, @RequestParam(value="userId") String userId, Model model) {
+		Integer result = memberJoinService.numUpdate(num, receiver, userId);
+		model.addAttribute("result", result);
+		return "member/member_welcome";
+	}
 }

@@ -19,8 +19,8 @@ public class ScreenModifyService {
 		screen.setTheater_num(screenCommand.getTheater_num());
 		screen.setTheater_name(screenCommand.getTheater_name());
 		screen.setScreen_max_seat(screenCommand.getScreen_max_seat());
-		System.out.println("!!!! :" + screenCommand.getScreen_max_seat());
 		screen.setScreen_row(screenCommand.getScreen_row());
+		screen.setScreen_col(screenCommand.getScreen_col());
 		screen.setScreen_rating(screenCommand.getScreen_rating());
 		screenRepository.modifyScreen(screen);
 	}

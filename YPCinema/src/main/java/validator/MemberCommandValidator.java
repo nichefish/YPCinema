@@ -11,7 +11,7 @@ import command.member.MemberCommand;
 
 public class MemberCommandValidator implements Validator {
 	private static final String emailRegExp = "^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
-	private static final String phRegExp = "^01(?:0|1|[6-9])-(\\d{3}|\\d{4})-(\\d{4})$";
+	private static final String phRegExp = "^\\d{3}-\\d{3,4}-\\d{4}$";
 	private Pattern emailPattern;
 	private Pattern phPattern;
 	public MemberCommandValidator() {
@@ -49,7 +49,7 @@ public class MemberCommandValidator implements Validator {
 		if (regReq.getM_ph() == null || regReq.getM_ph().trim().isEmpty()) {
 			errors.rejectValue("m_ph", "required");	// error.properties에서 key값에 value 할당...
 		} else {
-			Matcher matcher = emailPattern.matcher(regReq.getM_email());	// true or false로 저장됨...
+			Matcher matcher = phPattern.matcher(regReq.getM_ph());	// true or false로 저장됨...
 			if (!matcher.matches()) {
 				errors.rejectValue("m_ph", "bad");
 			}
@@ -57,6 +57,5 @@ public class MemberCommandValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "m_addr1", "required");
 		ValidationUtils.rejectIfEmpty(errors, "m_addr2", "required");
 		ValidationUtils.rejectIfEmpty(errors, "m_zip", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_name", "required");	// 비었거나 공백문자로 이루어져 있을 때 경고메세지...
 	}
 }

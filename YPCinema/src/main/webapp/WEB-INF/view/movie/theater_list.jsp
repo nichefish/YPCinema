@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 </head>
 <body>
 <header class="header-area">
@@ -27,8 +28,8 @@
  		<form:form method="get">
  			<p><input type="text"> <input type="button" value="지점 검색"></p>
  			<p>지점 검색? (구현안함)</p>
- 			<p>지도로 지점분포... 구현할 수 있을까...</p>
  		</form:form>
+		<p><br /></p>
 		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<c:forEach items="${theaters}" var="theater">
 			<tr align="center" valign="middle">

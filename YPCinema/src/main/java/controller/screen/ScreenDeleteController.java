@@ -23,7 +23,7 @@ public class ScreenDeleteController {
 	private ScreenDeleteService screenDeleteService;
 	
 	@RequestMapping(value="/theater/deleteScreen", method=RequestMethod.GET)
-	public String screenAddForm(@RequestParam("num") String screen_num, ScreenCommand screenCommand, Model model) {
+	public String screenDelete(@RequestParam("num") String screen_num, ScreenCommand screenCommand, Model model) {
 		ScreenDTO screen = screenDetailService.getScreenByInfo(screen_num, model);
 		screenDeleteService.deleteScreen(screen_num);
 		theaterAddService.modifyRating(screen.getTheater_num());

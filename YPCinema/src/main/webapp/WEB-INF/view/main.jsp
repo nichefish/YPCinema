@@ -2935,7 +2935,7 @@
 	<script type="text/javascript">
 	$(function() {
 		$("#mode_btn").click(function() {
-			var test = confirm("관리자/이용자 모드로 전환하시겠습니까?\n(메인 페이지로 이동합니다.");
+			var test = confirm("관리자/이용자 모드로 전환하시겠습니까?\n(메인 페이지로 이동합니다.)");
 			if (test) {
 				$("#mode_form").submit();
 			}

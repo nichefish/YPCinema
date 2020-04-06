@@ -42,7 +42,7 @@ $(function() {
 			<label>
 				<form:checkbox path="agree" id="agree" value="true" />&nbsp;동의합니다.<br/>
 				<span style="color:red;"> &nbsp;<form:errors path="agree" /></span>
-				<p><input type="button" id="pro" value="다음으로 진행하기" />&nbsp;<input type="button" onclick="location.href='/YPCinema/main'" value="메인으로"></p>
+				<p><input type="button" id="pro" value="다음으로 진행하기" />&nbsp;<input type="button" id="btn" value="메인으로"></p>
 			</label>
 		</form:form>
 	</div>
@@ -59,5 +59,15 @@ $(function() {
    <script src="js/plugins.js"></script>
    <!-- Active js -->
    <script src="js/active.js"></script>
+<script>
+$(function() {
+	$("#btn").click(function() {
+		var test = confirm("회원가입을 포기하고 메인 화면으로 돌아가시겠습니까?");
+		if (test) {
+			location.href = "main";
+		}
+	})
+});
+</script>
 </body>
 </html>
