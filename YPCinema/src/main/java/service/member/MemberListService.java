@@ -18,4 +18,15 @@ public class MemberListService {
 		List<MemberDTO> lists = memberRepository.selectMemberAll();
 		model.addAttribute("lists", lists);
 	}
+
+	public void searchMember(String search_type, String search_value, Model model) {
+		MemberDTO member = new MemberDTO();
+		if (search_type.equals("m_id")) {
+			member.setM_id(search_value);
+		} else if (search_type.equals("m_name")) {
+			member.setM_name(search_value);
+		}
+		List<MemberDTO> lists = memberRepository.searchMember(member);
+		model.addAttribute("lists", lists);
+	}
 }

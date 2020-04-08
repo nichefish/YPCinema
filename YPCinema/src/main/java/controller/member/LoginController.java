@@ -23,8 +23,6 @@ public class LoginController {
 	@Autowired
 	private LoginCookieService loginCookieService;
 	@Autowired
-	private CompanyLoginCookieService companyLoginCookieService;
-	@Autowired
 	private AuthService authService;
 	@Autowired
 	private CompanyAuthService companyAuthService;

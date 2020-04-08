@@ -33,16 +33,16 @@ public class MemberModifyController {
 		return "redirect:/myPage";
 	}
 	
-	@RequestMapping(value="/member/modify", method=RequestMethod.GET)
+	@RequestMapping(value="/memberModify", method=RequestMethod.GET)
 	public String memberModifyForm(@RequestParam(value="num") String m_num, MemberCommand memberCommand, Model model) {
 		memberDetailService.memberDetail(m_num, model);
 		return "member/member_modify";
 	}
 	
-	@RequestMapping(value="/member/modify", method=RequestMethod.POST)
+	@RequestMapping(value="/memberModify", method=RequestMethod.POST)
 	public String memberModifyAction(MemberCommand memberCommand, Errors errors) {
 		memberModifyService.modifyMemberInfo(memberCommand, errors);
-		return "redirect:/member/detail?m_num=" + memberCommand.getM_num();
+		return "redirect:/memberDetail?m_num=" + memberCommand.getM_num();
 	}
 	
 }

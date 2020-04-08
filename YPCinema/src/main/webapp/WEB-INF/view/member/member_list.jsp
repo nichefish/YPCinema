@@ -1,22 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>회원 관리</title>
+  <title>지점 및 직무 관리</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 <style>
@@ -49,33 +53,47 @@ div.card-body {
 </head>
 <body id="page-top">
 <div class='backLayerssss' style=''></div>
+	<!-- navbar -->
 	<%@ include file="/WEB-INF/view/admin_nav.jsp" %>
-	<div class="container-fluid" style="padding-left: 250px;">
+	<div class="container-fluid" style="padding-left: 20px;">
 	<h1 class="h3 mb-2 text-gray-800">회원목록페이지</h1>
-		<div class="card shadow mb-4"style="width:80%;margin-right: 20px;">
+		<div class="card shadow mb-4"style="width:100%;margin-right: 20px;">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Member List Page</h6>
+				<h6 class="m-0 font-weight-bold text-primary">Member List Page</h6>
             </div>
+            <div class="content" align="center" id="memberSearch">
+            	<br />
+				<form method="get" >
+					검색 유형:&nbsp;<input type="radio" name="search_type" value="m_id" checked>아이디&nbsp;<input type="radio" name="search_type" value="m_name">이름<br/>
+					회원 검색:&nbsp;<input type="text" name="search_value" id="search_value" /><input type="submit" value="검색" >
+				</form>
+			</div>
             <div class="card-body">
 				<div class="table-responsive">
 					<table class="table table-bordered" width="60%" id="dataTable" cellspacing="0">
 						<tr align="center" valign="middle">
-							<td colspan=4>회원리스트</td>
-							<td align=right>회원수 : </td>
-						</tr>
-						<tr align="center" valign="middle">
-							<td align="center">회원아이디</td>
-							<td align="center">회원이름</td>
-							<td align="center">회원연락처</td>
-							<td align="center">이메일</td>
-							<td align="center">등록일</td>
+							<th></th>
+							<th align="center">회원번호</th>
+							<th align="center">회원 아이디</th>
+							<th align="center">이름</th>
+							<th align="center">연락처</th>
+							<th align="center">이메일</th>
+							<th align="center">등록일</th>
 						</tr>
 						<c:forEach items="${lists}" var="member">
 						<tr align="center" valign="middle">
-							<td align="center">
-								<a href="<c:url value='/member/detail?num=${member.m_num}' />">${member.m_id}</a>
+							<td width="48" style="background-color:black;">
+								<img width="36px" src="${member.m_picture }">
 							</td>
-							<td align="center">${member.m_name}</td>
+							<td align="center">
+								<a href="<c:url value='/memberDetail?num=${member.m_num}' />">${member.m_num}</a>
+							</td>
+							<td align="center">
+								<a href="<c:url value='/memberDetail?num=${member.m_num}' />">${member.m_id}</a>
+							</td>
+							<td align="center">
+								<a href="<c:url value='/memberDetail?num=${member.m_num}' />">${member.m_name}</a>
+							</td>
 							<td align="center">${member.m_ph}</td>
 							<td align="center">${member.m_email}</td>
 							<td align="center">
@@ -104,21 +122,32 @@ div.card-body {
 							</td>
 						</tr>
 					</table>
+              	</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<footer class="sticky-footer bg-white" style="margin-top: 100px;">
-	<div class="container my-auto">
-		<div class="copyright text-center my-auto">
-			<span>Copyright &copy; YP Cinema 2020</span>
-		</div>
-	</div>
-</footer>
-<a class="scroll-to-top rounded" href="#page-top">
-	<i class="fas fa-angle-up"></i>
-</a>
-    <!-- Logout Modal-->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white" style="margin-top: 100px;">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+      		 <span>Copyright &copy; YP Cinema 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    <!-- End of Content Wrapper -->
+
+
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -153,6 +182,6 @@ div.card-body {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-   <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
 </body>
 </html>

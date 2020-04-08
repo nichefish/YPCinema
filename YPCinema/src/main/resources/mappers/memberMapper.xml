@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="selectMemberAll" resultMap="baseMemberMap">
-		select <include refid="basecolumn" /> from member
+		select <include refid="basecolumn" /> from member where m_admin = 0
 	</select>
 	
 	<update id="modifyMember" parameterType="model.DTO.MemberDTO" >

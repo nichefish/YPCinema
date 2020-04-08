@@ -48,4 +48,9 @@ public class MemberRepository {
 		String statement = namespace + ".joinOkUpdate";
 		return sqlSession.update(statement, memberDTO);
 	}
+
+	public List<MemberDTO> searchMember(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

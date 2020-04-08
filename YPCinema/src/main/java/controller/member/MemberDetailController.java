@@ -39,7 +39,7 @@ public class MemberDetailController {
 		return "member/member_statistic";
 	}
 	
-	@RequestMapping("/member/detail")
+	@RequestMapping("/memberDetail")
 	public String memberDetail(@RequestParam("num") String m_num, Model model) {
 		memberDetailService.memberDetail(m_num, model);
 		return "member/member_detail";
