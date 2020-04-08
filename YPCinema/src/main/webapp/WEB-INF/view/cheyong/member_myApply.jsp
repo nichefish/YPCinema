@@ -68,18 +68,15 @@
   
         <!-- 채용게시판 -->
         <div class="lalala" style="margin-left:150px;">
-        	<form>
-        		<input type="text" id="theaterName">
-        		<input type="submit" value="검색">
-        	</form>
 		<table class="table table-bordered" id="dataTable" cellspacing="0"  style="margin-top:10px;width:1250px;" >
         	<thead>
         		<tr>
-<%--         			<c:if test="${authInfo.m_admin eq '1'}"> --%>
+         			<c:if test="${authInfo.m_admin eq '1'}">
         				<th style="width:5px;height:5px">
         					<input type = "checkBox" class = "select_all" name = "select_all">
         				</th>
-<%--         			</c:if> --%>
+        			</c:if>
+
                 	<th>지원번호</th>
                 	<th>영화관</th>
                 	<th>접수날짜</th>
@@ -87,24 +84,34 @@
                 </tr>
             </thead>
             <tbody>
+            	<c:if test="${!empty selectMyApply}">
 				<c:forEach items="${selectMyApply}" var="s" step="1">
             	<tr>
-        			<td style="width:5px;height:5px">
-        				<input type = "checkBox" class = "select_all" name = "select_all">
-        			</td>
+            		<c:if test="${authInfo.m_admin eq '1'}">
+        				<td style="width:5px;height:5px">
+        					<input type = "checkBox" class = "select_all" name = "select_all">
+        				</td>
+        			</c:if>
                 	<td><a href="staff_applyDetail?r_num=${s.r_num}">${s.r_num}</a></td>
                 	<td>${s.r_hijijom}</td>
                 	<td><fmt:formatDate value='${s.r_nalja}' type='date' pattern='yyyy-MM-dd' /></td>
                  	<td>${s.r_jin}</td>
                 </tr>
                 </c:forEach>
+                </c:if>
+                <c:if test="${empty selectMyApply}">
+                	<tr>
+                		<td colspan="4" style="text-align:center;"> 지원한 이력서가 없습니다.</td>
+                	</tr>		
+                </c:if>
              </tbody>
          </table>                              
 	</div>
 	
 	<div class="buttonDiv" style="margin-left: 10%; margin-bottom: 10px;">
-		<input type="button" value="등록" onclick="location.href='staff_add'">
-		<input type="button" value="삭제">
+		<c:if test="${authInfo.m_admin eq '1'}">
+			<input type="button" value="삭제">
+		</c:if>
    	</div>
 
     <!-- Google Maps: If you want to google map, just uncomment below codes -->

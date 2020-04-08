@@ -26,6 +26,7 @@
 		<result column="R_JIWON" jdbcType="VARCHAR" property="r_jiwon"/>
 		<result column="R_NALJA" jdbcType="DATE" property="r_nalja"/>
 		<result column="R_JIN" jdbcType="VARCHAR" property="r_jin"/>
+		<result column="M_NAME" jdbcType="VARCHAR" property="m_name" />
 	</resultMap>
 	<resultMap type="model.DTO.CheyongAddDTO" id="baseCheyongMap">
 		<id column="CHE_NUM" jdbcType="VARCHAR" property="che_num"/>
@@ -51,6 +52,9 @@
 	</resultMap>
 	
 	<!-- Select Part! -->
+	<select id="selectAllApplys" resultMap="baseCheyongApplyMap">
+		select r.R_NUM,r.CHE_NUM,r.M_NUM,m.M_NAME,r.R_HIJIJOM,r.R_NALJA,r.R_JIN from resume r, `member` m where m.`M_NUM`=r.`M_NUM`
+	</select>
 	<select id="selectApplyOne" parameterType="string" resultMap="baseCheyongApplyMap">
 		select <include refid="CheyongApplyColumns" /> from resume
 		<where>
@@ -82,10 +86,25 @@
 	<!-- Insert Part! -->
 	<insert id="insertCheyongApply" parameterType="model.DTO.CheyongApplyDTO">
 		insert into resume (<include refid="CheyongApplyColumns"/>)
-		values(nextval('seq'),#{che_num},#{m_num},#{r_hijijom},#{r_gadate},#{r_time},#{r_dis},#{r_price},#{r_career},#{r_per},#{r_jiwon},now(),0)
+		values(nextval('seq'),#{che_num},#{m_num},#{r_hijijom},#{r_gadate},#{r_time},#{r_dis},#{r_price},#{r_career},#{r_per},#{r_jiwon},now(),'열람대기중')
 	</insert>
 	<insert id="insertCheyong" parameterType="model.DTO.CheyongAddDTO">
 		insert into gonggo(<include refid="CheyongColumns" />)
 		 values(nextval('seq'),#{che_subject},#{che_jijom},#{che_person},#{che_jogun},#{che_bocri},#{che_jagyuc},#{che_gita},#{che_sijac_string},#{che_magam_string})
 	</insert>
+	<!-- Update Part! -->
+	<update id="updateReadBtn" parameterType="string">
+		update resume set R_JIN='열람' <where>R_NUM=#{r_num}</where>
+	</update>
+	<update id="updateApply" parameterType="model.DTO.CheyongAddDTO">
+		update resume set R_GADATE=#{r_gadate},R_TIME=#{r_time},R_DIS=#{r_dis},R_PRICE=#{r_price},R_CAREER=#{r_career},R_PER=#{r_per},R_JIWON=#{r_jiwon}
+		<where>
+			R_NUM=#{r_num}
+		</where>
+	</update>
+	<!-- Delete Part! -->
+	<delete id="deleteApply" parameterType="string">
+		delete from resume
+		<where>R_NUM=#{r_num}</where>
+	</delete>
 </mapper>

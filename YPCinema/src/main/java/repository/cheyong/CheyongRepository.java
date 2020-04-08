@@ -47,4 +47,24 @@ public class CheyongRepository {
 		String statement = namespace + ".selectApplyOne";
 		return sqlSession.selectOne(statement,r_num);
 	}
+	//Apply 수정
+	public void updateApply(CheyongApplyDTO dto) {
+		String statement = namespace + ".updateApply";
+		sqlSession.update(statement,dto);
+	}
+	//Apply 삭제
+	public void deleteApply(String r_num) {
+		String statement = namespace + ".deleteApply";
+		sqlSession.update(statement,r_num);
+	}
+	// 관리자 전체 apply 목록
+	public List<CheyongApplyDTO> selectAllApply(){
+		String statement = namespace + ".selectAllApplys";
+		return sqlSession.selectList(statement);
+	}
+	// 관리자 apply 진행상황 = 열람으로 변경
+	public void readBtn(String r_num) {
+		String statement = namespace + ".updateReadBtn";
+		sqlSession.update(statement,r_num);
+	}
 }

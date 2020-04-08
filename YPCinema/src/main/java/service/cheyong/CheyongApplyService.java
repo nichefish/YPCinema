@@ -54,4 +54,37 @@ public class CheyongApplyService {
 		model.addAttribute("mdto",mdto);
 		model.addAttribute("selectApplyOne",dto);
 	}
+	//apply 수정페이지열기
+	public void myApplyModify(String rNum, String mNum, Model model) {
+		CheyongApplyDTO dto = cheyongRepository.selectApplyOne(rNum);
+		MemberDTO mdto = memberRepository.selectUseNum(mNum);
+		model.addAttribute("userInfo",mdto);
+		model.addAttribute("modi",dto);
+	}
+	//apply 수정 update
+	public void modifyApply(CheyongApplyCommand cheyongApplyCommand) {
+		CheyongApplyDTO dto = new CheyongApplyDTO();
+		dto.setR_num(cheyongApplyCommand.getR_num());
+		dto.setR_gadate(cheyongApplyCommand.getR_gadate());
+		dto.setR_time(cheyongApplyCommand.getR_time());
+		dto.setR_dis(cheyongApplyCommand.getR_dis());
+		dto.setR_price(cheyongApplyCommand.getR_price());
+		dto.setR_career(cheyongApplyCommand.getR_career());
+		dto.setR_per(cheyongApplyCommand.getR_per());
+		dto.setR_jiwon(cheyongApplyCommand.getR_jiwon());
+		cheyongRepository.updateApply(dto);
+	}
+	//apply 삭제
+	public void deleteApply(String r_num) {
+		cheyongRepository.deleteApply(r_num);
+	}
+	// 관리자(전체 이력서목록)
+	public void selectApplyLists(Model model) {
+		List<CheyongApplyDTO> dto = cheyongRepository.selectAllApply();
+		model.addAttribute("allApplyLists",dto);
+	}
+	//관리자 (apply 열람으로 변경)
+	public void readBtn(String r_num) {
+		cheyongRepository.readBtn(r_num);
+	}
 }

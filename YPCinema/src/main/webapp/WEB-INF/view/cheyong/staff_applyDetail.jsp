@@ -44,40 +44,45 @@
     <!-- ********** Hero Area Start ********** -->
     <div class="hero-area height-400 bg-img background-overlay" style="background-image: url(img/blog-img/bg4.jpg);"></div>
     <!-- ********** Hero Area End ********** -->
-
+	
     <section class="contact-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-8">
+                <form>
                     <div class="contact-form" style="height:1500px;width:900px;margin-left:-50px;text-align:center;">
-                        <h3><strong>채용 지원서[${selectApplyOne.r_hijijom}][진행현황]</strong></h3>
+                    	<input type="hidden" name="hiddenRNum" id="hiddenRNum" value="${selectApplyOne.r_num}">
+                    	<h6>${selectApplyOne.r_num}</h6>
+                        <h3><strong>채용 지원서[${selectApplyOne.r_hijijom}][${selectApplyOne.r_jin}]</strong></h3>
                         <!-- Contact Form -->
                             <div class="row">
-                                <div class="col-12 col-md-6" style="font-size:20px;text-align:center;">
-                                	지원날짜 : ------
+                                <div class="col-12 col-md-6" style="font-size:10px;text-align:left;">
+                                	<input type="hidden" name="hiddenIdNum" id="hiddenIdNum" value="${mdto.m_num}">
+                                	지원날짜 : <fmt:formatDate value='${selectApplyOne.r_nalja}' type='date' pattern='yyyy년 MM월 dd일' />
                                 </div>
                                 <br />
 								<table class="table table-bordered" id="dataTable" cellspacing="0" >
 									<tr>
 										<th>성명</th>
-										<td>이름----</td>
+										<td>${mdto.m_name}</td>
 										<th>생년월일</th>
-										<td>생일----</td>
+										<td><fmt:formatDate value='${mdto.m_birth}' type='date' pattern='yyyy년 MM월 dd일' /></td>
 									</tr>
 									<tr>
 										<th>이메일</th>
-										<td colspan="3">이메일----</td>
+										<td colspan="3">${mdto.m_email}</td>
 									</tr>
 									<tr>
 										<th>연락처</th>
-										<td>연락처----</td>
+										<td>${mdto.m_ph}</td>
 										<th>성별</th>
-										<td>성별----</td>
+										<c:if test="${mdto.m_gen eq 'F'}"><td>여자</td></c:if>
+										<c:if test="${mdto.m_gen eq 'M'}"><td>남자</td></c:if>	
 									</tr>
 									<tr>
 										<th>현주소</th>
-										<td colspan="3">(우편번호) 상세/정보등등</td>
+										<td colspan="3">(${mdto.m_zip}) ${mdto.m_addr1} / ${mdto.m_addr2}</td>
 									</tr>
 									<tr>
 										<th rowspan="2" style="text-align:center;">근무가능</th>
@@ -85,46 +90,42 @@
 										<th colspan="2">시간</th>
 									</tr>
 									<tr>
-										<td>요일---</td>
-										<td colspan="2">시간---</td>
+										<td>${selectApplyOne.r_gadate}</td>
+										<td colspan="2">${selectApplyOne.r_time}</td>
 									</tr>
 									<tr>
 										<th>장애유무</th>
-										<td>----</td>
+										<td>${selectApplyOne.r_dis}</td>
 										<th>보훈대상</th>
-										<td>----</td>
+										<td>${selectApplyOne.r_price}</td>
 									</tr>
 									<tr>
 										<th>경력사항</th>
-										<td colspan="3">----</td>
+										<td colspan="3">${selectApplyOne.r_career}</td>
 									</tr>
 									<tr>
 										<th>성격의 장단점</th>
-										<td colspan="3">-------</td>
+										<td colspan="3">${selectApplyOne.r_per}</td>
 									</tr>
 									<tr>
 										<th>지원동기 및 포부</th>
-										<td colspan="3">----------</td>
+										<td colspan="3">${selectApplyOne.r_jiwon}</td>
 									</tr>		
 								</table>
-								<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" value="지원하기" style="width:500px;height:100px;"onclick="location.href='staff_apply?che_num=${cheyongOneList.che_num}'">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<br />
 								<div id=zmzmr style="margin-top:20px;float:left;">
-								<input type="submit" value="수정">
-								<input type="button" value="삭제">
-								<input type="button" value="목록으로" onclick="location.href='staff_postList'">
+								<c:if test="${selectApplyOne.r_jin eq '열람대기중'}">
+									<input type="submit" value="수정" formaction="staff_applyModify">
+									<input type="submit" value="삭제" formaction="staff_applyDelete">
+								</c:if>
+								<input type="button" value="목록으로" onclick="location.href='member_myApply'">
 								</div>
                             </div>
+                            </div>
+                    	</form>
                     </div>
                 </div>
                      </div>
-   </div>
+ 
 </section>
 
     <!-- Google Maps: If you want to google map, just uncomment below codes -->

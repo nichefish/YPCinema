@@ -36,4 +36,31 @@ public class CheyongApplyController {
 		cheyongApplyService.myApplyInfo(r_num,model);
 		return "cheyong/staff_applyDetail";
 	}
+	@RequestMapping(value="/staff_applyModify", method=RequestMethod.GET)
+	public String applyModify(@RequestParam(value="hiddenRNum")String rNum, @RequestParam(value="hiddenIdNum")String mNum, Model model) {
+		cheyongApplyService.myApplyModify(rNum, mNum, model);
+		return "cheyong/staff_applyModify";
+	}
+	@RequestMapping(value="/staff_applyModify", method=RequestMethod.POST)
+	public String applyModifyPost(CheyongApplyCommand cheyongApplyCommand) {
+		cheyongApplyService.modifyApply(cheyongApplyCommand);
+		return "redirect:staff_applyDetail?r_num="+cheyongApplyCommand.getR_num();
+	}
+	// Apply 삭제
+	@RequestMapping("/staff_applyDelete")
+	public String applyDelete(@RequestParam(value="hiddenRNum")String r_num) {
+		cheyongApplyService.deleteApply(r_num);
+		return "redirect:member_myApply";
+	}
+	// 관리자 (공고지원현황목록)
+	@RequestMapping("/staff_applyList")
+	public String applyLists(Model model) {
+		cheyongApplyService.selectApplyLists(model);
+		return "admin/staff_applyList";
+	}
+	// 관리자(지원서 '열람함'으로 바꾸기)
+	public String readApply(@RequestParam(value="r_num")String r_num) {
+		cheyongApplyService.readBtn(r_num);
+		return "redirect:staff_readApply?r_num="+ r_num;
+	}
 }

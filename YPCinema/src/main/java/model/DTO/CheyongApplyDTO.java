@@ -19,6 +19,15 @@ public class CheyongApplyDTO implements Serializable{
 	private Date r_nalja;
 	private String r_jin;
 	
+	private String m_name;
+	
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	
 	public String getR_num() {
 		return r_num;
 	}
