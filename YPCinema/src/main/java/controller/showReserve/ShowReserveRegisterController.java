@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.showtime.ShowReserveCommand;
+import command.showtime.ShowtimeCommand;
 import model.DTO.ScreenDTO;
 import model.DTO.ShowtimeDTO;
 import service.screen.ScreenDetailService;
+import service.showReserve.ShowReserveListService;
 import service.showReserve.ShowReserveRegisterService;
 import service.showtime.ShowtimeDetailService;
 
@@ -24,9 +26,8 @@ public class ShowReserveRegisterController {
 	private ScreenDetailService screenDetailService;
 	@Autowired
 	private ShowReserveRegisterService showReserveRegisterService;
-	
-//	@Autowired
-//	private ShowtimeReservationService showtimeReservationService;
+	@Autowired
+	private ShowReserveListService showReserveListService;
 	
 	@RequestMapping(value="/showtime/reservation")
 	public String showReserve(@RequestParam("num") String show_num, HttpSession session, ShowReserveCommand showReserveCommand, Model model) {
@@ -36,6 +37,9 @@ public class ShowReserveRegisterController {
 		ShowtimeDTO showtime = showtimeDetailService.selectByShowId(show_num, model);
 		ScreenDTO screen = screenDetailService.getScreenByInfo(showtime.getScreen_num(), model);
 		showReserveRegisterService.setReserveInfo(showReserveCommand, show_num, screen.getTheater_num(), screen.getScreen_num(), model);
+		ShowtimeCommand showtimeCommand = new ShowtimeCommand();
+		showtimeCommand.setShow_num(show_num);
+		showReserveListService.selectShowReserveListByShowInfo(showtimeCommand, model);
 		return "movie/show_reserve_seatview";
 	}
 	

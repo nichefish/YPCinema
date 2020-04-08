@@ -24,4 +24,12 @@ public class PaymentListService {
 		List<PaymentDTO> lists = paymentRepository.selectPaymentListByInfo(paymentCommand);
 		model.addAttribute("lists", lists);
 	}
+
+	public PaymentDTO selectPaymentByInfo(String payment_num, Model model) {
+		PaymentCommand paymentCommand = new PaymentCommand();
+		paymentCommand.setPayment_num(payment_num);
+		PaymentDTO paymentDTO = paymentRepository.selectPaymentByInfo(paymentCommand);
+		model.addAttribute("payment", paymentDTO);
+		return paymentDTO;
+	}
 }

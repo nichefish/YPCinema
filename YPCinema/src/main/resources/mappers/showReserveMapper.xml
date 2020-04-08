@@ -27,6 +27,14 @@
 			<if test="show_num != null">and show_num=#{show_num}</if>
 		</trim>
 	</select>
+	
+	<select id="selectShowReserveListByMemberInfo" parameterType="string" resultMap="baseShowReserveMap">
+		select <include refid="basecolumn" /> from movie_reserve where m_num = #{m_num}
+	</select>
+	
+	<update id="updateTicketIssue" parameterType="model.DTO.ShowReserveDTO">
+		update movie_reserve set seat_issue=#{seat_issue} where payment_num=#{payment_num} and seat_num=#{seat_num} 
+	</update>
 
 	<resultMap type="model.DTO.ShowReserveDTO" id="baseShowReserveMap">
 		<id column="seat_reserve_num" jdbcType="VARCHAR" property="seat_reserve_num" />
@@ -36,6 +44,6 @@
 		<result column="seat_num" jdbcType="BIGINT" property="seat_num" />
 		<result column="seat_name" jdbcType="VARCHAR" property="seat_name" />
 		<result column="seat_price" jdbcType="BIGINT" property="seat_price" />
-		<result column="seat_issue" jdbcType="VARCHAR" property="seat_issued" />
+		<result column="seat_issue" jdbcType="VARCHAR" property="seat_issue" />
 	</resultMap>
 </mapper>

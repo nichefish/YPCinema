@@ -30,4 +30,14 @@ public class ShowReserveRepository {
 		String statement = namespace + ".selectShowReserveListByShowInfo";
 		return sqlSession.selectList(statement, showtimeCommand);
 	}
+
+	public List<ShowReserveDTO> selectShowReserveListByMemberInfo(String m_num) {
+		String statement = namespace + ".selectShowReserveListByMemberInfo";
+		return sqlSession.selectList(statement, m_num);
+	}
+
+	public Integer updateTicketIssue(ShowReserveDTO showReserve) {
+		String statement = namespace + ".updateTicketIssue";
+		return sqlSession.update(statement, showReserve);
+	}
 }

@@ -32,7 +32,7 @@ public class PaymentController {
 	
 	@RequestMapping("/orderList")
 	public String orderList(HttpSession session, Model model) {
-		orderListService.getReserveSessionInfo(session, model);
+//		orderListService.getReserveSessionInfo(session, model);
 		return "payment/order_list";
 	}
 	

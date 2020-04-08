@@ -20,11 +20,11 @@ public class PaymentRepository {
 		return sqlSession.insert(statement, paymentCommand);
 	}
 	
-	public PaymentDTO selectLastPayment(PaymentCommand paymentCommand) {
-		String statement = namespace + ".selectLastPayment";
+	public PaymentDTO selectPaymentByInfo(PaymentCommand paymentCommand) {
+		String statement = namespace + ".selectPaymentByInfo";
 		return sqlSession.selectOne(statement, paymentCommand);
 	}
-
+	
 	public PaymentDTO selectPaymentByInfo(String payment_num) {
 		String statement = namespace + ".selectPaymentByInfo";
 		return sqlSession.selectOne(statement, payment_num);

@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class PaymentCommand {
 	private String payment_num;
+	private String num;
 	private String m_num;
 	private String payment_email;
 	private String payment_ph;
@@ -20,6 +21,15 @@ public class PaymentCommand {
 	}
 	public void setPayment_num(String payment_num) {
 		this.payment_num = payment_num;
+	}
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
+	}
+	public void setPayment_date_string(String payment_date_string) {
+		this.payment_date_string = payment_date_string;
 	}
 	public String getM_num() {
 		return m_num;

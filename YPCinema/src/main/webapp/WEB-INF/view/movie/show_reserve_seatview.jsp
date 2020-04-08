@@ -22,6 +22,12 @@ $(function() {
 	$(".economy").closest("td").css('background-color', 'yellow');
 	$(".normal").closest("td").css('background-color', '#87ceeb');
 	$(".prime").closest("td").css('background-color', '#ff8080');
+	$(".reserved").closest("td").css('background-color', 'black');
+	
+	$(".reserved").closest("td").children("input:checkbox[name='seat_num_array']").prop("disabled", true);
+	$(".reserved").closest("td").children("input:checkbox[name='seat_num_array']").removeAttr("name");
+	$(".reserved").closest("td").children("input:checkbox[name='seat_num_array']").removeClass("unselected");
+	
 	$("#reserve_people_max").change(function() {
 		var str = "총 " + $("#reserve_people_max").val() + "좌석 중 " + $(":checkbox[name='seat_num_array']:checked").length + "좌석 선택되었습니다."
 		$("#reserve_people_now").html(str);
@@ -142,10 +148,13 @@ $(function() {
 				<option value="3" label="3명">3</option>
 				<option value="4" label="4명">4</option>
 			</select>
-			<p id="reserve_people_now">총 1좌석 중 0좌석 선택하셨습니다.</p>
-			<p>총 금액: <input type="number" name="seat_total_price" id="seat_total_price" placeholder="0" value="">원</p>
+			<p id="reserve_people_now">총 1좌석 중 0좌석 선택하셨습니다. (총 금액: <input type="number" name="seat_total_price" id="seat_total_price" placeholder="0" value="">원)</p>
 			<div id="total_price"></div>
 			<p><br /></p>
+			<div style="width:60%;">
+				<img src="../img/screen.png">
+				<hr />
+			</div>
 			<table border="0">
 				<tr>
 					<c:forEach var="i" begin="1" end="${screenCommand.screen_max_seat}" varStatus="status">
@@ -154,17 +163,26 @@ $(function() {
 					<td align="center" border="1" width="20">
 						${status.count}	<br/>
 						<input type="checkbox" class="unselected" name="seat_num_array" value="${status.count}">
-						<c:if test="${rowCount2 <= 2 || ((rowCount2 > 2 && rowCount2 <= (screenCommand.screen_col - 2)) && ((rowCount1 <= screenCommand.screen_row_array[0]) || (rowCount1 > (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1])))) }">
-							<input type="hidden" class="seat_price" value="9000">
-							<div class="economy"></div>
-						</c:if>
-						<c:if test="${(((rowCount2 > 2 && rowCount2 <= (screenCommand.screen_col - 2)) && ((rowCount1 > screenCommand.screen_row_array[0]) && (rowCount1 <= screenCommand.screen_row_array[1] + screenCommand.screen_row_array[2]))) || ((rowCount2 > (screenCommand.screen_col - 2)) && ((rowCount1 <= screenCommand.screen_row_array[0]) || (rowCount1 > (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1]))))) }">
-							<input type="hidden" class="seat_price" value="10000">
-							<div class="normal"></div>
-						</c:if>
-						<c:if test="${(rowCount2 > (screenCommand.screen_col - 2)) && ((rowCount1 > screenCommand.screen_row_array[0]) && (rowCount1 <= (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1]))) }">
-							<input type="hidden" class="seat_price" value="11000">
-							<div class="prime"></div>
+						<c:set var="test" value="0" />
+						<c:forEach items="${showReserveList}" var="showReserve">
+							<c:if test="${status.count eq showReserve.seat_num}">
+								<div class="reserved"></div>
+								<c:set var="test" value="1" />
+							</c:if>
+						</c:forEach>
+						<c:if test="${test eq 0}">
+							<c:if test="${rowCount2 <= 2 || ((rowCount2 > 2 && rowCount2 <= (screenCommand.screen_col - 2)) && ((rowCount1 <= screenCommand.screen_row_array[0]) || (rowCount1 > (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1])))) }">
+								<input type="hidden" class="seat_price" value="9000">
+								<div class="economy"></div>
+							</c:if>
+							<c:if test="${(((rowCount2 > 2 && rowCount2 <= (screenCommand.screen_col - 2)) && ((rowCount1 > screenCommand.screen_row_array[0]) && (rowCount1 <= screenCommand.screen_row_array[1] + screenCommand.screen_row_array[2]))) || ((rowCount2 > (screenCommand.screen_col - 2)) && ((rowCount1 <= screenCommand.screen_row_array[0]) || (rowCount1 > (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1]))))) }">
+								<input type="hidden" class="seat_price" value="10000">
+								<div class="normal"></div>
+							</c:if>
+							<c:if test="${(rowCount2 > (screenCommand.screen_col - 2)) && ((rowCount1 > screenCommand.screen_row_array[0]) && (rowCount1 <= (screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1]))) }">
+								<input type="hidden" class="seat_price" value="11000">
+								<div class="prime"></div>
+							</c:if>
 						</c:if>
 					</td>
 					<c:if test="${rowCount1 eq screenCommand.screen_row_array[0] || rowCount1 eq screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] }">

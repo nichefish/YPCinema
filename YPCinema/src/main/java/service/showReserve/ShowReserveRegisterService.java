@@ -36,7 +36,12 @@ public class ShowReserveRegisterService {
 	
 	public void insertReserve(HttpSession session, String payment_num) {
 		ShowReserveDTO showReserve = (ShowReserveDTO) session.getAttribute("showReserveStored");
-		showReserve.setPayment_num(payment_num);
-		Integer result = showReserveRepository.insertReserve(showReserve);
+		for (int i = 0; i < showReserve.getSeat_num_array().length; i++) {
+			showReserve.setSeat_num(showReserve.getSeat_num_array()[i]);
+//			showReserve.setSeat_name(showReserve.getSeat_name_array()[i]);
+			showReserve.setSeat_price(showReserve.getSeat_price_array()[i]);
+			showReserve.setPayment_num(payment_num);
+			Integer result = showReserveRepository.insertReserve(showReserve);
+		}
 	}
 }

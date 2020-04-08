@@ -69,6 +69,10 @@
 		</table>
 		<p><br /></p>
 		<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}"></c:set>
+		<div style="width:60%;">
+			<img src="../img/screen.png">
+			<hr />
+		</div>
 		<table border="0">
 			<tr>
 				<c:forEach var="i" begin="1" end="${screenCommand.screen_max_seat}" varStatus="status">

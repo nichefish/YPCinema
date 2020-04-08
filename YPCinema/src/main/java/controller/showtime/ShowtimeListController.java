@@ -17,8 +17,6 @@ import service.showtime.ShowtimeListService;
 
 @Controller
 public class ShowtimeListController {
-//	@Autowired
-//	private ScreenListService screenListService;
 	@Autowired
 	private JicmuListService jicmuListService;
 	@Autowired
@@ -45,7 +43,6 @@ public class ShowtimeListController {
 		if (movie_num != null) {
 			showtimeListCommand.setMovie_num(movie_num);
 		}
-		System.out.println("!@#!@#:" + showtimeListCommand.getTheater_num());
 		showtimeListService.selectShowByInfo(showtimeListCommand, model);
 		return "movie/showtime_list";
 	}

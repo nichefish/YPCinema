@@ -8,14 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import command.showtime.ShowtimeCommand;
 import model.DTO.AuthInfo;
 import model.DTO.MemberDTO;
 import service.member.MemberDetailService;
+import service.showReserve.ShowReserveListService;
 
 @Controller
 public class MemberDetailController {
 	@Autowired
 	private MemberDetailService memberDetailService;
+	@Autowired
+	private ShowReserveListService showReserveListService;
 	
 	@RequestMapping("/myPage")
 	public String memberMyPage(HttpSession session, Model model) {
@@ -27,10 +31,11 @@ public class MemberDetailController {
 	}
 	
 	@RequestMapping("/myStatistic")
-	public String memberStatistic(HttpSession session) {
+	public String memberStatistic(HttpSession session, Model model) {
 		if (session.getAttribute("authInfo") == null) {
 			return "redirect:/login";
 		}
+		showReserveListService.selectShowReserveListByMemberInfo(session, model);
 		return "member/member_statistic";
 	}
 	

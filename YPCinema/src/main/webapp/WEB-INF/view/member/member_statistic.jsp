@@ -22,9 +22,19 @@
 	<%@ include file="../navigation.jsp"%>
 </header>
 <div class="main-content-wrapper section-padding-100">
- 	<div class="container" align="center">
-		나의 구매내역 및 통계!!!!! <br />
-		나의 댓글내역도 봐야되고.. 또 뭐 봐야 되지...
+ 	<div class="container" align="center">\
+ 		<p>나의 구매내역 및 통계!!!!!<br />나의 댓글내역도 봐야되고.. 또 뭐 봐야 되지...</p>
+ 		<p>일단... 영화표 구매내역...</p>
+ 		<table width="60%" border="1">
+ 			<c:forEach items="${showReserveList}" var="showReserve">
+ 				<tr>
+ 					<td width="30" style="background-color:black;"><img src="img/ticket3-5.png" width="30px"></td>
+ 					<td>상영번호 ${showReserve.show_num}</td>
+ 					<td>좌석번호 ${showReserve.seat_num}</td>
+ 					<td>발급상태 ${showReserve.seat_issue}</td>
+ 				</tr>
+ 			</c:forEach>
+ 		</table>
 	</div>
 </div>
 <footer class="footer-area">

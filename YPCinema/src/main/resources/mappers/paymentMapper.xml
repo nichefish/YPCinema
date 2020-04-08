@@ -15,7 +15,7 @@
 		select <include refid="basecolumn" /> from payment where m_num = #{m_num} order by payment_date asc limit 1
 	</select>
 	
-	<select id="selectPaymentByInfo" parameterType="String" resultMap="basePaymentMap">
+	<select id="selectPaymentByInfo" parameterType="model.DTO.PaymentDTO" resultMap="basePaymentMap">
 		select <include refid="basecolumn" /> from payment where payment_num = #{payment_num}
 	</select>
 	
@@ -24,9 +24,11 @@
 	</select>
 	
 	<select id="selectPaymentListByInfo" parameterType="model.DTO.PaymentDTO" resultMap="basePaymentMap">
-		select <include refid="basecolumn" /> from payment p, movie_reserve r
+		select <include refid="basecolumn" /> from payment
 		<trim prefix="where" prefixOverrides="and">
-			<if test="payment_date != null">and p.payment_date = #{payment_date_string}</if>
+			<if test="payment_date != null">and payment_date = #{payment_date_string}</if>
+			<if test="payment_num != null">and payment_num = #{payment_num}</if>
+			<if test="m_num != null">and m_num = #{m_num}</if>
 		</trim>
 	</select>
 

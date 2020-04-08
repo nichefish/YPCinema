@@ -15,8 +15,7 @@ public class ShowReserveDTO implements Serializable {
 	private Integer [] seat_price_array;
 	private Integer seat_total_price;
 	private String payment_num;
-	private String seat_issued;
-	private String seat_entered;
+	private String seat_issue;
 	
 	public String getSeat_reserve_num() {
 		return seat_reserve_num;
@@ -84,16 +83,10 @@ public class ShowReserveDTO implements Serializable {
 	public void setPayment_num(String payment_num) {
 		this.payment_num = payment_num;
 	}
-	public String getSeat_issued() {
-		return seat_issued;
+	public String getSeat_issue() {
+		return seat_issue;
 	}
-	public void setSeat_issued(String seat_issued) {
-		this.seat_issued = seat_issued;
-	}
-	public String getSeat_entered() {
-		return seat_entered;
-	}
-	public void setSeat_entered(String seat_entered) {
-		this.seat_entered = seat_entered;
+	public void setSeat_issue(String seat_issue) {
+		this.seat_issue = seat_issue;
 	}
 }
