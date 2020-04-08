@@ -91,7 +91,7 @@ body{
 								</div>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">협력업체</a>
+								<a class="nav-link" href="<c:url value='/partner' />">기프트샵</a>
 							</li>
 						</ul>
                             <!-- Search Form  -->
