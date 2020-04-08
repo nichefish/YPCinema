@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Controllers -->
-<!-- 	<bean class="controller.company.CompanyLoginController" /> -->
+	<!-- <bean class="controller.company.CompanyLoginController" /> -->
 	<bean class="controller.company.CompanyJoinController" />
 	<bean class="controller.company.CompanyDetailController" />
 	<bean class="controller.company.CompanyListController" />
 	<bean class="controller.company.CompanyModifyController" />
-	
+
 	<!-- Services -->
-	<bean id="companyJoinService" class="service.company.CompanyJoinService" />
-	<bean id="companyRegMailService" class="service.company.CompanyRegMailService" />
-	<bean id="companyLoginCookieService" class="service.company.CompanyLoginCookieService" />
-	<bean id="companyAuthService" class="service.company.CompanyAuthService" />
-	<bean id="companyDetailService" class="service.company.CompanyDetailService" />
-	<bean id="companyListService" class="service.company.CompanyListService" />
-	<bean id="companyModifyService" class="service.company.CompanyModifyService" />
-	
+	<bean id="companyJoinService"
+		class="service.company.CompanyJoinService" />
+	<bean id="companyRegMailService"
+		class="service.company.CompanyRegMailService" />
+	<bean id="companyLoginCookieService"
+		class="service.company.CompanyLoginCookieService" />
+	<bean id="companyAuthService"
+		class="service.company.CompanyAuthService" />
+	<bean id="companyDetailService"
+		class="service.company.CompanyDetailService" />
+	<bean id="companyListService"
+		class="service.company.CompanyListService" />
+	<bean id="companyModifyService"
+		class="service.company.CompanyModifyService" />
+
 	<!-- Repositories -->
-	<bean id="companyRepository" class="repository.company.CompanyRepository" />
-	
+	<bean id="companyRepository"
+		class="repository.company.CompanyRepository" />
+
 </beans>

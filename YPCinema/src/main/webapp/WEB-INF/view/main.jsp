@@ -89,13 +89,8 @@
 										<a class="dropdown-item" href="#" >공영주차장 예약하기</a>
 									</div>
 								</li>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">협력업체</a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="<c:url value='#' />" >협력업체 이벤트</a>
-										<a class="dropdown-item" href="#" >협력업체 공고</a>
-										<a class="dropdown-item" href="#" >협력업체 신청 </a>
-									</div>
+								<li class="nav-item">
+									<a class="nav-link" href="<c:url value='/partner' />">기프트샵</a>
 								</li>
 							</ul>
                            <!-- Search Form  -->

@@ -1,9 +1,12 @@
 package service.admin;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,24 +54,22 @@ public class CouponIssueService {
 		couponIssueRepository.couponIssue(numms);
 	}
 	//생일쿠폰, 맴버쉽쿠폰
-	public void happyBirthDayCoupon() {
+	public void happyBirthDayCoupon(HttpServletResponse response) {	
 		//생일 날짜
 		List<String> sysdateMNum = couponIssueRepository.birthMNum();
-		System.out.println(sysdateMNum.size());
-		//숫자를 지정해줘야한다.
-		String [] nums = new String[100];
-		for(int i=0; i<sysdateMNum.size(); i++) {
-			nums[i] = sysdateMNum.get(i);
-			
-		}
-		System.out.println(nums[0]);
 		String type="생일";
 		List<CouponDTO> eventLists = couponIssueRepository.selectCouponsEvent(type);
-		System.out.println("eventLists.size()의값ㄴ아ㅓㅁㅇ나러먀러먀ㅓ랴더먀럳"+eventLists.size());
-		int index = 0;
-		for(String str : nums) {
-			eventLists.get(index).setC_num(str);
+		List<CouponDTO> resultLists = new ArrayList<CouponDTO>();
+		if(sysdateMNum != null) {
+			for(String str : sysdateMNum) {
+				for(int i = 0 ; i < eventLists.size();i++) {
+					CouponDTO c = new CouponDTO();
+					c.setmNum(str);
+					c.setC_num(eventLists.get(i).getC_num());
+					resultLists.add(c);
+				}
+			}
 		}
-		couponIssueRepository.birthDayCouponIssue(eventLists);
+		couponIssueRepository.birthDayCouponIssue(resultLists);
 	}
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Controllers -->
+	<bean class="controller.partner.PartnerGoodsController" />
+	<bean class="controller.partner.PartnerGoodsWriterController" />
+	<bean class="controller.partner.PartnerGoodsDetailController" />
+	<bean class="controller.partner.PartnerGoodsModifyController" />
+	<bean class="controller.partner.PartnerGoodsMenuController" />
+	<bean class="controller.partner.PartnerGoodsMenuDeleteController" />
+
+	<!-- Service -->
+	<bean id="partnerGoodsMenuWriterService"
+		class="service.partner.PartnerGoodsMenuWriterService" />
+	<bean id="partnerGoodsListService"
+		class="service.partner.PartnerGoodsListService" />
+	<bean id="partnerGoodsWriteService"
+		class="service.partner.PartnerGoodsWriteService" />
+	<bean id="partnerGoodsDetailService"
+		class="service.partner.PartnerGoodsDetailService" />
+	<bean id="partnerGoodsModifyService"
+		class="service.partner.PartnerGoodsModifyService" />
+	<bean id="partnerGoodsMenuListService"
+		class="service.partner.PartnerGoodsMenuListService" />
+	<bean id="partnerGoodsMenuDeleteService"
+		class="service.partner.PartnerGoodsMenuDeleteService" />
+
+
+	<!-- Repository -->
+	<bean id="partnerGoodsMenuRepository"
+		class="repository.partner.PartnerGoodsMenuRepository" />
+	<bean id="partnerGoodsRepository"
+		class="repository.partner.PartnerGoodsRepository" />
+</beans>

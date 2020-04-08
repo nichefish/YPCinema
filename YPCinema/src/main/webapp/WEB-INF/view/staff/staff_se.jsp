@@ -26,7 +26,7 @@
 <style>
   .bg-gradient-primary {
     background-color: #070a12;
-    background-image: linear-gradient(180deg,#2b8980 10%,#524c4c 100%);
+    background-image: linear-gradient(180deg,#2b8980 10%,#22be3f 100%);
     background-size: cover;
 }
 div.backLayerssss {
@@ -48,86 +48,61 @@ div#loadingDiv {
 div.card-body {
 	height: 367px;
 }
+
+		.wowButton {
+			background-color: #3f3f42;
+			display: inline-block;
+			height: 70px;
+			width: 150px;
+			padding: 15px 30px;
+			margin: 10px;
+			border: none;
+			outline: none;
+			border-radius: 20px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 22px;
+			cursor: pointer;
+			box-shadow: 0 9px #3e3636;
+		}
+		.wowButton:active {
+			background-color: #FF8C00;
+			box-shadow: 0 5px #3e3636;
+			transform: translateY(4px);
+		}
+
   </style>
  
 </head>
 <body id="page-top">
 <div class='backLayerssss' style=''></div>
 	<!-- navbar -->
-	<%@ include file="/WEB-INF/view/admin_nav.jsp" %>
+	<%@ include file="/WEB-INF/view/staff_nav.jsp" %>
 	 
         <!-- Begin Page Content -->
         <div class="container-fluid" style="padding-left: 20px;">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">쿠폰발급페이지</h1>
+          
           <!-- DataTales Example -->
           <div class="card shadow mb-4"style="width:100%;margin-right: 20px;">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Find User</h6>
+              <h6 class="m-0 font-weight-bold text-primary"style="text-align:center">Thank you for the great work today.</h6>
             </div>
             <div class="card-body" style="height:auto;'">
               <div class="table-responsive">
               <form>
-                회원검색 :&nbsp;<input type="text" id="findUserText" name="findUserText">
-              <input type="submit" name="findUserTextS" value="검색" formaction="find_user">
-              <input type="button" name="birthIssue" id="birthIssue" value="생일쿠폰발급" onclick="location.href='happyBirthDay'">
-              <input type="button" value="맴버쉽발급" onclick="location.href='Membership'">
-                <table class="table table-bordered" id="dataTable" cellspacing="0">
-                    <tr>
-					  <th>회원번호</th>
-        			  <th>아이디</th>
-                      <th>이름</th>
-                      <th>등급</th>
-                      <th>생일</th>
-                    </tr>
-                    <c:if test="${!empty foundUser}">
-                  <tbody>
-                  	<tr>
-                  	  	<td>
-                  	  		${foundUser.m_num}
-                  	  		<input type="hidden" id="hiddenUserNum" name="hiddenUserNum" value="${foundUser.m_num}">
-                  	  	</td>
-					  	<td>${foundUser.m_id}</td>
-                      	<td>${foundUser.m_name}</td>
-                     	 <td>${foundUser.m_class}</td>
-                      	<td><fmt:formatDate value='${foundUser.m_birth}' type='date' pattern='yyyy-MM-dd' /></td>
-                  	</tr>
-					
-                  </tbody>
-                  </c:if>
-                </table>
-                쿠폰선택 :&nbsp;<select name="choiceType" id="choiceType">
-                	<option>-----</option>
-                	<option value="영화">영화</option>
-                	<option value="생일">생일</option>
-                	<option value="VIP">맴버쉽</option>
-                <c:forEach items="${menuTypes}" var="mt" step="1">
-                	<option value="${mt.menu_type}">${mt.menu_type}</option>
-                </c:forEach>
-                		
-                	</select>
-               <div id="findCoupon">
-                <table class="table table-bordered" id="dataTable" cellspacing="0">
-                    <tr>
-                      <th>쿠폰번호</th>
-					  <th>쿠폰종류</th>
-        			  <th>쿠폰이름</th>
-                      <th>내용</th>
-                      <th>할인률</th>
-                    </tr>
-                  <tbody>
-                  	<tr>
-                  		<td>쿠폰번호</td>
-                  	  	<td>쿠폰종류</td>
-					  	<td>쿠폰이름</td>
-                      	<td>내용</td>
-                     	 <td>할인률</td>
-                  	</tr>
-                  </tbody>
-                </table> 
+                <h1 class="h3 mb-2 text-gray-800" style="text-align:center;color:#d8d8e1 !important;">지점이름</h1>
+                <p class="h3 mb-2 text-gray-800" style="text-align:center;font-size:50px;">OOO님,</p>
+                <p class="h3 mb-2 text-gray-800" style="text-align:center;font-size:15px;">
+                	오늘의 근무계획은 <b>시간1 ~ 시간2</b> 입니다. or 오늘은  <b style="color:red;">휴일 </b>입니다.
+                <div style="margin-left:30%;margin-top:20px;float:left">
+               		<input type="button" class="wowButton" id="chulgn" name="chulgn" value="출근" style="text-align:center;color:white;font-size:10px;" >
                 </div>
-              	만료일 : &nbsp;<input type = "text" id="manryo" name="manryo" placeholder="ex)5 => 오늘날짜 + 5일">
-                <input type="submit" value="발급" id="balgb" name="balgb" formaction="CouponIssue" formmethod="post">
+                <div style="text-align:right;margin-right:30%;margin-top:20px;">
+                	<div id="se2">
+               			<input type="button" class="wowButton" id="tuegn" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
+               		</div>
+                </div>
               </form>
               </div>
             </div>
@@ -195,29 +170,29 @@ div.card-body {
   <script src="js/demo/datatables-demo.js"></script>
    <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-$(function() {
-	$( document ).ready( function() {
-        $( '.select_all' ).click( function() {
-          $( '.select' ).prop( 'checked', this.checked );
-        });
-        
-    });
-});
 $(function(){
-	$("#choiceType").change(function(){
+	$("#chulgn").click(function(){
+		var Now = new Date();
+		var NowTime = Now.getFullYear();
+		NowTime += '-' + (Now.getMonth() + 1);
+		NowTime += '-' + Now.getDate();
+		NowTime += ' ' + Now.getHours();
+		NowTime += ':' + Now.getMinutes();
+		$('#chulgn').attr('disabled', true);
+		var chulgn = $("#chulgn").val(NowTime);
+		
 		$.ajax({
 			type:"POST",
-			url:"coupon_issue2",
-			data:{"couponType": $("#choiceType").val(), "userNum" : $("#hiddenUserNum").val()},
+			url:"staff_se2",
+			data:{"chulgnTime": $("#chulgn").val()},
 			datatype:"html",
 			success: function(data1){
-				$("#findCoupon").html(data1);
+				$("#se2").html(data1);
 			}
 			
 		});
 	});
 });
 </script>
-
 </body>
 </html>

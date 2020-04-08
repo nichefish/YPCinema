@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="partnerGoodsMapper">
+<cache />
+
+<!-- 컬럼 -->
+<sql id="partnerGoodsMenuBaseColumn">
+	PARTNERGOODSMENU_NUM, THEATER_NUM, PARTNERGOODSMENU_NAME, PARTNERGOODSMENU_CONTENT, 
+	PARTNERGOODSMENU_PRICE, PARTNERGOODSMENU_IMG, PARTNERGOODSMENU_TYPE
+</sql>
+
+<sql id="partnerGoodsBaseColumn">
+	PARTNERGOODS_NUM, PARTNERGOODS_NAME, PARTNERGOODS_TYPE, PARTNERGOODS_PRICE, PARTNERGOODS_IMG
+</sql>
+
+<!-- Insert -->
+<insert id="partnerGoodsMenuInsert" parameterType="partnerGoodsMenu" >
+	insert into partnerGoodsMenu ( <include refid="partnerGoodsMenuBaseColumn" /> )
+	values(nextval('seq'), #{theaterNum}, #{partnerGoodsMenuName},  #{partnerGoodsMenuContent},
+	#{partnetGoodsMenuPrice},  #{partnerGoodsMenuImage},  #{partnerGoodsMenuType})
+</insert>
+
+<resultMap type="partnerGoodsMenu" id="partnerGoodsMenuBaseMap">
+	<id column="PARTNERGOODSMENU_NUM" jdbcType="VARCHAR" property="partnerGoodsMenuNum"/>
+	<result column="THEATER_NUM" jdbcType="VARCHAR" property="theaterNum" />
+	<result column="PARTNERGOODSMENU_NAME" jdbcType="VARCHAR" property="partnerGoodsMenuName" />
+	<result column="PARTNERGOODSMENU_CONTENT" jdbcType="VARCHAR" property="partnerGoodsMenuContent" />
+	<result column="PARTNERGOODSMENU_PRICE" jdbcType="BIGINT" property="partnerGoodsMenuPrice" />
+	<result column="PARTNERGOODSMENU_TYPE" jdbcType="VARCHAR" property="partnerGoodsMenuType" />
+	<result column="PARTNERGOODSMENU_IMG" jdbcType="VARCHAR" property="partnerGoodsMenuImage" />
+</resultMap>
+
+<insert id="partnerGoodsInsert" parameterType="partnerGoods" >
+	insert into partnerGoods ( <include refid="partnerGoodsBaseColumn" /> )
+	values(nextval('seq'), #{partnerGoodsName}, #{partnerGoodsType}, #{partnerGoodsPrice}, #{partnerGoodsImage})
+</insert>
+
+<resultMap type="partnerGoods" id="partnerGoodsBaseMap">
+	<id column="PARTNERGOODS_NUM" jdbcType="VARCHAR" property="partnerGoodsNum"/>
+	<result column="PARTNERGOODS_NAME" jdbcType="VARCHAR" property="partnerGoodsName" />
+	<result column="PARTNERGOODS_TYPE" jdbcType="VARCHAR" property="partnerGoodsType" />
+	<result column="PARTNERGOODS_PRICE" jdbcType="BIGINT" property="partnerGoodsPrice" />
+	<result column="PARTNERGOODS_IMG" jdbcType="VARCHAR" property="partnerGoodsImage" />
+</resultMap>
+
+<!--  select  -->
+<select id="partnerGoodsList" resultMap="partnerGoodsBaseMap" parameterType="string">
+	select <include refid="partnerGoodsBaseColumn" /> from partnerGoods
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			PARTNERGOODS_NUM = #{partnerGoodsNum}  
+		</if>
+	</trim>
+</select>
+
+<select id="partnerGoodsMenuList" resultMap="partnerGoodsMenuBaseMap" parameterType="string">
+	select <include refid="partnerGoodsMenuBaseColumn" /> from partnerGoodsMenu
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			PARTNERGOODSMENU_NUM = #{partnerGoodsMenuNum}  
+		</if>
+	</trim>
+</select>
+
+<select id="partnerGoodsModify" resultMap="partnerGoodsBaseMap">
+	select  <include refid="partnerGoodsBaseColumn" /> from partnerGoods
+	where PARTNERGOODS_NUM = #{partnerGoodsNum}
+</select>
+	
+<select id="partnerGoodsMenuType" resultMap="partnerGoodsMenuBaseMap" parameterType="string">
+	select <include refid="partnerGoodsMenuBaseColumn" /> from partnerGoodsMenu
+	where PARTNERGOODSMENU_TYPE = #{partnerGoodsMenuType}
+</select>
+	
+<!-- update -->
+<update  id="partnerGoodsModifyPro" parameterType="partnerGoods">
+	update partnerGoods set PARTNERGOODS_TYPE =  #{partnerGoodsType}, PARTNERGOODS_NAME =  #{partnerGoodsName}, 
+	PARTNERGOODS_PRICE =  #{partnerGoodsPrice}, PARTNERGOODS_IMG=#{partnerGoodsImage}
+	where PARTNERGOODS_NUM = #{partnerGoodsNum}
+</update>
+	
+<!-- Delete -->
+<delete id="partnerGoodsMenuDelete" parameterType="string">
+	delete from partnerGoodsMenu
+	where PARTNERGOODSMENU_NUM = #{partnerGoodsMenuNum}
+</delete>
+
+</mapper>

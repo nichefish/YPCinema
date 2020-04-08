@@ -8,6 +8,9 @@
 	<bean class="controller.admin.TheaterController" />
 	<bean class="controller.admin.CouponController" />
 	<bean class="controller.admin.CouponIssueController" />
+	<bean class="controller.admin.GnmuController" />
+	<bean class="controller.admin.ScheduleController" />
+	
 
 	
 	<!-- Service -->
@@ -15,12 +18,16 @@
 	<bean id="jicmuListService" class="service.admin.JicmuListService" />
 	<bean id="couponAddService" class="service.admin.CouponAddService" />
 	<bean id="couponIssueService" class="service.admin.CouponIssueService" />
+	<bean id="gnmuTimeService" class="service.admin.GnmuTimeService" />
+	<bean id="gnteService" class="service.staff.GnteService" />
+	<bean id="scheduleService" class="service.admin.ScheduleService" />
 	
 	<!-- Repository -->	
 	<bean id="theaterAddRepository" class="repository.admin.TheaterAddRepository" />
 	<bean id="jicmuRepository" class="repository.admin.JicmuRepository" />
 	<bean id="couponRepository" class="repository.admin.CouponRepository" />
 	<bean id="couponIssueRepository" class="repository.admin.CouponIssueRepository" />
+	<bean id="gnmuRepository" class="repository.admin.GnmuRepository" />
 	
 	<!-- Cheyong Controller -->
 	<bean class="controller.cheyong.CheyongController" />
@@ -34,4 +41,9 @@
 	
 	<!-- Cheyong Repository -->
 	<bean id="cheyongRepository" class="repository.cheyong.CheyongRepository" />
+	
+	<!-- Gnte Controller -->
+	<bean class="controller.staff.GnteController" />
+	<!-- Gnte Service -->
+	<!-- Gnte Repository -->
 </beans>

@@ -17,6 +17,10 @@
 		<!-- 매점 -->
 		<typeAlias type="model.DTO.MenuDTO" alias="menu"/>
 		<typeAlias type="model.DTO.GoodsDTO" alias="goods"/>
+		
+		<!-- 기프트샵 -->
+		<typeAlias type="model.DTO.PartnerGoodsMenuDTO" alias="partnerGoodsMenu"/>
+		<typeAlias type="model.DTO.PartnerGoodsDTO" alias="partnerGoods"/>
 	</typeAliases>
 </configuration>
 

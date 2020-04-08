@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gnmuMapper">
+	<cache />
+	<sql id="GnmuColumns">
+		GBUN_NUM,GBUN_NAME,GBUN_STIME,GBUN_ETIME,GBUN_TOTAL
+	</sql>
+	
+	<!-- Select Map Part -->
+	<resultMap type="model.DTO.GngijunDTO" id="gnmuMap">
+		<id column="GBUN_NUM" jdbcType="VARCHAR" property="gbunNum"/>
+		<result column="GBUN_NAME" jdbcType="VARCHAR" property="gbunName"/>
+		<result column="GBUN_STIME" jdbcType="DATE" property="gbunSTime"/>
+		<result column="GBUN_ETIME" jdbcType="DATE" property="gbunETime"/>
+		<result column="GBUN_TOTAL" jdbcType="DATE" property="gbunTotal"/>
+	</resultMap>
+	
+	<!-- Select Part! -->
+	<select id="selectTotalTime" parameterType="model.DTO.GngijunDTO" resultType="int">
+		SELECT TIMESTAMPDIFF(hour, #{gbunSTime}, #{gbunETime}) AS GBUN_TOTAL
+	</select>
+	<select id="selectTotalTime2" parameterType="model.DTO.GngijunDTO" resultType="string">
+		SELECT date_format(timediff(#{gbunETime} + INTERVAL 1 DAY,#{gbunSTime}),'%H:%i')
+	</select>
+	<select id="selectTotalTime3" parameterType="model.DTO.GngijunDTO" resultType="string">
+		SELECT date_format(timediff(#{gbunETime},#{gbunSTime}),'%H:%i')
+	</select>
+	<select id="selectGngijunLists" resultMap="gnmuMap">
+		select <include refid="GnmuColumns" /> from gngijun
+	</select>
+	
+	<!-- Insert Part! -->
+	<insert id="insertGnmuTime" parameterType="model.DTO.GngijunDTO">
+		insert into gngijun (<include refid="GnmuColumns" />) values(nextval('seq'),#{gbunName},#{gbunSTime},#{gbunETime},#{gbunTotal})
+	</insert>
+	<!-- Delete Part! -->
+	<delete id="deleteGnmuTime">
+		delete from gngijun
+		<where> GBUN_NUM = #{gbunNum}</where>
+	</delete>
+</mapper>
