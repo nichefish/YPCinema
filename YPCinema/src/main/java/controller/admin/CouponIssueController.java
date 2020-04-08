@@ -1,5 +1,7 @@
 package controller.admin;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +41,8 @@ public class CouponIssueController {
 	}
 	//전체 생일쿠폰, 전체 맴버쉽쿠폰
 	@RequestMapping("/happyBirthDay")
-	public String happyBirthDayCoupon() {
-		couponIssueService.happyBirthDayCoupon();
+	public String happyBirthDayCoupon(HttpServletResponse response) {
+		couponIssueService.happyBirthDayCoupon(response);
 		return "redirect:coupon_issue";
 	}
 }

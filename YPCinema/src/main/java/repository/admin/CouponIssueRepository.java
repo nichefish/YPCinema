@@ -36,8 +36,8 @@ public class CouponIssueRepository {
 		String statement = namespace+ ".selectBirthMNum";
 		return sqlSession.selectList(statement);
 	}
-	public void birthDayCouponIssue(List<CouponDTO> eventLists) {
+	public void birthDayCouponIssue(List<CouponDTO> resultLists) {
 		String statement = namespace+ ".insertBirthBalcu";
-		sqlSession.insert(statement,eventLists);
+		sqlSession.insert(statement,resultLists);
 	}
 }
