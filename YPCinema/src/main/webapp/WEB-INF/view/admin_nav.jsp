@@ -273,7 +273,7 @@
 			if (test) {
 				$("#mode_form").submit();
 			}
-		})
+		});
 	});
 	</script>
 </body>

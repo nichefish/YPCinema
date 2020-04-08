@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="icon" href="../img/core-img/favicon.ico">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,12 +19,6 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
-// $(document).ready(function() {
-// 	var theater = window.location.search.split("=").pop();
-// 	alert(theater);
-// 	$("#theater_num").val(theater);
-// // 	$("#theater").attr("selected", "selected");
-// });
 $(function() {
 	$("#theater").change(function() {
 		location.href="list?theater=" + this.value;
@@ -52,7 +47,6 @@ $(function() {
 					<form:option value="${theater.theater_num}" label="${theater.theater_name}" />
 					</c:forEach>
 				</form:select>
-<!-- 				<input type="submit" value="지점 선택">&nbsp;&nbsp; -->
 				영화: <form:hidden path="movie_num" />
 				<input type="text" value="${showtimeListCommand.movie_num}" readonly="readonly" />
 				<input type="submit" value="검색"><br/>
@@ -80,7 +74,6 @@ $(function() {
 				<td align="center">상영시작시간</td>
 				<td align="center">상영종료시간</td>
 			</tr>
-			
 			<c:forEach items="${showLists}" var="show">
 			<tr align="center" valign="middle">
 				<td align="center"><a href="reservation?num=${show.show_num}">${show.show_num}</a></td>
@@ -117,16 +110,12 @@ $(function() {
 	</div>
 </div>
 <footer class="footer-area">
-      <%@ include file="../footer.jsp"%>
-   </footer>
+	<%@ include file="../footer.jsp"%>
+</footer>
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
-   <!-- Popper js -->
-   <script src="js/popper.min.js"></script>
-   <!-- Bootstrap js -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- Plugins js -->
-   <script src="js/plugins.js"></script>
-   <!-- Active js -->
-   <script src="js/active.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/active.js"></script>
 </body>
 </html>

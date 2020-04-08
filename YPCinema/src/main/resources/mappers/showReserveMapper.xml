@@ -9,7 +9,7 @@
 	</sql>
 	
 	<insert id="insertReserve" parameterType="model.DTO.ShowReserveDTO">
-		insert into movie_reserve (<include refid="basecolumn" />) values ( CONCAT('ST_', (LPAD((SELECT nextval('seq')),4,0))), #{show_num}, #{payment_num}, #{m_num}, #{seat_num}, #{seat_num}, #{seat_price}, 0)
+		insert into movie_reserve (<include refid="basecolumn" />) values ( CONCAT('ST_', (LPAD((SELECT nextval('seq')),4,0))), #{show_num}, #{payment_num}, #{m_num}, #{seat_num}, #{seat_name}, #{seat_price}, 0)
 	</insert>
 	<!-- 임시로 seat_name을 seat_num으로 대충 줬음... -->
 	
@@ -38,5 +38,4 @@
 		<result column="seat_price" jdbcType="BIGINT" property="seat_price" />
 		<result column="seat_issue" jdbcType="VARCHAR" property="seat_issued" />
 	</resultMap>
-	
 </mapper>

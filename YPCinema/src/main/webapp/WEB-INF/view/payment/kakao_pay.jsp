@@ -20,17 +20,13 @@
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '영화예매결제' + '<%=request.getParameter("rv_carName")%>/' 
-         	+
-            '<%=request.getParameter("driver_name")%>/' 
-            +
-            '<%=request.getParameter("date")%>',
-            amount :<%=request.getParameter("seat_price")%>,
+            name : '영화예매결제' + '<%=request.getParameter("rv_carName")%>/' + '<%=request.getParameter("date")%>',
+            amount : <%=request.getParameter("seat_total_price")%>,
             buyer_email : '${member.m_email }',
             buyer_name : '${member.m_name }',
             buyer_tel : '${member.m_ph }',
             buyer_addr : '${member.m_addr1 + member.m_addr2}',
-            buyer_postcode : '${member.m_zip}',
+            buyer_postcode : '${member.m_zip}'
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {
@@ -73,5 +69,7 @@
 	<input type="text" name="payment_email" id="payment_email" value="${payment_email }"/>	<!-- 고유 아이디 -->
 	<input type="text" name="payment_ph" id="payment_ph"  value="${payment_ph }" />	<!-- 고유 아이디 -->
 </form:form>
+
+</body>
 </body>
 </html>

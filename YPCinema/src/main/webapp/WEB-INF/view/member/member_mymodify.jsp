@@ -6,12 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="icon" href="../img/core-img/favicon.ico">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -28,7 +29,6 @@
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
 		<form:form name="frm" id="frm" method="POST" enctype="multipart/form-data" commandName="memberCommand">
-		<!-- <input type="hidden" name="confirmNum" id="confirmNum" value="1"> 여기 value 1! 중복체크 -->
 			<table width="600" align="center" border=1 >
 				<tr rowspan="2">
 					<td colspan="2" align="center">
@@ -115,11 +115,6 @@
 		</form:form>
 	</div>
 </div>
-<script>
-if("${err}" == "1") {
-	alert("입력이 되지 않았습니다.");
-}
-</script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function sample4_execDaumPostcode() {
@@ -149,14 +144,10 @@ function sample4_execDaumPostcode() {
 	<%@ include file="../footer.jsp"%>
 </footer>
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
-   <!-- Popper js -->
-   <script src="js/popper.min.js"></script>
-   <!-- Bootstrap js -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- Plugins js -->
-   <script src="js/plugins.js"></script>
-   <!-- Active js -->
-   <script src="js/active.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/active.js"></script>
 </body>
 </body>
 </html>

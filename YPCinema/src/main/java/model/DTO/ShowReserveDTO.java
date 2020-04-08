@@ -9,7 +9,11 @@ public class ShowReserveDTO implements Serializable {
 	public String m_num;
 	private Integer seat_num;
 	private String seat_name;
+	private Integer [] seat_num_array;
+	private String [] seat_name_array;
 	private Integer seat_price;
+	private Integer [] seat_price_array;
+	private Integer seat_total_price;
 	private String payment_num;
 	private String seat_issued;
 	private String seat_entered;
@@ -44,11 +48,35 @@ public class ShowReserveDTO implements Serializable {
 	public void setSeat_name(String seat_name) {
 		this.seat_name = seat_name;
 	}
+	public Integer[] getSeat_num_array() {
+		return seat_num_array;
+	}
+	public void setSeat_num_array(Integer[] seat_num_array) {
+		this.seat_num_array = seat_num_array;
+	}
+	public String[] getSeat_name_array() {
+		return seat_name_array;
+	}
+	public void setSeat_name_array(String[] seat_name_array) {
+		this.seat_name_array = seat_name_array;
+	}
 	public Integer getSeat_price() {
 		return seat_price;
 	}
 	public void setSeat_price(Integer seat_price) {
 		this.seat_price = seat_price;
+	}
+	public Integer[] getSeat_price_array() {
+		return seat_price_array;
+	}
+	public void setSeat_price_array(Integer[] seat_price_array) {
+		this.seat_price_array = seat_price_array;
+	}
+	public Integer getSeat_total_price() {
+		return seat_total_price;
+	}
+	public void setSeat_total_price(Integer seat_total_price) {
+		this.seat_total_price = seat_total_price;
 	}
 	public String getPayment_num() {
 		return payment_num;

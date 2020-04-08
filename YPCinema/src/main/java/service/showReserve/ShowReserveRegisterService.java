@@ -27,9 +27,10 @@ public class ShowReserveRegisterService {
 		ShowReserveDTO showReserve = new ShowReserveDTO();
 		showReserve.setM_num(((AuthInfo) session.getAttribute("authInfo")).getM_num());
 		showReserve.setShow_num(showReserveCommand.getShow_num());
-		showReserve.setSeat_num(showReserveCommand.getSeat_num());
-		showReserve.setSeat_name(showReserveCommand.getSeat_name());
-		showReserve.setSeat_price(showReserveCommand.getSeat_price());
+		showReserve.setSeat_num_array(showReserveCommand.getSeat_num_array());
+		showReserve.setSeat_name_array(showReserveCommand.getSeat_name_array());
+		showReserve.setSeat_price_array(showReserveCommand.getSeat_price_array());
+		showReserve.setSeat_total_price(showReserveCommand.getSeat_total_price());
 		session.setAttribute("showReserveStored", showReserve);
 	}
 	
@@ -38,6 +39,4 @@ public class ShowReserveRegisterService {
 		showReserve.setPayment_num(payment_num);
 		Integer result = showReserveRepository.insertReserve(showReserve);
 	}
-
-	
 }

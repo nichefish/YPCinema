@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="icon" href="../img/core-img/favicon.ico">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -51,14 +52,10 @@ $(function() {
 	<%@ include file="../footer.jsp"%>
 </footer>
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
-   <!-- Popper js -->
-   <script src="js/popper.min.js"></script>
-   <!-- Bootstrap js -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- Plugins js -->
-   <script src="js/plugins.js"></script>
-   <!-- Active js -->
-   <script src="js/active.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/active.js"></script>
 <script>
 $(function() {
 	$("#btn").click(function() {
@@ -66,7 +63,7 @@ $(function() {
 		if (test) {
 			location.href = "main";
 		}
-	})
+	});
 });
 </script>
 </body>
