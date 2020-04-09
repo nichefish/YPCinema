@@ -99,9 +99,9 @@ div.card-body {
                		<input type="button" class="wowButton" id="chulgn" name="chulgn" value="출근" style="text-align:center;color:white;font-size:10px;" >
                 </div>
                 <div style="text-align:right;margin-right:30%;margin-top:20px;">
-                	<div id="se2">
-               			<input type="button" class="wowButton" id="tuegn" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
-               		</div>
+                <div id="se2">
+               		<input type="button" class="wowButton" id="tuegn" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
+               	</div>
                 </div>
               </form>
               </div>

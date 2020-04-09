@@ -148,7 +148,8 @@ $(function() {
 				<option value="3" label="3명">3</option>
 				<option value="4" label="4명">4</option>
 			</select>
-			<p id="reserve_people_now">총 1좌석 중 0좌석 선택하셨습니다. (총 금액: <input type="number" name="seat_total_price" id="seat_total_price" placeholder="0" value="">원)</p>
+			<p id="reserve_people_now">총 1좌석 중 0좌석 선택하셨습니다.</p>
+			(총 금액: <input type="number" name="seat_total_price" id="seat_total_price" placeholder="0" value="">원)
 			<div id="total_price"></div>
 			<p><br /></p>
 			<div style="width:60%;">

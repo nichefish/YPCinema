@@ -55,29 +55,14 @@ div.card-body {
 	<%@ include file="/WEB-INF/view/admin_nav.jsp" %>
 	 
         <!-- 스케줄표 -->
-        <form:form>
         <div class="container-fluid" style="padding-left: 50px;">
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">스케줄표 관리</h1>
           <!-- DataTales Example -->
-          
-          
           <div class="card shadow mb-4"style="width:75%;float: left; margin-right: 20px;">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary" style="text-align:center;">Schedule for 2020</h6>
               <input type="date" id="calendar" name="calendar">
-              <select name="theater_num" id="theater">
-              	<option value="" label="---지점 선택----" />
-			 	<c:forEach items="${theaters}" var="theater">
-			 		<option value="${theater.theater_num}" label="${theater.theater_name}" />
-			 	</c:forEach>       
-              </select>
-              <select name="jicmu_num" id="jicmu">
-              	<option value="" label="---직무 선택----" />
-			 	<c:forEach items="${jicmuList}" var="jicmu">
-			 		<option value="${jicmu.jic_num}" label="${jicmu.jic_name}" />
-			 	</c:forEach>       
-              </select>
             </div>
             <div class="card-body" style="height:500px;text-align:center;">
               <div class="table-responsive">
@@ -94,7 +79,7 @@ div.card-body {
                    		<td>토</td>
                    </tr>
                    <tr>
-					<!-- 열마다 해당 지점에서 근무하는 직원.. 향별로 forEach로 출력하면 되고... -->
+
                    	<c:forEach items="${calendar}" var="c" begin="0" end="6">
                    		<th>${c}</th>
                    	</c:forEach>
@@ -102,9 +87,13 @@ div.card-body {
                    
                    	<tr>
                    		<th>A manager</th>
-                   		<c:forEach var="i" begin="0" end="6">
-                   		<td><input type="radio" value="날짜 및 요일!"><br>-<br>-</td>
-                   		</c:forEach>
+                   		<td>월/3.30</td>
+                   		<td>화/3.31</td>
+                   		<td>수/4.1</td>
+                   		<td>목/4.2</td>
+                   		<td>금/4.3</td>
+                   		<td>토/4.4</td>
+                   		<td>일/4.5</td>
                    	</tr>
                    	<tr><th>B manager</th></tr>
                    	<tr><th>C manager</th></tr>
@@ -157,7 +146,7 @@ div.card-body {
 								<td>추가되어 있는 근무분류표가 없습니다.</td>
 							</tr>		
 						</c:if>
-				</table>
+				</table> 
               </div>
             </div>
           </div>
@@ -165,7 +154,6 @@ div.card-body {
 		<!-- 근무일정표 끝 -->
 		
         </div>
-        </form:form>
         <!-- /.container-fluid -->
 
 
@@ -226,20 +214,7 @@ div.card-body {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script>
-$(function() {
-	$("#theater").change(function() {
-		alert($("#theater").val() + "에서 근무하는 직원 목록을 출력(아직 안)합니다.");
-		// 해당 지점에 근무하는 직원 목록을 불러와야 되는데...
-		// ajax 쓰지말고.. 걍 바로 전부 불러오는 식으로.. 하면 될 거 같다...
-	});
-	$("#jicmu").change(function() {
-		alert($("#jicmu").val() + "직무로 근무하는 목록을 출력(아직 안)합니다.");
-		// 해당 지점에 근무하는 직원 목록을 불러와야 되는데...
-		// ajax 쓰지말고.. 걍 바로 전부 불러오는 식으로.. 하면 될 거 같다...
-	});
-});
-  </script>
+   <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 </body>
 </html>

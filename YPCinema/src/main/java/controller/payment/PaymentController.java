@@ -1,5 +1,6 @@
 package controller.payment;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import command.showtime.ShowReserveCommand;
 import service.payment.OrderListService;
 import service.payment.PaymentDetailService;
 import service.payment.PaymentInsertService;
+import service.payment.SendSMS;
 import service.showReserve.ShowReserveListService;
 import service.showReserve.ShowReserveRegisterService;
 
@@ -31,7 +33,7 @@ public class PaymentController {
 	private ShowReserveListService showReserveListService;
 	
 	@RequestMapping("/orderList")
-	public String orderList(HttpSession session, Model model) {
+	public String orderList(HttpSession session, Model model, HttpServletRequest request) {
 //		orderListService.getReserveSessionInfo(session, model);
 		return "payment/order_list";
 	}
@@ -44,12 +46,18 @@ public class PaymentController {
 	}
 	
 	@RequestMapping(value="/payment_success", method=RequestMethod.POST)
-	public String paymentSuccess(PaymentCommand paymentCommand, Model model, HttpSession session) {
+	public String paymentSuccess(PaymentCommand paymentCommand, Model model, HttpSession session, HttpServletRequest request) {
 		paymentInsertService.insertPayment(paymentCommand);
 		String payment_num = paymentDetailService.selectLastPayment(paymentCommand, model);
 		paymentCommand.setPayment_num(payment_num);
 		showReserveRegisterService.insertReserve(session, payment_num);
 		showReserveListService.selectShowReserveListByPayInfo(paymentCommand, model);
+		SendSMS sendSMS = new SendSMS();
+		try {
+			sendSMS.sendSMS(paymentCommand, request);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "payment/payment_detail";
 	}
 }
