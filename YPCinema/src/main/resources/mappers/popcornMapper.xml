@@ -43,6 +43,11 @@
 	<result column="GOODS_IMG" jdbcType="VARCHAR" property="goodsImage" />
 </resultMap>
 
+
+<insert id="menuGoodsInsert" parameterType="model.DTO.MenuGoodsDTO" >
+	insert into menu_goods (menu_num, theater_num, goods_num) values(#{menuNum}, #{theaterNum}, #{goodsNum})
+</insert>
+
 <!--  select  -->
 <select id="goodsList" resultMap="goodsBaseMap" parameterType="string">
 	select <include refid="baseGoodsColumn" /> from goods
@@ -83,7 +88,10 @@
 	delete from menu
 	where MENU_NUM = #{menuNum}
 </delete>
-	
-	
+
+<!-- 시퀀스 값 받아오기 -->
+<select id="selectSequenceNextval" resultType="int">
+	select nextval('seq');
+</select>
 
 </mapper>

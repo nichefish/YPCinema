@@ -104,14 +104,8 @@ $(function() {
 			</div>
 			<table border="0">
 				<tr>
-					<td colspan="4" align="right">
-						<a href="#">아이디 찾기</a>
-						<a href="#">비밀번호 찾기</a>
-						</td>
-					<td align="right">
-						<div id="register" style="display:inline;">
-							&nbsp;<a href="register">회원가입</a>
-						</div>
+					<td colspan="5">
+						<div id="register" align="right" style="display:inline;">&nbsp;<a href="register">회원가입</a></div>
 					</td>
 				</tr>
 			</table>

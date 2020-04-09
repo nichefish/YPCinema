@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import command.popcorn.MenuCommand;
 import model.DTO.MenuDTO;
+import model.DTO.MenuGoodsDTO;
 import repository.popcorn.MenuRepository;
 
 @Service
@@ -20,7 +21,8 @@ public class MenuWriterService {
 
 	public void menuWrite(MenuCommand menuCommand, HttpSession session, HttpServletRequest request) {
 		MenuDTO dto = new MenuDTO();
-		dto.setMenuNum(menuCommand.getMenuNum());
+		String menuNum = Integer.toString(menuRepository.selectSequenceNextval());
+		dto.setTheaterNum(menuNum);
 		dto.setTheaterNum(menuCommand.getTheaterNum());
 		dto.setMenuName(menuCommand.getMenuName());
 		dto.setMenuPrice(menuCommand.getMenuPrice());
@@ -43,5 +45,20 @@ public class MenuWriterService {
 		}
 		dto.setMenuImage(storeTotal);
 		menuRepository.menuInsert(dto);
+
+//		System.out.println(menuCommand.getGoodsNum());
+//		
+//		String [] goods_num_array = menuCommand.getGoodsNum().split(",");
+//		for (int i = 0; i < goods_num_array.length; i++) {
+//			MenuGoodsDTO menuGoods = new MenuGoodsDTO();
+//			menuGoods.setTheaterNum(menuCommand.getTheaterNum());
+//			menuGoods.setMenuNum(menuNum);
+//			menuGoods.setGoodsNum(goods_num_array[i]);
+//			menuRepository.menuGoodsInsert(menuGoods);
+//		}
+		
+//		for (int i = 0; i < menuCommand.getGoodsNum().length; i++) {
+
+//		}
 	}
 }

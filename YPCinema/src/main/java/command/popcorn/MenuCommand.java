@@ -7,9 +7,10 @@ public class MenuCommand {
 	String menuType;
 	String theaterNum;
 	String menuName ;
-	String menuContent ;
+	String menuContent;
 	Long menuPrice;
 	MultipartFile [] menuImage;
+	String goodsNum;
 	
 	public String getMenuNum() {
 		return menuNum;
@@ -52,5 +53,11 @@ public class MenuCommand {
 	}
 	public void setMenuImage(MultipartFile[] menuImage) {
 		this.menuImage = menuImage;
+	}
+	public String getGoodsNum() {
+		return goodsNum;
+	}
+	public void setGoodsNum(String goodsNum) {
+		this.goodsNum = goodsNum;
 	}
 }

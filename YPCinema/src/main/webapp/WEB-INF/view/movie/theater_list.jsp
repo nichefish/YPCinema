@@ -26,10 +26,6 @@
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
  		<p>양평시네마 지점 정보</p>
- 		<form:form method="get">
- 			<p><input type="text"> <input type="button" value="지점 검색"></p>
- 			<p>지점 검색? (구현안함)</p>
- 		</form:form>
 		<p><br /></p>
 		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<c:forEach items="${theaters}" var="theater">
