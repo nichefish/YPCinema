@@ -12,7 +12,7 @@
 	    <bean id="goodsModifyService" class = "service.popcorn.GoodsModifyService" />
 	    <bean id="menuListService" class = "service.popcorn.MenuListService" />
 	    <bean id="menuDeleteService" class = "service.popcorn.MenuDeleteService" />
-	     <bean id="menuCartService" class = "service.popcorn.MenuCartService" />
+	    <bean id="menuCartService" class = "service.popcorn.MenuCartService" />
 	   
 	    
 	    <!-- Repository -->

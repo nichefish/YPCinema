@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="staffMapper">
+	<cache />
+	<sql id="basecolumn">
+		staff_num, m_num, theater_num, jic_num, staff_date, staff_bank, staff_banknum
+	</sql>
+	
+	<select id="selectStaffByInfo" parameterType="model.DTO.StaffDTO" resultMap="baseStaffMap">
+		select <include refid="basecolumn" /> from staff
+		<trim prefix="where" prefixOverrides="and">
+			<if test="m_num != null">and m_num = #{m_num}</if>
+			<if test="theater_num != null">and theater_num = #{theater_num}</if>
+			<if test="jic_num != null">and jic_num = #{jic_num}</if>
+		</trim>
+	</select>
+	
+	<select id="selectStaffByMNum" parameterType="model.DTO.StaffDTO" resultMap="baseStaffMap">
+		select <include refid="basecolumn" /> from staff where m_num = #{m_num}
+	</select>
+	
+	<resultMap type="model.DTO.StaffDTO" id="baseStaffMap">
+		<id column="staff_num" jdbcType="VARCHAR" property="staff_num" />
+		<id column="m_num" jdbcType="VARCHAR" property="m_num" />
+		<id column="theater_num" jdbcType="VARCHAR" property="theater_num" />
+		<id column="jic_num" jdbcType="VARCHAR" property="jic_num" />
+		<result column="staff_date" jdbcType="DATE" property="staff_date" />
+		<result column="staff_bank" jdbcType="VARCHAR" property="staff_bank" />
+		<result column="staff_banknum" jdbcType="VARCHAR" property="staff_banknum" />
+	</resultMap>
+</mapper>

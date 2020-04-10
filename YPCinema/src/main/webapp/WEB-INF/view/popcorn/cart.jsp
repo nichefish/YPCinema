@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,15 +13,13 @@
 <link rel="stylesheet" href="css/magnific-popup.css">
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/goodsList.css" />
-
 <script type="text/javascript">
-function checkQty(num, qty){
-	if(qty > 1){
+function checkQty(num, qty) {
+	if (qty > 1) {
 		location.href="cartQtyDown?menuNum="+num;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -30,22 +27,18 @@ function buy1() {
 	var chkbox = document.getElementsByName('delete'); 
 	var chk = 0; 
 	var num = "";
-	for(var i=0 ; i<chkbox.length ; i++) 
-	{ 
-		if(chkbox[i].checked) 
-		{ 
+	for (var i=0 ; i<chkbox.length ; i++) { 
+		if (chkbox[i].checked) { 
 			chk += 1;
 			num+=chkbox[i].value +",";
 		} 
  	}
-	if(chk == 0) {
+	if (chk == 0) {
 		alert("구매 상품을 선택해 주세요.");
-	}else { 
+	} else { 
 		location.href = "menuBuy?chkNum="+ num;
 	}
-
 }
-
 </script>
 </head>
 <body>
@@ -76,80 +69,89 @@ function buy1() {
 						<!-- 상품 수 출력 종료 -->
 					</div>
 				</div>
-				<!-- 메인 종료 -->
-				<div>
-					<br /> <br /> <br />
-				</div>
-<c:if test = "${!empty cartList }">
-   
-
+				<c:if test = "${!empty cartList }">
 				<div id="productList" float="left">
-					<form action="cartRemove" method="post" name="frm" id = "frm">
+					<form action="cartCart" method="post" name="frm" id="frm">
 						<table align="center" width="600" border="1">
 							<tr align="center">
-								<td></td>
-								<td>이미지</td>
+								<td>-</td>
 								<td>메뉴명</td>
 								<td>가격</td>
 								<td>수량</td>
-								<td align="center"><input type="submit" value="삭제" /></td>
+								<td><input type="checkbox" name="selectAll" id="selectAll" /></td>
 							</tr>
+							<c:set var="totalPrice" value="0" />
 							<c:forEach var="cart" items="${cartList }" step="1">
 								<tr align="center">
-									<td><img src="popcorn/update/${cart.menuImage }"
-										width="100" /></td>
+									<td><img src="popcorn/update/${cart.menuImage}" width="100" /></td>
 									<td>${cart.menuName }</td>
 									<td>${cart.menuPrice }</td>
-									<td><a href="cartQtyUp?num=${cart.menuNum }">+ </a>
-									 ${cart.qty } <a href="javascript:checkQty('${cart.menuNum }',${cart.qty })">- </a></td>
-									<td align="center">
-									<input type="checkbox" name="delete" id = "delete"
-										value="${cart.menuNum  }" /></td>
+									<c:set var="totalPrice" value="${totalPrice + cart.menuPrice }" />
+									<td><a href="cartQtyUp?num=${cart.menuNum }">+ </a> ${cart.menuQty } <a href="javascript:checkQty('${cart.menuNum }',${cart.menuQty })">- </a></td>
+									<td><input type="checkbox" name="select" id="select" value="${cart.menuNum }" /></td>
 								</tr>
 							</c:forEach>
 						</table>
+						<table align="center" width="600" border="0">
+							<tr align="center" bgcolor="yellow">
+								<td align="right" colspan="6">
+								<font color ="gray" size="5">총 결제금액 : ${totalPrice }</font>
+								<font color ="black" size="5">원</font>
+								</td>
+							</tr>
+						</table>
+						<table align="center" width="600" border="0">
+							<tr align="center">
+								<td align="right" colspan="6">
+									<input type="hidden" id="submit_mode" name="submit_mode" >
+									<input type="button" id="delete_Btn" value="선택상품 삭제" />
+									<input type="button" id="buy_Btn" value="선택상품 구매하기" onclick="buy1();">
+								</td>
+							</tr>
+						</table>
 					</form>
-					<table align="center" width="600" border="0">
-	<tr align="center" bgcolor="yellow">
-		<td align="right" colspan="6">
-		<font color ="gray" size="5">총 결제금액 : ${totalMoney }</font>
-		<font color ="black" size="5">원</font>
-		</td>
-	</tr>
-</table>
-					<table align="center" width="600" border="0">
-						<tr align="center">
-							<td align="right" colspan="6"> 
-									<input type = "button" value = "구매하기" onclick="buy1();"></td>
-						</tr>
-					</table>
 				</div>
-		</c:if>
-		<c:if test = "${empty cartList }">
-  		<div id = "cartEmpty">
-  		 	<table>
-  		 		<tr align="center" valign="middle">
-      				<td align=right>
-         				<font size=2>장바구니가 비어있습니다.</font>
-      				</td>
- 			  </tr>
- 		  </table>
-		</div>
-		</c:if>
-			</div>		
-		</div>
-	<footer class="footer-area">
-		<%@ include file="../footer.jsp"%>
-	</footer>
-	<script src="js/jquery/jquery-2.2.4.min.js"></script>
-	<!-- Popper js -->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap js -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Plugins js -->
-	<script src="js/plugins.js"></script>
-	<!-- Active js -->
-	<script src="js/active.js"></script>
-	
+			</c:if>
+			<c:if test = "${empty cartList }">
+	  		<div id = "cartEmpty">
+	  		 	<table>
+	  		 		<tr align="center" valign="middle">
+	      				<td align=right>
+	         				<font size=2>장바구니가 비어있습니다.</font>
+	      				</td>
+	 			  </tr>
+	 		  </table>
+			</div>
+			</c:if>
+		</div>		
+	</div>
+<footer class="footer-area">
+	<%@ include file="../footer.jsp"%>
+</footer>
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/active.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+	$("#selectAll").change(function() {
+		if ($(this).is(":checked", true)) {
+			$("input:checkbox[name='select']").prop("checked", true);
+		} else {
+			$("input:checkbox[name='select']").prop("checked", false);
+		}
+	});
+	$("#delete_Btn").click(function() {
+		$("#submit_mode").val("delete");
+		$("#frm").submit();
+	});
+	$("#buy_Btn").click(function() {
+		$("#submit_mode").val("buy");
+		$("#frm").submit();
+	});
+});
+</script>
 </body>
 </html>

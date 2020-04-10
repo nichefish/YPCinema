@@ -90,6 +90,11 @@ public class MenuRepository {
 		String statement = namespace + ".wishList";
 		return sqlSession.selectList(statement, userId);
 	}
+
+	public void removeCart(CartDTO cart) {
+		String statement = namespace + ".cartCartRemove";
+		sqlSession.delete(statement, cart);
+	}
 	
 
 }

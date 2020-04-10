@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scheduleMapper">
+	<cache />
+
+	<sql id="basecolumn">
+		gnmu_num, gbun_num, staff_num, gnmu_date, gnmu_stime, gnmu_etime, gnmu_bigo, gnmu_yunt, gnmu_yat, gnmu_time
+	</sql>
+	
+	<insert id="addSchedule" parameterType="model.DTO.ScheduleDTO">
+		insert into gnmu (<include refid="basecolumn" />) values ( CONCAT('S_', (LPAD((SELECT nextval('seq')),4,0))), #{gbun_num}, #{staff_num}, #{gnmu_date}, null, null, 0, 0, 0, 0)
+	</insert>
+
+	<select id="selectTodayScheduleByStaffNum" parameterType="model.DTO.ScheduleDTO" resultMap="baseScheduleMap">
+		select <include refid="basecolumn" /> from gnmu where staff_num = #{staff_num} and gnmu_date = curdate()
+	</select>
+	
+	<update id="setGnteChulgn" parameterType="model.DTO.ScheduleDTO">
+		update gnmu set gnmu_stime = curtime() where staff_num = #{staff_num} and gnmu_date = curdate()
+	</update>
+	
+	<update id="setGnteTuegn" parameterType="model.DTO.ScheduleDTO">
+		update gnmu set gnmu_etime = curtime(), gnmu_time = timediff(curtime(), gnmu_stime) where staff_num = #{staff_num} and gnmu_date = curdate()
+	</update>
+	
+	<select id="selectAllSchedule" resultMap="baseScheduleMap">
+		select <include refid="basecolumn" /> from gnmu
+	</select>
+
+	<resultMap type="model.DTO.ScheduleDTO" id="baseScheduleMap">
+		<id column="gnmu_num" jdbcType="VARCHAR" property="gnmu_num" />	<!-- PK/FK.. -->
+		<id column="gbun_num" jdbcType="VARCHAR" property="gbun_num" />		<!-- 일반속성... -->
+		<id column="staff_num" jdbcType="VARCHAR" property="staff_num" />
+		<result column="gnmu_date" jdbcType="DATE" property="gnmu_date" />
+		<result column="gnmu_stime" jdbcType="VARCHAR" property="gnmu_stime" />
+		<result column="gnmu_etime" jdbcType="VARCHAR" property="gnmu_etime" />
+		<result column="gnmu_bigo" jdbcType="VARCHAR" property="gnmu_bigo" />
+		<result column="gnmu_yunt" jdbcType="VARCHAR" property="gnmu_yunt" />
+		<result column="gnmu_yat" jdbcType="VARCHAR" property="gnmu_yat" />
+		<result column="gnmu_time" jdbcType="VARCHAR" property="gnmu_time" />
+	</resultMap>
+</mapper>

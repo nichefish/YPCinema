@@ -10,6 +10,8 @@ public class AuthInfo implements Serializable {
 	private String m_picture;
 	private String m_admin;		// 회원유형...
 	private String mode;			// 직원 또는 관리자일 때. 이용자모드/관리자모드...
+	private String staff_num;
+	private String theater;
 	
 	public String getM_id() {
 		return m_id;
@@ -46,5 +48,17 @@ public class AuthInfo implements Serializable {
 	}
 	public void setMode(String mode) {
 		this.mode = mode;
+	}
+	public String getStaff_num() {
+		return staff_num;
+	}
+	public void setStaff_num(String staff_num) {
+		this.staff_num = staff_num;
+	}
+	public String getTheater() {
+		return theater;
+	}
+	public void setTheater(String theater) {
+		this.theater = theater;
 	}
 }

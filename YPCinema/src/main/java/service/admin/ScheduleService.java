@@ -4,13 +4,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import command.admin.ScheduleCommand;
 import model.DTO.CalendarDTO;
+import model.DTO.ScheduleDTO;
+import repository.schedule.ScheduleRepository;
 
 @Service
 public class ScheduleService {
+	@Autowired
+	private ScheduleRepository scheduleRepository;
+	
 	//달력 
 	public void scheduleView(Model model) {
 		List<String> calendars = new ArrayList<String>();
@@ -47,13 +54,28 @@ public class ScheduleService {
 	          for(int i=0; i<6; i++) {
 	              for(int j=0; j<7; j++) {
 	            	  if(day[month][i][j] != 0) {
-	            	  calendars.add(mm+"/"+Integer.toString(day[month][i][j]));
-	            	  System.out.println("calendar에 들어간 값=" + mm+"/"+day[month][i][j]);
-
+	            	  calendars.add(mm+"-"+Integer.toString(day[month][i][j]));
+//	            	  System.out.println("calendar에 들어간 값=" + mm+"/"+day[month][i][j]);
 	            	  }
 	              }
 	         }
 	    }
 	    model.addAttribute("calendar",calendars);
+	}
+
+	public void addSchedule(ScheduleCommand scheduleCommand) {
+		ScheduleDTO schedule = new ScheduleDTO();
+		schedule.setGnmu_date(scheduleCommand.getGnmu_date());
+		System.out.println(schedule.getGnmu_date());
+		schedule.setGbun_num(scheduleCommand.getGbun_num());
+		System.out.println(schedule.getGbun_num());
+		schedule.setStaff_num(scheduleCommand.getStaff_num());
+		System.out.println(schedule.getStaff_num());
+		scheduleRepository.addSchedule(schedule);
+	}
+
+	public void selectAllSchedule(Model model) {
+		List<ScheduleDTO> lists = scheduleRepository.selectAllSchedule();
+		model.addAttribute("scheduleList", lists);
 	}
 }

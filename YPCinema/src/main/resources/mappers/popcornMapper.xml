@@ -2,117 +2,122 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="popcornMapper">
-<cache />
-
-<!-- 컬럼 -->
-<sql id="baseMenuColumn">
-	MENU_NUM, THEATER_NUM, MENU_NAME, MENU_CONTENT, MENU_PRICE, MENU_IMG, MENU_TYPE
-</sql>
-
-<sql id="baseGoodsColumn">
-	GOODS_NUM, GOODS_NAME, GOODS_TYPE, GOODS_PRICE, GOODS_IMG
-</sql>
-
-<!-- Insert -->
-<insert id="menuInsert" parameterType="menu" >
-	insert into menu ( <include refid="baseMenuColumn" /> )
-	values(nextval('seq'), #{theaterNum}, #{menuName},  #{menuContent},
-	#{menuPrice},  #{menuImage},  #{menuType})
-</insert>
-
-<resultMap type="menu" id="menuBaseMap">
-	<id column="MENU_NUM" jdbcType="VARCHAR" property="menuNum"/>
-	<result column="THEATER_NUM" jdbcType="VARCHAR" property="theaterNum" />
-	<result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
-	<result column="MENU_CONTENT" jdbcType="VARCHAR" property="menuContent" />
-	<result column="MENU_PRICE" jdbcType="BIGINT" property="menuPrice" />
-	<result column="MENU_TYPE" jdbcType="VARCHAR" property="menuType" />
-	<result column="MENU_IMG" jdbcType="VARCHAR" property="menuImage" />
-</resultMap>
-
-<insert id="goodsInsert" parameterType="goods" >
-	insert into goods ( <include refid="baseGoodsColumn" /> )
-	values(nextval('seq'), #{goodsName}, #{goodsType}, #{goodsPrice}, #{goodsImage})
-</insert>
-
-<resultMap type="goods" id="goodsBaseMap">
-	<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
-	<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
-	<result column="GOODS_TYPE" jdbcType="VARCHAR" property="goodsType" />
-	<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice" />
-	<result column="GOODS_IMG" jdbcType="VARCHAR" property="goodsImage" />
-</resultMap>
-
-
-<insert id="menuGoodsInsert" parameterType="model.DTO.MenuGoodsDTO" >
-	insert into menu_goods (menu_num, theater_num, goods_num) values(#{menuNum}, #{theaterNum}, #{goodsNum})
-</insert>
-
-<insert id="cartInsert" parameterType="cart">	
-	insert into cart (cart_num, user_id, menu_name, menu_price, menu_img, menu_num, menu_qty)
-	values(nextval('seq'), #{userId},#{menuName},#{menuPrice}, #{menuImage},#{menuNum},#{menuQty})
- </insert>
-
-<!--  select  -->
-<select id="goodsList" resultMap="goodsBaseMap" parameterType="string">
-	select <include refid="baseGoodsColumn" /> from goods
-	<trim prefix="where" prefixOverrides="AND | OR">
-		<if test="value != null">
-			GOODS_NUM = #{goodsNum}  
-		</if>
-	</trim>
-</select>
-
-<select id="menuList" resultMap="menuBaseMap" parameterType="string">
-	select <include refid="baseMenuColumn" /> from menu
-	<trim prefix="where" prefixOverrides="AND | OR">
-		<if test="value != null">
-			MENU_NUM = #{menuNum}  
-		</if>
-	</trim>
-</select>
-
-<select id="goodsModify" resultMap="goodsBaseMap">
-	select  <include refid="baseGoodsColumn" /> from goods
-	where GOODS_NUM = #{goodsNum}
-</select>
+	<cache />
 	
-<select id="menuType" resultMap="menuBaseMap" parameterType="string">
-	select <include refid="baseMenuColumn" /> from menu
-	where MENU_TYPE = #{menuType}
-</select>
-
-
--<resultMap id="cartListMap" type="cart">
-<id property="cartNum" jdbcType="VARCHAR" column="cart_num"/>
-<result property="menuNum" jdbcType="VARCHAR" column="menu_num"/>
-<result property="userId" jdbcType="VARCHAR" column="user_id"/>
-<result property="menuName" jdbcType="VARCHAR" column="menu_name"/>
-<result property="menuPrice" jdbcType="VARCHAR" column="menu_price"/>
-<result property="menuImage" jdbcType="VARCHAR" column="menu_img"/>
-<result property="menuQty" jdbcType="VARCHAR" column="menu_qty"/>
-</resultMap>
-
-<select id="cartList" parameterType="string" resultMap="cartListMap">
-select cart_num, menu_num, user_id, menu_name, menu_price, menu_img, menu_qty
-from cart where user_id = #{userId} 
-</select>
+	<!-- 컬럼 -->
+	<sql id="baseMenuColumn">
+		MENU_NUM, THEATER_NUM, MENU_NAME, MENU_CONTENT, MENU_PRICE, MENU_IMG, MENU_TYPE
+	</sql>
 	
-<!-- update -->
-<update  id="goodsModifyPro" parameterType="goods">
-	update goods set GOODS_TYPE =  #{goodsType}, GOODS_NAME =  #{goodsName}, GOODS_PRICE =  #{goodsPrice}, GOODS_IMG=#{goodsImage}
-	where GOODS_NUM = #{goodsNum}
-</update>
+	<sql id="baseGoodsColumn">
+		GOODS_NUM, GOODS_NAME, GOODS_TYPE, GOODS_PRICE, GOODS_IMG
+	</sql>
 	
-<!-- Delete -->
-<delete id="menuDelete" parameterType="string">
-	delete from menu
-	where MENU_NUM = #{menuNum}
-</delete>
-
-<!-- 시퀀스 값 받아오기 -->
-<select id="selectSequenceNextval" resultType="int">
-	select nextval('seq');
-</select>
+	<!-- Insert -->
+	<insert id="menuInsert" parameterType="menu" >
+		insert into menu ( <include refid="baseMenuColumn" /> )
+		values(nextval('seq'), #{theaterNum}, #{menuName},  #{menuContent},
+		#{menuPrice},  #{menuImage},  #{menuType})
+	</insert>
+	
+	<resultMap type="menu" id="menuBaseMap">
+		<id column="MENU_NUM" jdbcType="VARCHAR" property="menuNum"/>
+		<result column="THEATER_NUM" jdbcType="VARCHAR" property="theaterNum" />
+		<result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
+		<result column="MENU_CONTENT" jdbcType="VARCHAR" property="menuContent" />
+		<result column="MENU_PRICE" jdbcType="BIGINT" property="menuPrice" />
+		<result column="MENU_TYPE" jdbcType="VARCHAR" property="menuType" />
+		<result column="MENU_IMG" jdbcType="VARCHAR" property="menuImage" />
+	</resultMap>
+	
+	<insert id="goodsInsert" parameterType="goods" >
+		insert into goods ( <include refid="baseGoodsColumn" /> )
+		values(nextval('seq'), #{goodsName}, #{goodsType}, #{goodsPrice}, #{goodsImage})
+	</insert>
+	
+	<resultMap type="goods" id="goodsBaseMap">
+		<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+		<result column="GOODS_TYPE" jdbcType="VARCHAR" property="goodsType" />
+		<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice" />
+		<result column="GOODS_IMG" jdbcType="VARCHAR" property="goodsImage" />
+	</resultMap>
+	
+	
+	<insert id="menuGoodsInsert" parameterType="model.DTO.MenuGoodsDTO" >
+		insert into menu_goods (menu_num, theater_num, goods_num) values(#{menuNum}, #{theaterNum}, #{goodsNum})
+	</insert>
+	
+	<insert id="cartInsert" parameterType="cart">	
+		insert into cart (cart_num, user_id, menu_name, menu_price, menu_img, menu_num, menu_qty)
+		values(nextval('seq'), #{userId},#{menuName},#{menuPrice}, #{menuImage},#{menuNum},#{menuQty})
+	 </insert>
+	
+	<!--  select  -->
+	<select id="goodsList" resultMap="goodsBaseMap" parameterType="string">
+		select <include refid="baseGoodsColumn" /> from goods
+		<trim prefix="where" prefixOverrides="AND | OR">
+			<if test="value != null">
+				GOODS_NUM = #{goodsNum}  
+			</if>
+		</trim>
+	</select>
+	
+	<select id="menuList" resultMap="menuBaseMap" parameterType="string">
+		select <include refid="baseMenuColumn" /> from menu
+		<trim prefix="where" prefixOverrides="AND | OR">
+			<if test="value != null">
+				MENU_NUM = #{menuNum}  
+			</if>
+		</trim>
+	</select>
+	
+	<select id="goodsModify" resultMap="goodsBaseMap">
+		select  <include refid="baseGoodsColumn" /> from goods
+		where GOODS_NUM = #{goodsNum}
+	</select>
+		
+	<select id="menuType" resultMap="menuBaseMap" parameterType="string">
+		select <include refid="baseMenuColumn" /> from menu
+		where MENU_TYPE = #{menuType}
+	</select>
+	
+	
+	<resultMap id="cartListMap" type="cart">
+		<id property="cartNum" jdbcType="VARCHAR" column="cart_num"/>
+		<result property="menuNum" jdbcType="VARCHAR" column="menu_num"/>
+		<result property="userId" jdbcType="VARCHAR" column="user_id"/>
+		<result property="menuName" jdbcType="VARCHAR" column="menu_name"/>
+		<result property="menuPrice" jdbcType="VARCHAR" column="menu_price"/>
+		<result property="menuImage" jdbcType="VARCHAR" column="menu_img"/>
+		<result property="menuQty" jdbcType="VARCHAR" column="menu_qty"/>
+	</resultMap>
+	
+	<select id="cartList" parameterType="string" resultMap="cartListMap">
+		select cart_num, menu_num, user_id, menu_name, menu_price, menu_img, menu_qty
+		from cart where user_id = #{userId} 
+	</select>
+		
+	<!-- update -->
+	<update id="goodsModifyPro" parameterType="goods">
+		update goods set GOODS_TYPE =  #{goodsType}, GOODS_NAME =  #{goodsName}, GOODS_PRICE =  #{goodsPrice}, GOODS_IMG=#{goodsImage}
+		where GOODS_NUM = #{goodsNum}
+	</update>
+		
+	<!-- Delete -->
+	<delete id="menuDelete" parameterType="string">
+		delete from menu
+		where MENU_NUM = #{menuNum}
+	</delete>
+	
+	<!-- 시퀀스 값 받아오기 -->
+	<select id="selectSequenceNextval" resultType="int">
+		select nextval('seq');
+	</select>
+	
+	<delete id="cartCartRemove" parameterType="cart">
+		delete from cart where MENU_NUM = #{menuNum} and user_id = #{userId}
+	</delete>
+	
 
 </mapper>

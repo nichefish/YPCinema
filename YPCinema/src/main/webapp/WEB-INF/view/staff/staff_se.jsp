@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +21,6 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 <style>
   .bg-gradient-primary {
     background-color: #070a12;
@@ -36,7 +34,6 @@ div.backLayerssss {
 	left: 0px;
 	top: 0px;
 }
-
 div#loadingDiv {
 	background-color: white;
 	text-align:center;
@@ -48,31 +45,28 @@ div#loadingDiv {
 div.card-body {
 	height: 367px;
 }
-
-		.wowButton {
-			background-color: #3f3f42;
-			display: inline-block;
-			height: 70px;
-			width: 150px;
-			padding: 15px 30px;
-			margin: 10px;
-			border: none;
-			outline: none;
-			border-radius: 20px;
-			text-align: center;
-			text-decoration: none;
-			font-size: 22px;
-			cursor: pointer;
-			box-shadow: 0 9px #3e3636;
-		}
-		.wowButton:active {
-			background-color: #FF8C00;
-			box-shadow: 0 5px #3e3636;
-			transform: translateY(4px);
-		}
-
-  </style>
- 
+.wowButton {
+	background-color: #3f3f42;
+	display: inline-block;
+	height: 70px;
+	width: 150px;
+	padding: 15px 30px;
+	margin: 10px;
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 22px;
+	cursor: pointer;
+	box-shadow: 0 9px #3e3636;
+}
+.wowButton:active {
+	background-color: #FF8C00;
+	box-shadow: 0 5px #3e3636;
+	transform: translateY(4px);
+}
+</style>
 </head>
 <body id="page-top">
 <div class='backLayerssss' style=''></div>
@@ -90,18 +84,41 @@ div.card-body {
             </div>
             <div class="card-body" style="height:auto;'">
               <div class="table-responsive">
-              <form>
-                <h1 class="h3 mb-2 text-gray-800" style="text-align:center;color:#d8d8e1 !important;">지점이름</h1>
-                <p class="h3 mb-2 text-gray-800" style="text-align:center;font-size:50px;">OOO님,</p>
+              <form id="frm" method="post">
+              	<input type="hidden" name="gnte_mode" id="gnte_mode">
+                <h1 class="h3 mb-2 text-gray-800" style="text-align:center;color:#d8d8e1 !important;">${authInfo.theater}번 지점 근무하시는</h1>
+                <p class="h3 mb-2 text-gray-800" style="text-align:center;font-size:50px;">직원번호 ${authInfo.staff_num}번 "${authInfo.m_name}"님,</p>
                 <p class="h3 mb-2 text-gray-800" style="text-align:center;font-size:15px;">
-                	오늘의 근무계획은 <b>시간1 ~ 시간2</b> 입니다. or 오늘은  <b style="color:red;">휴일 </b>입니다.
-                <div style="margin-left:30%;margin-top:20px;float:left">
+                	<c:if test="${!empty schedule }">
+                	오늘의 근무일정은 ${gnmu.gbunName}입니다.<br/>
+                	오늘의 근무시간은 <b><span id="startTime">${gnmu.gbunSTime}</span> ~ <span id="endTime">${gnmu.gbunETime}</span></b> 입니다. 
+                	</c:if>
+                	<c:if test="${!empty schedule && gnmu.gbunSTime eq '00:00:00' }">
+                	오늘은  <b style="color:red;">휴일 </b>입니다.
+                	</c:if>
+                	<c:if test="${empty schedule}">
+                	오늘은 근무일정이 없습니다.
+                	</c:if>
+                </p>
+                <div style="margin-left:35%;margin-top:20px;display:inline;">
+                	<c:if test="${(schedule.gnmu_stime eq null || schedule.gnmu_stime eq '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 안찍었고 휴일 아닐때 -->
                		<input type="button" class="wowButton" id="chulgn" name="chulgn" value="출근" style="text-align:center;color:white;font-size:10px;" >
+                	</c:if>
+                	<c:if test="${(schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 찍었고 휴일 아닐때 -->
+               		<input type="button" class="wowButton" id="chulgn_time" name="chulgn" value="${schedule.gnmu_stime}에 출근함" style="text-align:center;color:white;font-size:10px;" >
+                	</c:if>
                 </div>
-                <div style="text-align:right;margin-right:30%;margin-top:20px;">
-                <div id="se2">
-               		<input type="button" class="wowButton" id="tuegn" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
-               	</div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div style="text-align:right;margin-right:35%;margin-top:20px;">
+                	<c:if test="${(schedule.gnmu_stime eq null || schedule.gnmu_stime eq '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 안찍었고 휴일 아닐때 -->
+                	<input type="button" class="wowButton" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
+                	</c:if>
+                	<c:if test="${(schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00' && (schedule.gnmu_etime eq null || schedule.gnmu_etime eq '00:00:00')}">	<!-- 출근 찍었고 휴일 아닐때 -->
+               		<input type="button" class="wowButton" id="tuegn" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;">
+                	</c:if>
+					<c:if test="${(schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00' && (schedule.gnmu_etime ne null && schedule.gnmu_etime ne '00:00:00')}">	<!-- 출근 찍었고 휴일 아닐때 -->
+               		<input type="button" class="wowButton" name="tuegn" value="${schedule.gnmu_etime}에 퇴근함" style="text-align:center;color:white;font-size:10px;">
+                	</c:if>
                 </div>
               </form>
               </div>
@@ -170,28 +187,59 @@ div.card-body {
   <script src="js/demo/datatables-demo.js"></script>
    <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+function replaceAll(str, searchStr, replaceStr) {
+	return str.split(searchStr).join(replaceStr);
+	}
 $(function(){
 	$("#chulgn").click(function(){
-		var Now = new Date();
-		var NowTime = Now.getFullYear();
-		NowTime += '-' + (Now.getMonth() + 1);
-		NowTime += '-' + Now.getDate();
-		NowTime += ' ' + Now.getHours();
-		NowTime += ':' + Now.getMinutes();
-		$('#chulgn').attr('disabled', true);
-		var chulgn = $("#chulgn").val(NowTime);
+		var d = new Date();
+		var str = d.getHours() * 10000 + d.getMinutes() * 100 + d.getSeconds();
+		var startTime = Number(replaceAll($('#startTime').text(), ":", ""));
+		$("#gnte_mode").val("0");
+		alert("출근입니다.");
+		if (str > startTime) {
+			alert("지각입니다.");
+		}
+		$("#frm").submit();
 		
-		$.ajax({
-			type:"POST",
-			url:"staff_se2",
-			data:{"chulgnTime": $("#chulgn").val()},
-			datatype:"html",
-			success: function(data1){
-				$("#se2").html(data1);
-			}
-			
-		});
 	});
+	$("#tuegn").click(function(){
+		var d = new Date();
+		var str = d.getHours() * 10000 + d.getMinutes() * 100 + d.getSeconds();
+		var endTime = Number(replaceAll($('#endTime').text(), ":", ""));
+		if (str < endTime) {
+			var test = confirm("아직 퇴근시간이 안 되었습니다. 조퇴하시겠습니까?");
+			if (test) {
+				$("#gnte_mode").val("1");
+				alert("조퇴입니다.");
+			} else {
+				return false;
+			}
+		} else {
+			alert("퇴근입니다.");
+		}
+		$("#frm").submit();
+	});
+// 		var Now = new Date();
+// 		var NowTime = Now.getFullYear();
+// 		NowTime += '-' + (Now.getMonth() + 1);
+// 		NowTime += '-' + Now.getDate();
+// 		NowTime += ' ' + Now.getHours();
+// 		NowTime += ':' + Now.getMinutes();
+// 		$('#chulgn').attr('disabled', true);
+// 		var chulgn = $("#chulgn").val(NowTime);
+		
+// 		$.ajax({
+// 			type:"POST",
+// 			url:"staff_se2",
+// 			data:{"chulgnTime": $("#chulgn").val()},
+// 			datatype:"html",
+// 			success: function(data1){
+// 				$("#se2").html(data1);
+// 			}
+			
+// 		});
+// 	});
 });
 </script>
 </body>

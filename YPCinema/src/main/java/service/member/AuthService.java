@@ -12,7 +12,9 @@ import org.springframework.validation.Errors;
 import command.member.LoginCommand;
 import model.DTO.AuthInfo;
 import model.DTO.MemberDTO;
+import model.DTO.StaffDTO;
 import repository.member.MemberRepository;
+import service.staff.StaffDetailService;
 
 @Service
 public class AuthService {
@@ -20,6 +22,8 @@ public class AuthService {
 	private MemberRepository memberRepository;
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	@Autowired
+	private StaffDetailService staffDetailService;
 	
 	public String authenticate(LoginCommand loginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
 		MemberDTO member = new MemberDTO();
@@ -49,9 +53,19 @@ public class AuthService {
 				authInfo.setM_picture(member.getM_picture());
 				authInfo.setM_admin(member.getM_admin());
 				authInfo.setMode("0");
-				Cookie autoLoginCookie = new Cookie("autoLogin", member.getM_id());		// 자동로그인 쿠키...
-				autoLoginCookie.setMaxAge(60*60*24*30);
-				response.addCookie(autoLoginCookie);
+				if (member.getM_admin().equals("1") || member.getM_admin().equals("2")) {
+					StaffDTO staff = new StaffDTO();
+					staff.setM_num(member.getM_num());
+					staff = staffDetailService.selectStaffByMNum(staff);
+					authInfo.setStaff_num(staff.getStaff_num());
+					authInfo.setTheater(staff.getTheater_num());
+					System.out.println("스탭:" + staff.getStaff_num());
+				}
+				if (loginCommand.getAutoLogin()) {		// 자동로그인 체크되어 있으면..
+					Cookie autoLoginCookie = new Cookie("autoLogin", member.getM_id());		// 자동로그인 쿠키...
+					autoLoginCookie.setMaxAge(60*60*24*30);
+					response.addCookie(autoLoginCookie);
+				}
 				session.setAttribute("authInfo", authInfo);
 				path = "redirect:/main";
 			} else {

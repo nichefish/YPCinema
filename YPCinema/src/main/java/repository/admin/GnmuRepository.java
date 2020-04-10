@@ -42,4 +42,9 @@ public class GnmuRepository {
 		String statement = namespace + ".deleteGnmuTime";
 		sqlSession.delete(statement, gbunNum);
 	}
+	//근무번호로 근무기준정보 불러오기
+	public GngijunDTO gnmuDetail(String gbun_num) {
+		String statement = namespace + ".selectGngijun";
+		return sqlSession.selectOne(statement, gbun_num);
+	}
 }

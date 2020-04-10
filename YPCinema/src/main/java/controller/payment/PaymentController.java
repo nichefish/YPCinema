@@ -54,7 +54,7 @@ public class PaymentController {
 		showReserveListService.selectShowReserveListByPayInfo(paymentCommand, model);
 		SendSMS sendSMS = new SendSMS();
 		try {
-			sendSMS.sendSMS(paymentCommand, request);
+			sendSMS.sendPaymentSMS(paymentCommand, request);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

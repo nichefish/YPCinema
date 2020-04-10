@@ -28,6 +28,9 @@
 	<select id="selectGngijunLists" resultMap="gnmuMap">
 		select <include refid="GnmuColumns" /> from gngijun
 	</select>
+	<select id="selectGngijun" parameterType="string" resultMap="gnmuMap">
+		select <include refid="GnmuColumns" /> from gngijun where gbun_num = #{gbunNum}
+	</select>
 	
 	<!-- Insert Part! -->
 	<insert id="insertGnmuTime" parameterType="model.DTO.GngijunDTO">

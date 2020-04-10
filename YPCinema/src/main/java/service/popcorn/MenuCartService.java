@@ -21,16 +21,25 @@ public class MenuCartService {
 	@Autowired
 	MenuRepository menuRepository;
 
-	public void cartRemove(String[] menuNums) {
-		List<String> cs = new ArrayList<String>();
-		
-		for(String menuNum : menuNums) {
-			cs.add(menuNum);
+	public void cartRemove(String[] menuNums, HttpSession session) {
+		String userId = ((AuthInfo)session.getAttribute("authInfo")).getM_id();
+		CartDTO cart = new CartDTO();
+		for (int i = 0; i < menuNums.length; i++) {
+			cart.setUserId(userId);
+			cart.setMenuNum(menuNums[i]);
+			System.out.println(cart.getMenuNum());
+			menuRepository.removeCart(cart);
 		}
-		Map<String, Object> condition = new HashMap<String, Object>();
-		condition.put("nums", cs);
 		
-		menuRepository.menuCartRemove(condition);
+		
+		
+//		List<String> cs = new ArrayList<String>();
+//		for(String menuNum : menuNums) {
+//			cs.add(menuNum);
+//		}
+//		Map<String, Object> condition = new HashMap<String, Object>();
+//		condition.put("nums", cs);
+//		menuRepository.menuCartRemove(condition);
 	}
 
 	public void cartAdd(String menuNum, Model model, HttpSession session) {

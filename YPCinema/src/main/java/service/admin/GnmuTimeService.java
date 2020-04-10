@@ -16,6 +16,12 @@ import repository.admin.GnmuRepository;
 public class GnmuTimeService {
 	@Autowired
 	GnmuRepository gnmuRepository;
+	
+	public GngijunDTO gnmuDetail(Model model, String gbun_num) {
+		GngijunDTO dto = gnmuRepository.gnmuDetail(gbun_num);
+		model.addAttribute("gnmuLists",dto);
+		return dto;
+	}
 	//근무분류 리스트
 	public void gnmuLists(Model model) {
 		List<GngijunDTO> dto = gnmuRepository.gnmuLists();

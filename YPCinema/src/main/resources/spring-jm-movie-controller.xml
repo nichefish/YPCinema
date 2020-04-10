@@ -52,4 +52,11 @@
 	<bean id="showtimeRepository" class="repository.showtime.ShowtimeRepository" />
 	<bean id="showReserveRepository" class="repository.showReserve.ShowReserveRepository" />
 	
+	
+	<!-- 임시 -->
+	<bean id="staffListService" class="service.staff.StaffListService" />
+	<bean id="staffDetailService" class="service.staff.StaffDetailService" />
+	<bean id="staffRepository" class="repository.staff.StaffRepository" />
+	<bean id="scheduleRepository" class="repository.schedule.ScheduleRepository" />
+	
 </beans>

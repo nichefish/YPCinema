@@ -91,7 +91,7 @@ function wish_ok(responseText, statusText, xhr, $form){
 								 <a href="menuModify?num=${menu.menuNum }" class="bt_cart">메뉴수정</a>
 								 <input type="button" class="bt_cart" id="menuDelete" value="메뉴삭제" onclick="location.href='menuDelete?num=${menu.menuNum }'">
 								 <br/><br/><br/>
-							 	<input type="button" class="bt_cart" id="cartAdd" value="장바구니" onclick="location.href='cartList?num=${menu.menuNum}'">
+							 	<input type="button" class="bt_cart" id="cartAdd" value="장바구니" onclick="location.href='cartAdd?num=${menu.menuNum}'">
 								<a href="order?num=${menu.menuNum }" class=" bt_order">구매하기</a>
 								<button id="wishBtn" class="bt_cart">관심상품</button>
 							</div>
