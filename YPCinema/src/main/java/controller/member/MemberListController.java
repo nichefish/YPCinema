@@ -23,4 +23,9 @@ public class MemberListController {
 //			@RequestParam(value="search_value", required=false) String search_value, @RequestParam(value="search_type", required=false) String search_type, 
 		return "member/member_list";
 	}
+	@RequestMapping("/searchUser")
+	public String searchUser(Model model,@RequestParam(value="search_type")String searchType,@RequestParam(value="search_value")String searchValue) {
+		memberListService.searchMember(model, searchType, searchValue);
+		return "member/searchUser";
+	}
 }

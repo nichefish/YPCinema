@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.cheyong.CheyongApplyCommand;
+import command.cheyong.StaffCommand;
 import service.cheyong.CheyongApplyService;
 
 @Controller
@@ -32,8 +33,8 @@ public class CheyongApplyController {
 		return "cheyong/member_myApply";
 	}
 	@RequestMapping("/staff_applyDetail")
-	public String applyDetail(@RequestParam(value="r_num")String r_num,Model model) {
-		cheyongApplyService.myApplyInfo(r_num,model);
+	public String applyDetail(@RequestParam(value="r_num")String r_num,Model model,HttpSession session) {
+		cheyongApplyService.myApplyInfo(r_num,model,session);
 		return "cheyong/staff_applyDetail";
 	}
 	@RequestMapping(value="/staff_applyModify", method=RequestMethod.GET)
@@ -59,8 +60,21 @@ public class CheyongApplyController {
 		return "admin/staff_applyList";
 	}
 	// 관리자(지원서 '열람함'으로 바꾸기)
+	@RequestMapping("/staff_readApply")
 	public String readApply(@RequestParam(value="r_num")String r_num) {
 		cheyongApplyService.readBtn(r_num);
-		return "redirect:staff_readApply?r_num="+ r_num;
+		return "redirect:staff_applyDetail?r_num="+ r_num;
+	}
+	//관리자 (지원서 진행상태 변경)
+	@RequestMapping("/changeJinhyeng")
+	public String changeJinhyeng(@RequestParam(value="r_num")String r_num,
+								 @RequestParam(value="r_jin")String r_jin,
+								 @RequestParam(value="Hm_num")String m_num,
+								 @RequestParam(value="Hjic_num")String jic_num,
+								 @RequestParam(value="Htheater_name")String theater_name
+								 ) {
+		System.out.println("r_jin뭐임?" + r_jin);
+		cheyongApplyService.changeJinhyeng(r_num,r_jin,m_num,jic_num,theater_name);
+		return "redirect:staff_applyDetail?r_num="+ r_num;
 	}
 }

@@ -49,16 +49,13 @@
             <div class="row justify-content-center">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-8">
-                    <div class="contact-form">
+                    <div class="contact-form" style="text-align:center;">
                         <h3><strong>나의 지원현황</strong></h3>
                         <!-- Contact Form -->
-                        
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                 	지원현황에 관한 이야기가 우루루쾅쾅
-                                 	※주의사항도써주고 약간 그거같은 라잌 읽으면 삭제가 앙댐같은 ㅎ
-                                </div>
-                            </div>
+                       	 지원한 지원번호, 영화관, 접수된 날짜, 진행현황을 확인할 수 있습니다.<br />
+                       	 <strong><b>지원번호</b></strong>를 눌러 지원한 내용을 확인할 수 있으며,<br />[합격]시 지원내용페이지에서 근로계약서를 작성하실 수 있습니다.<br />
+                       	 ※진행현황을 주의깊게 확인하여 주십시오.<br /><br />
+                        <p style="text-align:center;font-size:10px;">※진행현황이 [열람]이 되면 이력서는 삭제 및 수정을 하실 수 없습니다.</p>
                     </div>
                 </div>
                      </div>
@@ -68,15 +65,10 @@
   
         <!-- 채용게시판 -->
         <div class="lalala" style="margin-left:150px;">
-		<table class="table table-bordered" id="dataTable" cellspacing="0"  style="margin-top:10px;width:1250px;" >
+		<table class="table table-bordered" id="dataTable" cellspacing="0"  style="width:1250px;" >
         	<thead>
         		<tr>
-         			<c:if test="${authInfo.m_admin eq '1'}">
-        				<th style="width:5px;height:5px">
-        					<input type = "checkBox" class = "select_all" name = "select_all">
-        				</th>
-        			</c:if>
-
+        			<th style="width:5px;height:5px"></th>
                 	<th>지원번호</th>
                 	<th>영화관</th>
                 	<th>접수날짜</th>
@@ -87,11 +79,7 @@
             	<c:if test="${!empty selectMyApply}">
 				<c:forEach items="${selectMyApply}" var="s" step="1">
             	<tr>
-            		<c:if test="${authInfo.m_admin eq '1'}">
-        				<td style="width:5px;height:5px">
-        					<input type = "checkBox" class = "select_all" name = "select_all">
-        				</td>
-        			</c:if>
+					<th style="width:5px;height:5px"></th>
                 	<td><a href="staff_applyDetail?r_num=${s.r_num}">${s.r_num}</a></td>
                 	<td>${s.r_hijijom}</td>
                 	<td><fmt:formatDate value='${s.r_nalja}' type='date' pattern='yyyy-MM-dd' /></td>
@@ -101,18 +89,12 @@
                 </c:if>
                 <c:if test="${empty selectMyApply}">
                 	<tr>
-                		<td colspan="4" style="text-align:center;"> 지원한 이력서가 없습니다.</td>
+                		<td colspan="5" style="text-align:center;"> 지원한 이력서가 없습니다.</td>
                 	</tr>		
                 </c:if>
              </tbody>
          </table>                              
 	</div>
-	
-	<div class="buttonDiv" style="margin-left: 10%; margin-bottom: 10px;">
-		<c:if test="${authInfo.m_admin eq '1'}">
-			<input type="button" value="삭제">
-		</c:if>
-   	</div>
 
     <!-- Google Maps: If you want to google map, just uncomment below codes -->
     <!--

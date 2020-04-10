@@ -19,14 +19,17 @@ public class MemberListService {
 		model.addAttribute("lists", lists);
 	}
 
-	public void searchMember(String search_type, String search_value, Model model) {
+	public void searchMember(Model model, String searchType, String searchValue) {
 		MemberDTO member = new MemberDTO();
-		if (search_type.equals("m_id")) {
-			member.setM_id(search_value);
-		} else if (search_type.equals("m_name")) {
-			member.setM_name(search_value);
+		if (searchType.equals("m_id")) {
+			member.setM_id(searchValue);
+			List<MemberDTO> lists = memberRepository.searchMemberId(member);
+			model.addAttribute("lists", lists);
+		} else if (searchType.equals("m_name")) {
+			member.setM_name(searchValue);
+			List<MemberDTO> lists = memberRepository.searchMemberName(member);
+			model.addAttribute("lists", lists);
 		}
-		List<MemberDTO> lists = memberRepository.searchMember(member);
-		model.addAttribute("lists", lists);
+		
 	}
 }

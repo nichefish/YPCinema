@@ -10,6 +10,9 @@
 	<sql id="CheyongApplyColumns">
 		R_NUM,CHE_NUM,M_NUM,R_HIJIJOM,R_GADATE,R_TIME,R_DIS,R_PRICE,R_CAREER,R_PER,R_JIWON,R_NALJA,R_JIN
 	</sql>
+	<sql id="StaffColumns">
+		STAFF_NUM,M_NUM,THEATER_NUM,JIC_NUM,STAFF_DATE
+	</sql>
 	
 	<!-- Select Map Part -->
 	<resultMap type="model.DTO.CheyongApplyDTO" id="baseCheyongApplyMap" >
@@ -52,6 +55,9 @@
 	</resultMap>
 	
 	<!-- Select Part! -->
+	<select id="findTheaterNum" parameterType="string" resultType="string">
+		select THEATER_NUM from theater <where>THEATER_NAME=#{theater_name}</where>
+	</select>
 	<select id="selectAllApplys" resultMap="baseCheyongApplyMap">
 		select r.R_NUM,r.CHE_NUM,r.M_NUM,m.M_NAME,r.R_HIJIJOM,r.R_NALJA,r.R_JIN from resume r, `member` m where m.`M_NUM`=r.`M_NUM`
 	</select>
@@ -84,6 +90,9 @@
 	</select>
 	
 	<!-- Insert Part! -->
+	<insert id="insertStaff" parameterType="model.DTO.StaffDTO">
+		insert into staff(<include refid="StaffColumns" />) values(CONCAT('STF_',nextval('seq')),#{m_num},#{theater_num},#{jic_num},now())
+	</insert>
 	<insert id="insertCheyongApply" parameterType="model.DTO.CheyongApplyDTO">
 		insert into resume (<include refid="CheyongApplyColumns"/>)
 		values(nextval('seq'),#{che_num},#{m_num},#{r_hijijom},#{r_gadate},#{r_time},#{r_dis},#{r_price},#{r_career},#{r_per},#{r_jiwon},now(),'열람대기중')
@@ -92,9 +101,16 @@
 		insert into gonggo(<include refid="CheyongColumns" />)
 		 values(nextval('seq'),#{che_subject},#{che_jijom},#{che_person},#{che_jogun},#{che_bocri},#{che_jagyuc},#{che_gita},#{che_sijac_string},#{che_magam_string})
 	</insert>
+	
 	<!-- Update Part! -->
+	<update id="updateJinhyengStaff" parameterType="model.DTO.CheyongApplyDTO">
+		update resume r,`member` m set r.R_JIN= #{r_jin},m.`M_ADMIN`='2' <where> R_NUM=#{r_num} and r.`M_NUM`=m.`M_NUM`</where>
+	</update>
+	<update id="updateJinhyeng" parameterType="model.DTO.CheyongApplyDTO">
+		update resume r,`member` m set r.R_JIN= #{r_jin},m.`M_ADMIN`='0' <where> R_NUM=#{r_num} and r.`M_NUM`=m.`M_NUM`</where>
+	</update>
 	<update id="updateReadBtn" parameterType="string">
-		update resume set R_JIN='열람' <where>R_NUM=#{r_num}</where>
+		update resume set R_JIN='열람' <where>R_NUM=#{r_num} and R_JIN='열람대기중'</where>
 	</update>
 	<update id="updateApply" parameterType="model.DTO.CheyongAddDTO">
 		update resume set R_GADATE=#{r_gadate},R_TIME=#{r_time},R_DIS=#{r_dis},R_PRICE=#{r_price},R_CAREER=#{r_career},R_PER=#{r_per},R_JIWON=#{r_jiwon}
@@ -102,9 +118,13 @@
 			R_NUM=#{r_num}
 		</where>
 	</update>
+	
 	<!-- Delete Part! -->
 	<delete id="deleteApply" parameterType="string">
 		delete from resume
 		<where>R_NUM=#{r_num}</where>
+	</delete>
+	<delete id="deleteStaff" parameterType="string"> 
+	delete from staff <where> m_num = #{m_num}</where>
 	</delete>
 </mapper>

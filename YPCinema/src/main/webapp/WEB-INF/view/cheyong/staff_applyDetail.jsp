@@ -50,14 +50,20 @@
             <div class="row justify-content-center">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-8">
-                <form>
+                <form id="gggg" action="changeJinhyeng">
                     <div class="contact-form" style="height:1500px;width:900px;margin-left:-50px;text-align:center;">
                     	<input type="hidden" name="hiddenRNum" id="hiddenRNum" value="${selectApplyOne.r_num}">
                     	<h6>${selectApplyOne.r_num}</h6>
-                        <h3><strong>채용 지원서[${selectApplyOne.r_hijijom}][${selectApplyOne.r_jin}]</strong></h3>
+                    	<h6>- ${selectApplyOne.r_hijijom} -</h6>
+                        <h3><strong>채용 지원서 &nbsp;[${selectApplyOne.r_jin}]</strong></h3>
                         <!-- Contact Form -->
                             <div class="row">
                                 <div class="col-12 col-md-6" style="font-size:10px;text-align:left;">
+                                			<input type="hidden" name="Hm_num" id="Hm_num" value="${mdto.m_num}">
+											<input type="hidden" name="Hjic_num" id="Hjic_num" value="15">
+											<input type="hidden" name="Htheater_name" id="Htheater_name" value="${selectApplyOne.r_hijijom}">
+											<input type="hidden" name="r_num" id="r_num" value="${selectApplyOne.r_num}">
+											<input type="hidden" name="r_jin" id="r_jin" value="${selectApplyOne.r_jin}">
                                 	<input type="hidden" name="hiddenIdNum" id="hiddenIdNum" value="${mdto.m_num}">
                                 	지원날짜 : <fmt:formatDate value='${selectApplyOne.r_nalja}' type='date' pattern='yyyy년 MM월 dd일' />
                                 </div>
@@ -110,18 +116,55 @@
 									<tr>
 										<th>지원동기 및 포부</th>
 										<td colspan="3">${selectApplyOne.r_jiwon}</td>
-									</tr>		
+									</tr>
+									
+									<c:if test="${selectApplyOne.r_jin eq '합격목걸이' && m_admin eq '2'}">
+									<tr>
+										<td colspan="4">
+											<input type="button" value="근로계약서 작성하기" style="width:300px;height:50px;"onclick="location.href='staff_writeContract?m_num=${mdto.m_num}&r_num=${selectApplyOne.r_num}'">
+										</td>
+									</tr>
+									</c:if>
+									
 								</table>
+									
 								<div id=zmzmr style="margin-top:20px;float:left;">
 								<c:if test="${selectApplyOne.r_jin eq '열람대기중'}">
 									<input type="submit" value="수정" formaction="staff_applyModify">
 									<input type="submit" value="삭제" formaction="staff_applyDelete">
 								</c:if>
+								<c:if test="${m_admin eq '0'}">
 								<input type="button" value="목록으로" onclick="location.href='member_myApply'">
+								</c:if>
+								<c:if test="${m_admin eq '1'}">
+								<input type="button" value="목록으로" onclick="location.href='staff_applyList'">
+								</c:if>
+								<c:if test="${m_admin eq '1'}">
+									<select name="jinhyeng" id="jinhyeng">
+										<option value="">-----</option>
+										<c:if test="${selectApplyOne.r_jin eq '열람'}">
+											<option value="면접중">면접중</option>
+										</c:if>
+										<c:if test="${selectApplyOne.r_jin eq '면접중'}">
+											<option value="합격목걸이">합격목걸이</option>
+											<option value="불합격">불합격</option>
+										</c:if>
+										<c:if test="${selectApplyOne.r_jin eq '불합격'}">
+											<option value="면접중">불합격취소</option>
+										</c:if>
+										<c:if test="${selectApplyOne.r_jin eq '합격목걸이'}">
+											<option value="면접중">합격취소</option>
+										</c:if>
+									</select>	
+								</c:if>
 								</div>
-                            </div>
-                            </div>
-                    	</form>
+								</div>
+								</div>
+								<input type="submit" id="gggg" style="width:150px; height:43px; cursor:hand; opacity:0;">
+								</form>
+                            
+                            
+                    	
                     </div>
                 </div>
                      </div>
@@ -190,5 +233,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="js/map-active.js"></script>
     -->
+<script type="text/javascript">
+$(function(){
+	$("#jinhyeng").change(function(){
+		var a = $("#jinhyeng").val();
+		$("#r_jin").val(a);
+		$("#gggg").submit();
+	});
+});
+</script>
 </body>
 </html>

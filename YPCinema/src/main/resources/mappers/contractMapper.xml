@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="contractMapper">
+	<cache />
+	<sql id="ContractColumns">
+		CON_NUM,STAFF_NUM,CON_CONTENT,CON_GBYU,CON_GMTIME,CON_DATE,CON_SIGN,r_num
+	</sql>
+	<sql id="StaffColumns">
+		STAFF_NUM,M_NUM,THEATER_NUM,JIC_NUM,STAFF_DATE,STAFF_BANK,STAFF_BANKNUM
+	</sql>
+	<resultMap type="model.DTO.StaffDTO" id="staffMap">
+		<id column="STAFF_NUM" jdbcType="VARCHAR" property="staff_num"/>
+		<result column="M_NUM" jdbcType="VARCHAR" property="m_num"/>
+		<result column="THEATER_NUM" jdbcType="VARCHAR" property="theater_num"/>
+		<result column="JIC_NUM" jdbcType="VARCHAR" property="jic_num"/>
+		<result column="STAFF_DATE" jdbcType="DATE" property="staff_date"/>
+		<result column="STAFF_BANK" jdbcType="VARCHAR" property="staff_bank"/>
+		<result column="STAFF_BANKNUM" jdbcType="VARCHAR" property="staff_banknum"/>
+	</resultMap>
+	
+	<resultMap type="model.DTO.ContractDTO" id="contractMap">
+		<id column="CON_NUM" jdbcType="VARCHAR" property="con_num"/>
+		<result column="STAFF_NUM" jdbcType="VARCHAR" property="staff_num"/>
+		<result column="CON_CONTENT" jdbcType="VARCHAR" property="con_content"/>
+		<result column="CON_GBYU" jdbcType="BIGINT" property="con_content"/>
+		<result column="CON_GMTIME" jdbcType="DATE" property="con_gmtime"/>
+		<result column="CON_DATE" jdbcType="DATE" property="con_date"/>
+		<result column="CON_SIGN" jdbcType="VARCHAR" property="con_sign"/>
+		<result column="r_num" jdbcType="VARCHAR" property="r_num"/>
+	</resultMap>
+
+	<!-- Insert Part! -->
+	<insert id="insertContract">
+		insert into contract(<include refid="ContractColumns" />) values(CONCAT('Cont_',nextval('seq')),#{staff_num},0,0,0,now(),#{con_sign},#{r_num});
+	</insert>	
+	
+	<!-- Select Part! -->
+	<select id="selectMyContracts" parameterType="string" resultMap="contractMap">
+		select <include refid="ContractColumns" /> from contract <where>STAFF_NUM=#{staff_num}</where>
+	</select>
+	<select id="findStaff" parameterType="string" resultMap="staffMap">
+		select <include refid="StaffColumns" /> from staff <where>m_num = #{m_num}</where>
+	</select>
+	
+</mapper>

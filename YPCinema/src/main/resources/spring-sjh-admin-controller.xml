@@ -11,6 +11,7 @@
 	<bean class="controller.admin.GnmuController" />
 	<bean class="controller.admin.ScheduleController" />
 	
+	
 
 	
 	<!-- Service -->
@@ -33,14 +34,17 @@
 	<bean class="controller.cheyong.CheyongController" />
 	<bean class="controller.cheyong.CheyongAddController" />
 	<bean class="controller.cheyong.CheyongApplyController" />
+	<bean class="controller.cheyong.ContractController"/>
 	
 	<!-- Cheyong Service -->
 	<bean id="cheyongService" class="service.cheyong.CheyongService" />
 	<bean id="cheyongAddService" class="service.cheyong.CheyongAddService"/>
 	<bean id="cheyongApplyService" class="service.cheyong.CheyongApplyService" />
+	<bean id="contractService" class="service.cheyong.ContractService" />
 	
 	<!-- Cheyong Repository -->
 	<bean id="cheyongRepository" class="repository.cheyong.CheyongRepository" />
+	<bean id="contractRepository" class="repository.cheyong.ContractRepository" />
 	
 	<!-- Gnte Controller -->
 	<bean class="controller.staff.GnteController" />

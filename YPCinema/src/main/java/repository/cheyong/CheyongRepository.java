@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import model.DTO.CheyongAddDTO;
 import model.DTO.CheyongApplyDTO;
+import model.DTO.StaffDTO;
 import model.DTO.TheaterAddDTO;
 
 @Repository
@@ -66,5 +67,30 @@ public class CheyongRepository {
 	public void readBtn(String r_num) {
 		String statement = namespace + ".updateReadBtn";
 		sqlSession.update(statement,r_num);
+	}
+	//관리자(진행상황 변경)
+	public void changeJinhyeng(CheyongApplyDTO dto) {
+		String statement = namespace + ".updateJinhyeng";
+		sqlSession.update(statement,dto);
+	}
+	//직원시켜주자 (admin_2)
+	public void changeJinhyengStaff(CheyongApplyDTO dto) {
+		String statement = namespace + ".updateJinhyengStaff";
+		sqlSession.update(statement,dto);
+	}
+	//너는 이미 직원정보를 가지다.
+	public void youStaffInfo(StaffDTO sto) {
+		String statement = namespace + ".insertStaff";
+		sqlSession.update(statement,sto);
+	}
+	//직원인지 아닌지를 확인보고 삭제스
+	public int checkStaff(String m_num) {
+		String statement = namespace + ".deleteStaff";
+		return sqlSession.delete(statement,m_num);
+	}
+	//극장번호 찾기
+	public String findTheaterNum(String theater_name) {
+		String statement = namespace + ".findTheaterNum";
+		return sqlSession.selectOne(statement,theater_name);
 	}
 }

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>지점 및 직무 관리</title>
+  <title>나의 계약서 목록</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,80 +55,46 @@ div.card-body {
 <div class='backLayerssss' style=''></div>
 	<!-- navbar -->
 	<%@ include file="/WEB-INF/view/admin_nav.jsp" %>
-	<div class="container-fluid" style="padding-left: 20px;">
-	<h1 class="h3 mb-2 text-gray-800">회원목록페이지</h1>
-		<div class="card shadow mb-4"style="width:100%;margin-right: 20px;">
+	 
+        <!-- Begin Page Content -->
+        <div class="container-fluid" style="padding-left: 20px;">
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">표준 근로계약서 목록</h1>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4"style="width:100%;margin-right: 20px;">
             <div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">Member List Page</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Contract</h6>
             </div>
-            <div class="content" align="center" id="memberSearch">
-            	<br />
-				<form>
-					검색 유형:&nbsp;<input type="radio" name="search_type" id="search_type" value="m_id" checked>아이디&nbsp;<input type="radio" name="search_type" id="search_type" value="m_name">이름<br/>
-					회원 검색:&nbsp;<input type="text" name="search_value" id="search_value" /><input type="button" id="memberListAjax" value="검색">
-				</form>
-			</div>
-			
-            <div class="card-body">
-				<div class="table-responsive">
-				<div id="searchUser">
-					<table class="table table-bordered" width="60%" id="dataTable" cellspacing="0">
-						<tr align="center" valign="middle">
-							<th></th>
-							<th align="center">회원번호</th>
-							<th align="center">회원 아이디</th>
-							<th align="center">이름</th>
-							<th align="center">연락처</th>
-							<th align="center">이메일</th>
-							<th align="center">등록일</th>
-						</tr>
-						<c:forEach items="${lists}" var="member">
-						<tr align="center" valign="middle">
-							<td width="48" style="background-color:black;">
-								<img width="36px" src="${member.m_picture }">
-							</td>
-							<td align="center">
-								<a href="<c:url value='/memberDetail?num=${member.m_num}' />">${member.m_num}</a>
-							</td>
-							<td align="center">
-								<a href="<c:url value='/memberDetail?num=${member.m_num}' />">${member.m_id}</a>
-							</td>
-							<td align="center">
-								<a href="<c:url value='/memberDetail?num=${member.m_num}' />">${member.m_name}</a>
-							</td>
-							<td align="center">${member.m_ph}</td>
-							<td align="center">${member.m_email}</td>
-							<td align="center">
-								<fmt:formatDate value="${member.m_date}" type="date" />
-							</td>
-						</tr>
-						</c:forEach>
-						<tr align=center height=20>
-							<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-								<c:if test="${page <= 1}">
-								[이전]&nbsp;
-								</c:if>
-								<c:if test="${page > 1}">
-								<a href="list?page=${page-1}">[이전]</a>&nbsp;
-								</c:if>
-								<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-									<a href="list?page=${i}">[${i}]</a>
-								</c:forEach>
-									<a href="#"></a>&nbsp;
-								<c:if test="${page == maxPage}">
-								&nbsp;[다음]
-								</c:if>
-								<c:if test="${page < maxPage}">
-								&nbsp;<a href="list?page=${page+1}">[다음]</a>
-								</c:if>
-							</td>
-						</tr>
-					</table>
-              	</div>
-				</div>
-			</div>
-			</div>
-		</div>
+            <div class="card-body" style="height:auto;'">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <tr>
+                      <th style="width:60px;">순서</th>
+                      <th>계약번호</th>
+                      
+					  <th>날짜</th>
+                    </tr>
+                  <tbody>
+                  <c:forEach items="${lists}" var="lists" varStatus="a">
+                  	<tr>
+                  	  	<td>${a.count}</td>
+                  	  	<td>
+                  	  		<input type="button" id="gogoDetail" value="${lists.con_num}" onclick="location.href='staff_contractDetail?r_num=${lists.r_num}&con_num=${lists.con_num}'" style="border:0px none;background-color:transparent;" >
+					  	</td>
+					  	<td>${lists.con_date}</td>
+                  	</tr>
+                  </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+	</div>
+        <!-- /.container-fluid -->
+
+
+      <!-- End of Main Content -->
+
       <!-- Footer -->
       <footer class="sticky-footer bg-white" style="margin-top: 100px;">
         <div class="container my-auto">
@@ -184,23 +150,7 @@ div.card-body {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script>
-  $(function(){
-		$("#memberListAjax").click(function(){
-			$.ajax({
-				type:"POST",
-				url:"searchUser",
-				data:{"search_type": $("#search_type").val(), "search_value": $("#search_value").val()},
-				datatype:"html",
-				success: function(data1){
-					$("#searchUser").html(data1);
-				}
-				
-			});
-		});
-		
-	});
-  </script>
+   <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 </body>
 </html>

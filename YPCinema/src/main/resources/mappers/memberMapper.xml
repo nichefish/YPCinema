@@ -12,6 +12,12 @@
 			values ( CONCAT('M_', (LPAD((SELECT nextval('seq')),4,0))), #{m_id}, #{m_pass}, #{m_name}, #{m_gen}, #{m_birth}, #{m_ph}, #{m_addr1}, #{m_addr2}, #{m_zip}, #{m_email}, #{m_picture}, 'C', null, null, now(), '0', null)
 	</insert>
 	
+	<select id="searchMemberId" parameterType="model.DTO.MemberDTO" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member <where>m_id like concat('%', #{m_id} , '%')</where> 
+	</select>
+	<select id="searchMemberName" parameterType="model.DTO.MemberDTO" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member <where>m_name like concat('%', #{m_name} , '%')</where> 
+	</select>
 	<select id="selectByUserInfo" parameterType="model.DTO.MemberDTO" resultMap="baseMemberMap">
 		select <include refid="basecolumn" /> from member
 		<trim prefix="where" prefixOverrides="and">
