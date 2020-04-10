@@ -2,11 +2,13 @@ package repository.popcorn;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.DTO.CartDTO;
 import model.DTO.MenuDTO;
 import model.DTO.MenuGoodsDTO;
 
@@ -50,5 +52,44 @@ public class MenuRepository {
 		String statement = namespace + ".menuGoodsInsert";
 		sqlSession.insert(statement, menuGoods);
 	}
+	public void cartAdd(CartDTO cart) {
+		String statement = namespace + ".cartInsert";
+		sqlSession.insert(statement, cart);
+	}
+
+	public void menuCartRemove(Map<String, Object> condition) {
+		String statement = namespace + ".cartRemove";
+		sqlSession.delete(statement, condition);
+	}
+
+	public List<CartDTO> cartList(String userId) {
+		String statement = namespace + ".cartList";
+		return sqlSession.selectList(statement, userId);
+	}
+
+	public Integer wishAdd(String menuNum, String userId) {
+		CartDTO dto = new CartDTO();
+		dto.setMenuNum(menuNum);
+		dto.setUserId(userId);
+		String statement = namespace + ".wishCount";
+		Integer i = sqlSession.selectOne(statement, dto);
+
+		if (i == 0) {
+			statement = namespace + ".wishInsert";
+			sqlSession.insert(statement, dto);
+			i = 1;
+		} else {
+			statement = namespace + ".wishDelete";
+			sqlSession.delete(statement, dto);
+			i = 0;
+		}
+		return i;
+	}
+
+	public List<MenuDTO> wishList(String userId) {
+		String statement = namespace + ".wishList";
+		return sqlSession.selectList(statement, userId);
+	}
+	
 
 }

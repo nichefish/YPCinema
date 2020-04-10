@@ -346,7 +346,7 @@ th, td {
     color: #333;
     background: #fff;
     border: 1px solid #dbdbdb;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 1px;
     border-radius: 2px;
     -moz-border-radius: 2px;
@@ -367,12 +367,12 @@ a {
     color: #333;
     background: #fff;
     border: 1px solid #dbdbdb;
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 1px;
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    font-family: 'Sunflower', sans-serif
+    font-family: Open Sans
 }
 .xans-product-action .bt_order {
    display: inline-block;
@@ -384,10 +384,10 @@ a {
     color: #333;
     background: #fff;
     border: 1px solid #dbdbdb;
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 1px;
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    font-family: 'Sunflower', sans-serif
+    font-family:Open Sans
 }

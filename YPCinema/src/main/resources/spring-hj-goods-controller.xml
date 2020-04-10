@@ -10,6 +10,7 @@
 	<bean class = "controller.popcorn.GoodsModifyController"/>
 	<bean class = "controller.popcorn.MenuController"/>
 	<bean class = "controller.popcorn.MenuDeleteController"/>
+	<bean class = "controller.popcorn.MenuCartController"/>
 	
 
 	

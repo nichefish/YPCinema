@@ -29,4 +29,5 @@ public class GoodsModifyController {
 		goodsModifyService.goodsModifyPro(goodsCommand, session, request);
 		return "redirect:goodsList";
 	}
+	
 }

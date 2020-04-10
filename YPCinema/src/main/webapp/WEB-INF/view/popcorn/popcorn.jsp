@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css1/magnific-popup.css">
-      <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css1/magnific-popup.css">
+     <link rel="stylesheet" href="css/owl.carousel.css">
+     <link rel="stylesheet" href="css/style.css">
       
 </head>
 <body>
@@ -61,7 +61,7 @@
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
-										<a class="dropdown-item" href="<c:url value='/myStatistic' />">나의 영화관</a>
+										<a class="dropdown-item" href="<c:url value='/statistic' />">나의 영화관</a>
 										</c:if>
 										<c:if test="${authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 -->
 										<!-- 관리자 -->
@@ -75,7 +75,7 @@
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 정보</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 정보</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 정보</a>
-										<a class="dropdown-item" href="<c:url value='/showReserve/check' />">결제 및 예매 관리</a>
+										<a class="dropdown-item" href="<c:url value='/payment/list' />">결제 및 예매 관리</a>
 										</c:if>
 									</div>
 								</li>
@@ -86,7 +86,7 @@
                                         <a class="dropdown-item" href="menu">메뉴등록</a>
                                         <a class="dropdown-item" href="goodsList">상품리스트(수정,삭제)</a>
                                         <a class="dropdown-item" href="menuList">메뉴리스트(수정,삭제)</a>
-                                        <a class="dropdown-item" href="menutype?type=all">메뉴분류하기 ㅠㅠ</a>
+                                       
                                     </div>
                                 </li >
                                 <li class="nav-item">
@@ -181,14 +181,7 @@
 									</c:if>
 								</li>
 							</ul>
-<!--                             Search Form  -->
-<!--                             <div id="search-wrapper"> -->
-<!--                                 <form action="#"> -->
-<!--                                     <input type="text" id="search" placeholder="Search something..."> -->
-<!--                                     <div id="close-icon"></div> -->
-<!--                                     <input class="d-none" type="submit" value=""> -->
-<!--                                 </form> -->
-<!--                             </div> -->
+
                         </div>
                     </nav>
                 </div>
@@ -266,59 +259,56 @@
                     <div class="post-content-area mb-50">
                         <!-- Catagory Area -->
                         <div class="world-catagory-area">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist" style="width:930px">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist" style="width:1010px">
                                 <li class="title">YP cinema</li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="tab1" data-toggle="tab" href="#world-tab-1" role="tab" aria-controls="world-tab-1" aria-selected="true">All</a>
+                                 <input type = "button"  class="nav-link active" id="All" value="Main" onclick="location.href='popcorn'">
+                                </li>
+                                <li class="nav-item">
+                                  <input type = "button"  class="nav-link active" id="combobutton" value="콤보">
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tab2" data-toggle="tab" href="#world-tab-2" role="tab" aria-controls="world-tab-2" aria-selected="false">콤보</a>
+                                   <input type = "button"  class="nav-link active" id="popcornbutton" value="팝콘">
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tab3" data-toggle="tab" href="#world-tab-3" role="tab" aria-controls="world-tab-3" aria-selected="false">팝콘</a>
+                                    <input type = "button"  class="nav-link active" id="beverage" value="음료">
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tab4" data-toggle="tab" href="#world-tab-4" role="tab" aria-controls="world-tab-4" aria-selected="false">음료</a>
+                                   <input type = "button"  class="nav-link active" id="snack" value="스낵">
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tab5" data-toggle="tab" href="#world-tab-5" role="tab" aria-controls="world-tab-5" aria-selected="false">스낵</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab6" data-toggle="tab" href="#world-tab-6" role="tab" aria-controls="world-tab-6" aria-selected="false">떡볶이</a>
+                                   <input type = "button"  class="nav-link active" id="bbokki" value="떡볶이">
                                 </li>
                             </ul>
-
                             <div class="tab-content" id="myTabContent" style="width:1000px">
+							<div id="buttonResult">
 
                                 <div class="tab-pane fade show active" id="world-tab-1" role="tabpanel" aria-labelledby="tab1">
                                     <div class="row">
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-6" >
                                             <div class="world-catagory-slider owl-carousel wow fadeInUpBig" data-wow-delay="0.1s">
 
                                                 <!-- Single Blog Post -->
                                                 <div class="single-blog-post">
                                                     <!-- Post Thumbnail -->
                                                     <div class="post-thumbnail">
-                                                        <img src="img/blog-img/b1.jpg" alt="">
+                                                        <img src="img/blog-img/popcorn.jpeg" alt="">
                                                         <!-- Catagory -->
-                                                        <div class="post-cta"><a href="#">YP콤보</a></div>
+                                                        <div class="post-cta"><a href="#">팝콘</a></div>
                                                     </div>
                                                     <!-- Post Content -->
                                                     <div class="post-content">
                                                         <a href="#" class="headline">
-                                                            <h5>BEST 1위</h5>
+                                                            <h5>영화볼땐 팝콘!</h5>
                                                         </a>
-                                                        <p>영화와 함꼐 YP콤보를 즐겨보세요! </p>
+                                                        <p>영화와 함꼐 팝콘 어떠세요?? </p>
                                                         <!-- Post Meta -->
-                                                        <div class="post-meta">
-                                                            <p><a href="#" class="post-author"></a> <a href="#" class="post-date"></a></p>
-                                                        </div>
+                                                    
                                                     </div>
                                                 </div>
 
@@ -326,115 +316,88 @@
                                                 <div class="single-blog-post">
                                                     <!-- Post Thumbnail -->
                                                     <div class="post-thumbnail">
-                                                        <img src="img/blog-img/b2.jpg" alt="">
+                                                        <img src="img/blog-img/popcorn1.jpeg" alt="">
                                                         <!-- Catagory -->
-                                                        <div class="post-cta"><a href="popcorn">매점</a></div>
+                                                        <div class="post-cta"><a href="popcorn">매장</a></div>
                                                     </div>
                                                     <!-- Post Content -->
                                                     <div class="post-content">
-                                                        <a href="#" class="headline">
-                                                            <h5>YGV콤보</h5>
-                                                        </a>
-                                                        <p>영화와 함께 콤보를 즐겨보세요~</p>
-                                                        <!-- Post Meta -->
-                                                        <div class="post-meta">
-                                                            <p><a href="#" class="post-author">팝콘</a> @ <a href="#" class="post-date">YP씨네마 홍대점</a></p>
-                                                        </div>
+                                                            <h5>YP양평점 재오픈!!</h5>
+                                                        <p>양평점 매점이 새롭게 단장했어요~</p>
                                                     </div>
-                                                </div>
-
-                                                <!-- Single Blog Post -->
-                                                <div class="single-blog-post">
-                                                    <!-- Post Thumbnail -->
-                                                    <div class="post-thumbnail">
-                                                        <img src="img/blog-img/b3.jpg" alt="">
-                                                        <!-- Catagory -->
-                                                        <div class="post-cta"><a href="#">채용</a></div>
-                                                    </div>
-                                                    <!-- Post Content -->
-                                                    <div class="post-content">
-                                                        <a href="#" class="headline">
-                                                            <h5>YP씨네와 함께하시겠습니까?</h5>
-                                                        </a>
-                                                        <p>YP씨네마 채용</p>
-                                                        <!-- Post Meta -->
-                                                        <div class="post-meta">
-                                                            <p><a href="#" class="post-author">채용팀</a> on <a href="#" class="post-date">YP씨네마 건대점</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </div>                                           
                                             </div>
                                         </div>
 
                                         <div class="col-12 col-md-6">
                                             <!-- Single Blog Post -->
-                                            <div class="single-blog-post post-style-2 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                                         <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
-                                                <div class="post-thumbnail">
-                                                    <img src="img/blog-img/b10.jpg" alt="">
+                                            <div class="post-thumbnail">
+                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
-                                                <div class="post-content">
-                                                    <a href="#" class="headline">
-                                                        <h5>BEST1위</h5>
+                                               <div class="post-content">
+                                                    <a href="menuDetail?num=54" class="headline">
+                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
-                                                    <div class="post-meta">
-                                                        <p><a href="#" class="post-author">YP콤보</a> <a href="#" class="post-date">5000원</a></p>
+                                                  <div class="post-meta">
+                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <!-- Single Blog Post -->
-                                            <div class="single-blog-post post-style-2 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.3s">
+                                           <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
-                                                <div class="post-thumbnail">
-                                                    <img src="img/blog-img/b11.jpg" alt="">
+                                            <div class="post-thumbnail">
+                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
-                                                <div class="post-content">
-                                                    <a href="#" class="headline">
-                                                        <h5>콜라</h5>
+                                               <div class="post-content">
+                                                    <a href="menuDetail?num=54" class="headline">
+                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
-                                                    <div class="post-meta">
-                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                  <div class="post-meta">
+                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <!-- Single Blog Post -->
-                                            <div class="single-blog-post post-style-2 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.4s">
+                                            <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
-                                                <div class="post-thumbnail">
-                                                    <img src="img/blog-img/b12.jpg" alt="">
+                                            <div class="post-thumbnail">
+                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
-                                                <div class="post-content">
-                                                    <a href="#" class="headline">
-                                                        <h5>나쵸</h5>
+                                               <div class="post-content">
+                                                    <a href="menuDetail?num=54" class="headline">
+                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
-                                                    <div class="post-meta">
-                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                  <div class="post-meta">
+                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <!-- Single Blog Post -->
-                                            <div class="single-blog-post post-style-2 d-flex align-items-center wow fadeInUpBig" data-wow-delay="0.5s">
+                                          <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
-                                                <div class="post-thumbnail">
-                                                    <img src="img/blog-img/b13.jpg" alt="">
+                                            <div class="post-thumbnail">
+                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
-                                                <div class="post-content">
-                                                    <a href="#" class="headline">
-                                                        <h5>에이드</h5>
+                                               <div class="post-content">
+                                                    <a href="menuDetail?num=54" class="headline">
+                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
-                                                    <div class="post-meta">
-                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                  <div class="post-meta">
+                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -442,197 +405,30 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="world-tab-2" role="tabpanel" aria-labelledby="tab2">
+                                <div class="tab-pane fade"  >
                                     <div class="row">
                                         <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                     
-                                          
-                                       
-                                         
-                                                
-                                        </div>
-
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                         
-
-                                            <!-- Single Blog Post -->
-                                   
-
-                                            <!-- Single Blog Post -->
-                                       
-
-                                            <!-- Single Blog Post -->
-                                 
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="world-tab-3" role="tabpanel" aria-labelledby="tab3">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                
-                                        
-                                           
-                                       
-                                        </div>
-
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                    
-
-                                            <!-- Single Blog Post -->
-                                
-                                            <!-- Single Blog Post -->
-                                   
-
-                                            <!-- Single Blog Post -->
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="world-tab-4" role="tabpanel" aria-labelledby="tab4">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                      
-                                        </div>
-
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                 
-
-                                            <!-- Single Blog Post -->
-                                       
-
-                                            <!-- Single Blog Post -->
-                                  
-
-                                            <!-- Single Blog Post -->
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="world-tab-5" role="tabpanel" aria-labelledby="tab5">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                        
-                                        </div>
-
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                    
-
-                                            <!-- Single Blog Post -->
-                                        
-
-                                            <!-- Single Blog Post -->
-                                    
-
-                                            <!-- Single Blog Post -->
-                                     
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="world-tab-6" role="tabpanel" aria-labelledby="tab6">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                         
-                                        </div>
-
-                                        <div class="col-12 col-md-6">
-                                            <!-- Single Blog Post -->
-                                        
-
-                                            <!-- Single Blog Post -->
-                                          
-
-                                            <!-- Single Blog Post -->
-                                       
-
-                                            <!-- Single Blog Post -->
-                                      
-                                        </div>
-                                    </div>
-                                </div>
-
-                     
-                     
                             
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                      
+                                        </div>
+                                    </div>
+                                </div>       
                             </div>
+                            </div>    
                         </div>
-
-                        
-               
-
                     </div>
                 </div>
-
-    
-           
-                </div>
-            </div>
-
-         
-
-            <!-- Load More btn -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="load-more-btn mt-50 text-center">
-                        <a href="#" class="btn world-btn">Load More</a>
-                    </div>
                 </div>
             </div>
         </div>
 
-
-    <!-- ***** Footer Area Start ***** -->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <div class="footer-single-widget">
-                        <a href="#"><img src="img/core-img/logo.png" alt=""></a>
-                        <div class="copywrite-text mt-30">
-                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="footer-single-widget">
-                        <ul class="footer-menu d-flex justify-content-between">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">영화예매</a></li>
-                            <li><a href="popcorn">매점</a></li>
-                            <li><a href="#">오시는 길</a></li>
-                            <li><a href="#">Gadgets</a></li>
-                            <li><a href="#">Video</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="footer-single-widget">
-                        <h5>Subscribe</h5>
-                        <form action="#" method="post">
-                            <input type="email" name="email" id="email" placeholder="Enter your mail">
-                            <button type="button"><i class="fa fa-arrow-right"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ***** Footer Area End ***** -->
-
+ <footer class="footer-area">
+		<%@ include file="../footer.jsp"%>
+	</footer>
+ 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

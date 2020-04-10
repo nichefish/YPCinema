@@ -52,6 +52,9 @@ public class GoodsModifyService {
 		}
 		dto.setGoodsImage(storeTotal);
 		goodsRepository.goodsModifyPro(dto);
+	
 	}
+
+	
 
 }

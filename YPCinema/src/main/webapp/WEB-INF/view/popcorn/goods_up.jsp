@@ -52,8 +52,6 @@
 										<option value="스낵">스낵</option>
 
 										<option value="떡볶이">떡볶이</option>
-										
-										<option value="닭강정">닭강정</option>
 
 								</select></td>
 							</tr>

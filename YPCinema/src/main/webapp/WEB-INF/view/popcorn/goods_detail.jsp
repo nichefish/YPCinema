@@ -65,8 +65,6 @@
 
 							<div class="xans-element- xans-product xans-product-action ">
 								<br /> <br /> <br /> <br /> <br />
-								
-								
 								<a href="cartAdd?num=${goods.goodsNum }" class="bt_cart"> 장바구니</a>
 								<a href="order?num=${goods.goodsNum }" class=" bt_order">구매하기</a>
 							</div>

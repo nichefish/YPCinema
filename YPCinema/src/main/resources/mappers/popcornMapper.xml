@@ -48,6 +48,11 @@
 	insert into menu_goods (menu_num, theater_num, goods_num) values(#{menuNum}, #{theaterNum}, #{goodsNum})
 </insert>
 
+<insert id="cartInsert" parameterType="cart">	
+	insert into cart (cart_num, user_id, menu_name, menu_price, menu_img, menu_num, menu_qty)
+	values(nextval('seq'), #{userId},#{menuName},#{menuPrice}, #{menuImage},#{menuNum},#{menuQty})
+ </insert>
+
 <!--  select  -->
 <select id="goodsList" resultMap="goodsBaseMap" parameterType="string">
 	select <include refid="baseGoodsColumn" /> from goods
@@ -75,6 +80,22 @@
 <select id="menuType" resultMap="menuBaseMap" parameterType="string">
 	select <include refid="baseMenuColumn" /> from menu
 	where MENU_TYPE = #{menuType}
+</select>
+
+
+-<resultMap id="cartListMap" type="cart">
+<id property="cartNum" jdbcType="VARCHAR" column="cart_num"/>
+<result property="menuNum" jdbcType="VARCHAR" column="menu_num"/>
+<result property="userId" jdbcType="VARCHAR" column="user_id"/>
+<result property="menuName" jdbcType="VARCHAR" column="menu_name"/>
+<result property="menuPrice" jdbcType="VARCHAR" column="menu_price"/>
+<result property="menuImage" jdbcType="VARCHAR" column="menu_img"/>
+<result property="menuQty" jdbcType="VARCHAR" column="menu_qty"/>
+</resultMap>
+
+<select id="cartList" parameterType="string" resultMap="cartListMap">
+select cart_num, menu_num, user_id, menu_name, menu_price, menu_img, menu_qty
+from cart where user_id = #{userId} 
 </select>
 	
 <!-- update -->

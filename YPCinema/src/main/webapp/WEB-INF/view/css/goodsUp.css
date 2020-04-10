@@ -532,7 +532,7 @@ table {
 }
 
 input[type=submit] {
-	width: 210px;
+	width: 100px;
 	background-color: #000000;
 	color: white;
 	padding: 10px 16px;
@@ -542,10 +542,18 @@ input[type=submit] {
 	cursor: pointer;
 
 }
+input[type=button] {
+	width: 100px;
+	background-color: #000000;
+	color: white;
+	padding: 10px 16px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float : middle;
 
-
-
-
+}
 #footer {
     border-top: 1px solid #eaeaea;
     background-color: #eff0f4;

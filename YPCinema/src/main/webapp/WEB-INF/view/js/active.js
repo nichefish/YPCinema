@@ -149,7 +149,7 @@
     $("a[href='#']").on('click', function ($) {
         $.preventDefault();
     });
-
+    
     // :: wow Active Code
     if ($window.width() > 767) {
         new WOW().init();

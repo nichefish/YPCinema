@@ -60,5 +60,7 @@ public class MenuWriterService {
 //		for (int i = 0; i < menuCommand.getGoodsNum().length; i++) {
 
 //		}
+		
+		
 	}
 }

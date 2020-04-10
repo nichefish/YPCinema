@@ -54,57 +54,57 @@
 			<!-- 메인 컨텐츠 -->
 			<div class="contents">
 				<div class="contentsTop">
-					<h2>상품 수정</h2>
+					<h2>메뉴 수정</h2>
 				</div>
 				<br>
 				<div class="relCon">
 
 					<div class="table11" id="modify" align="center">
-						<form action="goodsModifyPro" method="post" id="frm"
+						<form action="menuModifyPro" method="post" id="frm"
 							name="modifyform" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<th style="width: 100px;">상품 번호</th>
-									<td>${goods.goodsNum }</td>
+									<td>${menu.menuNum }</td>
 								</tr>
 								<tr>
-									<th style="width: 100px;">상품종류</th>
-									<td><select name="goodsType" id="goodsType" class="select"
+									<th style="width: 100px;">종류</th>
+									<td><select name="menuType" id="menuType" class="select"
 										style="width: 100px">
-											
+											<option value="콤보"
+												<c:if test="${menu.menuType eq '콤보' }">selected</c:if>>콤보</option>
 											<option value="팝콘"
-												<c:if test="${goods.goodsType eq '팝콘' }">selected</c:if>>팝콘</option>
+												<c:if test="${menu.menuType eq '팝콘' }">selected</c:if>>팝콘</option>
 											<option value="음료"
-												<c:if test="${goods.goodsType eq '음료' }">selected</c:if>>음료</option>
+												<c:if test="${menu.menuType eq '음료' }">selected</c:if>>음료</option>
 											<option value="스낵"
-												<c:if test="${goods.goodsType eq '스낵' }">selected</c:if>>스낵</option>
+												<c:if test="${menu.menuType eq '스낵' }">selected</c:if>>스낵</option>
 											<option value="떡볶이"
-												<c:if test="${goods.goodsType eq '떡볶이' }">selected</c:if>>떡볶이</option>
+												<c:if test="${menu.menuType eq '떡볶이' }">selected</c:if>>떡볶이</option>
 									</select></td>
 								</tr>
 
 								<tr>
 									<th style="width: 100px;">상품명</th>
-									<td><input type="text" name="goodsName" id="goodsName"
-										value="${goods.goodsName }" /></td>
+									<td><input type="text" name="menuName" id="menuName"
+										value="${menu.menuName }" /></td>
 								</tr>
 
 								<tr>
-									<th style="width: 126px;">상품단가(원)</th>
-									<td><input type="text" name="goodsPrice" id="goodsPrice"
-										value="${goods.goodsPrice }" /></td>
+									<th style="width: 126px;">가격(원)</th>
+									<td><input type="text" name="menuPrice" id="menuPrice"
+										value="${menu.menuPrice }" /></td>
 								</tr>
 								<tr>
 									<th style="width: 100px;">이미지</th>
-									<td><img src="popcorn/update/${goods.goodsImage }"
+									<td><img src="popcorn/update/${menu.menuImage }"
 										width="30" height="30" /> <input type="button" id="btn1"
 										value="삭제" /></td>
 								</tr>
 							</table>
-							<input type="hidden" name="fileDel" id="fileDel" /> 
-							<input type="hidden" name="goodsNum" id="goodsNum" value="${goods.goodsNum }" />
-							<input type="submit" value="수정 완료"> 
-							<input type="button" id="goodsDelete" value="상품삭제" onclick="location.href='goodsDelete?num=${goods.goodsNum }'">
+							<input type="submit" value="수정 완료"> <input type="hidden"
+								name="fileDel" id="fileDel" /> <input type="hidden"
+								name="menuNum" id="menuNum" value="${menu.menuNum }" />
 
 						</form>
 					</div>

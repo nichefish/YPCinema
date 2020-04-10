@@ -17,11 +17,13 @@ MenuRepository menuRepository;
 		List<MenuDTO> list = menuRepository.menuList();
 		model.addAttribute("menuList", list);
 	}
-	
 	public void menuType(String menuType, Model model){
 		List<MenuDTO> list = menuRepository.menuType(menuType);
 		model.addAttribute("menuType", list);
 	}
+
+
+	
 	
 
 }

@@ -7,27 +7,43 @@
 <head>
 <meta charset="UTF-8">
 <title>제품상세보기</title>
-
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/goodsDetail.css" />
-<link rel="stylesheet" href="css/themify-icons.css">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
 </head>
 <body>
 	<header class="header-area">
 		<%@ include file="../navigation.jsp"%>
 	</header>
 
+<script type="text/javascript">
+$(function(){
+	$("#wishBtn").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "wishAdd",
+			data : "num=${menu.menuNum }", 
+			dataType:"html",
+			success:wish_ok,
+		});
+	});
+});
+function cart_ok(responseText, statusText, xhr, $form){
+	if(statusText == "success"){
+			location.href="cartList";		
+	}
+}
+function wish_ok(responseText, statusText, xhr, $form){
+	var i = responseText.trim();
+	if(statusText == "success"){
+		if( i == "1"){
+			alert("관심상품에 등록되었습니다.")
+		}else{
+			alert("관심상품에 삭제되었습니다.")
+		}
+	}
+}
+</script>
 	<div id="wrap">
 		<div id="container" align="center">
 			<div id="contents">
@@ -75,8 +91,9 @@
 								 <a href="menuModify?num=${menu.menuNum }" class="bt_cart">메뉴수정</a>
 								 <input type="button" class="bt_cart" id="menuDelete" value="메뉴삭제" onclick="location.href='menuDelete?num=${menu.menuNum }'">
 								 <br/><br/><br/>
-								<a href="cartAdd?num=${menu.menuNum }" class="bt_cart"> 장바구니</a>
+							 	<input type="button" class="bt_cart" id="cartAdd" value="장바구니" onclick="location.href='cartList?num=${menu.menuNum}'">
 								<a href="order?num=${menu.menuNum }" class=" bt_order">구매하기</a>
+								<button id="wishBtn" class="bt_cart">관심상품</button>
 							</div>
 						</div>
 					</div>
@@ -115,5 +132,7 @@
 	<script src="js/plugins.js"></script>
 	<!-- Active js -->
 	<script src="js/active.js"></script>
+
+
 </body>
 </html>

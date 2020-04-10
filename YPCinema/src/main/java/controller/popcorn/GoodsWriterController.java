@@ -20,7 +20,6 @@ public class GoodsWriterController {
 	@Autowired
 	GoodsWriteService goodsWriteService;
 	
-	
 	@RequestMapping(value = "/menuPro",method = RequestMethod.POST)
 	public String menuWritePro(MenuCommand menuCommand, HttpSession session, HttpServletRequest request) {
 		menuWriterService.menuWrite(menuCommand,session,request);

@@ -26,9 +26,10 @@ public class MenuController {
 	menuListService.menuList(model);
 	return "popcorn/menu_list";
 	}
-	@RequestMapping("/menutype")
-	public String menutype(@RequestParam(value = "type") String menuType, Model model) {
+	@RequestMapping("/menuType")
+	public String menuType(@RequestParam(value = "menuType") String menuType, Model model) {
 		menuListService.menuType(menuType, model);
-		return "popcorn/category";
+		return "popcorn/menu_type";
 	}
+	
 }
