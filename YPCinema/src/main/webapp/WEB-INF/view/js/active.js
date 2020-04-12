@@ -89,6 +89,73 @@
         $(this).addClass('active');
     })
 
+    
+    // :: check
+    $(function(){
+    	$("#combobutton").click(function(){
+    		$.ajax({
+    			type:"POST",
+    			url:"menuType",
+    			data:{"menuType": $("#combobutton").val()},
+    			datatype:"html",
+    			success: function(data1){
+    				$("#buttonResult").html(data1);
+    			}
+    		});
+    	});
+    });
+    $(function(){
+    	$("#popcornbutton").click(function(){
+    		$.ajax({
+    			type:"POST",
+    			url:"menuType",
+    			data:{"menuType": $("#popcornbutton").val()},
+    			datatype:"html",
+    			success: function(data1){
+    				$("#buttonResult").html(data1);
+    			}
+    		});
+    	});
+    });
+    $(function(){
+    	$("#beverage").click(function(){
+    		$.ajax({
+    			type:"POST",
+    			url:"menuType",
+    			data:{"menuType": $("#beverage").val()},
+    			datatype:"html",
+    			success: function(data1){
+    				$("#buttonResult").html(data1);
+    			}
+    		});
+    	});
+    });
+    $(function(){
+    	$("#snack").click(function(){
+    		$.ajax({
+    			type:"POST",
+    			url:"menuType",
+    			data:{"menuType": $("#snack").val()},
+    			datatype:"html",
+    			success: function(data1){
+    				$("#buttonResult").html(data1);
+    			}
+    		});
+    	});
+    });
+    $(function(){
+    	$("#bbokki").click(function(){
+    		$.ajax({
+    			type:"POST",
+    			url:"menuType",
+    			data:{"menuType": $("#bbokki").val()},
+    			datatype:"html",
+    			success: function(data1){
+    				$("#buttonResult").html(data1);
+    			}
+    		});
+    	});
+    });
     // :: Masonary Gallery Active Code
     if ($.fn.imagesLoaded) {
         $('.sonar-portfolio').imagesLoaded(function () {
