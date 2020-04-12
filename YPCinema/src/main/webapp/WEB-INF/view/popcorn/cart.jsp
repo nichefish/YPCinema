@@ -119,8 +119,8 @@ function buy1() {
 	      				<td align=right>
 	         				<font size=2>장바구니가 비어있습니다.</font>
 	      				</td>
-	 			  </tr>
-	 		  </table>
+	 				</tr>
+	 		  	</table>
 			</div>
 			</c:if>
 		</div>		

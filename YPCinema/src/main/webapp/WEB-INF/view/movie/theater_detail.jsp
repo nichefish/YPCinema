@@ -24,8 +24,8 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마 <b>${numTheater.theater_name}</b> 상세정보</p>
- 		찾아오는 길:
+ 		<h2>양평시네마 <b>${numTheater.theater_name}</b> 상세정보</h2>
+ 		<p>찾아오는 길:</p>
 		<div id="map" style="width:55%;height:350px; border:1px solid red;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eda433c823b7e3d4d428f970b8755896&libraries=services"></script>
 		<script>

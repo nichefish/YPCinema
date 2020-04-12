@@ -23,15 +23,19 @@ public class GnteService {
 		model.addAttribute("chulgnTime",chulgnTime);
 	}
 
-	public void getScheduleToday(HttpSession session, Model model) {
+	public ScheduleDTO getScheduleToday(HttpSession session, Model model) {
 		ScheduleDTO schedule = new ScheduleDTO();
-		schedule.setStaff_num(((AuthInfo) (session.getAttribute("authInfo"))).getStaff_num());
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		schedule.setStaff_num(authInfo.getStaff_num());
 		schedule = scheduleRepository.selectTodayScheduleByStaffNum(schedule);
+		authInfo.setSchedule(schedule);
 		if (schedule != null) {
 			model.addAttribute("schedule", schedule);
 			GngijunDTO gnmu = gnmuTimeService.gnmuDetail(model, schedule.getGbun_num());
+			authInfo.setGnmu(gnmu);
 			model.addAttribute("gnmu", gnmu);
 		}
+		return schedule;
 	}
 
 	public void gnteGnte(HttpSession session, String gnte_mode) {

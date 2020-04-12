@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,14 +35,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loginPro(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) {
+	public String loginPro(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response, Model model) {
 		new LoginCommandValidator().validate(loginCommand, errors);
 		if (errors.hasErrors()) {
 			return "login";
 		}
 		String path = "";
 		if (loginCommand.getAdmin().equals("0")) {
-			path = authService.authenticate(loginCommand, session, errors, response);
+			path = authService.authenticate(loginCommand, session, errors, response, model);
 		} else {
 			path = companyAuthService.authenticate(loginCommand, session, errors, response);
 		}

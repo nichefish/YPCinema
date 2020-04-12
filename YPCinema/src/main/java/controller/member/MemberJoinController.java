@@ -1,5 +1,7 @@
 package controller.member;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import command.member.MemberCommand;
 import command.member.YakganCommand;
 import service.member.MemberJoinService;
+import service.payment.SendSMS;
 import validator.MemberCommandValidator;
 import validator.YakganValidator;
 
@@ -35,12 +38,12 @@ public class MemberJoinController {
 	}
 	
 	@RequestMapping(value="/memberJoinAction", method=RequestMethod.POST)
-	public String memberJoinAction(MemberCommand memberCommand, Errors errors) {
+	public String memberJoinAction(MemberCommand memberCommand, Errors errors, HttpServletRequest request) {
 		new MemberCommandValidator().validate(memberCommand, errors);
 		if (errors.hasErrors()) {
 			return "member/member_join";
 		}
-		memberJoinService.memberJoin(memberCommand, errors);
+		memberJoinService.memberJoin(memberCommand, errors, request);
 		return "member/member_welcome";
 	}
 	

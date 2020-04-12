@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>YPCinema</title>
-<link rel="icon" href="img/fvc.jpg">
+<title>Insert title here</title>
+<link rel="icon" href="../img/core-img/favicon.ico">
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/style.css">
@@ -117,14 +117,32 @@ body{
 											<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
 											<c:if test="${!empty companyAuthInfo}"><span style="color:yellow;">"${companyAuthInfo.c_comname}"사 소속</span> <span style="color:white;">"${companyAuthInfo.c_name}"</span></c:if>
 											<span style="color:grey;">님 환영합니다.</span><br />
+											<!-- 관리자/직원 근태 버튼 -->
+											<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2')}">
+												<c:if test="${empty authInfo.schedule }">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[퇴근상태]">
+												</c:if>
+												<c:if test="${!empty authInfo.schedule }">
+													<c:if test="${(authInfo.schedule.gnmu_stime eq null || authInfo.schedule.gnmu_stime eq '00:00:00') && authInfo.gnmu.gbunSTime ne '00:00:00'}">
+													&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;"><input type="button" value="[출근!요망!!!]"></span>
+													</c:if>
+													<c:if test="${(authInfo.schedule.gnmu_stime ne null && authInfo.schedule.gnmu_stime ne '00:00:00') && authInfo.gnmu.gbunSTime ne '00:00:00' && authInfo.schedule.gnmu_etime eq null}">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[근무중...]">
+													</c:if>
+													<c:if test="${(authInfo.schedule.gnmu_stime ne null && authInfo.schedule.gnmu_stime ne '00:00:00') && (authInfo.gnmu.gbunSTime ne '00:00:00') && (authInfo.schedule.gnmu_etime ne null && authInfo.schedule.gnmu_etime ne '00:00:00')}">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[퇴근상태]">
+													</c:if>
+												</c:if>
+											</c:if>
+											<!-- 모드 버튼 -->
 											<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2') && authInfo.mode eq '0'}">	<!-- 관리자/직원 -> 관리자 모드 -->
-												&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[이용자 모드]">
+												&nbsp;<input type="button" value="[이용자 모드]">
 											</c:if>
 											<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!--  직원 또는 관리자 -> 이용자 모드 -->
-												&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[관리자 모드]">
+												&nbsp;<input type="button" value="[관리자 모드]">
 											</c:if>
 											<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!--  직원 또는 관리자 -> 이용자 모드 -->
-												&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[직원 모드]">
+												&nbsp;<input type="button" value="[직원 모드]">
 											</c:if>
 											<c:if test="${empty authInfo && !empty companyAuthInfo}">	<!-- 협력업체 -->
 												&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[협력업체 모드]">
@@ -135,7 +153,7 @@ body{
 												<c:if test="${!empty authInfo && authInfo.m_admin ne '0'}">
 												<a class="dropdown-item" href="#" id="mode_btn">
 													<!-- 관리자 -> 관리자 모드 -->
-													<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">	
+													<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">
 													<input type="hidden" name="mode" value="1">
 													<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
 													<span style="display:inline"><small>[관리자 모드]로 변환</small></span>
@@ -162,6 +180,9 @@ body{
 												</a>	
 												</c:if>
 												</form>
+												<c:if test="${!empty authInfo && authInfo.m_admin ne '0'}">
+												<a class="dropdown-item" href="/YPCinema/staff_se"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Service &nbsp;&nbsp;<small>근태 관리</small></a>
+												</c:if>
 												<!-- 일반회원 -->
 												<c:if test="${!empty authInfo && empty companyAuthInfo}">	
 												<a class="dropdown-item" href="/YPCinema/myPage"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile&nbsp;&nbsp;<small>나의 정보</small></a>
@@ -170,7 +191,6 @@ body{
 												<c:if test="${empty authInfo && !empty companyAuthInfo}">	
 												<a class="dropdown-item" href="/YPCinema/companyMyPage"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile&nbsp;&nbsp;<small>나의 업체정보</small></a>
 												</c:if>
-												<a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Service &nbsp;&nbsp;<small>고객센터</small></a>
 												<div class="dropdown-divider"></div>
 												<a class="dropdown-item" href="/YPCinema/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout &nbsp;&nbsp;<small>로그아웃</small></a>
 											</div>

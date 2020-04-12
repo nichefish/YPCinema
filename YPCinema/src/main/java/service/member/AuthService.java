@@ -7,13 +7,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 
 import command.member.LoginCommand;
 import model.DTO.AuthInfo;
 import model.DTO.MemberDTO;
+import model.DTO.ScheduleDTO;
 import model.DTO.StaffDTO;
 import repository.member.MemberRepository;
+import service.staff.GnteService;
 import service.staff.StaffDetailService;
 
 @Service
@@ -24,8 +27,10 @@ public class AuthService {
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	@Autowired
 	private StaffDetailService staffDetailService;
+	@Autowired
+	private GnteService gnteService;
 	
-	public String authenticate(LoginCommand loginCommand, HttpSession session, Errors errors,	HttpServletResponse response) {
+	public String authenticate(LoginCommand loginCommand, HttpSession session, Errors errors, HttpServletResponse response, Model model) {
 		MemberDTO member = new MemberDTO();
 		member.setM_id(loginCommand.getId());
 		Cookie idStoreCookie = new Cookie("idStore", loginCommand.getId());
@@ -59,7 +64,6 @@ public class AuthService {
 					staff = staffDetailService.selectStaffByMNum(staff);
 					authInfo.setStaff_num(staff.getStaff_num());
 					authInfo.setTheater(staff.getTheater_num());
-					System.out.println("스탭:" + staff.getStaff_num());
 				}
 				if (loginCommand.getAutoLogin()) {		// 자동로그인 체크되어 있으면..
 					Cookie autoLoginCookie = new Cookie("autoLogin", member.getM_id());		// 자동로그인 쿠키...
@@ -67,6 +71,9 @@ public class AuthService {
 					response.addCookie(autoLoginCookie);
 				}
 				session.setAttribute("authInfo", authInfo);
+				if (member.getM_admin().equals("1") || member.getM_admin().equals("2")) {
+					ScheduleDTO schedule = gnteService.getScheduleToday(session, model);
+				}
 				path = "redirect:/main";
 			} else {
 				errors.rejectValue("pass","wrong");		// 비밀번호가 틀린 거-

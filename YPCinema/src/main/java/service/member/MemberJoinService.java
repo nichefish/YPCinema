@@ -1,5 +1,7 @@
 package service.member;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.validation.Errors;
 import command.member.MemberCommand;
 import model.DTO.MemberDTO;
 import repository.member.MemberRepository;
+import service.payment.SendSMS;
 
 @Service
 public class MemberJoinService {
@@ -18,7 +21,7 @@ public class MemberJoinService {
 	@Autowired
 	private MemberRegMailService memberRegMailService;
 	
-	public String memberJoin(MemberCommand memberCommand, Errors errors) {
+	public String memberJoin(MemberCommand memberCommand, Errors errors, HttpServletRequest request) {
 		MemberDTO dto = new MemberDTO();
 		dto.setM_id(memberCommand.getM_id());
 		dto.setM_pass(bcryptPasswordEncoder.encode(memberCommand.getM_pass()));
@@ -38,6 +41,12 @@ public class MemberJoinService {
 			return "member/member_join_form";
 		}
 		memberRegMailService.sendMail(dto.getM_email(), dto.getM_id());
+		SendSMS sendSMS = new SendSMS();
+		try {
+			sendSMS.sendMemberJoinSMS(memberCommand, request);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "member/memberWelcome";
 	}
 	

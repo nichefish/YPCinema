@@ -29,6 +29,12 @@ $(function() {
 			$("#frm").submit();
 		}
 	});
+	$("#btn").click(function() {
+		var test = confirm("회원가입을 포기하고 메인 화면으로 돌아가시겠습니까?");
+		if (test) {
+			location.href = "main";
+		}
+	});
 });
 </script>
 <body>

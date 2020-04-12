@@ -73,6 +73,18 @@ $(function() {
 			}
 		}
 	});
+	$("#submit_btn").click(function() {
+		var test = confirm('선택한 좌석으로 예매신청하시겠습니까?');
+		if (test) {
+			var test2 = confirm("예매정보를 저장하고 매점오더 페이지로 이동하시겠습니까?");
+			if (test2) {
+				$("#order_mode").val("order");
+			} else {
+				$("#order_mode").val("direct");
+			}
+			$("#select_seats").submit();
+		}
+	});
 	$("#select_seats").submit(function(){
 		if(!$(":checkbox[name='seat_num_array']:checked").val()) {
 		    alert("좌석을 선택하지 않으면 진행할 수 없습니다!");                        
@@ -203,7 +215,8 @@ $(function() {
 						<!--  -->
 						</c:if>
 						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
-						<input type="submit" value="예매신청" /> 
+						<input type="hidden" name="order_mode" id="order_mode">
+						<input type="button" id="submit_btn" value="예매신청" /> 
  						</c:if>
 					</td>
 				</tr>

@@ -44,8 +44,13 @@ public class ShowReserveRegisterController {
 	}
 	
 	@RequestMapping(value="/showtime/orderList", method=RequestMethod.POST)
-	public String showReservePayment(ShowReserveCommand showReserveCommand, HttpSession session, Model model) {
+	public String showReservePayment(@RequestParam("order_mode") String order_mode, ShowReserveCommand showReserveCommand, HttpSession session, Model model) {
 		showReserveRegisterService.holdReserveInSession(showReserveCommand, session);
-		return "payment/order_list";
+		System.out.println("!@#!@#" + order_mode);
+		if (order_mode.equals("order")) {
+			return "redirect:/popcorn";
+		} else {
+			return "payment/order_list";
+		}
 	}
 }

@@ -25,7 +25,7 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마 지점 정보</p>
+ 		<h2>양평시네마 지점 정보</h2>
 		<p><br /></p>
 		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
 			<c:forEach items="${theaters}" var="theater">
@@ -40,26 +40,6 @@
 				</c:if>
 			</tr>
 			</c:forEach>
-			<tr align=center height=20>
-				<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-					<c:if test="${page <= 1}">
-					[이전]&nbsp;
-					</c:if>
-					<c:if test="${page > 1}">
-					<a href="list?page=${page-1}">[이전]</a>&nbsp;
-					</c:if>
-					<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-						<a href="list?page=${i}">[${i}]</a> (페이징 구현안함)
-					</c:forEach>
-						<a href="#"></a>&nbsp;
-					<c:if test="${page == maxPage}">
-					&nbsp;[다음]
-					</c:if>
-					<c:if test="${page < maxPage}">
-					&nbsp;<a href="list?page=${page+1}">[다음]</a>
-					</c:if>
-				</td>
-			</tr>
 		</table>
 	</div>
 </div>

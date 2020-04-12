@@ -24,7 +24,7 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마 상영영화 정보</p>
+ 		<h2>양평시네마 상영영화 정보</h2>
  		<form:form method="get">
  			<p>
  				<input type="text"> <input type="button" value="영화 검색? (구현안함...)"><br/>
@@ -62,26 +62,6 @@
 				<td align="center">${movie.movie_rating}</td>
 			</tr>
 			</c:forEach>
-			<tr align=center height=20>
-				<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-					<c:if test="${page <= 1}">
-					[이전]&nbsp;
-					</c:if>
-					<c:if test="${page > 1}">
-					<a href="list?page=${page-1}">[이전]</a>&nbsp;
-					</c:if>
-					<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-						<a href="list?page=${i}">[${i}]</a> 페이징 구현안함...
-					</c:forEach>
-						<a href="#"></a>&nbsp;
-					<c:if test="${page == maxPage}">
-					&nbsp;[다음]
-					</c:if>
-					<c:if test="${page < maxPage}">
-					&nbsp;<a href="list?page=${page+1}">[다음]</a>
-					</c:if>
-				</td>
-			</tr>
 		</table>
 	</div>
 </div>

@@ -12,6 +12,8 @@ public class AuthInfo implements Serializable {
 	private String mode;			// 직원 또는 관리자일 때. 이용자모드/관리자모드...
 	private String staff_num;
 	private String theater;
+	private ScheduleDTO schedule;
+	private GngijunDTO gnmu;
 	
 	public String getM_id() {
 		return m_id;
@@ -60,5 +62,17 @@ public class AuthInfo implements Serializable {
 	}
 	public void setTheater(String theater) {
 		this.theater = theater;
+	}
+	public ScheduleDTO getSchedule() {
+		return schedule;
+	}
+	public void setSchedule(ScheduleDTO schedule) {
+		this.schedule = schedule;
+	}
+	public GngijunDTO getGnmu() {
+		return gnmu;
+	}
+	public void setGnmu(GngijunDTO gnmu) {
+		this.gnmu = gnmu;
 	}
 }

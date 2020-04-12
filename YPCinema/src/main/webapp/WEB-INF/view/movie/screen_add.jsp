@@ -58,7 +58,7 @@
 				<tr>
 					<td width="200">스크린 규모등급</td>
 					<td>
-						<input type="hidden" name="screen_rating" id="screen_rating">
+						<input type="hidden" name="screen_rating" id="screen_rating"><br />
 						<input type="text" id="screen_rating_show" size="12" value="" disabled >
 						(60- D, 60~120 C, 120~200 B, 200+ A)
 					</td>

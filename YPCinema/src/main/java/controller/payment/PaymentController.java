@@ -32,11 +32,10 @@ public class PaymentController {
 	@Autowired
 	private ShowReserveListService showReserveListService;
 	
-	@RequestMapping("/orderList")
-	public String orderList(HttpSession session, Model model, HttpServletRequest request) {
-//		orderListService.getReserveSessionInfo(session, model);
-		return "payment/order_list";
-	}
+//	@RequestMapping("/orderList")
+//	public String orderList(HttpSession session, Model model, HttpServletRequest request) {
+//
+//	}
 	
 	@RequestMapping("/kakaoPay")
 	public String kakaoPay(@RequestParam(value="payment_email") String payment_email, @RequestParam(value="payment_ph") String payment_ph, PaymentCommand paymentCommand, Model model) {
