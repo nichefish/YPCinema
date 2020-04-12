@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link rel="icon" href="img/fvc.jpg">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script>
 $(document).ready(function() {
@@ -58,8 +59,8 @@ $(function() {
 	$("#company").click(function() {
 		$("#id").val("");
 		$("#pass").val("");
-		$("#id").css('background-color', 'blue');
-		$("#pass").css('background-color', 'blue');
+		$("#id").css('background-color', 'white');
+		$("#pass").css('background-color', 'white');
 		$("#register").html("&nbsp;<a href='companyRegister'>외부업체가입</a>");
 	});
 });
@@ -70,48 +71,46 @@ $(function() {
 	<%@ include file="navigation.jsp"%>
 </header>
 <c:if test="${empty authInfo}">
-<div class="main-content-wrapper section-padding-100">
- 	<div class="container" align="center">
+
+<div class="main-content-wrapper section-padding-100" >
+ 	<div class="text-center">
+ 	<img src="<c:url value='/img/logo_1-4.png' />" alt="YGVCinema Login Logo" style="width:200px;">
+    </div>
+ 	<div class="container" align="center" style="width:30%;">
  		<p>생활의 즐거움 Life Theater<br/>양평시네마에 오신 걸 환영합니다.</p>
-		<form:form action="login" name="frm" id="frm" method="POST" commandName="loginCommand">
-			<div width="60%">
-			<table border="0">
-				<tr>
-					<td >
-					</td>
-					<td align="center">
-						회원 <form:radiobutton path="admin" id="user" value="0" checked="true" />
-						외부업체 <form:radiobutton path="admin" id="company" value="1" />&nbsp;
-					</td>
-					<td rowspan="2">
-						&nbsp;<form:checkbox path="idStore" id="idStore" />아이디 저장<br />
-						&nbsp;<form:checkbox path="autoLogin" id="autoLogin" />자동 로그인
-					</td>
-				</tr>
-				<tr>
-					<td>아이디 입력</td>
-					<td><form:input path="id" id="id" /></td>
-				</tr>
-				<tr>
-					<td>비밀번호 입력</td>
-					<td><form:password path="pass" id="pass" /></td>
-					<td>&nbsp;&nbsp;<input type="submit" id="btn" value="로그인" /></td>
-				</tr>
-				<tr>
-					<td colspan="3" align="center"><span style="color:red;"><form:errors path="id" /><form:errors path="pass" /></span></td>
-				</tr>
-			</table>
+
+		<form:form action="login" class="user" name="frm" id="frm" method="POST" commandName="loginCommand">
+			
+
+				회원 <form:radiobutton path="admin" id="user" value="0" checked="true" />
+				외부업체 <form:radiobutton path="admin" id="company" value="1"/>	
+			
+			<hr>
+			<div class="form-group" >
+				<form:input path="id" id="id" class="form-control form-control-user" placeholder="아이디" />
 			</div>
-			<table border="0">
-				<tr>
-					<td colspan="5">
-						<div id="register" align="right" style="display:inline;">&nbsp;<a href="register">회원가입</a></div>
-					</td>
-				</tr>
-			</table>
+			<div class="form-group" >	
+				<form:password path="pass" id="pass" class="form-control form-control-user" placeholder="비밀번호"/>
+			</div>
+			   <div class="form-group">
+			   			<form:checkbox path="idStore" id="idStore" />
+                        <label  for="ex_chk3">아이디저장</label>
+                     	<form:checkbox path="autoLogin" id="autoLogin" />
+                        <label  for="ex_chk3">자동로그인</label>
+                    </div>	
+                    	
+					<input type="submit" id="btn" value="Login" class="btn btn-primary btn-user btn-block"/>
+				<span style="color:red;"><form:errors path="id" /><form:errors path="pass" /></span>
+				
+
+				<hr>
+				<div class="text-center">
+                    <a class="small" href="register">회원가입</a>
+                  </div>
 		</form:form>
+		</div>
 	</div>
-</div>
+
 </c:if>
 <c:if test="${!empty authInfo}">
 	<% response.sendRedirect("main"); %>

@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
-<link rel="icon" href="../img/core-img/favicon.ico">
+<title>YPCinema</title>
+<link rel="icon" href="img/fvc.jpg">
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/style.css">

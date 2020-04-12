@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member CouponList ajax</title>
+<title>YPCinema</title>
 </head>
 <body>
 <table class="table table-bordered" id="dataTable" cellspacing="0">

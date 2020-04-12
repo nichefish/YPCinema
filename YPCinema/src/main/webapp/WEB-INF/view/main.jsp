@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <title>YPcinema - Blog &amp; Magazine Template</title>
-<link rel="icon" href="img/core-img/favicon.ico">
+<link rel="icon" href="img/fvc.jpg">
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">

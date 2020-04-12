@@ -11,10 +11,10 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>YPcinema - Blog &amp; Magazine Template</title>
+    <title>YPCinema</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="img/fvc.jpg">
 
     <!-- Style CSS -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">

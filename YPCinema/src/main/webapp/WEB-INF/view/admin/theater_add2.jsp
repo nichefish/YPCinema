@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YPCinema</title>
 </head>
 <body>
  <div class="card shadow mb-4"style="width:30%;float: left; margin-right: 20px;">

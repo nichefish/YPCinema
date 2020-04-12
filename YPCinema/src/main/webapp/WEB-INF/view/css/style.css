@@ -30,6 +30,36 @@ body {
 .ubuntu-fonts {
   font-family: "Ubuntu", sans-serif; }
 
+input[type=button] {
+    width: auto;
+    background-color: #000000;
+    color: white;
+    padding: 10px 16px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type=submit] {
+    width: auto;
+    background-color: #000000;
+    color: white;
+    padding: 10px 16px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type=reset] {
+    width: auto;
+    background-color: #000000;
+    color: white;
+    padding: 10px 16px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 h1,
 h2,
 h3,

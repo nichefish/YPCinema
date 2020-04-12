@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/magnific-popup.css">
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
+
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
@@ -28,73 +29,77 @@
  	<div class="container" align="center">
 		<form:form action="memberJoinAction" name="frm" id="frm" method="post" commandName="memberCommand">
 		<!-- <input type="hidden" name="confirmNum" id="confirmNum" value="1"> 여기 value 1! 중복체크 -->
-			<p>회원가입</p>
-			<table width="600" align="center" border=1 >
+			<div class="relCon" align="center">
+				<h2><b>회원가입</b></h2>
+			
+			<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+			<thead>
 			 	<tr>
-			 		<td width="200">사용자 ID</td>
+			 		<th width="200">사용자 ID</th>
 			 		<td width="400">
-			 			<form:input path="m_id" size="14" maxlength="10" id="m_id" />
+			 			<form:input path="m_id" size="14" maxlength="10" id="m_id"/><br />
 			 			<span style="color:red;"><form:errors path="m_id" /></span>
 			 		</td>
 			 	</tr>
+			 </thead>
 			 	<tr>
-			 		<td width="200">비밀번호</td>
+			 		<th width="200">비밀번호</th>
 			 		<td width="400">
-			 			<form:password path="m_pass" id="userPw" size="14" maxlength="10" />
+			 			<form:password path="m_pass" id="userPw" size="14" maxlength="10" /><br />
 			 			<span style="color:red;"><form:errors path="m_pass" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="200">비밀번호 확인</td>
+			 		<th width="200">비밀번호 확인</th>
 			 		<td width="400">
-			 			<form:password path="m_pass_con" id="userPwCon" size="14" maxlength="10" />
+			 			<form:password path="m_pass_con" id="userPwCon" size="14" maxlength="10" /><br />
 			 			<span style="color:red;"><form:errors path="m_pass_con" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="200">사용자 이름</td>
+			 		<th width="200">사용자 이름</th>
 			 		<td width="400">
-			 			<form:input path="m_name" size="14" maxlength="10" />
+			 			<form:input path="m_name" size="14" maxlength="10" /><br />
 			 			<span style="color:red;"><form:errors path="m_name" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="200">성별</td>
+			 		<th width="200">성별</th>
 			 		<td width="400">
 			 			남자 : <form:radiobutton path="m_gen" value="M" id="m_gen" />
-			 			여자 : <form:radiobutton path="m_gen" value="F" id="m_gen" />
+			 			여자 : <form:radiobutton path="m_gen" value="F" id="m_gen" /><br />
 			 			<span style="color:red;"><form:errors path="m_gen" /></span>
 			 			
 			 			<input type="hidden" name="m_picture" value="<c:url value='/img/empty_person.png' />" >
 			 		</td>
 			 	</tr>
 			 	<tr>
-			 		<td width="200">생년월일 (<u>yyyy-MM-dd</u>)</td>
+			 		<th width="200">생년월일 <br />(<u>yyyy-MM-dd</u>)</th>
 			 		<td width="400">
-			 			<form:input path="m_birth" id="userBirth" size="14" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
+			 			<form:input path="m_birth" id="userBirth" size="14" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/><br />
 			 			<span style="color:red;"><form:errors path="m_birth" /></span>
 			 		</td>
 			 	</tr>
 				<tr>
-					<td width="200"><b>*연락처</b> (000-0000-0000)</td>
+					<th width="200"><b>*연락처</b>  <br />(000-0000-0000)</th>
 					<td width="400">
-						<form:input path="m_ph" id="userPh" size="14" maxlength="28" />
+						<form:input path="m_ph" id="userPh" size="14" maxlength="28" /><br />
 						<span style="color:red;"><form:errors path="m_ph" /></span>
 					</td>
 				</tr>
 			 	<tr>
-			 		<td width="200"><b>*이메일 주소</b></td>
+			 		<th width="200"><b>*이메일 주소</b></th>
 					<td width="400">
-						<form:input path="m_email" id="m_email" size="24" maxlength="28" />
+						<form:input path="m_email" id="m_email" size="24" maxlength="28" /><br />
 						<span style="color:red;"><form:errors path="m_email" /></span>
 					</td>
 				</tr>
 				<tr>
-					<td>우편번호 </td>
-					<td><form:hidden path="m_zip" id="m_zip" /><input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><input type="text" id="m_zip_show" placeholder="우편번호" value="${memberCommand.m_zip}" disabled /></td>	
+					<th>우편번호 </th>
+					<td><form:hidden path="m_zip" id="m_zip" /><input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="height:40px;">&nbsp;<input type="text" id="m_zip_show" placeholder="우편번호" value="${memberCommand.m_zip}" disabled /></td>	
 				</tr>
 				<tr>
-					<td>주소 </td>
+					<th>주소 </th>
 					<td>
 						<form:hidden path="m_addr1" id="m_addr1" /><input type="text" id="m_addr1_show" style="width:99%;" placeholder="도로명주소" value="${memberCommand.m_addr1}" disabled="disabled" /><br/>
 						<form:input path="m_addr2" id="m_addr2" style="width:75%;" placeholder="상세주소"/>
@@ -108,6 +113,7 @@
 			 		</td>
 				</tr>
 			</table>
+		</div>
 		</form:form>
 	</div>
 </div>

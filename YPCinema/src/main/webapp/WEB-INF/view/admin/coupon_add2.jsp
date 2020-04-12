@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>add_ajax</title>
+<title>YPCinema</title>
 </head>
 <body>
 <select name="c_spe" id="c_spe">

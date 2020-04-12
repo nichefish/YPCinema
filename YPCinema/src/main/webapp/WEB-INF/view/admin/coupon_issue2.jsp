@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>coupon_issueAjax</title>
+<title>YPCinema</title>
 </head>
 <body>
 <input type="hidden" id="userName2" value="${userNum}">

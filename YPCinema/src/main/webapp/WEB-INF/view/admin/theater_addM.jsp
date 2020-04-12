@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>지점 수정</title>
+<title>YPCinema</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -97,7 +97,7 @@
 										<td style="text-align: center;">${numTheater.theater_special}</td>
 									</tr>
 								</table>
-								<input type="submit" value="등록"> 
+								<input type="submit" value="수정"> 
 								<input type="button" value="취소" onclick="location.href='jobList'" >
 								</form>
 							</div>
