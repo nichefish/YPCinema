@@ -9,6 +9,18 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script>
 $(function() {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+	if (dd<10) {
+		dd='0'+dd;
+	} 
+	if(mm<10){
+		mm='0'+mm;
+	} 
+	today = yyyy+'-'+mm+'-'+dd;
+	$("#date").attr("min", today);
 	$("#date").change(function() {
 		var dt = new Date();
 		var today = dt.getFullYear() + ("00"+(dt.getMonth() + 1)).slice(-2) + ("00" + dt.getDate()).slice(-2);

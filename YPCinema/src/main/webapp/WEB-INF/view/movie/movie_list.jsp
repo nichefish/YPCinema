@@ -26,43 +26,42 @@
  	<div class="container" align="center">
  		<h2>양평시네마 상영영화 정보</h2>
  		<form:form method="get">
- 			<p>
- 				<input type="text"> <input type="button" value="영화 검색? (구현안함...)"><br/>
- 				!@#!#@...
- 			<p>ㅂㅂ$!@#$!....</p>
+ 			<p><input type="text"> <input type="button" value="영화 검색? (구현안함...)"></p>
  		</form:form>
  		<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
  		<table width="60%" border="0" cellpadding="0" cellspacing="0" >
  			<tr>
- 			<td align="right">
- 				<p><input type="button" onclick="location.href='register'" value="영화정보 등록"></p>
- 			</td>
- 			</tr>
+	 			<td align="right">
+	 				<p><input type="button" onclick="location.href='register'" value="영화정보 등록"></p>
+	 			</td>
+	 			</tr>
  		</table>
  		</c:if>
-		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
-			<tr align="center" valign="middle">
-				<td align="center">영화번호</td>
-				<td align="center" width="180">영화제목<br/>(감독, 년도)</td>
-				<td align="center">장르</td>
-				<td align="center">관람연령가</td>
-				<td align="center">상영시간</td>
-				<td align="center">편성등급</td>
-			</tr>
-			<c:forEach items="${lists}" var="movie">
-			<tr align="center" valign="middle">
-				<td align="center"><a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_num}</a></td>
-				<td align="center">
-					<a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_title}</a><br />
-					(${movie.movie_director}, <fmt:formatDate value="${movie.movie_date}" type="date" pattern="yyyy" />)
-				</td>
-				<td align="center">${movie.movie_genre}</td>
-				<td align="center">${movie.movie_age}</td>
-				<td align="center">${movie.movie_runtime}분</td>
-				<td align="center">${movie.movie_rating}</td>
-			</tr>
-			</c:forEach>
-		</table>
+ 		<div class="relCon" align="center">
+			<table style="width:60%;align:center;color:black;">
+				<tr align="center" border="1" valign="middle">
+					<td align="center">영화번호</td>
+					<td align="center">영화제목<br/>(감독, 년도)</td>
+					<td align="center">장르</td>
+					<td align="center">관람연령가</td>
+					<td align="center">상영시간</td>
+					<td align="center">편성등급</td>
+				</tr>
+				<c:forEach items="${lists}" var="movie">
+				<tr align="center" valign="middle">
+					<td align="center"><a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_num}</a></td>
+					<td align="center">
+						<a href="<c:url value='/movie/detail?num=${movie.movie_num}' />">${movie.movie_title}</a><br />
+						(${movie.movie_director}, <fmt:formatDate value="${movie.movie_date}" type="date" pattern="yyyy" />)
+					</td>
+					<td align="center">${movie.movie_genre}</td>
+					<td align="center">${movie.movie_age}</td>
+					<td align="center">${movie.movie_runtime}분</td>
+					<td align="center">${movie.movie_rating}</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
 </div>
 <footer class="footer-area">

@@ -20,7 +20,6 @@ public class MovieCommandValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movie_age", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movie_runtime", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "movie_rating_plus", "required");
-		
 	}
 
 }

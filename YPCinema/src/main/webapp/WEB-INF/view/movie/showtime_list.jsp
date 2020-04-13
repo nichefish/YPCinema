@@ -20,6 +20,18 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
 $(function() {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+	if (dd<10) {
+		dd='0'+dd;
+	} 
+	if(mm<10){
+		mm='0'+mm;
+	} 
+	today = yyyy+'-'+mm+'-'+dd;
+	$("#date").attr("min", today);
 	$("#theater").change(function() {
 		location.href="list?theater=" + this.value;
 	});
@@ -35,8 +47,7 @@ $(function() {
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마 상영일정 정보</p>
- 		<p>ㅂㅂ$!@#$!....</p>
+ 		<h2>양평시네마 상영일정 정보</h2>
  		<form:form name="frm" id="frm" method="post" commandName="showtimeListCommand">
 			<p>
 				날짜: <form:input path="show_date" id="date" type="date" />&nbsp;&nbsp;
@@ -48,9 +59,8 @@ $(function() {
 					</c:forEach>
 				</form:select>
 				영화: <form:hidden path="movie_num" />
-				<input type="text" value="${showtimeListCommand.movie_num}" readonly="readonly" />
+				<input type="text" value="${showtimeListCommand.movie_num}" />
 				<input type="submit" value="검색"><br/>
-				<input type="reset" onclick="location.href='list'" value="리셋">
 			</p>
 			
 		</form:form>
@@ -64,49 +74,30 @@ $(function() {
  			</tr>
  		</table>
  		</c:if>
-		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
-			<tr align="center" valign="middle">
-				<td align="center">상영번호</td>
-				<td align="center">지점번호</td>
-				<td align="center">상영관번호</td>
-				<td align="center">영화번호</td>
-				<td align="center">상영일자</td>
-				<td align="center">상영시작시간</td>
-				<td align="center">상영종료시간</td>
-			</tr>
-			<c:forEach items="${showLists}" var="show">
-			<tr align="center" valign="middle">
-				<td align="center"><a href="reservation?num=${show.show_num}">${show.show_num}</a></td>
-				<td align="center">${show.theater_num}</td>
-				<td align="center">${show.screen_num}</td>
-				<td align="center">${show.movie_num}</td>
-				<td align="center"><fmt:formatDate value="${show.show_date}" type="date" /></td>
-				<td align="center"><fmt:formatDate value='${show.show_start}' type='time' pattern='HH:mm' /></td>
-				<td align="center"><fmt:formatDate value='${show.show_end}' type='time' pattern='HH:mm' /></td>
-			</tr>
-			</c:forEach>
-			
-			<tr align=center height=20>
-				<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-					<c:if test="${page <= 1}">
-					[이전]&nbsp;
-					</c:if>
-					<c:if test="${page > 1}">
-					<a href="list?page=${page-1}">[이전]</a>&nbsp;
-					</c:if>
-					<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-						<a href="list?page=${i}">[${i}]</a>
-					</c:forEach>
-						<a href="#"></a>&nbsp;
-					<c:if test="${page == maxPage}">
-					&nbsp;[다음]
-					</c:if>
-					<c:if test="${page < maxPage}">
-					&nbsp;<a href="list?page=${page+1}">[다음]</a>
-					</c:if>
-				</td>
-			</tr>
-		</table>
+ 		<div>
+			<table width="60%" border="1" cellpadding="0" cellspacing="0" >
+				<tr align="center" valign="middle">
+					<td align="center">상영번호</td>
+					<td align="center">지점번호</td>
+					<td align="center">상영관번호</td>
+					<td align="center">영화번호</td>
+					<td align="center">상영일자</td>
+					<td align="center">상영시작시간</td>
+					<td align="center">상영종료시간</td>
+				</tr>
+				<c:forEach items="${showLists}" var="show">
+				<tr align="center" valign="middle">
+					<td align="center"><a href="reservation?num=${show.show_num}">${show.show_num}</a></td>
+					<td align="center">${show.theater_num}</td>
+					<td align="center">${show.screen_num}</td>
+					<td align="center">${show.movie_num}</td>
+					<td align="center"><fmt:formatDate value="${show.show_date}" type="date" /></td>
+					<td align="center"><fmt:formatDate value='${show.show_start}' type='time' pattern='HH:mm' /></td>
+					<td align="center"><fmt:formatDate value='${show.show_end}' type='time' pattern='HH:mm' /></td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
 </div>
 <footer class="footer-area">

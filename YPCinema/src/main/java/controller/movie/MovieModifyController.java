@@ -33,6 +33,6 @@ public class MovieModifyController {
 			return "movie/movie_modify";
 		}
 		movieModifyService.movieModify(movieCommand);
-		return "redirect:/movie/detail";
+		return "redirect:/movie/detail?num=" + movie_num;
 	}
 }

@@ -23,9 +23,7 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마 상영영화 상세정보</p>
- 		<p>ㅂㅂ$!@#$!....</p>
- 		
+ 		<h2>양평시네마 상영영화 상세정보</h2>
  		<table width="60%" border="0">
  			<tr>
 				<td colspan="2" align="right">

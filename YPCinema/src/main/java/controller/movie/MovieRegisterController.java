@@ -24,11 +24,13 @@ public class MovieRegisterController {
 	public String movieRegisterForm(@RequestParam(value="movie_num", required=false) String movie_num, MovieCommand movieCommand, Errors errors) {
 		try {
 			Integer result = movieInfoAPIService.getMovieInfoAPI(movie_num, movieCommand);
-			if (result == 0) {
+			if (!movie_num.equals("") && result == 0) {
 				errors.rejectValue("movie_num", "bad");
 			}
 		} catch (Exception e) {
-			errors.rejectValue("movie_num", "bad");
+			if (!movie_num.equals("")) {
+				errors.rejectValue("movie_num", "bad");
+			}
 		}
 		return "movie/movie_add";
 	}

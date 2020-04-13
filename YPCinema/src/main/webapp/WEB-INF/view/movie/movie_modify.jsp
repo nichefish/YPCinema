@@ -35,42 +35,43 @@
 			 	<tr>
 			 		<td width="200">영화번호</td>
 			 		<td width="400">
-			 			<input type="text" value="${movieCommand.movie_num}" disabled />
+			 			<input type="text" value="${movieCommand.movie_num}" size="14" disabled />
+			 			<input type="hidden" name="movie_num" value="${movieCommand.movie_num}" />
 			 			<span style="color:red;"><form:errors path="movie_num" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">영화제목</td>
 			 		<td width="400">
-			 			<form:input path="movie_title" id="userPw" size="12" maxlength="10" />
+			 			<form:input path="movie_title" id="userPw" size="14" maxlength="10" />
 			 			<span style="color:red;"><form:errors path="movie_title" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">감독명</td>
 			 		<td width="400">
-			 			<form:input path="movie_director" id="userPwCon" size="12" maxlength="10" />
+			 			<form:input path="movie_director" id="userPwCon" size="14" maxlength="10" />
 			 			<span style="color:red;"><form:errors path="movie_director" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">제작국가</td>
 			 		<td width="400">
-			 			<form:input path="movie_nation" id="userName" size="12" maxlength="10" />
+			 			<form:input path="movie_nation" id="userName" size="14" maxlength="10" />
 			 			<span style="color:red;"><form:errors path="movie_nation" /></span>
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="200">개봉일 (<u>yyyy-MM-dd</u>)</td>
 			 		<td width="400">
-			 			<form:input path="movie_date" id="userBirth" size="12" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
+			 			<form:input path="movie_date" id="userBirth" size="14	" maxlength="10" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{1,2}-\d{1,2}"/>
 			 			<span style="color:red;"><form:errors path="movie_date" /></span>
 			 		</td>
 			 	</tr>
 				<tr>
 					<td width="200">장르</td>
 					<td width="400">
-						<form:input path="movie_genre" id="userPh1" size="30" maxlength="28" />
+						<form:input path="movie_genre" id="userPh1" size="14" maxlength="28" />
 						<span style="color:red;"><form:errors path="movie_genre" /></span>
 					</td>
 				</tr>
@@ -84,14 +85,14 @@
 			 	<tr>
 			 		<td width="200">관람연령기준</td>
 					<td width="400">
-						<form:input path="movie_age" id="m_email" size="30" maxlength="28" />
+						<form:input path="movie_age" id="m_email" size="14" maxlength="28" />
 						<span style="color:red;"><form:errors path="movie_age" /></span>
 					</td>
 				</tr>
 				<tr>
 			 		<td width="200">상영시간</td>
 					<td width="400">
-						<form:input path="movie_runtime" id="m_email" size="30" maxlength="28" />
+						<form:input path="movie_runtime" id="m_email" size="14" maxlength="28" />
 						<span style="color:red;"><form:errors path="movie_runtime" /></span>
 					</td>
 				</tr>
@@ -107,6 +108,13 @@
 					<td width="400">
 						<form:input path="movie_still_url" id="m_email" size="30" maxlength="28" />
 						<span style="color:red;"><form:errors path="movie_still_url" /></span>
+					</td>
+				</tr>
+				<tr>
+			 		<td width="200">상영등급 가산점 (0~20)</td>
+					<td width="400">
+						<form:input path="movie_rating_plus" id="m_email" size="14" maxlength="28" placeholder="0" />
+						<span style="color:red;"><form:errors path="movie_rating_plus" /></span>
 					</td>
 				</tr>
 			</table>

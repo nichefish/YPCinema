@@ -24,7 +24,8 @@ public class MovieListService {
 	
 	public void selectMovieByRating(TheaterAddDTO theater, ScreenDTO screen, Model model) {
 		String temp = "";
-		Integer rating = null;
+		Integer ratingA = null;
+		Integer ratingB = null;
 		if (theater.getTheater_rating().compareTo(screen.getScreen_rating()) <= 0) {			// 고등급-
 			temp = screen.getScreen_rating();
 		} else {
@@ -33,20 +34,25 @@ public class MovieListService {
 		System.out.println("temp: " + temp);
 		switch (temp) {
 		case "D" : 
-			rating = 40;
+			ratingA = 0;
+			ratingB = 40;
 			break;
 		case "C" :
-			rating = 60;
+			ratingA = 40;
+			ratingB = 60;
 			break;
 		case "B" :
-			rating = 80;
+			ratingA = 60;
+			ratingB = 80;
 			break;
 		case "A" :
-			rating = 100;
+			ratingA = 100;
+			ratingB = 100;
 			break;
 		}
 		MovieRatingDTO movieRatingDTO = new MovieRatingDTO();
-		movieRatingDTO.setRating(rating);
+		movieRatingDTO.setRatingA(ratingA);
+		movieRatingDTO.setRatingB(ratingB);
 		movieRatingDTO.setTheater_special(theater.getTheater_special());
 		
 		List<MovieDTO> lists = movieRepository.selectMovieByRating(movieRatingDTO, model);

@@ -52,11 +52,10 @@
 		    } 
 		});    
 		</script>
- 		<table width="60%" border="0">
+	 	<table width="60%" border="0" cellpadding="0" cellspacing="0" >
  			<tr>
  				<td align="right">
- 					<p><br /></p>
- 					<p>
+ 					<p style="align:right;">
 						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
 						<input type="button" onclick="location.href='../showtime/list?theater=${numTheater.theater_num}'" value="지점 상영일정 보기" />
 						</c:if>
@@ -64,67 +63,77 @@
 					</p>
  				</td>
  			</tr>
- 		</table>
-		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
+	 	</table>
+	 	<div class="relCon" align="center">
+			<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+				<tr>
+					<td align="center" width="160">지점 고유번호</td>
+					<td colspan="2">${numTheater.theater_num}</td>
+				</tr>
+				<tr>
+					<td align="center" width="160">지점 주소</td>
+					<td colspan="2">${numTheater.theater_addr1} ${numTheater.theater_addr2} ${numTheater.theater_zip}</td>
+				</tr>
+				<tr>
+					<td align="center" width="160">지점 연락처</td>
+					<td colspan="2">☎${numTheater.theater_ph}</td>
+				</tr>
+				<tr>
+					<td align="center" width="160">지점 특화장르</td>
+					<td>
+						<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
+						<form method="post">
+							<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
+							<select name="theater_special">
+								<option value="${numTheater.theater_special}" selected>[${numTheater.theater_special}]</option>
+								<option value="0" label="없음">0</option>
+								<option value="드라마">드라마</option>
+								<option value="판타지">판타지</option>
+								<option value="공포">공포</option>
+								<option value="스릴러">스릴러</option>
+								<option value="코미디">코미디</option>
+								<option value="액션">액션</option>
+								<option value="로맨스">로맨스</option>
+								<option value="가족">가족</option>
+								<option value="애니메이션">애니메이션</option>
+							</select>
+							<input type="submit" value="특화장르 수정" />
+						</form>
+						</c:if>
+						<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
+							${numTheater.theater_special}
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" >지점 규모등급</td>
+					<td colspan="2">${numTheater.theater_rating}</td>
+				</tr>
+			</table>
+		</div>
+		<p><br /></p>
+		<p><h2>양평시네마 <b>${numTheater.theater_name}</b> 상영관 정보</h2></p>
+		<table width="60%" border="0" cellpadding="0" cellspacing="0" >
 			<tr>
-				<td align="center" width="160">지점 고유번호</td>
-				<td colspan="2">${numTheater.theater_num}</td>
-			</tr>
-			<tr>
-				<td align="center" width="160">지점 주소</td>
-				<td colspan="2">${numTheater.theater_addr1} ${numTheater.theater_addr2} ${numTheater.theater_zip}</td>
-			</tr>
-			<tr>
-				<td align="center" width="160">지점 연락처</td>
-				<td colspan="2">☎${numTheater.theater_ph}</td>
-			</tr>
-			<tr>
-				<td align="center" width="160">지점 특화장르</td>
-				<td>
+				<td align="right">
+					<p style="align:right;">
 					<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
-					<form method="post">
-						<input type="hidden" name="theater_num" value="${numTheater.theater_num}">
-						<select name="theater_special">
-							<option value="${numTheater.theater_special}" selected>[${numTheater.theater_special}]</option>
-							<option value="0" label="없음">0</option>
-							<option value="드라마">드라마</option>
-							<option value="판타지">판타지</option>
-							<option value="공포">공포</option>
-							<option value="스릴러">스릴러</option>
-							<option value="코미디">코미디</option>
-							<option value="액션">액션</option>
-							<option value="로맨스">로맨스</option>
-							<option value="가족">가족</option>
-							<option value="애니메이션">애니메이션</option>
-						</select>
-						<input type="submit" value="특화장르 수정" />
-					</form>
+					<span style="align:right;"><input type="button" onclick="location.href='addScreen?num=${numTheater.theater_num}'" value="상영관 등록" /></span>
 					</c:if>
-					<c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
-						${numTheater.theater_special}
-					</c:if>
+					</p>
 				</td>
 			</tr>
-			<tr>
-				<td align="center" >지점 규모등급</td>
-				<td colspan="2">${numTheater.theater_rating}</td>
-			</tr>
 		</table>
-		<p><br /></p>
-		<p>
-			양평시네마 <b>${numTheater.theater_name}</b> 상영관 정보
-			<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
-			<input type="button" onclick="location.href='addScreen?num=${numTheater.theater_num}'" value="상영관 등록" />
-			</c:if>
-		</p>
-		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
-			<c:forEach items="${lists}" var="screen">
-			<tr align="center" valign="middle">
-				<td align="center" width="160"><a href="<c:url value='/theater/detailScreen?num=${screen.screen_num}' />">${screen.screen_name}</a></td>
-				<td align="center">${screen.screen_max_seat}석 (${screen.screen_row})</td>
-			</tr>
-			</c:forEach>
-		</table>
+		<div class="relCon" align="center">
+			<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+				<c:forEach items="${lists}" var="screen">
+				<tr align="center" valign="middle">
+					<td align="center" width="160"><a href="<c:url value='/theater/detailScreen?num=${screen.screen_num}' />">${screen.screen_name}</a></td>
+					<td align="center">${screen.screen_max_seat}석 (${screen.screen_row})</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 		<p><br /></p>
 	</div>
 </div>

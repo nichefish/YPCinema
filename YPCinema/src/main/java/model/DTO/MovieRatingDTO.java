@@ -1,14 +1,20 @@
 package model.DTO;
 
 public class MovieRatingDTO {
-	Integer rating;
+	Integer ratingA;
+	Integer ratingB;
 	String theater_special;
-	
-	public Integer getRating() {
-		return rating;
+	public Integer getRatingA() {
+		return ratingA;
 	}
-	public void setRating(Integer rating) {
-		this.rating = rating;
+	public void setRatingA(Integer ratingA) {
+		this.ratingA = ratingA;
+	}
+	public Integer getRatingB() {
+		return ratingB;
+	}
+	public void setRatingB(Integer ratingB) {
+		this.ratingB = ratingB;
 	}
 	public String getTheater_special() {
 		return theater_special;

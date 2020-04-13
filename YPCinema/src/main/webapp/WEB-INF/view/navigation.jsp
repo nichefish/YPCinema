@@ -46,7 +46,7 @@ body{
 									<c:if test="${(empty authInfo && empty companyAuthInfo) || authInfo.m_admin eq '0' || authInfo.mode eq '0'}">
 									<a href="/YPCinema/showtime/list" ><img src="<c:url value='/img/ticket3.png' />" alt="Logo" style="width:50px;">　　</a>
 									</c:if>
-									<c:if test="${(!empty authInfo || !empty companyAuthInfo) && authInfo.m_admin eq '0' || (!empty authInfo && authInfo.mode ne '0')}">
+									<c:if test="${(!empty authInfo || !empty companyAuthInfo) && authInfo.m_admin ne '0' || (!empty authInfo && authInfo.mode ne '0')}">
 									<a href="#" ><img src="<c:url value='/img/픽토픽토/4-2.png' />" alt="Logo" style="width:30px;">　　</a>
 									</c:if>
 							</li>

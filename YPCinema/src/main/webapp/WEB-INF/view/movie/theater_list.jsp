@@ -27,20 +27,22 @@
  	<div class="container" align="center">
  		<h2>양평시네마 지점 정보</h2>
 		<p><br /></p>
-		<table width="60%" border="1" cellpadding="0" cellspacing="0" >
-			<c:forEach items="${theaters}" var="theater">
-			<tr align="center" valign="middle">
-				<td rowspan="2" align="center"><a href="<c:url value='/theater/detail?num=${theater.theater_num}' />">${theater.theater_name}</a></td>
-				<td align="center">${theater.theater_addr1} ${theater.theater_addr2} ${theater.theater_zip}</td>
-				<td align="center">☎${theater.theater_ph}</td>
-			<tr>
-				<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
-				<td align="center">지점 특화장르: ${theater.theater_special}</td>
-				<td align="center">규모등급: ${theater.theater_rating}</td>
-				</c:if>
-			</tr>
-			</c:forEach>
-		</table>
+		<div class="relCon" align="center">
+			<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+				<c:forEach items="${theaters}" var="theater">
+				<tr align="center" valign="middle">
+					<th rowspan="2" align="center"><a href="<c:url value='/theater/detail?num=${theater.theater_num}' />">${theater.theater_name}</a></th>
+					<td align="center">${theater.theater_addr1} ${theater.theater_addr2} ${theater.theater_zip}</td>
+					<td align="center">☎${theater.theater_ph}</td>
+				<tr>
+					<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
+					<td align="center">지점 특화장르: ${theater.theater_special}</td>
+					<td align="center">규모등급: ${theater.theater_rating}</td>
+					</c:if>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
 </div>
 <footer class="footer-area">
