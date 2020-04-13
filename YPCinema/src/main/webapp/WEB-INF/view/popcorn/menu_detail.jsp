@@ -88,12 +88,16 @@ function wish_ok(responseText, statusText, xhr, $form){
 
 							<div class="xans-element- xans-product xans-product-action ">
 								<br /> <br /> <br /> <br /> <br /> 
+								<c:if test="${authInfo.m_admin ne '0' && authInfo.mode ne '0' && !empty authInfo}">	<!-- 이용자 및 비로그인 아니면 -->
 								 <a href="menuModify?num=${menu.menuNum }" class="bt_cart">메뉴수정</a>
 								 <input type="button" class="bt_cart" id="menuDelete" value="메뉴삭제" onclick="location.href='menuDelete?num=${menu.menuNum }'">
-								 <br/><br/><br/>
+									<br/><br/><br/>
+								</c:if>
+								 <c:if test="${authInfo.m_admin eq '0' || authInfo.mode eq '0' || empty authInfo}">	<!-- 비로그인 + 관리자빼고 다... -->
 							 	<input type="button" class="bt_cart" id="cartAdd" value="장바구니" onclick="location.href='cartAdd?num=${menu.menuNum}'">
 								<a href="order?num=${menu.menuNum }" class=" bt_order">구매하기</a>
 								<button id="wishBtn" class="bt_cart">관심상품</button>
+								</c:if>
 							</div>
 						</div>
 					</div>
