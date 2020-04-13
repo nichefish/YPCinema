@@ -580,10 +580,10 @@
                             <!-- Post Content -->
                             <div class="post-content d-flex align-items-center justify-content-between">
                                 <!-- Catagory -->
-                                <div class="post-tag"><a href="#">YP시네마 채용</a></div>
+                                <div class="post-tag"><a href="staff_postList">YP시네마 채용</a></div>
                                 <!-- Headline -->
-                                <a href="#" class="headline">
-                                    <h5>여기는 채용공고</h5>
+                                <a href="staff_postList" class="headline">
+                                    <h5>YPCinama에서 당신의 능력을 펼쳐보세요.</h5>
                                 </a>
                              
                             </div>
