@@ -41,7 +41,6 @@ public class MemberModifyService {
 			member.setM_addr2(memberCommand.getM_addr2());
 			
 			if (memberCommand.getM_picture_file() != null) {
-				System.out.println("!#!#:" + memberCommand.getM_picture_file());
 				MultipartFile mf = memberCommand.getM_picture_file();
 				String original = mf.getOriginalFilename();
 				String originalFileExtension = original.substring(original.lastIndexOf("."));		// 마지막에 나오는 점 포함 기준으로 뒤쪽으로 자른 거...
@@ -50,13 +49,13 @@ public class MemberModifyService {
 				String path = request.getServletContext().getRealPath("/");
 				path += "WEB-INF\\view\\update";
 				String storePath = "/YPCinema/update/" + store;
+				
 				File file = new File(path + "\\" + store);		// 파일 객체 생성- 아직 파일이 저장된 건 아님...
 				try {
 					mf.transferTo(file);
 				} catch (IllegalStateException | IOException e) {	// 저장이 안 되는 경우는 용량초과인 경우... 에러 만들어주면 됨...
 					e.printStackTrace();
 				}
-				System.out.println("store" + store);
 				member.setM_picture(storePath);
 			}
 			Integer result = memberRepository.modifyMember(member);

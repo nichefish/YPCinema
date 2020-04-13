@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import command.showtime.ShowReserveCommand;
 import command.showtime.ShowtimeCommand;
+import model.DTO.AuthInfo;
 import model.DTO.ScreenDTO;
 import model.DTO.ShowtimeDTO;
+import service.member.MemberDetailService;
 import service.screen.ScreenDetailService;
 import service.showReserve.ShowReserveListService;
 import service.showReserve.ShowReserveRegisterService;
@@ -28,6 +30,8 @@ public class ShowReserveRegisterController {
 	private ShowReserveRegisterService showReserveRegisterService;
 	@Autowired
 	private ShowReserveListService showReserveListService;
+	@Autowired
+	private MemberDetailService memberDetailService;
 	
 	@RequestMapping(value="/showtime/reservation")
 	public String showReserve(@RequestParam("num") String show_num, HttpSession session, ShowReserveCommand showReserveCommand, Model model) {
@@ -44,9 +48,9 @@ public class ShowReserveRegisterController {
 	}
 	
 	@RequestMapping(value="/showtime/orderList", method=RequestMethod.POST)
-	public String showReservePayment(@RequestParam("order_mode") String order_mode, ShowReserveCommand showReserveCommand, HttpSession session, Model model) {
+	public String showReservePayment(@RequestParam("order_mode") String order_mode, HttpSession session, ShowReserveCommand showReserveCommand, Model model) {
 		showReserveRegisterService.holdReserveInSession(showReserveCommand, session);
-		System.out.println("!@#!@#" + order_mode);
+		memberDetailService.memberMypage(session, model);
 		if (order_mode.equals("order")) {
 			return "redirect:/popcorn";
 		} else {

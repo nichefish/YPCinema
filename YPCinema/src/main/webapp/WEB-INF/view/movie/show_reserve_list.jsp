@@ -57,6 +57,12 @@ $(function() {
 	});
 });
 </script>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
+%>
 </head>
 <body>
 <header class="header-area">
@@ -64,43 +70,48 @@ $(function() {
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<p>양평시네마 표 관리 정보 (직원전용!)</p>
+ 		<h2>양평시네마 티켓 관리 페이지</h2>
  		<form id="frm" method="get">
- 			<p>
- 				현재 날짜:시간: #$!@#@T--1234!-!@#$@!<br/><br/>
- 				<input type="text" name="payment_num" id="payment_num" placeholder="예매번호 검색" /> <input type="button" id="btn" value="예매정보 검색"><br/>
- 				!@#!#@...
- 			<p>ㅂㅂ$!@#$!....</p>
+ 			<p>현재 날짜와 시간은 <%= sf.format(nowTime) %>입니다.</p>
+			<p><input type="text" name="payment_num" id="payment_num" placeholder="예매번호 검색" /> <input type="button" id="btn" value="예매정보 검색"></p>
  		</form>
  		<form id="ticket_form" method="post">
- 			<input type="text" name="num" id="num" value="${payment_num}">
- 			<input type="text" name="seat_issue" id="seat_issue">
-			<table width="60%" border="1">
+ 			<input type="hidden" name="num" id="num" value="${payment_num}">
+ 			<input type="hidden" name="seat_issue" id="seat_issue">
+			<table width="70%" border="1">
 	 		 	<tr>
-	 		 		<td>-</td>
-	 		 		<td>결제번호</td>
-	 		 		<td>회원번호</td>
-	 				<td>좌석예약번호</td>
-	 				<td>상영번호</td>
-	 				<td>좌석번호</td>
-	 				<td>좌석가격</td>
-	 				<td>좌석상태</td>
-	 				<td align="center">[<input type="checkbox" name="select_all" id="select_all">]</td>
+	 		 		<th><div align="center">-</div></th>
+	 		 		<th><div align="center">결제번호</div></th>
+	 		 		<th><div align="center">회원번호</div></th>
+	 				<th><div align="center">좌석예약번호</div></th>
+	 				<th><div align="center">상영번호</div></th>
+	 				<th><div align="center">좌석번호</div></th>
+	 				<th><div align="center">좌석가격</div></th>
+	 				<th><div align="center">좌석상태</div></th>
+	 				<th><div align="center">[<input type="checkbox" name="select_all" id="select_all">]</div></th>
 	 			</tr>
 	 			<c:forEach items="${showReserveList}" var="showReserve" varStatus="var">
 	 			<tr>
 	 				<td width="30" style="background-color:black;"><img src="../img/ticket3-5.png" width="30px"></td>
-		 			<td>${showReserve.payment_num}!!</td>
-		 			<td>${showReserve.m_num}!!</td>
-		 			<td>${showReserve.seat_reserve_num}!!</td>
-		 			<td>${showReserve.show_num}!!</td>
-		 			<td>${showReserve.seat_num}!!</td>
-		 			<td>${showReserve.seat_price}!!</td>
-		 			<td>${showReserve.seat_issue}!!</td>
+		 			<td><div align="center">${showReserve.payment_num}</div></td>
+		 			<td><div align="center">${showReserve.m_num}</div></td>
+		 			<td><div align="center">${showReserve.seat_reserve_num}</div></td>
+		 			<td><div align="center">${showReserve.show_num}</div></td>
+		 			<td><div align="center">${showReserve.seat_num}</div></td>
+		 			<td><div align="center">${showReserve.seat_price}</div></td>
+		 			<td>
+		 				<div align="center">
+			 				<c:if test="${showReserve.seat_issue eq '0'}">보류...</c:if>
+			 				<c:if test="${showReserve.seat_issue eq '1'}">발권!</c:if>
+			 				<c:if test="${showReserve.seat_issue eq '2'}">입장!</c:if>
+			 				<c:if test="${showReserve.seat_issue eq '3'}">환불ㅠ</c:if>
+		 				</div>
+		 			</td>
 		 			<td align="center"><input type="checkbox" name="select" value="${showReserve.seat_num}"></td>
 	 			</tr>
 	 			</c:forEach>
 	 		</table>
+	 		<br/>
 	 		<table width="60%" border="0">
 	 			<tr>
 	 				<td align="center">

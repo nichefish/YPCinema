@@ -20,11 +20,22 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script>
 $(function() {
-	var test = confirm("예매신청내역을 저장하고 매점주문으로 넘어가시겠습니까?");
-	if (test) {
-		location.href = "YPCinema/popcorn";
-	}
-}
+	$("#frm").submit(function() {
+		if ($("#payment_email").val() == "") {
+			alert("수령가능한 이메일 주소를 꼭 입력해주셔야 합니다.");
+			$("#payment_email").focus();
+			return false;
+		}
+		if ($("#payment_ph").val() == "") {
+			alert("수령가능한 휴대폰 번호를 꼭 입력해주셔야 합니다.");
+			$("#payment_ph").focus();
+			return false;
+		}
+	});
+	$("#reset").click(function() {
+		alert("불러옴!");
+	});
+});
 </script>
 </head>
 <body>
@@ -33,45 +44,47 @@ $(function() {
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
- 		<form action="/YPCinema/kakaoPay" method="post">
-			<table width="600" border="1">
-				<tr>
-					<td>상영번호</td>
-					<td>회원번호</td>
-					<td>좌석번호</td>
-					<td>좌석가격</td>
-					<td>전체가격</td>
-				</tr>
-				<tr>
-					<td><input type="hidden" name="show_num" value="${showReserveStored.show_num}" />${showReserveStored.show_num}</td>
-					<td><input type="hidden" name="m_num" value="${showReserveStored.m_num}"/>${showReserveStored.m_num}</td>
-					<td>
-						<input type="hidden" name="seat_num" value="${showReserveStored.seat_num}"/>
-						<c:forEach items="${showReserveStored.seat_num_array}" var="seat">
-							${seat }
-						</c:forEach>
-					</td>
-					<td><input type="hidden" name="seat_price" value="${showReserveStored.seat_price}"/>
-						<c:forEach items="${showReserveStored.seat_price_array}" var="seat">
-							${seat}
-						</c:forEach>
-					</td>
-					<td>
-						<input type="hidden" name="seat_total_price" value="${showReserveStored.seat_total_price}"/>${showReserveStored.seat_total_price}
-					</td>
-				</tr>
-				<tr>
-					<td>이메일 주소</td>
-					<td colspan="4"><input type="text" name="payment_email"></td>
-				</tr>
-				<tr>
-					<td>전화번호</td>
-					<td colspan="4"><input type="text" name="payment_ph"></td>
-				</tr>
-			</table>
+ 		<form:form action="/YPCinema/kakaoPay" id="frm" method="post" commandName="showReserveCommand">
+ 			<div class="relCon" align="center">
+				<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+					<tr>
+						<td>상영번호</td>
+						<td>회원번호</td>
+						<td>좌석번호</td>
+						<td>좌석가격</td>
+						<td>전체가격</td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="show_num" value="${showReserveStored.show_num}" />${showReserveStored.show_num}</td>
+						<td><input type="hidden" name="m_num" value="${showReserveStored.m_num}"/>${showReserveStored.m_num}</td>
+						<td>
+							<input type="hidden" name="seat_num" value="${showReserveStored.seat_num}"/>
+							<c:forEach items="${showReserveStored.seat_num_array}" var="seat">
+								${seat} /
+							</c:forEach>
+						</td>
+						<td><input type="hidden" name="seat_price" value="${showReserveStored.seat_price}"/>
+							<c:forEach items="${showReserveStored.seat_price_array}" var="seat">
+								${seat} /
+							</c:forEach>
+						</td>
+						<td>
+							<input type="hidden" name="seat_total_price" value="${showReserveStored.seat_total_price}"/>${showReserveStored.seat_total_price}
+						</td>
+					</tr>
+					<tr>
+						<td>이메일 주소</td>
+						<td colspan="4"><input type="text" name="payment_email" id="payment_email" value="${memberCommand.m_email }"></td>
+					</tr>
+					<tr>
+						<td>전화번호</td>
+						<td colspan="4"><input type="text" name="payment_ph" id="payment_ph" value="${memberCommand.m_ph }"></td>
+					</tr>
+				</table>
+			</div>
 			<input type="submit" value="결제">
-			<input type="button" value="결제 계속?">
-		</form>
+			<input type="reset" id="reset" value="회원정보에서 연락처 불러오기">
+		</form:form>
 	</div>
 </div>
 <footer class="footer-area">

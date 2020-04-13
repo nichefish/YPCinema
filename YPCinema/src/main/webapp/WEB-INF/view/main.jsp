@@ -54,14 +54,14 @@
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">극장</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">예매</a>
-										<a class="dropdown-item" href="<c:url value='/myStatistic' />">나의 영화관</a>
+										<a class="dropdown-item" href="<c:url value='/myMovies' />">나의 영화관</a>
 										</c:if>
 										<c:if test="${authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 -->
 										<!-- 관리자 -->
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
-										<a class="dropdown-item" href="<c:url value='/statistic/' />">통계</a>
+										<a class="dropdown-item" href="<c:url value='/movieStatistic/' />">통계</a>
 										</c:if>
 										<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
 										<!-- 직원-->

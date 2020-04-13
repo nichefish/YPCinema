@@ -7,7 +7,7 @@ public class GoodsCommand {
 	String goodsNum;
 	String goodsName;
 	Long goodsPrice;
-	MultipartFile [] goodsImage;
+	MultipartFile goodsImage;
 	
 	public String getGoodsType() {
 		return goodsType;
@@ -33,10 +33,10 @@ public class GoodsCommand {
 	public void setGoodsPrice(Long goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
-	public MultipartFile[] getGoodsImage() {
+	public MultipartFile getGoodsImage() {
 		return goodsImage;
 	}
-	public void setGoodsImage(MultipartFile[] goodsImage) {
+	public void setGoodsImage(MultipartFile goodsImage) {
 		this.goodsImage = goodsImage;
 	}
 }

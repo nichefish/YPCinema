@@ -22,7 +22,7 @@ public class PaymentListService {
 
 	public void selectPaymentListByInfo(PaymentCommand paymentCommand, Model model) {
 		List<PaymentDTO> lists = paymentRepository.selectPaymentListByInfo(paymentCommand);
-		model.addAttribute("lists", lists);
+		model.addAttribute("paymentLists", lists);
 	}
 
 	public PaymentDTO selectPaymentByInfo(String payment_num, Model model) {

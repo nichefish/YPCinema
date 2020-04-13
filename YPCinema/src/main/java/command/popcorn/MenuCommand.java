@@ -9,7 +9,7 @@ public class MenuCommand {
 	String menuName ;
 	String menuContent;
 	Long menuPrice;
-	MultipartFile [] menuImage;
+	MultipartFile menuImage;
 	String goodsNum;
 	
 	public String getMenuNum() {
@@ -48,10 +48,10 @@ public class MenuCommand {
 	public void setMenuPrice(Long menuPrice) {
 		this.menuPrice = menuPrice;
 	}
-	public MultipartFile[] getMenuImage() {
+	public MultipartFile getMenuImage() {
 		return menuImage;
 	}
-	public void setMenuImage(MultipartFile[] menuImage) {
+	public void setMenuImage(MultipartFile menuImage) {
 		this.menuImage = menuImage;
 	}
 	public String getGoodsNum() {

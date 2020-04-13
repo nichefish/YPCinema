@@ -28,27 +28,20 @@ public class GoodsWriteService {
 		String storeTotal = "";
 
 		if (goodsCommand.getGoodsImage() != null) {
-
-			for (MultipartFile mf : goodsCommand.getGoodsImage()) {
-				String original = mf.getOriginalFilename();
-				String originalFileExtension = original.substring(original.lastIndexOf("."));
-				String store = UUID.randomUUID().toString().replace("-", "") + originalFileExtension;
-				String fileSize = Long.toString(mf.getSize());
-
-				storeTotal += store + "-";
-
-				String path = request.getServletContext().getRealPath("/");
-				path += "WEB-INF\\view\\popcorn\\update\\";
-
-				File file = new File(path + store);
-				try {
-					mf.transferTo(file);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			MultipartFile mf = goodsCommand.getGoodsImage();
+			String original = mf.getOriginalFilename();
+			String originalFileExtension = original.substring(original.lastIndexOf("."));
+			String store = UUID.randomUUID().toString().replace("-", "") + originalFileExtension;
+			String path = request.getServletContext().getRealPath("/");
+			path += "WEB-INF\\view\\popcorn\\update\\";
+			File file = new File(path + store);
+			try {
+				mf.transferTo(file);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			dto.setGoodsImage(store);
 		}
-		dto.setGoodsImage(storeTotal);
 		goodsRepository.goodInsert(dto);
 	}
 }

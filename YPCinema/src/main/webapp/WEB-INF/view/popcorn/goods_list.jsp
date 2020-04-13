@@ -56,7 +56,7 @@
 									<td><c:forTokens items="${goods.goodsImage }" delims="-"
 											var="goodsImage" varStatus="status">
 											<c:if test="${status.count == 1}">
-												<img src="../popcorn/update/${goodsImage }" />
+												<img src="/YPCinema/popcorn/update/${goodsImage }" />
 											</c:if>
 										</c:forTokens></td>
 									<td><a href="goodsModify?num=${goods.goodsNum }">

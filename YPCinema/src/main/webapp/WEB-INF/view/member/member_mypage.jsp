@@ -33,15 +33,15 @@
 					</td>
 				</tr>
 				<tr>
-					<td>아이디</td>
+					<th>아이디</th>
 					<td>${memberCommand.m_id}</td>
 				</tr>
 				<tr>
-					<td>이름</td>
+					<th>이름</th>
 					<td>${memberCommand.m_name}</td>
 				</tr>
 				<tr>
-					<td>성별</td>
+					<th>성별</th>
 					<td>
 						<c:choose >
 						  	<c:when test="${memberCommand.m_gen == 'M'}">남자</c:when>
@@ -50,30 +50,30 @@
 					</td>
 				</tr>
 				<tr>
-					<td>생년월일</td>
+					<th>생년월일</th>
 					<td><fmt:formatDate value='${memberCommand.m_birth}' type='date' pattern='yyyy-MM-dd' /></td>
 				</tr>
 				<tr>
-					<td>연락처</td>
+					<th>연락처</th>
 					<td>${memberCommand.m_ph}</td></tr>
 				<tr>
-					<td>이메일</td>
+					<th>이메일</th>
 					<td>${memberCommand.m_email}</td>
 				</tr>
 				<tr>
-					<td>우편번호</td>
+					<th>우편번호</th>
 					<td>${memberCommand.m_zip}</td>
 				</tr>
 				<tr>
-					<td>주소</td>
+					<th>주소</th>
 					<td>${memberCommand.m_addr1} ${memberCommand.m_addr2}</td>
 				</tr>
 				<tr>
-					<td>회원등급</td>
+					<th>회원등급</th>
 					<td>${memberCommand.m_class}</td>
 				</tr>
 				<tr>
-					<td>회원가입일</td>
+					<th>회원가입일</th>
 					<td><fmt:formatDate value='${memberCommand.m_date}' type='date' pattern='yyyy-MM-dd' /></td>
 				</tr>
 				<tr>

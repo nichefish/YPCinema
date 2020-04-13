@@ -1,5 +1,6 @@
 package service.popcorn;
 
+import java.io.File;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,38 +30,21 @@ public class MenuWriterService {
 		dto.setMenuContent(menuCommand.getMenuContent());
 		dto.setMenuType(menuCommand.getMenuType());
 
-		String storeTotal = "";
-
-		for (MultipartFile mf : menuCommand.getMenuImage()) {
+		if (menuCommand.getMenuImage() != null) {
+			MultipartFile mf = menuCommand.getMenuImage();
 			String original = mf.getOriginalFilename();
 			String originalFileExtension = original.substring(original.lastIndexOf("."));
 			String store = UUID.randomUUID().toString().replace("-", "") + originalFileExtension;
-			String fileSize = Long.toString(mf.getSize());
-
-			storeTotal += store + "-";
-
 			String path = request.getServletContext().getRealPath("/");
 			path += "WEB-INF\\view\\popcorn\\update\\";
-
+			File file = new File(path + store);
+			try {
+				mf.transferTo(file);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dto.setMenuImage(store);
 		}
-		dto.setMenuImage(storeTotal);
 		menuRepository.menuInsert(dto);
-
-//		System.out.println(menuCommand.getGoodsNum());
-//		
-//		String [] goods_num_array = menuCommand.getGoodsNum().split(",");
-//		for (int i = 0; i < goods_num_array.length; i++) {
-//			MenuGoodsDTO menuGoods = new MenuGoodsDTO();
-//			menuGoods.setTheaterNum(menuCommand.getTheaterNum());
-//			menuGoods.setMenuNum(menuNum);
-//			menuGoods.setGoodsNum(goods_num_array[i]);
-//			menuRepository.menuGoodsInsert(menuGoods);
-//		}
-		
-//		for (int i = 0; i < menuCommand.getGoodsNum().length; i++) {
-
-//		}
-		
-		
 	}
 }

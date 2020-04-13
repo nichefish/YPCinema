@@ -42,7 +42,7 @@ public class PaymentRepository {
 
 	public List<PaymentDTO> selectPaymentListByInfo(PaymentCommand paymentCommand) {
 		String statement = namespace + ".selectPaymentListByInfo";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement, paymentCommand);
 	}
 
 }
