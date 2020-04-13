@@ -1,5 +1,7 @@
 package controller.cheyong;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,8 @@ public class CheyongController {
 	CheyongService cheyongService;
 	
 	@RequestMapping("/staff_postList")
-	public String sPostList(Model model) {
-		cheyongService.selectList(model);
+	public String sPostList(Model model,HttpSession session) {
+		cheyongService.selectList(model,session);
 		return "cheyong/staff_postList";
 	}
 	
@@ -24,4 +26,5 @@ public class CheyongController {
 		cheyongService.selectOneList(model, num);
 		return "cheyong/staff_postDetail";
 	}
+
 }

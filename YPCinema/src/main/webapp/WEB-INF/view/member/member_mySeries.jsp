@@ -21,23 +21,17 @@
 <header class="header-area">
 	<%@ include file="../navigation.jsp"%>
 </header>
-<div class="main-content-wrapper section-padding-100">
+<div class="main-content-wrapper section-padding-100" >
  	<div class="container" align="center">
- 	<img src="<c:url value='/img/logo_1-4.png' />" alt="YGVCinema Login Logo" style="width:200px;">
- 		<c:if test="${empty result }">
-		<p style="color:black;"><b>"${memberCommand.m_name}"</b>님, YPCimena 회원가입을 축하합니다.<br/>
-		입력하신 이메일 주소 <b>${memberCommand.m_email}</b>로 가입확인 메일이 발송되었습니다. <br /><b>링크를 클릭하여 메일 인증을 해주시기 바랍니다.</b><br/>
-		(메일인증이 된 아이디에 한해 서비스 이용이 가능합니다.)</p>
-		<p><a href="<c:url value='/main' />">메인으로</a></p>
-		</c:if>
-		<c:if test="${result eq 1}">
-		<p style="color:black;">이메일 인증에 성공하여 가입이 완료되었습니다.</p>
-		<p><a href="<c:url value='/login' />">로그인</a></p>
-		</c:if>
-		<c:if test="${result eq 0}">
-		<p style="color:black;">이미 이메일 인증이 완료된 계정입니다.</p>
-		<p><a href="<c:url value='/login' />">로그인</a></p>
-		</c:if>
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의정보" onclick="location.href='myPage'">&nbsp;&nbsp;
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의쿠폰" onclick="location.href='memeber_couponList'">&nbsp;&nbsp;
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 영화관" onclick="location.href='myStatistic'">&nbsp;&nbsp;
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 매점" onclick="location.href='myPage'">&nbsp;&nbsp;
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 이력서" onclick="location.href='member_myApply'">&nbsp;&nbsp;
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 통계">
+
+ 		
+		
 	</div>
 </div>
 <footer class="footer-area">

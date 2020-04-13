@@ -52,8 +52,8 @@ $(function() {
 		$("#id").val("");
 		$("#pass").val("");
 		$("#id").attr('placeholder', '아이디');
-// 		$("#id").css('background-color', 'white');
-// 		$("#pass").css('background-color', 'white');
+ 		$("#id").css('background-color', 'white');
+		$("#pass").css('background-color', 'white');
 		$("#register").html("&nbsp;<a href='register'>회원가입</a>");
 		
 	});
@@ -61,8 +61,8 @@ $(function() {
 		$("#id").val("");
 		$("#pass").val("");
 		$("#id").attr('placeholder', '외부업체 아이디');
-// 		$("#id").css('background-color', '#ffefd5');
-// 		$("#pass").css('background-color', '#ffefd5');
+ 		$("#id").css('background-color', '#cdebf1');
+ 		$("#pass").css('background-color', '#cdebf1');
 		$("#register").html("&nbsp;<a href='companyRegister'>외부업체가입</a>");
 	});
 });

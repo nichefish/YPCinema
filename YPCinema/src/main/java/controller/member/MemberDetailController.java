@@ -44,6 +44,10 @@ public class MemberDetailController {
 		memberDetailService.memberDetail(m_num, model);
 		return "member/member_detail";
 	}
-	
+	// 나의 시리즈
+	@RequestMapping("/mySeries")
+	public String memberMySeries() {
+		return "member/member_mySeries";
+	}
 
 }

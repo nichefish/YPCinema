@@ -85,7 +85,7 @@
 					<td colspan="2" align="center">
 						<input type="button" onclick="location.href='<c:url value="/myPage/modify" />'" name="modify" id="modify" value="회원정보 수정">
 						<input type="button" name="delete" id="delete" value="탈퇴">
-						<input type="button" onclick="location.href='/YPCinema/main'" name="modify" id="modify" value="뒤로가기">
+						<input type="button" onclick="location.href='/YPCinema/mySeries'" name="modify" id="modify" value="뒤로가기">
 					</td>
 				</tr>
 			</table>

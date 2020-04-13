@@ -189,8 +189,8 @@ body{
 												<a class="dropdown-item" href="/YPCinema/staff_se"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Service &nbsp;&nbsp;<small>근태 관리</small></a>
 												</c:if>
 												<!-- 일반회원 -->
-												<c:if test="${!empty authInfo && empty companyAuthInfo}">	
-												<a class="dropdown-item" href="/YPCinema/myPage"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile&nbsp;&nbsp;<small>나의 정보</small></a>
+												<c:if test="${!empty authInfo && empty companyAuthInfo}">
+												<a class="dropdown-item" href="/YPCinema/mySeries"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>My Series&nbsp;&nbsp;<small>나의 ...</small></a>
 												</c:if>
 												<!-- 협력업체 -->
 												<c:if test="${empty authInfo && !empty companyAuthInfo}">	

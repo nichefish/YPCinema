@@ -107,8 +107,10 @@
 	</div>
 	
 	<div class="buttonDiv" style="margin-left: 10%; margin-bottom: 10px;">
+	<c:if test="${admin eq '1'}">
 		<input type="button" value="등록" onclick="location.href='staff_add'">
 		<input type="button" value="삭제">
+	</c:if>
    	</div>
 
     <!-- Google Maps: If you want to google map, just uncomment below codes -->
