@@ -30,8 +30,8 @@
 		delete from movie where movie_num=#{movie_num}
 	</update>
 	
-	<update id="modifyMovie" parameterType="model.DTO.MovieRatingDTO"">
-		update movie set movie from movie where movie_num=#{movie_num}
+	<update id="modifyMovie" parameterType="model.DTO.MovieRatingDTO">
+		update movie set movie_title=#{movie_title}, movie_director=#{movie_director}, movie_nation=#{movie_nation}, movie_date=#{movie_date}, mmovie_genre=#{movie_genre}, movie_plot=#{movie_plot}, movie_age=#{movie_age}, movie_runtime=#{movie_runtime}, movie_poster_url=#{movie_poster_url}, movie_still_url=#{movie_still_url}, movie_rating_plus=#{movie_rating_plus} where movie_num=#{movie_num}
 	</update>
 	
 	<resultMap type="model.DTO.MovieDTO" id="baseMovieMap">
