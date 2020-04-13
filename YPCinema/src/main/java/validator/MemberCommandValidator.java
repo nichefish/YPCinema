@@ -38,11 +38,11 @@ public class MemberCommandValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_id", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_pass", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_pass_con", "required");
-		if (!regReq.getM_pass().isEmpty()) {
-			if (!regReq.isPwEqualToPwCon()) {
-				errors.rejectValue("m_pass_con", "nomatch");
-			}
-		}
+//		if (!regReq.getM_pass().isEmpty()) {
+//			if (!regReq.isPwEqualToPwCon()) {
+//				errors.rejectValue("m_pass_con", "nomatch");
+//			}
+//		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_name", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_gen", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_birth", "required");

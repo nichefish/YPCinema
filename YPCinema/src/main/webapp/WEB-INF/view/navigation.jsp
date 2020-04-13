@@ -4,18 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
-<link rel="icon" href="../img/core-img/favicon.ico">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>YPCinema</title>
+<link rel="icon" href="../img/fvc.jpg">
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/owl.carousel.css">
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
 <style type="text/css">
 body{
 	padding-top:55px;
@@ -65,7 +64,7 @@ body{
 									<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
 									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
 									<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
-									<a class="dropdown-item" href="<c:url value='/myStatistic/' />">통계</a>
+									<a class="dropdown-item" href="<c:url value='/statistic/' />">통계</a>
 									</c:if>
 									<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
 									<!-- 직원-->
@@ -88,14 +87,14 @@ body{
 							</li>
 							</c:if>
 						</ul>
-                            <!-- Search Form  -->
-<!--                             <div id="search-wrapper"> -->
-<!--                                 <form action="#"> -->
-<!--                                     <input type="text" id="search" placeholder="Search something..."> -->
-<!--                                     <div id="close-icon"></div> -->
-<!--                                     <input class="d-none" type="submit" value=""> -->
-<!--                                 </form> -->
-<!--                             </div> -->
+                        <!-- Search Form  -->
+							<!-- <div id="search-wrapper"> -->
+								<!-- <form action="#"> -->
+									<!-- <input type="text" id="search" placeholder="Search something..."> -->
+									<!-- <div id="close-icon"></div> -->
+									<!-- <input class="d-none" type="submit" value=""> -->
+								<!-- </form> -->
+							<!-- </div> -->
 						<!-- userId & photo -->
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item dropdown no-arrow">
@@ -112,11 +111,17 @@ body{
 										<img class="img-profile rounded-circle" src="${companyAuthInfo.c_picture }" style="display:inline; width:35px;length:35px;">&nbsp;&nbsp;
 										</c:if>
 										<span style="font-size:10px; display:inline-block;" valign="center">
-											<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">"${authInfo.m_name}"</span></c:if>
+											<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">이용자 "${authInfo.m_name}"</span></c:if>
 											<c:if test="${authInfo.m_admin eq '1'}"><span style="color:#6495ED;">관리자 "${authInfo.m_name}"</span></c:if>
 											<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
 											<c:if test="${!empty companyAuthInfo}"><span style="color:yellow;">"${companyAuthInfo.c_comname}"사 소속</span> <span style="color:white;">"${companyAuthInfo.c_name}"</span></c:if>
 											<span style="color:grey;">님 환영합니다.</span><br />
+											<!-- 이용자 이력서 진척사항 버튼 -->
+											<c:if test="${authInfo.m_admin eq '0'}">
+												<c:if test="${!empty authInfo.cheyongApply}">
+													<input type="button" value="[채용진행중]">
+												</c:if>
+											</c:if>
 											<!-- 관리자/직원 근태 버튼 -->
 											<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2')}">
 												<c:if test="${empty authInfo.schedule }">

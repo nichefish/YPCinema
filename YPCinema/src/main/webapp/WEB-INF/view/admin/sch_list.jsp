@@ -100,7 +100,7 @@ div.card-body {
                    	<c:forEach items="${calendar}" var="c" begin="105" end="111" varStatus="var">
                    		<th id="${var.count}">
                    			<div class="big_date">${c}</div>
-                   			<input type="radio" name="gnmu_date" value="2021-0${c}">
+                   			<input type="radio" name="gnmu_date" value="2020-0${c}">
                    		</th>
                    	</c:forEach>
                    </tr>

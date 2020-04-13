@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-<title>YPcinema - Blog &amp; Magazine Template</title>
-<link rel="icon" href="img/core-img/favicon.ico">
+<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>YPCinema</title>
+<link rel="icon" href="img/fvc.jpg">
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
@@ -22,14 +21,12 @@
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
-
 <body>
     <div id="preloader">
         <div class="preload-content">
             <div id="world-load"></div>
         </div>
     </div>
-    
 	<header class="header-area">
 		<div class="container">
 			<div class="row">
@@ -39,7 +36,7 @@
 						<a class="navbar-brand" href="<c:url value='/main' />"><img src="<c:url value='/img/logo_1.png' />" alt="Logo" style="width:160px;"></a>
 						<!-- Navbar Toggler -->
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-						<!-- Navbar -->
+						<!-- Navbar -->/
 						<div class="collapse navbar-collapse" id="worldNav">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item">
@@ -64,7 +61,7 @@
 										<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
 										<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
 										<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
-										<a class="dropdown-item" href="<c:url value='/myStatistic/' />">통계</a>
+										<a class="dropdown-item" href="<c:url value='/statistic/' />">통계</a>
 										</c:if>
 										<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
 										<!-- 직원-->
@@ -87,15 +84,6 @@
 								</li>
 								</c:if>
 							</ul>
-                           <!-- Search Form  -->
-<!--                             <div id="search-wrapper"> -->
-<!--                                 <form action="#"> -->
-<!--                                     <input type="text" id="search" placeholder="Search something..."> -->
-<!--                                     <div id="close-icon"></div> -->
-<!--                                     <input class="d-none" type="submit" value=""> -->
-<!--                                 </form> -->
-<!--                             </div> -->
-							<!-- userId & photo -->
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item dropdown no-arrow">
 		       						<c:if test="${empty companyAuthInfo && empty authInfo}">
@@ -111,19 +99,43 @@
 											<img class="img-profile rounded-circle" src="${companyAuthInfo.c_picture }" style="display:inline; width:35px;length:35px;">&nbsp;&nbsp;
 											</c:if>
 											<span style="font-size:10px; display:inline-block;" valign="center">
-												<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">"${authInfo.m_name}"</span></c:if>
+												<c:if test="${authInfo.m_admin eq '0'}"><span style="color:white;">이용자 "${authInfo.m_name}"</span></c:if>
 												<c:if test="${authInfo.m_admin eq '1'}"><span style="color:#6495ED;">관리자 "${authInfo.m_name}"</span></c:if>
 												<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
 												<c:if test="${!empty companyAuthInfo}"><span style="color:yellow;">"${companyAuthInfo.c_comname}"사 소속</span> <span style="color:white;">"${companyAuthInfo.c_name}"</span></c:if>
 												<span style="color:grey;">님 환영합니다.</span><br />
+												<!-- 이용자 이력서 진척사항 버튼 -->
+												<c:if test="${authInfo.m_admin eq '0'}">
+													<c:if test="${!empty authInfo.cheyongApply}">
+														<input type="button" value="[채용진행중]">
+													</c:if>
+												</c:if>
+												<!-- 관리자/직원 근태 버튼 -->
+												<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2')}">
+													<c:if test="${empty authInfo.schedule }">
+														&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[퇴근상태]">
+													</c:if>
+													<c:if test="${!empty authInfo.schedule }">
+														<c:if test="${(authInfo.schedule.gnmu_stime eq null || authInfo.schedule.gnmu_stime eq '00:00:00') && authInfo.gnmu.gbunSTime ne '00:00:00'}">
+														&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;"><input type="button" value="[출근!요망!!!]"></span>
+														</c:if>
+														<c:if test="${(authInfo.schedule.gnmu_stime ne null && authInfo.schedule.gnmu_stime ne '00:00:00') && authInfo.gnmu.gbunSTime ne '00:00:00' && authInfo.schedule.gnmu_etime eq null}">
+														&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[근무중...]">
+														</c:if>
+														<c:if test="${(authInfo.schedule.gnmu_stime ne null && authInfo.schedule.gnmu_stime ne '00:00:00') && (authInfo.gnmu.gbunSTime ne '00:00:00') && (authInfo.schedule.gnmu_etime ne null && authInfo.schedule.gnmu_etime ne '00:00:00')}">
+														&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[퇴근상태]">
+														</c:if>
+													</c:if>
+												</c:if>
+												<!-- 모드 버튼 -->
 												<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2') && authInfo.mode eq '0'}">	<!-- 관리자/직원 -> 관리자 모드 -->
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[이용자 모드]">
+													&nbsp;<input type="button" value="[이용자 모드]">
 												</c:if>
 												<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!--  직원 또는 관리자 -> 이용자 모드 -->
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[관리자 모드]">
+													&nbsp;<input type="button" value="[관리자 모드]">
 												</c:if>
 												<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!--  직원 또는 관리자 -> 이용자 모드 -->
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[직원 모드]">
+													&nbsp;<input type="button" value="[직원 모드]">
 												</c:if>
 												<c:if test="${empty authInfo && !empty companyAuthInfo}">	<!-- 협력업체 -->
 													&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[협력업체 모드]">
@@ -161,6 +173,9 @@
 													</a>	
 													</c:if>
 													</form>
+													<c:if test="${!empty authInfo && authInfo.m_admin ne '0'}">
+													<a class="dropdown-item" href="/YPCinema/staff_se"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Service &nbsp;&nbsp;<small>근태 관리</small></a>
+													</c:if>
 													<!-- 일반회원 -->
 													<c:if test="${!empty authInfo && empty companyAuthInfo}">	
 													<a class="dropdown-item" href="/YPCinema/myPage"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile&nbsp;&nbsp;<small>나의 정보</small></a>
@@ -169,7 +184,6 @@
 													<c:if test="${empty authInfo && !empty companyAuthInfo}">	
 													<a class="dropdown-item" href="/YPCinema/companyMyPage"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile&nbsp;&nbsp;<small>나의 업체정보</small></a>
 													</c:if>
-													<a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Service &nbsp;&nbsp;<small>고객센터</small></a>
 													<div class="dropdown-divider"></div>
 													<a class="dropdown-item" href="/YPCinema/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout &nbsp;&nbsp;<small>로그아웃</small></a>
 												</div>
@@ -481,12 +495,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-      
                             </div>
                         </div>
-
-
                 </div>
 
                 <!-- ========== Sidebar Area ========== -->
@@ -548,21 +558,16 @@
                                         </a>
                                     </div>
                                 </div>
-                                <!-- Single Blog Post -->
-                              
                             </div>
                         </div>
-                         <div class="sidebar-widget-area">
+						<div class="sidebar-widget-area">
                             <h5 class="title">YP cinema</h5>
                             <div class="widget-content">
-                                <p>YP씨네마는 2020년 3월에 오픈한 신규 영화관입니다.
-                                지점으로는 양평점, 홍대점이 있으며 
-                                5월에제주점, 영등포점을 오픈 예정입니다.</p>
+                                <p>YP씨네마는 2020년 3월에 오픈한 신규 영화관입니다. 지점으로는 양평점, 홍대점이 있으며  5월에 제주점, 영등포점을 오픈 예정입니다.</p>
                             </div>
-                        </div>
-                  
-                    </div>
-                </div>
+						</div>
+					</div>
+				</div>
             </div>
 
             <div class="row justify-content-center">
@@ -618,15 +623,11 @@
                                 <a href="#" class="headline">
                                     <h5>Do you want a build a snowman?</h5>
                                 </a>
-                             
-                             
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-         
         </div>
     </div>
 

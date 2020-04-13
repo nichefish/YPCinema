@@ -16,6 +16,7 @@ import model.DTO.MemberDTO;
 import model.DTO.ScheduleDTO;
 import model.DTO.StaffDTO;
 import repository.member.MemberRepository;
+import service.cheyong.CheyongApplyService;
 import service.staff.GnteService;
 import service.staff.StaffDetailService;
 
@@ -29,6 +30,8 @@ public class AuthService {
 	private StaffDetailService staffDetailService;
 	@Autowired
 	private GnteService gnteService;
+	@Autowired
+	CheyongApplyService cheyongApplyService;
 	
 	public String authenticate(LoginCommand loginCommand, HttpSession session, Errors errors, HttpServletResponse response, Model model) {
 		MemberDTO member = new MemberDTO();
@@ -73,6 +76,8 @@ public class AuthService {
 				session.setAttribute("authInfo", authInfo);
 				if (member.getM_admin().equals("1") || member.getM_admin().equals("2")) {
 					ScheduleDTO schedule = gnteService.getScheduleToday(session, model);
+				} else if (member.getM_admin().equals("0")) {
+					cheyongApplyService.selectJiwonList_M(model,session);
 				}
 				path = "redirect:/main";
 			} else {

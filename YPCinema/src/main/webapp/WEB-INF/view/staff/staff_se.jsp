@@ -101,19 +101,25 @@ div.card-body {
                 	</c:if>
                 </p>
                 <div style="margin-left:35%;margin-top:20px;display:inline;">
-                	<c:if test="${(schedule.gnmu_stime eq null || schedule.gnmu_stime eq '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 안찍었고 휴일 아닐때 -->
+                	<c:if test="${empty schedule}">
+                	<input type="button" class="wowButton" id="chulgn" name="chulgn" value="출근" style="text-align:center;color:white;font-size:10px;" disabled>
+                	</c:if>
+                	<c:if test="${!empty schedule && (schedule.gnmu_stime eq null || schedule.gnmu_stime eq '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 안찍었고 휴일 아닐때 -->
                		<input type="button" class="wowButton" id="chulgn" name="chulgn" value="출근" style="text-align:center;color:white;font-size:10px;" >
                 	</c:if>
-                	<c:if test="${(schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 찍었고 휴일 아닐때 -->
+                	<c:if test="${!empty schedule && (schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 찍었고 휴일 아닐때 -->
                		<input type="button" class="wowButton" id="chulgn_time" name="chulgn" value="${schedule.gnmu_stime}에 출근함" style="text-align:center;color:white;font-size:10px;" >
                 	</c:if>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div style="text-align:right;margin-right:35%;margin-top:20px;">
-                	<c:if test="${(schedule.gnmu_stime eq null || schedule.gnmu_stime eq '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 안찍었고 휴일 아닐때 -->
+                    <c:if test="${empty schedule}">
                 	<input type="button" class="wowButton" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
                 	</c:if>
-                	<c:if test="${(schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00' && (schedule.gnmu_etime eq null || schedule.gnmu_etime eq '00:00:00')}">	<!-- 출근 찍었고 휴일 아닐때 -->
+                	<c:if test="${!empty schedule && (schedule.gnmu_stime eq null || schedule.gnmu_stime eq '00:00:00') && gnmu.gbunSTime ne '00:00:00'}">	<!-- 출근 안찍었고 휴일 아닐때 -->
+                	<input type="button" class="wowButton" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;" disabled>
+                	</c:if>
+                	<c:if test="${!empty schedule && (schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00' && (schedule.gnmu_etime eq null || schedule.gnmu_etime eq '00:00:00')}">	<!-- 출근 찍었고 휴일 아닐때 -->
                		<input type="button" class="wowButton" id="tuegn" name="tuegn" value="퇴근" style="text-align:center;color:white;font-size:10px;">
                 	</c:if>
 					<c:if test="${(schedule.gnmu_stime ne null && schedule.gnmu_stime ne '00:00:00') && gnmu.gbunSTime ne '00:00:00' && (schedule.gnmu_etime ne null && schedule.gnmu_etime ne '00:00:00')}">	<!-- 출근 찍었고 휴일 아닐때 -->

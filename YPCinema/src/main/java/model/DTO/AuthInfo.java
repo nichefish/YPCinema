@@ -1,6 +1,7 @@
 package model.DTO;
 
 import java.io.Serializable;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class AuthInfo implements Serializable {
@@ -14,6 +15,7 @@ public class AuthInfo implements Serializable {
 	private String theater;
 	private ScheduleDTO schedule;
 	private GngijunDTO gnmu;
+	private List<CheyongApplyDTO> cheyongApply;
 	
 	public String getM_id() {
 		return m_id;
@@ -74,5 +76,11 @@ public class AuthInfo implements Serializable {
 	}
 	public void setGnmu(GngijunDTO gnmu) {
 		this.gnmu = gnmu;
+	}
+	public List<CheyongApplyDTO> getCheyongApply() {
+		return cheyongApply;
+	}
+	public void setCheyongApply(List<CheyongApplyDTO> cheyongApply) {
+		this.cheyongApply = cheyongApply;
 	}
 }

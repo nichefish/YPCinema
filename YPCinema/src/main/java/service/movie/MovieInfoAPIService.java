@@ -24,8 +24,8 @@ import model.DTO.MovieDTO;
 public class MovieInfoAPIService {
 
 
-	public void getMovieInfoAPI(String movie_num, MovieCommand movieCommand) {
-		// TODO Auto-generated method stub
+	public Integer getMovieInfoAPI(String movie_num, MovieCommand movieCommand) {
+		Integer result = 0;
 		String movieId = movie_num.substring(0, 1);
 		String movieSeq = movie_num.substring(1);
 		
@@ -39,6 +39,7 @@ public class MovieInfoAPIService {
 			System.out.println("Root element: " + doc.getDocumentElement().getNodeName()); // Root element: result. 여기까지 제대로 됨
 			NodeList nList = doc.getElementsByTagName("Row");
 			System.out.println("파싱할 리스트 수 : " + nList.getLength());  // 파싱할 리스트 수 : 34. 여기까지 제대로 됨
+			result = nList.getLength();
 			for (int i = 0; i < nList.getLength(); i++) {
 				Node nNode = nList.item(i);
 				NodeList cList = nNode.getChildNodes();
@@ -132,5 +133,6 @@ public class MovieInfoAPIService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

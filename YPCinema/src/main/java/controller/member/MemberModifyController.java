@@ -1,5 +1,6 @@
 package controller.member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import command.member.MemberCommand;
 import service.member.MemberDetailService;
 import service.member.MemberModifyService;
+import validator.MemberCommandValidator;
 
 @Controller
 public class MemberModifyController {
@@ -28,8 +30,14 @@ public class MemberModifyController {
 	}
 	
 	@RequestMapping(value="/myPage/modify", method=RequestMethod.POST)
-	public String myModifyAction(MemberCommand memberCommand, HttpSession session, Errors errors) {
-		memberModifyService.modifyMyInfo(memberCommand, session, errors);
+	public String myModifyAction(MemberCommand memberCommand, HttpSession session, Errors errors, HttpServletRequest request) {
+		new MemberCommandValidator().validate(memberCommand, errors);
+		if (errors.hasErrors()) {
+			System.out.println("@$%@#$@%#$%@#$%");
+			return "member/member_mymodify";
+		}
+		System.out.println("modymody");
+		memberModifyService.modifyMyInfo(memberCommand, session, errors, request);
 		return "redirect:/myPage";
 	}
 	

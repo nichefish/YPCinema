@@ -50,6 +50,8 @@ public class CheyongApplyService {
 	public void selectJiwonList_M(Model model,HttpSession session) {
 		String num = ((AuthInfo)session.getAttribute("authInfo")).getM_num();
 		List<CheyongApplyDTO> list = cheyongRepository.selectJiwonList_M(num);
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		authInfo.setCheyongApply(list);
 		model.addAttribute("selectMyApply",list);	
 	}
 	public void myApplyInfo(String r_num, Model model, HttpSession session) {

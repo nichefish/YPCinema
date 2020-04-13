@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="icon" href="../img/core-img/favicon.ico">
+<link rel="icon" href="../img/fvc.jpg">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,12 +23,12 @@
 </header>
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
-		<p>양평시네마 <b>${screenCommand.theater_name}</b> <b>[${screenCommand.screen_name}]</b> 상영관 정보</p>
+		<h2>양평시네마 <b>${screenCommand.theater_name}</b> <b>[${screenCommand.screen_name}]</b> 상세정보</h2>
 		<table width="600" align="center" border=1 >
 		 	<tr>
 		 		<td width="200">상영관 이름</td>
 		 		<td width="400">
-		 			${screenCommand.screen_name} (${screenCommand.screen_num})
+		 			${screenCommand.screen_name} <c:if test="${authInfo.m_admin eq '1' || authInfo.m_admin eq '2'}">(${screenCommand.screen_num})</c:if>
 		 		</td>
 		 	</tr>
 		 	<tr>
@@ -103,6 +103,12 @@
 				</c:forEach>
 			</tr>
 		</table>
+		<div style="width:60%;">
+			<hr />
+			<span style="color:yellow;">■</span> : 이코노미석 (-1,000원)<br />
+			<span style="color:#87ceeb;">■</span> : 일반석<br />
+			<span style="color:#ff8080;">■</span> : 프라임석 (+1,000원)<br />
+		</div>
 	</div>
 </div>
 <footer class="footer-area">

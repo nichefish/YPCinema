@@ -42,7 +42,7 @@ public class SendSMS {
 		Message coolsms = new Message(api_key, api_secret); 
 	      
 		HashMap<String, String> params = new HashMap<String, String>(); 
-		String content = memberCommand.getM_name() + "님 YPCinema 가입을 축하합니다. 메일인증을 꼭 해주셔야 로그인이 가능합니다.";
+		String content = "신규회원 \"" + memberCommand.getM_name() + "\"님 YPCinema 가입을 축하합니다. 발송된 이메일을 확인하여 이메일 인증을 꼭 해주셔야 서비스 이용이 가능합니다.";
 		params.put("to", memberCommand.getM_ph());
 		params.put("from", "01071461970"); //사전에 사이트에서 번호를 인증하고 등록하여야 함
 		params.put("type", "SMS");

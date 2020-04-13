@@ -41,4 +41,9 @@ public class MovieRepository {
 		return sqlSession.update(statement, movie_num);
 	}
 
+	public Integer modifyMovie(MovieDTO movie) {
+		String statement = namespace + ".modifyMovie";
+		return sqlSession.update(statement, movie);
+	}
+
 }

@@ -39,15 +39,18 @@
 			<if test="m_picture != null">
 				m_picture = #{m_picture},
 			</if>
+			<if test="m_new_pass != null">
+				m_pass = #{m_new_pass},
+			</if>
 		</trim>
-		<where>
+		<trim prefix="where" suffixOverrides="and">
 			<if test="m_id != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
-				m_id = #{m_id}
+				m_id = #{m_id} and
 			</if>
 			<if test="m_num != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
-				m_num = #{m_num}
+				m_num = #{m_num} and
 			</if>
-		</where>
+		</trim>
 	</update>
 	
 	<!-- sjh가 사용쓰 -->
@@ -73,6 +76,7 @@
 		<id column="m_num" jdbcType="VARCHAR" property="m_num" />	<!-- PK/FK.. -->
 		<result column="m_id" jdbcType="VARCHAR" property="m_id" />		<!-- 일반속성... -->
 		<result column="m_pass" jdbcType="VARCHAR" property="m_pass" />
+		<result column="m_new_pass" jdbcType="VARCHAR" property="m_new_pass" />
 		<result column="m_name" jdbcType="VARCHAR" property="m_name" />
 		<result column="m_gen" jdbcType="VARCHAR" property="m_gen" />
 		<result column="m_birth" jdbcType="DATE" property="m_birth" />

@@ -10,6 +10,7 @@ public class MemberDTO implements Serializable {
 	private String m_num;
 	private String m_id;
 	private String m_pass;
+	private String m_new_pass;
 	private String m_picture;
 	private String m_class;
 	private String m_name;
@@ -45,6 +46,12 @@ public class MemberDTO implements Serializable {
 	}
 	public void setM_pass(String m_pass) {
 		this.m_pass = m_pass;
+	}
+	public String getM_new_pass() {
+		return m_new_pass;
+	}
+	public void setM_new_pass(String m_new_pass) {
+		this.m_new_pass = m_new_pass;
 	}
 	public String getM_picture() {
 		return m_picture;

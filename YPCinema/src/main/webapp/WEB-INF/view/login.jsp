@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="icon" href="img/core-img/favicon.ico">
+<link rel="icon" href="img/fvc.jpg">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -25,8 +25,8 @@ $(document).ready(function() {
 		$("#pass").css('background-color', 'white');
 		$("#register").html("&nbsp;<a href='register'>회원가입</a>");
 	} else if ($("#company").is(":checked")) {
-		$("#id").css('background-color', 'blue');
-		$("#pass").css('background-color', 'blue');
+		$("#id").css('background-color', '#beefff');
+		$("#pass").css('background-color', 'beefff');
 		$("#register").html("&nbsp;<a href='companyRegister'>외부업체가입</a>");
 	}
 })
@@ -51,16 +51,18 @@ $(function() {
 	$("#user").click(function() {
 		$("#id").val("");
 		$("#pass").val("");
-		$("#id").css('background-color', 'white');
-		$("#pass").css('background-color', 'white');
+		$("#id").attr('placeholder', '아이디');
+// 		$("#id").css('background-color', 'white');
+// 		$("#pass").css('background-color', 'white');
 		$("#register").html("&nbsp;<a href='register'>회원가입</a>");
 		
 	});
 	$("#company").click(function() {
 		$("#id").val("");
 		$("#pass").val("");
-		$("#id").css('background-color', 'white');
-		$("#pass").css('background-color', 'white');
+		$("#id").attr('placeholder', '외부업체 아이디');
+// 		$("#id").css('background-color', '#ffefd5');
+// 		$("#pass").css('background-color', '#ffefd5');
 		$("#register").html("&nbsp;<a href='companyRegister'>외부업체가입</a>");
 	});
 });
@@ -105,7 +107,7 @@ $(function() {
 
 				<hr>
 				<div class="text-center">
-                    <a class="small" href="register">회원가입</a>
+                    <a class="small" id="register" href="register">회원가입</a>
                   </div>
 		</form:form>
 		</div>

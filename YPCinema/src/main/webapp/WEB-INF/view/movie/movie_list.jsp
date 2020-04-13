@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="icon" href="../img/core-img/favicon.ico">
+<link rel="icon" href="../img/fvc.jpg">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">

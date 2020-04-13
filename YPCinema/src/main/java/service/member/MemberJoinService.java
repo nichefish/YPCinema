@@ -40,7 +40,7 @@ public class MemberJoinService {
 			errors.rejectValue("userId", "duplicate");
 			return "member/member_join_form";
 		}
-		memberRegMailService.sendMail(dto.getM_email(), dto.getM_id());
+		memberRegMailService.sendMemberJoinMail(dto);
 		SendSMS sendSMS = new SendSMS();
 		try {
 			sendSMS.sendMemberJoinSMS(memberCommand, request);

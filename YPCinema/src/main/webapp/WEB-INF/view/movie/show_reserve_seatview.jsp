@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="icon" href="../img/core-img/favicon.ico">
+<link rel="icon" href="../img/fvc.jpg">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -207,8 +207,13 @@ $(function() {
 					</c:forEach>
 				</tr>
 			</table>
-			<p><br /></p>
-			<table border="1">
+			<div style="width:60%;">
+				<hr />
+				<span style="color:yellow;">■</span> : 이코노미석 (-1,000원)<br />
+				<span style="color:#87ceeb;">■</span> : 일반석<br />
+				<span style="color:#ff8080;">■</span> : 프라임석 (+1,000원)<br />
+			</div>
+			<table border="0">
 				<tr>
 					<td>
 						<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 관리자 및 관리자모드 -->
@@ -221,6 +226,7 @@ $(function() {
 					</td>
 				</tr>
 			</table>
+
 		</form:form>
 	</div>
 </div>

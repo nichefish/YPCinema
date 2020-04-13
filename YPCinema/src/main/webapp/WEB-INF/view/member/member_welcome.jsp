@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="icon" href="../img/core-img/favicon.ico">
+<link rel="icon" href="img/fvc.jpg">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -24,14 +24,18 @@
 <div class="main-content-wrapper section-padding-100">
  	<div class="container" align="center">
  		<c:if test="${empty result }">
-		<p>${memberCommand.m_name}님, 회원가입을 축하합니다. ${memberCommand.m_email}로 승인 내용이 (아직 안)갔습니다.</p>
+		<p>"${memberCommand.m_name}"님, YPCimena 회원가입을 축하합니다.<br/>
+		입력하신 이메일 주소 ${memberCommand.m_email}로 가입확인 메일이 발송되었습니다. 링크를 클릭하여 메일 인증을 해주시기 바랍니다.<br/>
+		(메일인증이 된 아이디에 한해 서비스 이용이 가능합니다.)</p>
 		<p><a href="<c:url value='/main' />">메인으로</a></p>
 		</c:if>
 		<c:if test="${result eq 1}">
-			이메일이 인증되고 가입이 완료되었습니다.
+		<p>이메일 인증에 성공하여 가입이 완료되었습니다.</p>
+		<p><a href="<c:url value='/login' />">로그인</a></p>
 		</c:if>
 		<c:if test="${result eq 0}">
-			이미 이메일 인증이 완료된 계정입니다.
+		<p>이미 이메일 인증이 완료된 계정입니다.</p>
+		<p><a href="<c:url value='/login' />">로그인</a></p>
 		</c:if>
 	</div>
 </div>

@@ -30,6 +30,10 @@
 		delete from movie where movie_num=#{movie_num}
 	</update>
 	
+	<update id="modifyMovie" parameterType="model.DTO.MovieRatingDTO"">
+		update movie set movie from movie where movie_num=#{movie_num}
+	</update>
+	
 	<resultMap type="model.DTO.MovieDTO" id="baseMovieMap">
 		<id column="movie_num" jdbcType="VARCHAR" property="movie_num" />	<!-- PK/FK.. -->
 		<result column="movie_title" jdbcType="VARCHAR" property="movie_title" />		<!-- 일반속성... -->

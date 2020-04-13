@@ -3,12 +3,16 @@ package command.member;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class MemberCommand {
 	private String m_num;
 	private String m_id;
 	private String m_pass;
 	private String m_pass_con;
+	private String m_new_pass;
+	private String m_new_pass_con;
+	private MultipartFile m_picture_file;
 	private String m_picture;
 	private String m_class;
 	private String m_name;
@@ -50,11 +54,29 @@ public class MemberCommand {
 	public void setM_pass_con(String m_pass_con) {
 		this.m_pass_con = m_pass_con;
 	}
+	public String getM_new_pass() {
+		return m_new_pass;
+	}
+	public void setM_new_pass(String m_new_pass) {
+		this.m_new_pass = m_new_pass;
+	}
+	public String getM_new_pass_con() {
+		return m_new_pass_con;
+	}
+	public void setM_new_pass_con(String m_new_pass_con) {
+		this.m_new_pass_con = m_new_pass_con;
+	}
 	public String getM_picture() {
 		return m_picture;
 	}
 	public void setM_picture(String m_picture) {
 		this.m_picture = m_picture;
+	}
+	public MultipartFile getM_picture_file() {
+		return m_picture_file;
+	}
+	public void setM_picture_file(MultipartFile m_picture_file) {
+		this.m_picture_file = m_picture_file;
 	}
 	public String getM_class() {
 		return m_class;

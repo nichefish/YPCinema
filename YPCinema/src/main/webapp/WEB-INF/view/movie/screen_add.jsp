@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>YPCinema</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="icon" href="../img/core-img/favicon.ico">
+<link rel="icon" href="../img/fvc.jpg">
 <link rel="stylesheet" href="css/themify-icons.css">
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -37,7 +37,7 @@
 			 	<tr>
 			 		<td width="200">좌석 배치 행(?-?-?)</td>
 			 		<td>
-			 			<form:input path="screen_row" id="screen_row" placeholder="0-0-0" size="12" maxlength="10" />
+			 			<form:input path="screen_row" id="screen_row" placeholder="0-0-0" size="12" maxlength="10" onblur="rowCheck()" />
 			 			<span style="color:red;"><form:errors path="screen_row" /></span>
 			 		</td>
 			 	</tr>
@@ -84,6 +84,14 @@
 <script src="js/active.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
+function rowCheck() {
+	var regexp = /^\d{1,2}-\d{1,2}-\d{1,2}$/;
+	row = $("#screen_row").val();
+	if(!regexp.test(row)) {
+		alert("('숫자'-'숫자'-'숫자') 형식으로 입력해주세요.");
+		$("#screen_row").val("0-0-0");
+	}
+}
 $(function() {
 	$("#screen_row").change(function() {
 		var strArray = $("#screen_row").val().split('-');
