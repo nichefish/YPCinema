@@ -193,6 +193,7 @@ $(function(){
 		$("#yeeel3").val(Now.getDate());
 	});
 });
+
 $(document).ready(function(){
 	 var canvas = document.getElementById('canvas');
 	 //canvas.width = screen.width;
@@ -302,7 +303,7 @@ $(document).ready(function(){
 	   onload: function(){console.log("img loaded..");}
 
 	  }).appendTo("#copyarea");
-hj 
+ 
 	  delete canvasCopy;
 	 });
 	});

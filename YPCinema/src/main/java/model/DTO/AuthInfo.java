@@ -16,7 +16,15 @@ public class AuthInfo implements Serializable {
 	private ScheduleDTO schedule;
 	private GngijunDTO gnmu;
 	private List<CheyongApplyDTO> cheyongApply;
+	private String r_jin;
 	
+	
+	public String getR_jin() {
+		return r_jin;
+	}
+	public void setR_jin(String r_jin) {
+		this.r_jin = r_jin;
+	}
 	public String getM_id() {
 		return m_id;
 	}

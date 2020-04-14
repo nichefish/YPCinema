@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,15 +50,18 @@
             <div class="row justify-content-center">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-8">
-                    <div class="contact-form">
+                    <div class="contact-form" align="center">
                         <h3><strong>*채용공고*</strong></h3>
                         <!-- Contact Form -->
                         
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                 	채용공고에 관한 이야기가 우루루쾅쾅
-                                 	※주의사항도 한번 쓰갈겨주고
-                                </div>
+                            <div align="center">
+                                
+                                 	채용공고페이지에 오신것을 환영합니다.<br />
+                                 	여러분의 역량을 여기 YPCinema에서 보여주세요!<br />
+                                 	※주의※ <br />
+                                 	진행이 마감된 공고는 더이상 보실 수 없습니다.
+                                	
+                          
                             </div>
                     </div>
                 </div>
@@ -64,13 +69,14 @@
    </div>
 </section>
         <!-- 영화관 이름 검색-->
-  
+  		<jsp:useBean id="today" class="java.util.Date" />
+		<fmt:formatDate var="now" value="${today}" pattern="yyyy-MM-dd" />
         <!-- 채용게시판 -->
         <div class="lalala" style="margin-left:150px;">
         	<form>
         		<input type="text" id="theaterName">
         		<input type="submit" value="검색">
-        	</form>
+        	</form>	
 		<table class="table table-bordered" id="dataTable" cellspacing="0"  style="margin-top:10px;width:1250px;" >
         	<thead>
         		<tr>
@@ -84,11 +90,10 @@
                 	<th>제목</th>
                  	<th>인원</th>
                     <th>접수기간</th>
-                    <th>진행현황</th>
+                    <th>접수현황</th>
                 </tr>
             </thead>
             <tbody>
-
             <c:forEach items="${cheyongLists}" var="c" step="1">
             	<tr>
         			<td style="width:5px;height:5px">
@@ -99,7 +104,7 @@
                 	<td><a href="staff_postDetail?che_num=${c.che_num}">${c.che_subject}</a></td>
                  	<td>${c.che_person}명</td>
                     <td>${c.che_sijac_string} ~ ${c.che_magam_string}</td>
-                    <td>진행현황</td>
+                    <td>접수중</td>
                 </tr>
                 </c:forEach>
              </tbody>

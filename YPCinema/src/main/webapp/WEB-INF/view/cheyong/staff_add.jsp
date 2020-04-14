@@ -14,7 +14,7 @@
     <!-- Title  -->
     <title>YPCinema</title>
 
-    <!-- Favicon  -->
+    <!-- Favicon  --> 
     <link rel="icon" href="img/fvc.jpg">
 
     <!-- Style CSS -->
@@ -55,14 +55,17 @@
                         <!-- Contact Form -->
                             <div class="row">
                                 <div class="col-12 col-md-6" style="font-size:10px;">
-                                 	※채용공고등록에 관한 이야기를 써보자인※
+                                 	<b style="color:red;">※채용공고등록시 주의점입니다※</b><br />
+                                 	근무조건, 복리후생, 지원자격은 되도록이면 건드리지 않도록 하며,<br />
+                                 	만약 수정이 필요시 법적으로 문제가 발생하지 않는 선에서 수정해야 합니다.<br />
+                                 	기타사항은 자유롭게 작성이 가능합니다.<br />
                                 </div>
                                 <br />
-                                <form:form method="post" commandName="gonggoCommand">
-								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;">
+                                <form:form method="post" commandName="gonggoCommand" id="submitPost" name="submitPost">
+								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;margin-top:10px;">
 									<tr>
 										<td>제목</td>
-										<td><input type="text" name="che_subject" id="che_subject" ></td>
+										<td><input type="text" name="che_subject" id="che_subject"></td>
 									</tr>
 									<tr>
 										<td>영화관 지점</td>
@@ -204,8 +207,38 @@ $(document).ready(function(){
 	$("#jijomgumsec").click(function(){
 		window.open('http://localhost:8080/YPCinema/jijom_gumsec','_blank',"top=0,left=500,width="+w+",height="+h+",toolbar=0,status=0,scrollbars=1,resizable=0");
 	});
+	$(function() {
+		$("#submitPost").submit(function() {
+			if ($("#che_person").val() == "") {
+				alert("인원을 입력하세요.");
+				$("#che_person").focus();
+				return false;
+			}
+			if ($("#che_jijom").val() == "") {
+			alert("지점을 입력하세요.");
+			$("#che_jijom").focus();
+			return false;
+			}
+			if ($("#che_subject").val() == "") {
+				alert("제목을 입력하세요.");
+				$("#che_subject").focus();
+				return false;
+				}
+			if ($("#che_sijac_string").val() == "") {
+				alert("시작날짜를 입력하세요.");
+				$("#che_sijac_string").focus();
+				return false;
+				}
+			if ($("#che_magam_string").val() == "") {
+				alert("마감날짜를 입력하세요.");
+				$("#che_magam_string").focus();
+				return false;
+				}
+		});
 });
 
+});
 </script>
+
 </body>
 </html>

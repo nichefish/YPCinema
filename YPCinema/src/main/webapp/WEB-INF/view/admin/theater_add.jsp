@@ -26,13 +26,7 @@
 <!-- Custom styles for this page -->
 <link href="vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
-<style>
-.bg-gradient-primary {
-	background-color: #070a12;
-	background-image: linear-gradient(180deg, #2b8980 10%, #524c4c 100%);
-	background-size: cover;
-}
-</style>
+
 </head>
 <body id="page-top">
 	<!-- navbar -->
@@ -49,7 +43,7 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">극장등록</h6>
 						</div>
-						<div class="card-body">
+						<div class="card-body" >
 							<div class="table-responsive">
 							<form method="post">
 								<table class="table table-bordered" id="dataTable" cellspacing="0">

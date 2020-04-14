@@ -1,5 +1,6 @@
 package controller.cheyong;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.cheyong.CheyongApplyCommand;
-import command.cheyong.StaffCommand;
 import service.cheyong.CheyongApplyService;
 
 @Controller
@@ -43,9 +43,9 @@ public class CheyongApplyController {
 		return "cheyong/staff_applyModify";
 	}
 	@RequestMapping(value="/staff_applyModify", method=RequestMethod.POST)
-	public String applyModifyPost(CheyongApplyCommand cheyongApplyCommand) {
-		cheyongApplyService.modifyApply(cheyongApplyCommand);
-		return "redirect:staff_applyDetail?r_num="+cheyongApplyCommand.getR_num();
+	public String applyModifyPost(CheyongApplyCommand cheyongApplyCommand,@RequestParam(value="hiddenRNum")String r_num) {
+		cheyongApplyService.modifyApply(cheyongApplyCommand,r_num);
+		return "redirect:staff_applyDetail?r_num="+r_num;
 	}
 	// Apply 삭제
 	@RequestMapping("/staff_applyDelete")
@@ -71,10 +71,11 @@ public class CheyongApplyController {
 								 @RequestParam(value="r_jin")String r_jin,
 								 @RequestParam(value="Hm_num")String m_num,
 								 @RequestParam(value="Hjic_num")String jic_num,
-								 @RequestParam(value="Htheater_name")String theater_name
+								 @RequestParam(value="Htheater_name")String theater_name,
+								 HttpServletRequest request
 								 ) {
 		System.out.println("r_jin뭐임?" + r_jin);
-		cheyongApplyService.changeJinhyeng(r_num,r_jin,m_num,jic_num,theater_name);
+		cheyongApplyService.changeJinhyeng(r_num,r_jin,m_num,jic_num,theater_name,request);
 		return "redirect:staff_applyDetail?r_num="+ r_num;
 	}
 }

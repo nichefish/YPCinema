@@ -32,4 +32,8 @@ public class ContractController {
 		contractService.selectContractLists(model,session);
 		return "staff/staff_myContracts";
 	}
+	@RequestMapping("/staff_contractDetail")
+	public String contractDetail() {
+		return "staff/staff_contractDetail";
+	}
 }

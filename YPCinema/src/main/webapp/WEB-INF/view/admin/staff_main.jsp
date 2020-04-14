@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +15,10 @@
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link rel="icon" href="img/fvc.jpg">
+
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+  <link rel="icon" href="img/fvc.jpg">
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -52,71 +51,28 @@ div.card-body {
  
 </head>
 <body id="page-top">
-<div class='backLayerssss' style=''></div>
+<div class='backLayerssss'></div>
 	<!-- navbar -->
-	<%@ include file="/WEB-INF/view/staff_nav.jsp" %>
-	 
+	<c:if test="${mdto.m_admin eq '1'}">
+		<%@ include file="/WEB-INF/view/admin_nav.jsp" %>
+	</c:if>
+	<c:if test="${mdto.m_admin eq '2'}">
+		<%@ include file="/WEB-INF/view/staff_nav.jsp" %>
+	</c:if>
         <!-- Begin Page Content -->
-        <div class="container-fluid" style="padding-left: 20px;">
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">나의 표준 근로계약서 목록</h1>
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4"style="width:100%;margin-right: 20px;">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Contract</h6>
-            </div>
-            <div class="card-body" style="height:auto;'">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" cellspacing="0">
-                    <tr>
-                      <th style="width:60px;">순서</th>
-                      <th>계약번호</th>
-                      
-					  <th>날짜</th>
-                    </tr>
-                  <tbody>
-                  <c:if test="${! empty lists}">
-                  <c:forEach items="${lists}" var="lists" varStatus="a">
-                  	<tr>
-                  	  	<td>${a.count}</td>
-                  	  	<td>
-                  	  		<input type="button" id="gogoDetail" value="${lists.con_num}" onclick="location.href='staff_contractDetail?r_num=${lists.r_num}&con_num=${lists.con_num}'" style="border:0px none;background-color:black;" >
-					  	</td>
-					  	<td>${lists.con_date}</td>
-                  	</tr>
-                  </c:forEach>
-                  </c:if>
-                  <c:if test="${empty lists}">
-                  	<tr>
-                  	  	<td colspan="3">작성된 계약서가 존재하지 않습니다.</td>
-                  	</tr>
-                  </c:if>
-                  </tbody>
-                </table>
+           <!-- Illustrations -->
+              <div class="card shadow mb-4" style="width:80%;margin-left:80px;">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary" style="color:red">주의사항</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                  </div>
+                  <p>요새 ㅋㄹㄴ바이러스가 기승을 부리고 있습니다. 매점의 경우는 위생을, 표 발부 및 검사직원들은 소독에 유의해 주시길 바랍니다.</p>
+                  <a target="_blank" rel="nofollow" href="https://undraw.co/">주의사항 확인하기 &rarr;</a>
+                </div>
               </div>
-            </div>
-          </div>
-	</div>
-        <!-- /.container-fluid -->
-
-
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white" style="margin-top: 100px;">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-      		 <span>Copyright &copy; YP Cinema 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    <!-- End of Content Wrapper -->
-
-
-  <!-- End of Page Wrapper -->
-
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>

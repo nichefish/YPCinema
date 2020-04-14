@@ -26,7 +26,7 @@
  	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의정보" onclick="location.href='myPage'">&nbsp;&nbsp;
  	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의쿠폰" onclick="location.href='memeber_couponList'">&nbsp;&nbsp;
  	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 영화관" onclick="location.href='myStatistic'">&nbsp;&nbsp;
- 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 매점" onclick="location.href='myPage'">&nbsp;&nbsp;
+ 	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 매점" onclick="location.href='myPopcorn'">&nbsp;&nbsp;
  	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 이력서" onclick="location.href='member_myApply'">&nbsp;&nbsp;
  	<input type="button" style="border-radius: 50%; width:150px; height:150px; color: #c0bdbd;" value="나의 통계">
 

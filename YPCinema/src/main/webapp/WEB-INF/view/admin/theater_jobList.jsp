@@ -64,7 +64,7 @@ div.card-body {
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">지점별</h6>
             </div>
-            <div class="card-body">
+            <div class="card-body"style="height:auto;">
               <div class="table-responsive">
               
                 <table class="table table-bordered" id="dataTable"cellspacing="0"  style="float:left;" >
@@ -102,8 +102,9 @@ div.card-body {
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">직무별</h6>
             </div>
-            <div class="card-body" height:367.6px;>
+            <div class="card-body" style="height:auto;">
               <div class="table-responsive">
+              
               </div>
             </div>
           </div>
@@ -111,35 +112,14 @@ div.card-body {
 		<!-- 2222222222222222222222222 -->
 		<!-- 3333333333333333333333333 -->
 		<!-- DataTales Example -->
-          <div class="card shadow mb-4"style="width:30%;">
+          <div class="card shadow mb-4"style="width:30%;float:left;">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">직원</h6>
             </div>
-            <div class="card-body">
+            <div class="card-body"style="height:auto;">
               <div class="table-responsive">
               
-                <table class="table table-bordered" id="dataTable"cellspacing="0" >
-                    <tr>
-                      <th colspan="2">Staff</th>
-                    </tr>
-                  <tfoot>
-                    <tr>
-                      <th colspan="2">Staff</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                  		<tr>
-                  			<td>
-                  				<input type="button" name="" id="" value="김개똥">
-                  			</td>
-                  			<td>
-                  				<input type="button" name="" id="" value="수정"><br />
-                  				<input type="button" name="" id="" value="삭제">
-                  			</td>
-                  		</tr>
-                  </tbody>
-                </table>
-            	<input type ="button" id= "ttt" value= "직원목록" >
+                
               </div>
             </div>
           </div>
@@ -151,14 +131,7 @@ div.card-body {
 
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white" style="margin-top: 100px;">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-      		 <span>Copyright &copy; YP Cinema 2020</span>
-          </div>
-        </div>
-      </footer>
+     
       <!-- End of Footer -->
 
     <!-- End of Content Wrapper -->

@@ -94,15 +94,19 @@
 								</table>
 								<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" value="지원하기" style="width:500px;height:100px;"onclick="location.href='staff_apply?che_num=${cheyongOneList.che_num}'">
+								<c:if test="${admin eq '0'}">
+									<input type="button" value="지원하기" style="width:500px;height:100px;"onclick="location.href='staff_apply?che_num=${cheyongOneList.che_num}'">
+								</c:if>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<br />
 								<div id=zmzmr style="margin-top:20px;float:left;">
-								<input type="submit" value="수정">
-								<input type="button" value="삭제">
+								<c:if test="${admin eq '1'}">
+									<input type="submit" value="수정">
+									<input type="button" value="삭제">
+								</c:if>
 								<input type="button" value="목록으로" onclick="location.href='staff_postList'">
 								</div>
                             </div>

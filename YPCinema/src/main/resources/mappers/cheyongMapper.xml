@@ -55,6 +55,9 @@
 	</resultMap>
 	
 	<!-- Select Part! -->
+	<select id="selectMyResumeVerM" parameterType="string" resultType="string">
+		select R_JIN from resume <where>M_NUM = #{m_num}</where>
+	</select>
 	<select id="findTheaterNum" parameterType="string" resultType="string">
 		select THEATER_NUM from theater <where>THEATER_NAME=#{theater_name}</where>
 	</select>

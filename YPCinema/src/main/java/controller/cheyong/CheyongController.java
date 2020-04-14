@@ -22,8 +22,8 @@ public class CheyongController {
 	}
 	
 	@RequestMapping("/staff_postDetail")
-	public String postDetail(Model model, @RequestParam(value="che_num")String num) {
-		cheyongService.selectOneList(model, num);
+	public String postDetail(Model model, @RequestParam(value="che_num")String num,HttpSession session) {
+		cheyongService.selectOneList(model, num,session);
 		return "cheyong/staff_postDetail";
 	}
 

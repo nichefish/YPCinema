@@ -58,7 +58,7 @@
                                  	※주의사항※ 장난으로 내면 디진다.
                                 </div>
                                 <br />
-                                <form:form method="post">
+                                <form method="post" id="hollly">
                                 <input type="hidden" id="r_m_num" name="m_num" value="${m_num}">
 								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;border:0px;" >
 									<tr>
@@ -89,8 +89,8 @@
 										<td>희망근무지역</td>
 										<td>
 											
-											<input type="text" name="che_jijom_show" id="che_jijom_show" placeholder="영화관을 검색해 주세요." disabled>
-											<input type="hidden" name="r_hijijom" id="che_jijom" placeholder="영화관을 검색해 주세요." > 
+											<input type="text" name ="che_jijom_show" id="che_jijom_show" placeholder="영화관을 검색해 주세요." disabled >
+											<input type="hidden" name="r_hijijom" id="che_jijom"> 
 											<input type="button" name="jijomgumsec" id="jijomgumsec" value="검색" >
 										</td>
 									</tr>
@@ -158,7 +158,7 @@
 								<input type="reset" value="리셋">
 								<input type="submit" value="지원">
 								<input type="button" value="취소" onclick="location.href='staff_postList'" >
-								</form:form>
+								</form>
                             </div>
                     </div>
                 </div>
@@ -218,6 +218,35 @@ $(document).ready(function(){
 	$("input:radio[id=r_dis_n]").click(function(){
 		$("#hahahaho").hide();
 	});
+	$(function() {
+		$("#hollly").submit(function() {
+			if ($("#che_jijom").val() == "") {
+				alert("영화관을 검색해주세요.");
+				$("#che_jijom").focus();
+				return false;
+			}
+			if ($("#r_time").val() == "") {
+				alert("근무가능시간을 작성해 주세요.");
+				$("#r_time").focus();
+				return false;
+			}
+			if ($("#r_career").val() == "") {
+				alert("경력사항을 입력해 주세요.");
+				$("#r_career").focus();
+				return false;
+				}
+			if ($("#r_per").val() == "") {
+				alert("성격의 장단점을 작성해 주세요.");
+				$("#r_per").focus();
+				return false;
+				}
+			if ($("#r_jiwon").val() == "") {
+				alert("지원동기를 작성해 주세요.");
+				$("#r_jiwon").focus();
+				return false;
+				}
+		});
+});
 });
 </script>
 </body>

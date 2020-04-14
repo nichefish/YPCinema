@@ -80,7 +80,7 @@
 								</li>
 								<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2') && authInfo.mode ne '0'}">	<!-- 관리자 -->
 								<li class="nav-item">
-									<a class="nav-link" href="<c:url value='/jobList' />">직원관리</a>
+									<a class="nav-link" href="<c:url value='/staff_main' />">직원관리</a>
 								</li>
 								</c:if>
 							</ul>

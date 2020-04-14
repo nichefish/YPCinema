@@ -1,5 +1,7 @@
 package controller.admin;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,5 +28,10 @@ public class JicmuController {
 	public String Tajax2(Model model) {
 		jicmuListService.showJicmuList(model);
 		return "admin/theater_ajax2";
+	}
+	@RequestMapping("/staff_main")
+	public String staffMain(HttpSession session,Model model) {
+		jicmuListService.admin(session,model);
+		return "admin/staff_main";
 	}
 }

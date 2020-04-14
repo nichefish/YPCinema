@@ -2,6 +2,7 @@ package service.cheyong;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import command.cheyong.CheyongApplyCommand;
-import command.cheyong.StaffCommand;
+
 import model.DTO.AuthInfo;
 import model.DTO.CheyongApplyDTO;
 import model.DTO.MemberDTO;
 import model.DTO.StaffDTO;
 import repository.cheyong.CheyongRepository;
-import repository.cheyong.ContractRepository;
 import repository.member.MemberRepository;
+import service.payment.SendSMS;
 
 @Service
 public class CheyongApplyService {
@@ -49,9 +50,11 @@ public class CheyongApplyService {
 	}
 	public void selectJiwonList_M(Model model,HttpSession session) {
 		String num = ((AuthInfo)session.getAttribute("authInfo")).getM_num();
+		String r_jin = cheyongRepository.userApplyJin(num);
 		List<CheyongApplyDTO> list = cheyongRepository.selectJiwonList_M(num);
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		authInfo.setCheyongApply(list);
+		authInfo.setR_jin(r_jin);
 		model.addAttribute("selectMyApply",list);	
 	}
 	public void myApplyInfo(String r_num, Model model, HttpSession session) {
@@ -70,9 +73,9 @@ public class CheyongApplyService {
 		model.addAttribute("modi",dto);
 	}
 	//apply 수정 update
-	public void modifyApply(CheyongApplyCommand cheyongApplyCommand) {
+	public void modifyApply(CheyongApplyCommand cheyongApplyCommand,String r_num) {
 		CheyongApplyDTO dto = new CheyongApplyDTO();
-		dto.setR_num(cheyongApplyCommand.getR_num());
+		dto.setR_num(r_num);
 		dto.setR_gadate(cheyongApplyCommand.getR_gadate());
 		dto.setR_time(cheyongApplyCommand.getR_time());
 		dto.setR_dis(cheyongApplyCommand.getR_dis());
@@ -96,7 +99,7 @@ public class CheyongApplyService {
 		cheyongRepository.readBtn(r_num);
 	}
 	//관리자 (진행상황 변경)
-	public void changeJinhyeng(String r_num,String r_jin,String m_num,String jic_num,String theater_name) {
+	public void changeJinhyeng(String r_num,String r_jin,String m_num,String jic_num,String theater_name, HttpServletRequest request) {
 		String theater_num = cheyongRepository.findTheaterNum(theater_name);
 		System.out.println("theater_num ="+ theater_num);
 		StaffDTO sto = new StaffDTO();
@@ -105,10 +108,18 @@ public class CheyongApplyService {
 		sto.setJic_num(jic_num);
 		
 		CheyongApplyDTO dto = new CheyongApplyDTO();
+		MemberDTO mdto = memberRepository.findePhoneNum(m_num);
 		if(r_jin.equals("합격목걸이")) {
 			System.out.println("합격목걸이 들어옴");
 			dto.setR_num(r_num);
 			dto.setR_jin(r_jin);
+			//문자 보내기
+			SendSMS sendSMS = new SendSMS();
+			  try {
+			         sendSMS.wowStaff(request,mdto);
+			      } catch (Exception e) {
+			         e.printStackTrace();
+			      }
 			cheyongRepository.changeJinhyengStaff(dto);
 			cheyongRepository.youStaffInfo(sto);
 		}else {

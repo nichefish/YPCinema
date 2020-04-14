@@ -66,6 +66,7 @@
 											<input type="hidden" name="r_jin" id="r_jin" value="${selectApplyOne.r_jin}">
                                 	<input type="hidden" name="hiddenIdNum" id="hiddenIdNum" value="${mdto.m_num}">
                                 	지원날짜 : <fmt:formatDate value='${selectApplyOne.r_nalja}' type='date' pattern='yyyy년 MM월 dd일' />
+                                	<p style="color:red;font-size:5px;">([열람] 이후  수정 및 삭제가 불가능합니다.)</p>
                                 </div>
                                 <br />
 								<table class="table table-bordered" id="dataTable" cellspacing="0" >

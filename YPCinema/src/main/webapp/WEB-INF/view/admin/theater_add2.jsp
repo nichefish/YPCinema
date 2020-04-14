@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                  
                   	<c:forEach items="${jicmuList}" var="j" step="1">
                   		<tr>
                   			<td>
@@ -49,7 +51,44 @@
               </div>
             </div>
           </div>
-		
-
+<script>	
+ 	$(function(){
+ 		$("#theater_add").click(function(){
+ 			location.href="theater_add";
+ 		});
+ 	})
+ 	//window onload 
+	$(document).ready(function(){
+		// 배경 조절 버튼 클릭시 클릭 이벤트 
+		$("#job_add").click(function(){
+			var width = $("#page-top").width(); 
+			var height = $("#page-top").height(); 
+			//화면을 가리는 레이어의 사이즈 조정 
+			$(".backLayerssss").width(width); 
+			$(".backLayerssss").height(height); 
+			//화면을 가리는 레이어를 보여준다 (0.5초동안 30%의 농도의 투명도) 
+			$(".backLayerssss").fadeTo(500, 0.3); 
+			//팝업 레이어 보이게 
+			var loadingDivObj = $("#loadingDiv"); 
+			loadingDivObj.css("top", $(document).height()/2-500); 
+			loadingDivObj.css("left",$(document).width()/2-500); 
+			loadingDivObj.fadeIn(500); }); }); 
+	//esc키 누르면 화면 잠김 해제
+	$(document).keydown(function(event){
+		if(event.which=='27'){ 
+			$("#loadingDiv").fadeOut(300); 
+			$(".backLayerssss").fadeOut(1000); } }); 
+	//button 누르면 화면 잠김 해제
+	$(document).ready(function(){
+		$("#btnss").click(function(event){
+				$("#loadingDiv").fadeOut(300); 
+				$(".backLayerssss").fadeOut(1000); }); 
+	}); 
+	//윈도우가 resize될때마다 backLayer를 조정 
+	$(window).resize(function(){
+		var width = $(window).width(); 
+		var height = $(window).height();
+		$(".backLayerssss").width(width).height(height); });
+</script>
 </body>
 </html>

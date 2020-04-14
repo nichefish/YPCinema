@@ -44,6 +44,10 @@ public class CheyongRepository {
 		String statement = namespace + ".selectMyResumes";
 		return sqlSession.selectList(statement,num);
 	}
+	public String userApplyJin(String m_num) {
+		String statement = namespace + ".selectMyResumeVerM";
+		return sqlSession.selectOne(statement,m_num);
+	}
 	public CheyongApplyDTO selectApplyOne(String r_num) {
 		String statement = namespace + ".selectApplyOne";
 		return sqlSession.selectOne(statement,r_num);

@@ -59,11 +59,11 @@ div.card-body {
         <!-- Begin Page Content -->
         <div class="container-fluid" style="padding-left: 20px;">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">채용공고 현황</h1>
+          <h1 class="h3 mb-2 text-gray-800">채용지원목록</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4"style="width:100%;margin-right: 20px;">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Coupon List Page</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Resume Lists</h6>
             </div>
             <div class="card-body" style="heigth:auto;">
               <div class="table-responsive">
@@ -89,7 +89,7 @@ div.card-body {
         			  </td>
                   	  <td><a href="staff_postDetail?che_num=${a.che_num}">${a.che_num}</a></td>
 					  <td>
-					  	<input type="button" id="readBtn" value="${a.r_num}" onclick="location.href='staff_readApply?r_num=${a.r_num}'" style="border:0px none;background-color:transparent;" >
+					  	<a href="staff_readApply?r_num=${a.r_num}" style="color:black;font-size:15px;">${a.r_num}</a>
 					  </td>
                       <td>${a.m_num}</td>
                       <td>${a.m_name}</td>

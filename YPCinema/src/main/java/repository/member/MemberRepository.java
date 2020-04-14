@@ -42,6 +42,10 @@ public class MemberRepository {
 		String statement = namespace + ".selectFindUser";
 		return sqlSession.selectOne(statement,text);
 	}
+	public MemberDTO findePhoneNum(String m_num) {
+		String statement = namespace + ".selectPhoneNum";
+		return sqlSession.selectOne(statement,m_num);
+	}
 	//sjh가 사용함 끝.
 	
 	public Integer joinOkUpdate(MemberDTO memberDTO) {

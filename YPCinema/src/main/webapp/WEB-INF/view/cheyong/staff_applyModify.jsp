@@ -62,7 +62,7 @@
                                 </div>
                                 <br />
                                 <form method="post">
-                                <input type="hidden" name="r_num" id="hhR_num" value="${modi.r_num}">
+                                <input type="hidden" name="r_num" id="whatthe" value="${modi.r_num}">
                                 <input type="hidden" name="che_num" id="hhChe_num" value="${modi.che_num}">
                                 <input type="hidden" name="m_num" id="hhM_num" value="${userInfo.m_num}">
 								<table class="table table-bordered" id="dataTable" cellspacing="0" style="width:700px;" >
