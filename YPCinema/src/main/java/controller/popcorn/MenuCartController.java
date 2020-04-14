@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.member.MemberCommand;
+import service.admin.CouponAddService;
 import service.member.MemberDetailService;
 import service.popcorn.MenuCartService;
 
@@ -18,6 +19,9 @@ public class MenuCartController {
 	private MenuCartService menuCartService;
 	@Autowired
 	private MemberDetailService memberDetailService;
+	@Autowired
+	private CouponAddService couponAddService;
+	
 //	@RequestMapping("/cartRemove")
 //	public String goodsCartRemove(@RequestParam(value = "delete") String [] menuNums) {
 //		menuCartService.cartRemove(menuNums);
@@ -36,6 +40,7 @@ public class MenuCartController {
 	}
 	@RequestMapping("/cartCart")
 	public String cartCart(@RequestParam("select") String menuNums, MemberCommand memberCommand, HttpServletRequest request, Model model) {
+		couponAddService.selectLists(model);
 		HttpSession session = request.getSession();
 		memberDetailService.memberMypage(session, model);
 		menuCartService.cartPayList(menuNums, session, model);

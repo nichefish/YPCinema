@@ -14,7 +14,17 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script>
+$(function() {
+	$("#coupon").change(function() {
+		alert("쿠폰이 적용되었습니다.");
+		alert($("#idid").val());
+		alert($("#coupon").val());
+		$("#seat_total_price").val($("#idid").val() - Number($("#coupon").val()));
+	});
+});
+</script>
 </head>
 <body>
 	<header class="header-area">
@@ -126,10 +136,32 @@
 					<div>
 					<br /> <br /> <br />
 					
+					
+					
+					
 								<table>
 									<tr>
+										<td colspan="2" align="right">
+											적용쿠폰: <select id="coupon">
+												<option value="0" label="[쿠폰을 선택해주세요.]">
+												<c:forEach items="${selectLists}" var="coupon">
+													<option value="${coupon.c_score}" label="${coupon.c_name}">
+												</c:forEach>
+											</select>
+										</td>
+									</tr>
+									<tr>
 										<td>총 가격</td>
-										<td colspan="4"><input type="text" name="seat_total_price" id="seat_total_price" value="${showReserveStored.seat_total_price + totalPrice}"></td>
+										<td colspan="4">
+										<c:if test="${!empty showReserveStored}">
+											<input type="hidden" name="idid" id="idid" value="${showReserveStored.seat_total_price + totalPrice}">
+											<input type="text" name="seat_total_price" id="seat_total_price" value="${showReserveStored.seat_total_price + totalPrice}">
+										</c:if>
+										<c:if test="${empty showReserveStored}">
+											<input type="hidden" name="idid" id="idid" value="${totalPrice}">
+											<input type="text" name="seat_total_price" id="seat_total_price" value="${totalPrice}">
+										</c:if>
+										</td>
 									</tr>
 									<tr>
 										<td>이메일 주소</td>

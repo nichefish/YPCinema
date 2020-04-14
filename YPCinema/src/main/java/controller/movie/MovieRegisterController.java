@@ -28,9 +28,6 @@ public class MovieRegisterController {
 				errors.rejectValue("movie_num", "bad");
 			}
 		} catch (Exception e) {
-			if (!movie_num.equals("")) {
-				errors.rejectValue("movie_num", "bad");
-			}
 		}
 		return "movie/movie_add";
 	}

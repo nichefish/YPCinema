@@ -26,7 +26,7 @@
  	<div class="container" align="center">
  		<h2>양평시네마 상영영화 정보</h2>
  		<form:form method="get">
- 			<p><input type="text"> <input type="button" value="영화 검색? (구현안함...)"></p>
+ 			<p><input type="text"> <input type="button" value="영화 검색"></p>
  		</form:form>
  		<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	<!-- 이용자 및 비로그인 아니면 -->
  		<table width="60%" border="0" cellpadding="0" cellspacing="0" >

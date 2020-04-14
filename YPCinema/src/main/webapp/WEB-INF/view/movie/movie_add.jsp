@@ -40,7 +40,7 @@ $(function() {
 				(한국영화데이터베이스KMDb 영화정보API)<br/>
 				<span style="color:red;"><form:errors path="movie_num" /></span>
 			</p>
-			<p><a href='https://www.kmdb.or.kr/info/api/apiDetail/6'>https://www.kmdb.or.kr/info/api/apiDetail/6</a></p>
+			<p><a href='https://www.kmdb.or.kr/info/api/apiDetail/6' target='_blank'>https://www.kmdb.or.kr/info/api/apiDetail/6</a></p>
 		</form:form>
 		<form:form name="frm" id="frm" method="POST" commandName="movieCommand">
 		<div class="table11" align="center">
