@@ -57,8 +57,8 @@ $(function() {
 		var selectedDate = $("#show_date").val().replace(/-/g, "");
 		selectedDate = Number(selectedDate);
 		var dateCheck = selectedDate - today;	// 작으면 안됨...
-		if (dateCheck <= 0) {
-			alert("당일 혹은 이전 날짜에는 상영일정을 등록할 수 없습니다.");
+		if (dateCheck < 0) {
+			alert("이전 날짜에는 상영일정을 등록할 수 없습니다.");
 			$("#show_date").val("");
 			return false;
 		}

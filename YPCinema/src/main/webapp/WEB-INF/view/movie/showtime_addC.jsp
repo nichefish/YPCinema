@@ -39,9 +39,14 @@ $(function() {
 <body>
 	영화: <br/>
 	<select name="movie_num" size="8" id="movie">
+		<c:if test="${!empty lists }">
 		<c:forEach items="${lists}" var="movie">
-		<option value="${movie.movie_num}" label="${movie.movie_title} (${movie.movie_rating})" />
+		<option value="${movie.movie_num}" label="${movie.movie_title} (${movie.movie_rating + movie.movie_rating_plus})" />
 		</c:forEach>
+		</c:if>
+		<c:if test="${empty lists }">
+		<option value="${movie.movie_num}" label="[해당 영화 없음]" />
+		</c:if>
 	</select>
 </body>
 </html>

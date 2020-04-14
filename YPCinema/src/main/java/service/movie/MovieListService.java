@@ -46,7 +46,7 @@ public class MovieListService {
 			ratingB = 80;
 			break;
 		case "A" :
-			ratingA = 100;
+			ratingA = 80;
 			ratingB = 100;
 			break;
 		}
