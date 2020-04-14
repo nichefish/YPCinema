@@ -33,6 +33,8 @@ public class MenuCartService {
 		
 		
 		
+		
+		
 //		List<String> cs = new ArrayList<String>();
 //		for(String menuNum : menuNums) {
 //			cs.add(menuNum);
@@ -40,6 +42,20 @@ public class MenuCartService {
 //		Map<String, Object> condition = new HashMap<String, Object>();
 //		condition.put("nums", cs);
 //		menuRepository.menuCartRemove(condition);
+	}
+	
+	public void cartPayList(String menuNums, HttpSession session, Model model) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		String[] menuNum = menuNums.split(",");
+		List<String> params = new ArrayList<String>();
+		for(int i = 0; i< menuNum.length; i++) {
+			params.add(menuNum[i]);
+		}
+		param.put("userId", ((AuthInfo)session.getAttribute("authInfo")).getM_id());
+		param.put("selectMenu", params);
+		List<CartDTO> list = menuRepository.cartPayList(param);
+		model.addAttribute("cartList", list);
+		model.addAttribute("chkNum", menuNum);
 	}
 
 	public void cartAdd(String menuNum, Model model, HttpSession session) {
@@ -74,6 +90,14 @@ public class MenuCartService {
 		List<MenuDTO> list = menuRepository.wishList(userId);
 		model.addAttribute("wishList", list);
 	
+		
+	}
+
+	public void cartQtyDown(String menuNum, Model model, HttpSession session) {
+		CartDTO dto = new CartDTO();
+		dto.setMenuNum(menuNum);
+		dto.setUserId(((AuthInfo)session.getAttribute("authInfo")).getM_id());
+		menuRepository.cartQtyDown(dto);
 		
 	}
 }

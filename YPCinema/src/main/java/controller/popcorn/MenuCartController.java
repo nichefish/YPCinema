@@ -31,25 +31,21 @@ public class MenuCartController {
 		return "popcorn/cart";
 	}
 	@RequestMapping("/cartCart")
-	public String cartCart(@RequestParam("select") String[] menuNums, @RequestParam("submit_mode") String submit_mode, HttpSession session) {
-		System.out.println(submit_mode);
-		if(submit_mode.equals("delete")) {
-			System.out.println("!!!!");
-			menuCartService.cartRemove(menuNums, session);
-		}
-		
+	public String cartCart(@RequestParam("select") String menuNums, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		menuCartService.cartPayList(menuNums, session, model);
+		return "popcorn/buy_list";
+	}
+	@RequestMapping(value = "/cartQtyDown")
+	public String cartQtyDown(@RequestParam(value = "num") String menuNum, 
+			Model model,HttpSession session) {
+		menuCartService.cartQtyDown(menuNum,model,session);
 		return "redirect:/cartList";
 	}
-	
-	@RequestMapping("/wishAdd")
-	public String goodsWishAdd(@RequestParam(value = "num") String menuNum,
-			Model model,HttpSession session) {
-		menuCartService.wishAdd(menuNum, model, session);
-		return "popcorn/success";
-	}
-	@RequestMapping("/wishList")
-	public String goodsWishList(Model model,HttpSession session) {
-		menuCartService.wishList(model,session);
-		return "popcorn/wishList";
+	@RequestMapping(value = "/cartQtyUp")
+	public String cartQtyUp(@RequestParam(value = "num") String menuNum, Model model, HttpSession session) {
+		System.out.println("aaaaa");
+		menuCartService.cartAdd(menuNum,model,session);
+		return "redirect:/cartList";
 	}
 }

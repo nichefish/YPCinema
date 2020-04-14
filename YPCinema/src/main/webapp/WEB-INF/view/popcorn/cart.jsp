@@ -13,30 +13,39 @@
 <link rel="stylesheet" href="css/magnific-popup.css">
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/goodsList.css" />
+
+
 <script type="text/javascript">
 function checkQty(num, qty) {
 	if (qty > 1) {
-		location.href="cartQtyDown?menuNum="+num;
+		location.href="cartQtyDown?num="+num;
 	} else {
 		return false;
 	}
 }
+
+function checkupQty(num, qty) {
+	if (qty >= 10) {
+		alert("최대 10개까지 입력할수있습니다.");
+		return;
+	} 
+	location.href="cartQtyUp?num="+num;
+}
+
 function buy1() {
-	var chkbox = document.getElementsByName('delete'); 
+	var chkbox = document.getElementsByName('select'); 
 	var chk = 0; 
 	var num = "";
 	for (var i=0 ; i<chkbox.length ; i++) { 
 		if (chkbox[i].checked) { 
 			chk += 1;
-			num+=chkbox[i].value +",";
+			num += chkbox[i].value + ",";
 		} 
  	}
 	if (chk == 0) {
 		alert("구매 상품을 선택해 주세요.");
 	} else { 
-		location.href = "menuBuy?chkNum="+ num;
+		location.href = "cartCart?select=" + num;
 	}
 }
 </script>
@@ -66,7 +75,7 @@ function buy1() {
 						<div class="function">
 							<p class="prdCount">장바구니</p>
 						</div>
-						<!-- 상품 수 출력 종료 -->
+						
 					</div>
 				</div>
 				<c:if test = "${!empty cartList }">
@@ -74,29 +83,29 @@ function buy1() {
 					<form action="cartCart" method="post" name="frm" id="frm">
 						<table align="center" width="600" border="1">
 							<tr align="center">
-								<td>-</td>
+								<td><input type="checkbox" name="selectAll" id="selectAll" /></td>
+								<td>이미지</td>
 								<td>메뉴명</td>
 								<td>가격</td>
 								<td>수량</td>
-								<td><input type="checkbox" name="selectAll" id="selectAll" /></td>
 							</tr>
 							<c:set var="totalPrice" value="0" />
 							<c:forEach var="cart" items="${cartList }" step="1">
 								<tr align="center">
+									<td><input type="checkbox" name="select" id="select" value="${cart.menuNum }" /></td>
 									<td><img src="popcorn/update/${cart.menuImage}" width="100" /></td>
 									<td>${cart.menuName }</td>
 									<td>${cart.menuPrice }</td>
-									<c:set var="totalPrice" value="${totalPrice + cart.menuPrice }" />
-									<td><a href="cartQtyUp?num=${cart.menuNum }">+ </a> ${cart.menuQty } <a href="javascript:checkQty('${cart.menuNum }',${cart.menuQty })">- </a></td>
-									<td><input type="checkbox" name="select" id="select" value="${cart.menuNum }" /></td>
+									<c:set var="totalPrice" value="${totalPrice + cart.menuPrice * cart.menuQty }" />
+									<td><a href="javascript:checkupQty('${cart.menuNum }',${cart.menuQty })">+ </a> ${cart.menuQty } <a href="javascript:checkQty('${cart.menuNum }',${cart.menuQty })">- </a></td>
 								</tr>
 							</c:forEach>
 						</table>
 						<table align="center" width="600" border="0">
-							<tr align="center" bgcolor="yellow">
+							<tr align="center" bgcolor=black>
 								<td align="right" colspan="6">
-								<font color ="gray" size="5">총 결제금액 : ${totalPrice }</font>
-								<font color ="black" size="5">원</font>
+								<font color ="white" size="5">총 결제금액 : ${totalPrice }</font>
+								<font color ="white" size="5">원</font>
 								</td>
 							</tr>
 						</table>
@@ -104,8 +113,8 @@ function buy1() {
 							<tr align="center">
 								<td align="right" colspan="6">
 									<input type="hidden" id="submit_mode" name="submit_mode" >
-									<input type="button" id="delete_Btn" value="선택상품 삭제" />
 									<input type="button" id="buy_Btn" value="선택상품 구매하기" onclick="buy1();">
+									<input type="button" id="delete_Btn" value="선택상품 삭제" />
 								</td>
 							</tr>
 						</table>

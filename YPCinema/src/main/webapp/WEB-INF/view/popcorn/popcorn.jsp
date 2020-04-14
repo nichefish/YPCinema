@@ -93,10 +93,7 @@
 									<a class="nav-link" href="<c:url value='/jobList' />">직원관리</a>
 								</li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">주차</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">협력업체</a>
+                                    <a class="nav-link" href="#">기프트샵</a>
                                 </li>
                             </ul>
                             <ul class="navbar-nav ml-auto">
@@ -352,16 +349,16 @@
                                            <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
                                             <div class="post-thumbnail">
-                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
+                                                    <img src="img/blog-img/popcorn2.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
                                                <div class="post-content">
-                                                    <a href="menuDetail?num=54" class="headline">
-                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
+                                                    <a href="menuDetail?num=342" class="headline">
+                                                        <h5>달콤팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;6000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
                                                   <div class="post-meta">
-                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
+                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>달콤한 카라멜 향이 가득한 달콤팝콘!</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,16 +367,16 @@
                                             <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
                                             <div class="post-thumbnail">
-                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
+                                                    <img src="img/blog-img/coke1.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
                                                <div class="post-content">
-                                                    <a href="menuDetail?num=54" class="headline">
-                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
+                                                    <a href="menuDetail?num=341" class="headline">
+                                                        <h5>콜라(M)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;2000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
                                                   <div class="post-meta">
-                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
+                                                        <p> <a href="menuDetail?num=341" class="post-date"><h5>톡 쏘는 시원한 콜라</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -388,16 +385,16 @@
                                           <div class="single-blog-post post-style-2 d-flex align-items-center">
                                                 <!-- Post Thumbnail -->
                                             <div class="post-thumbnail">
-                                                    <img src="img/blog-img/popcorn1.jpg" alt="">
+                                                    <img src="img/blog-img/popcorn3.jpg" alt="">
                                                 </div>
                                                 <!-- Post Content -->
                                                <div class="post-content">
-                                                    <a href="menuDetail?num=54" class="headline">
-                                                        <h5>고소팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;5000원</h5>
+                                                    <a href="menuDetail?num=343" class="headline">
+                                                        <h5>치즈팝콘(L)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;6000원</h5>
                                                     </a>
                                                     <!-- Post Meta -->
                                                   <div class="post-meta">
-                                                        <p> <a href="menuDetail?num=54" class="post-date"><h5>옥수수 본연의 맛. 짭짜름한 클래식 고소팝콘!</h5></a></p>
+                                                        <p> <a href="menuDetail?num=343" class="post-date"><h5>치즈매니아들이라면 놓칠 수 없는 바로 그 팝콘!</h5></a></p>
                                                     </div>
                                                 </div>
                                             </div>

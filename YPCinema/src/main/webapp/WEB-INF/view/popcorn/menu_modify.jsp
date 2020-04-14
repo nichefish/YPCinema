@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 수정</title>
+<title>메뉴 수정</title>
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/goodsUp.css" />
 <link rel="stylesheet" href="css/themify-icons.css">
@@ -26,8 +26,8 @@
 		$("#btn1").click(function() {
 			if ($("#btn1").attr("value") == "삭제") {
 				$("#btn1").attr("value", "삭제취소");
-				$("#fileDel").val("${goods.goodsImage}");
-				$("#imageView").html("<input type='file' name='goodsImage' >");
+				$("#fileDel").val("${menu.menuImage}");
+				$("#imageView").html("<input type='file' name='menuImage' >");
 			} else {
 				$("#btn1").attr("value", "삭제");
 				$("#fileDel").val("");
@@ -40,10 +40,6 @@
 </head>
 <body>
 	<div id="wrap">
-
-		<!-- 헤더시작 -->
-	
-
 		<header class="header-area">
 			<%@ include file="../navigation.jsp"%>
 		</header>
@@ -54,7 +50,7 @@
 			<!-- 메인 컨텐츠 -->
 			<div class="contents">
 				<div class="contentsTop">
-					<h2>메뉴 수정</h2>
+					<h2>상품 수정</h2>
 				</div>
 				<br>
 				<div class="relCon">
@@ -64,11 +60,11 @@
 							name="modifyform" enctype="multipart/form-data">
 							<table>
 								<tr>
-									<th style="width: 100px;">상품 번호</th>
+									<th style="width: 100px;">메뉴 번호</th>
 									<td>${menu.menuNum }</td>
 								</tr>
 								<tr>
-									<th style="width: 100px;">종류</th>
+									<th style="width: 100px;">메뉴종류</th>
 									<td><select name="menuType" id="menuType" class="select"
 										style="width: 100px">
 											<option value="콤보"
@@ -83,7 +79,19 @@
 												<c:if test="${menu.menuType eq '떡볶이' }">selected</c:if>>떡볶이</option>
 									</select></td>
 								</tr>
-
+									<tr>
+									<th style="width: 100px;">메뉴종류</th>
+									<td><select name="theaterNum" id="theaterNum" class="select"
+										style="width: 100px">
+											<option value="공통"
+												<c:if test="${menu.theaterNum eq '공통' }">selected</c:if>>공통</option>
+											<option value="0"
+												<c:if test="${menu.theaterNum eq '0' }">selected</c:if>>YP양평점</option>
+											<option value="1"
+												<c:if test="${menu.theaterNum eq '1' }">selected</c:if>>YP홍대입구점</option>
+									</select></td>
+								</tr>
+								
 								<tr>
 									<th style="width: 100px;">상품명</th>
 									<td><input type="text" name="menuName" id="menuName"
@@ -95,6 +103,11 @@
 									<td><input type="text" name="menuPrice" id="menuPrice"
 										value="${menu.menuPrice }" /></td>
 								</tr>
+									<tr>
+									<th style="width: 126px;">메뉴설명</th>
+									<td><textarea name="menuContent" id="menuContent"
+										>${menu.menuContent }</textarea></td>
+								</tr>
 								<tr>
 									<th style="width: 100px;">이미지</th>
 									<td><img src="popcorn/update/${menu.menuImage }"
@@ -102,9 +115,10 @@
 										value="삭제" /></td>
 								</tr>
 							</table>
-							<input type="submit" value="수정 완료"> <input type="hidden"
-								name="fileDel" id="fileDel" /> <input type="hidden"
-								name="menuNum" id="menuNum" value="${menu.menuNum }" />
+							<input type="hidden" name="fileDel" id="fileDel" /> 
+							<input type="hidden" name="menuNum" id="menuNum" value="${menu.menuNum }" />
+							<input type="submit" value="수정 완료"> 
+							<input type="button" id="menuDelete" value="상품삭제" onclick="location.href='menuDelete?num=${menu.menuNum }'">
 
 						</form>
 					</div>

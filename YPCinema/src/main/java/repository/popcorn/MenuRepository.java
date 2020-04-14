@@ -66,6 +66,11 @@ public class MenuRepository {
 		String statement = namespace + ".cartList";
 		return sqlSession.selectList(statement, userId);
 	}
+	
+	public List<CartDTO> cartPayList(Map<String, Object> param) {
+		String statement = namespace + ".cartPayList";
+		return sqlSession.selectList(statement, param);
+	}
 
 	public Integer wishAdd(String menuNum, String userId) {
 		CartDTO dto = new CartDTO();
@@ -94,6 +99,22 @@ public class MenuRepository {
 	public void removeCart(CartDTO cart) {
 		String statement = namespace + ".cartCartRemove";
 		sqlSession.delete(statement, cart);
+	}
+
+	public void cartQtyDown(CartDTO dto) {
+		String statement = namespace + ".cartDown";
+		sqlSession.update(statement, dto);
+	}
+
+	public MenuDTO menuModify(String menuNum) {
+		String statement = namespace + ".menuModify";
+		return sqlSession.selectOne(statement, menuNum);
+	}
+
+	public void menuModifyPro(MenuDTO dto) {
+		String statement = namespace + ".menuModifyPro";
+		sqlSession.update(statement, dto);
+		
 	}
 	
 

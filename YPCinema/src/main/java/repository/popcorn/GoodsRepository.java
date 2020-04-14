@@ -37,4 +37,9 @@ public class GoodsRepository {
 		String statement = namespace + ".goodsModifyPro";
 		sqlSession.update(statement, dto);
 	}
+
+	public void goodsDelete(String goodsNum) {
+		String statement = namespace + ".goodsDelete";
+		sqlSession.delete(statement,goodsNum);
+	}
 }

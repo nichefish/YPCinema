@@ -17,5 +17,10 @@ public class MenuDeleteController {
 		menuDeleteService.deleteMenu(menuNum);
 		return "redirect:menuList";
 	}
+	@RequestMapping("/goodsDelete")
+	public String goodsDelete(@RequestParam(value = "num") String goodsNum ) {
+		menuDeleteService.deleteGoods(goodsNum);
+		return "redirect:goodsList";
+	}
 
 }

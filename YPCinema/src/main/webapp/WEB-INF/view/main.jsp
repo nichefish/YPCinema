@@ -372,12 +372,12 @@
                                                             <div class="single-blog-post post-style-2 d-flex align-items-center mb-1">
                                                                 <!-- Post Thumbnail -->
                                                                 <div class="post-thumbnail">
-                                                                    <img src="img/blog-img/b15.jpg" alt="">
+                                                                    <img src="img/blog-img/popcorn2.jpg" alt="">
                                                                 </div>
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>음료</h5>
+                                                                        <h5>달콤팝콘</h5>
                                                                     </a>
                                                                     <!-- Post Meta -->
                                                               
@@ -394,7 +394,7 @@
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>채우기3</h5>
+                                                                        <h5>YP시네마와 함께하세요!</h5>
                                                                     </a>
                                                                     <!-- Post Meta -->
                                                                 
@@ -406,12 +406,12 @@
                                                             <div class="single-blog-post post-style-2 d-flex align-items-center mb-1">
                                                                 <!-- Post Thumbnail -->
                                                                 <div class="post-thumbnail">
-                                                                    <img src="img/blog-img/b17.jpg" alt="">
+                                                                    <img src="img/blog-img/popcorn4.jpg" alt="">
                                                                 </div>
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>채우기4</h5>
+                                                                        <h5>YP시네마는 팝콘도 맛있답니다. </h5>
                                                                     </a>
                                                                     <!-- Post Meta -->
                                                             
@@ -433,7 +433,7 @@
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>채우기5</h5>
+                                                                        <h5>YP시네마에서 영화볼래?</h5>
                                                                     </a>
                                                                     <!-- Post Meta -->
                                                             
@@ -450,7 +450,7 @@
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>채우기6</h5>
+                                                                        <h5>YP시네마 오픈!!!</h5>
                                                                     </a>
                                                                 
                                                                 </div>
@@ -466,7 +466,7 @@
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>채우기7</h5>
+                                                                        <h5>곡성 예매율 1위!</h5>
                                                                     </a>
                                                                
                                                                 </div>
@@ -482,7 +482,7 @@
                                                                 <!-- Post Content -->
                                                                 <div class="post-content">
                                                                     <a href="#" class="headline">
-                                                                        <h5>채우기8</h5>
+                                                                        <h5>YP시네마와 함께하세요~</h5>
                                                                     </a>
                                                              
                                                                 </div>

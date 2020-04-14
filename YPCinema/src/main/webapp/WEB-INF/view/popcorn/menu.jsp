@@ -71,7 +71,7 @@ $(function() {
 										<option value="음료">음료</option>
 										<option value="스낵">스낵</option>
 										<option value="떢볶이">떡볶이</option>
-										<option value="닭강정">닭강정</option>
+									
 									</select>
 								</td>
 							</tr>
@@ -79,7 +79,8 @@ $(function() {
 								<th style="width: 100px;">지점선택</th>
 								<td>
 									<select name="theaterNum" id="theaterNum" class="select" style="width: 100px">
-										<option value="공통" selected="selected" disabled="disabled" >---선택---</option>
+										<option value="" selected="selected" disabled="disabled" >---선택---</option>
+										<option value="공통">공통</option>
 										<option value="0">YP양평점</option>
 										<option value="1">YP홍대입구점</option>
 									</select>

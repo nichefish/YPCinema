@@ -49,8 +49,13 @@
 	</insert>
 	
 	<insert id="cartInsert" parameterType="cart">	
+	<![CDATA[
 		insert into cart (cart_num, user_id, menu_name, menu_price, menu_img, menu_num, menu_qty)
-		values(nextval('seq'), #{userId},#{menuName},#{menuPrice}, #{menuImage},#{menuNum},#{menuQty})
+		values
+		(nextval('seq'), #{userId},#{menuName},#{menuPrice}, #{menuImage},#{menuNum},#{menuQty})
+		on duplicate key 
+		update menu_qty = menu_qty + 1
+	]]>
 	 </insert>
 	
 	<!--  select  -->
@@ -76,6 +81,11 @@
 		select  <include refid="baseGoodsColumn" /> from goods
 		where GOODS_NUM = #{goodsNum}
 	</select>
+	
+	<select id="menuModify" resultMap="menuBaseMap">
+		select  <include refid="baseMenuColumn" /> from menu
+		where menu_num = #{menuNum}
+	</select>
 		
 	<select id="menuType" resultMap="menuBaseMap" parameterType="string">
 		select <include refid="baseMenuColumn" /> from menu
@@ -93,6 +103,26 @@
 		<result property="menuQty" jdbcType="VARCHAR" column="menu_qty"/>
 	</resultMap>
 	
+	<select id="cartPayList" parameterType="hashmap" resultMap="cartListMap">
+	<![CDATA[
+	SELECT
+	CART_NUM,
+	MENU_NUM,
+	USER_ID,
+	MENU_NAME,
+	MENU_PRICE,
+	MENU_IMG,
+	MENU_QTY
+	FROM CART
+	WHERE
+	USER_ID = #{userId}
+	AND MENU_NUM IN 
+	]]>
+	<foreach collection="selectMenu" item="item" index="index" separator="," open="(" close=")">
+		'${item}'
+	</foreach>
+	</select>
+	
 	<select id="cartList" parameterType="string" resultMap="cartListMap">
 		select cart_num, menu_num, user_id, menu_name, menu_price, menu_img, menu_qty
 		from cart where user_id = #{userId} 
@@ -100,14 +130,30 @@
 		
 	<!-- update -->
 	<update id="goodsModifyPro" parameterType="goods">
-		update goods set GOODS_TYPE =  #{goodsType}, GOODS_NAME =  #{goodsName}, GOODS_PRICE =  #{goodsPrice}, GOODS_IMG=#{goodsImage}
+		update goods set GOODS_TYPE =  #{goodsType}, GOODS_NAME =  #{goodsName}, GOODS_PRICE =  #{goodsPrice}
 		where GOODS_NUM = #{goodsNum}
 	</update>
+	
+	<update id="menuModifyPro" parameterType="menu">
+		update menu set  MENU_TYPE =  #{menuType}, MENU_NAME =  #{menuName}, MENU_PRICE =  #{menuPrice}
+		where MENU_NUM = #{menuNum}
+	</update>
+	
+	<update id="cartDown" parameterType="cart">
+	update cart
+	set menu_qty = menu_qty - 1
+	where menu_num = #{menuNum} and user_id = #{userId}
+</update>
 		
 	<!-- Delete -->
 	<delete id="menuDelete" parameterType="string">
 		delete from menu
 		where MENU_NUM = #{menuNum}
+	</delete>
+	
+	<delete id="goodsDelete" parameterType="string">
+		delete from goods
+		where goods_num = #{goodsNum}
 	</delete>
 	
 	<!-- 시퀀스 값 받아오기 -->

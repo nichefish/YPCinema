@@ -45,7 +45,7 @@
 							<tr>
 								<td width="50" align="center">상품타입</td>
 								<td width="50" align="center">번호</td>
-								<td width="100" align="center">이미지</td>
+								<td width="80" align="center">이미지</td>
 								<td width="90" align="center">상품명</td>
 								<td width="70" align="center">단가(원)</td>
 							</tr>
@@ -54,9 +54,9 @@
 									<td>${goods.goodsType}</td>
 									<td>${status.count }</td>
 									<td><c:forTokens items="${goods.goodsImage }" delims="-"
-											var="goodsImage" varStatus="status">
+											var="goodsImage" varStatus="status" >
 											<c:if test="${status.count == 1}">
-												<img src="/YPCinema/popcorn/update/${goodsImage }" />
+												<img src="/YPCinema/popcorn/update/${goodsImage }"   style="height:100px"/>
 											</c:if>
 										</c:forTokens></td>
 									<td><a href="goodsModify?num=${goods.goodsNum }">
