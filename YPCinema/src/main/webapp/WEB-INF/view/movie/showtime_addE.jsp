@@ -11,6 +11,13 @@
 <script>
 $(function() {
 	$("#show_start").change(function() {
+		var regexp = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+		var ph = $("#show_start").val();
+		if (!regexp.test(ph)) {
+			alert("형식에 맞게 입력하세요. (00:00~23:59)");
+			$("#show_start").val($("#previous_endtime").text());
+			return false;
+		}
 		var standard = $("#previous_endtime").text();
 		var start = $("#show_start").val().replace(":", "");
 		if (Number(start) < 800) {

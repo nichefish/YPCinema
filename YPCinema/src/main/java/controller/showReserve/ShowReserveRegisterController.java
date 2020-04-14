@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import command.showtime.ShowReserveCommand;
 import command.showtime.ShowtimeCommand;
 import model.DTO.AuthInfo;
+import model.DTO.MovieDTO;
 import model.DTO.ScreenDTO;
 import model.DTO.ShowtimeDTO;
+import model.DTO.TheaterAddDTO;
+import service.admin.TheaterAddService;
 import service.member.MemberDetailService;
+import service.movie.MovieDetailService;
 import service.screen.ScreenDetailService;
 import service.showReserve.ShowReserveListService;
 import service.showReserve.ShowReserveRegisterService;
@@ -32,6 +36,10 @@ public class ShowReserveRegisterController {
 	private ShowReserveListService showReserveListService;
 	@Autowired
 	private MemberDetailService memberDetailService;
+	@Autowired
+	private TheaterAddService theaterAddService;
+	@Autowired
+	private MovieDetailService movieDetailService;
 	
 	@RequestMapping(value="/showtime/reservation")
 	public String showReserve(@RequestParam("num") String show_num, HttpSession session, ShowReserveCommand showReserveCommand, Model model) {
@@ -39,7 +47,10 @@ public class ShowReserveRegisterController {
 			return "redirect:/login";
 		}
 		ShowtimeDTO showtime = showtimeDetailService.selectByShowId(show_num, model);
+		TheaterAddDTO theater = theaterAddService.execute(showtime.getTheater_num(), model);
 		ScreenDTO screen = screenDetailService.getScreenByInfo(showtime.getScreen_num(), model);
+		MovieDTO movie = movieDetailService.selectByMovieNum(showtime.getMovie_num(), model);
+		
 		showReserveRegisterService.setReserveInfo(showReserveCommand, show_num, screen.getTheater_num(), screen.getScreen_num(), model);
 		ShowtimeCommand showtimeCommand = new ShowtimeCommand();
 		showtimeCommand.setShow_num(show_num);

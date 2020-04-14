@@ -37,7 +37,7 @@ $(function() {
 	$(".reserved").closest("td").children("input:checkbox[name='seat_num_array']").removeClass("unselected");
 	
 	$("#reserve_people_max").change(function() {
-		var str = "총 " + $("#reserve_people_max").val() + "좌석 중 " + $(":checkbox[name='seat_num_array']:checked").length + "좌석 선택되었습니다."
+		var str = "총 " + $("#reserve_people_max").val() + "좌석 중 0좌석 선택되었습니다."
 		$("#reserve_people_now").html(str);
 		alert("선택 인원수가 변경되었습니다. 좌석 선택을 초기화합니다.");
 		$("input:checkbox[name='seat_num_array']").prop("checked", false);
@@ -80,7 +80,7 @@ $(function() {
 				$(".prime").closest("td").css('background-color', '#ff8080');
 			}
 		}
-	});
+	});--
 	$("#submit_btn").click(function() {
 		if(!$(":checkbox[name='seat_num_array']:checked").val()) {
 		    alert("좌석을 선택하지 않으면 진행할 수 없습니다!");                        
@@ -110,34 +110,20 @@ $(function() {
  			<h2>양평시네마 영화예매</h2><br/>
 			<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
 				<tr>
-					<th>상영일정번호</th>
-					<td>${show.show_num }</td>
+					<th>지점 / 상영관</th>
+					<td>${numTheater.theater_name} [${screenCommand.screen_name}]</td>
 				</tr>
 				<tr>
-					<th>지점</th>
-					<td>${show.theater_num}</td>
-				</tr>
-				<tr>
-					<th>상영관 번호</th>
-					<td>${show.screen_num}</td>
-				</tr>
-				<tr>
-					<th>영화번호</th>
-					<td>${show.movie_num}</td>
+					<th>영화</th>
+					<td>${movieCommand.movie_title}</td>
 				</tr>
 				<tr>
 					<th>상영일자 / 시간</th>
 					<td><fmt:formatDate value="${show.show_date}" type="date" /> (<span id="zozo"><fmt:formatDate value='${show.show_start}' type='time' pattern='HH:mm' /></span> ~ <fmt:formatDate value='${show.show_end}' type='time' pattern='HH:mm' />)<br/><b><span id="zozo_confirm"></span></b></td>
 				</tr>
-				<tr>
-					<th>스크린 좌석수 (행 / 열)</th>
-					<td>
-						${screenCommand.screen_max_seat} (${screenCommand.screen_row} / ${screenCommand.screen_col})
-						<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}" />
-					</td>
-				</tr>
 			</table>
 		</div>
+		<c:set var="rowRow" value="${screenCommand.screen_row_array[0] + screenCommand.screen_row_array[1] +screenCommand.screen_row_array[2]}" />
 		<table border="0">
 			<tr>
 				<td>
@@ -165,6 +151,7 @@ $(function() {
 						(총 금액: <input type="number" name="seat_total_price" id="seat_total_price" placeholder="0" value="">원)
 						<div id="total_price"></div>
 						<input type="hidden" name="order_mode" id="order_mode">
+						<input type="reset" id="reset_btn" onclick="return confirm('선택사항을 초기화하시겠습니까?')" value="리셋" /> 
 						<input type="button" id="submit_btn" value="예매신청" /> 
  						</c:if>
 					</td>

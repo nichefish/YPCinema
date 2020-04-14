@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +58,36 @@
 					<br /> <br /> <br />
 					</div>
 					<div id="productList" float="left">
+							<c:if test="${!empty showReserveStored}">
+								<div class="relCon" align="center">
+								<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+									<tr>
+										<td>상영번호</td>
+										<td>회원번호</td>
+										<td>좌석번호</td>
+										<td>좌석가격</td>
+										<td>전체가격</td>
+									</tr>
+									<tr>
+										<td><input type="hidden" name="show_num" value="${showReserveStored.show_num}" />${showReserveStored.show_num}</td>
+										<td><input type="hidden" name="m_num" value="${showReserveStored.m_num}"/>${showReserveStored.m_num}</td>
+										<td>
+											<input type="hidden" name="seat_num" value="${showReserveStored.seat_num}"/>
+											<c:forEach items="${showReserveStored.seat_num_array}" var="seat">
+												${seat} /
+											</c:forEach>
+										</td>
+										<td><input type="hidden" name="seat_price" value="${showReserveStored.seat_price}"/>
+											<c:forEach items="${showReserveStored.seat_price_array}" var="seat">
+												${seat} /
+											</c:forEach>
+										</td>
+										<td>
+											<input type="hidden" name="seat_total_price" value="${showReserveStored.seat_total_price}"/>${showReserveStored.seat_total_price}
+										</td>
+									</tr>
+								</table>
+							</c:if>
 						
 							<table align="center" width="600">
 								<tr align="center">
@@ -92,30 +122,39 @@
 							</tr>
 						</table>
 					</div>
+					<form:form action="/YPCinema/kakaoPay" id="frm" method="post" commandName="showReserveCommand">
 					<div>
 					<br /> <br /> <br />
-					</div>
+					
+								<table>
+									<tr>
+										<td>총 가격</td>
+										<td colspan="4"><input type="text" name="seat_total_price" id="seat_total_price" value="${showReserveStored.seat_total_price + totalPrice}"></td>
+									</tr>
+									<tr>
+										<td>이메일 주소</td>
+										<td colspan="4"><input type="text" name="payment_email" id="payment_email" value="${memberCommand.m_email }"></td>
+									</tr>
+									<tr>
+										<td>전화번호</td>
+										<td colspan="4"><input type="text" name="payment_ph" id="payment_ph" value="${memberCommand.m_ph }"></td>
+									</tr>
+								</table>
+								
+								</div>
 					<div class="xans-element- xans-product xans-product-normalpackage ">
 					<div class="xans-element- xans-product xans-product-normalmenu ">
 						
-					</div>
-				</div>
-				<div>
-				
+						</div>
 					</div>
 				
 				<div class="relCon">
-					
 					<div class="table11" id="" align="center">
-					<form action="#" method="post" id = "frm" name="">
-					
-						
-						<input type = "hidden" value = "${ chkNum }" name = "chkNum"/>
 						<input type = "submit" value = "결제하기" >
-					</form>
 					</div>
-				
 				</div>
+				
+				</form:form>
 			</div>
 
 			<!-- 컨텐츠 종료-->

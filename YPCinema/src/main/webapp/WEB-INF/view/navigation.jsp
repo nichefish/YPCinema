@@ -64,7 +64,7 @@ body{
 									<a class="dropdown-item" href="<c:url value='/theater/list' />">지점 및 상영관 관리</a>
 									<a class="dropdown-item" href="<c:url value='/movie/list' />">영화 관리</a>
 									<a class="dropdown-item" href="<c:url value='/showtime/list' />">상영일정 관리</a>
-									<a class="dropdown-item" href="<c:url value='/movieStatistic/' />">통계</a>
+									<a class="dropdown-item" href="<c:url value='/movieStatistic' />">통계</a>
 									</c:if>
 									<c:if test="${authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	<!-- 직원 -->
 									<!-- 직원-->
@@ -152,6 +152,7 @@ body{
 											<c:if test="${empty authInfo && !empty companyAuthInfo}">	<!-- 협력업체 -->
 												&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[협력업체 모드]">
 											</c:if>
+											&nbsp;<input type="button" value="[장바구니]">
 											&nbsp;<input type="button" value="[로그아웃]">
 											<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 												<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
@@ -187,6 +188,9 @@ body{
 												</form>
 												<c:if test="${!empty authInfo && authInfo.m_admin ne '0'}">
 												<a class="dropdown-item" href="/YPCinema/staff_se"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Service &nbsp;&nbsp;<small>근태 관리</small></a>
+												</c:if>
+												<c:if test="${!empty authInfo && (authInfo.m_admin eq '0' || authInfo.mode eq '0')}">
+													<a class="dropdown-item" href="/YPCinema/cartList"><i class="fas fa-fw fa-folder mr-2 text-gray-400"></i>Cart  &nbsp;&nbsp;<small>장바구니</small></a>
 												</c:if>
 												<!-- 일반회원 -->
 												<c:if test="${!empty authInfo && empty companyAuthInfo}">

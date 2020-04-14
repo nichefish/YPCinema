@@ -3,6 +3,7 @@ package controller.showtime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,8 @@ import service.screen.ScreenDetailService;
 import service.screen.ScreenListService;
 import service.showtime.ShowtimeDetailService;
 import service.showtime.ShowtimeRegisterService;
+import validator.MemberCommandValidator;
+import validator.ShowtimeCommandValidator;
 
 @Controller
 public class ShowtimeRegisterController {
@@ -81,7 +84,12 @@ public class ShowtimeRegisterController {
 	}
 	
 	@RequestMapping(value="/showtime/register", method=RequestMethod.POST)
-	public String showtimeRegisterAction(ShowtimeCommand showtimeCommand, Model model) {
+	public String showtimeRegisterAction(ShowtimeCommand showtimeCommand, Model model, Errors errors) {
+		new ShowtimeCommandValidator().validate(showtimeCommand, errors);
+		if (errors.hasErrors()) {
+			jicmuListService.showList(model);
+			return "movie/showtime_add";
+		}
 		movieDetailService.selectByMovieNum(showtimeCommand.getMovie_num(), model);
 		showtimeRegisterService.insertShowtime(showtimeCommand);
 		return "redirect:/showtime/list";

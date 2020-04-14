@@ -80,6 +80,38 @@ function buy1() {
 				</div>
 				<c:if test = "${!empty cartList }">
 				<div id="productList" float="left">
+				
+				<c:if test="${!empty showReserveStored}">
+								<div class="relCon" align="center">
+								<table class="table table-bordered" id="dataTable" style="width:600px;align:center;color:black;">
+									<tr>
+										<td>상영번호</td>
+										<td>회원번호</td>
+										<td>좌석번호</td>
+										<td>좌석가격</td>
+										<td>전체가격</td>
+									</tr>
+									<tr>
+										<td><input type="hidden" name="show_num" value="${showReserveStored.show_num}" />${showReserveStored.show_num}</td>
+										<td><input type="hidden" name="m_num" value="${showReserveStored.m_num}"/>${showReserveStored.m_num}</td>
+										<td>
+											<input type="hidden" name="seat_num" value="${showReserveStored.seat_num}"/>
+											<c:forEach items="${showReserveStored.seat_num_array}" var="seat">
+												${seat} /
+											</c:forEach>
+										</td>
+										<td><input type="hidden" name="seat_price" value="${showReserveStored.seat_price}"/>
+											<c:forEach items="${showReserveStored.seat_price_array}" var="seat">
+												${seat} /
+											</c:forEach>
+										</td>
+										<td>
+											<input type="hidden" name="seat_total_price" value="${showReserveStored.seat_total_price}"/>${showReserveStored.seat_total_price}
+										</td>
+									</tr>
+								</table>
+							</c:if>
+				
 					<form action="cartCart" method="post" name="frm" id="frm">
 						<table align="center" width="600" border="1">
 							<tr align="center">
