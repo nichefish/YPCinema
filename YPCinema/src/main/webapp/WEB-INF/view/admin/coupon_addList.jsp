@@ -111,7 +111,6 @@ div.card-body {
                 	</c:if>
             		<input type ="button" value= "쿠폰추가" onclick="location.href='coupon_add'">
             		<input type ="submit" id= "coupon_delete" value= "쿠폰삭제" formaction="couponDelete">
-            		<input type="button" value =" 잠시 연습용 버튼 member" onclick="location.href='memeber_couponList'">
               	</div>
               </form>
               </div>
