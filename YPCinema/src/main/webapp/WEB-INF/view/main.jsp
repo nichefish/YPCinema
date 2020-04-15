@@ -104,14 +104,10 @@
 												<c:if test="${authInfo.m_admin eq '2'}"><span style="color:blue;">직원 "${authInfo.m_name}"</span></c:if>
 												<c:if test="${!empty companyAuthInfo}"><span style="color:yellow;">"${companyAuthInfo.c_comname}"사 소속</span> <span style="color:white;">"${companyAuthInfo.c_name}"</span></c:if>
 												<span style="color:grey;">님 환영합니다.</span><br />
-												<!-- 이용자 이력서 진척사항 버튼 -->
-												<c:if test="${authInfo.m_admin eq '0'}">
-													<c:if test="${!empty authInfo.cheyongApply}">
-														<input type="button" value="[채용진행중]">
-													</c:if>
+												<c:if test="${authInfo.m_admin eq '0' && !empty authInfo.cheyongApply}">	<!-- 이용자 이력서 진척사항 버튼 -->
+													<input type="button" value="[채용진행중]">
 												</c:if>
-												<!-- 관리자/직원 근태 버튼 -->
-												<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2')}">
+												<c:if test="${(authInfo.m_admin eq '1' || authInfo.m_admin eq '2')}">	<!-- 관리자/직원 근태 버튼 -->
 													<c:if test="${empty authInfo.schedule }">
 														&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[퇴근상태]">
 													</c:if>
@@ -146,31 +142,22 @@
 													<form action="/YPCinema/changeMode" name="mode_form" id="mode_form" method="post">
 													<c:if test="${!empty authInfo && authInfo.m_admin ne '0'}">
 													<a class="dropdown-item" href="#" id="mode_btn">
-														<!-- 관리자 -> 관리자 모드 -->
-														<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">	
+														<c:if test="${authInfo.m_admin eq '1' && authInfo.mode eq '0'}">	<!-- 관리자 -> 관리자 모드 -->
 														<input type="hidden" name="mode" value="1">
-														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>[관리자 모드]로 변환</small></span>
+														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;<span style="display:inline"><small>[관리자 모드]로 변환</small></span>
 														</c:if>
-														<!-- 직원 -> 직원 모드 -->
-														<c:if test="${authInfo.m_admin eq '2' && authInfo.mode eq '0'}">	
+														<c:if test="${authInfo.m_admin eq '2' && authInfo.mode eq '0'}">	<!-- 직원 -> 직원 모드 -->
 														<input type="hidden" name="mode" value="2">
-														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>[직원 모드]로 변환</small></span>
+														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;<span style="display:inline"><small>[직원 모드]로 변환</small></span>
 														</c:if>
-														<!--  관리자 -> 이용자 모드 -->
-														<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">	
+														<c:if test="${!empty authInfo && authInfo.m_admin eq '1' && authInfo.mode ne '0'}">		<!--  관리자 -> 이용자 모드 -->
 														<input type="hidden" name="mode" value="0">
-														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
+														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
 														</c:if>
-														<!--  직원 -> 이용자 모드 -->
-														<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">	
+														<c:if test="${!empty authInfo && authInfo.m_admin eq '2' && authInfo.mode ne '0'}">		<!--  직원 -> 이용자 모드 -->
 														<input type="hidden" name="mode" value="0">
-														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;
-														<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
+														<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings&nbsp;&nbsp;<span style="display:inline"><small>[이용자 모드]로 변환</small></span>
 														</c:if>
-														<!-- 이용자: 없음 -->
 													</a>	
 													</c:if>
 													</form>
@@ -180,12 +167,13 @@
 													<c:if test="${!empty authInfo && (authInfo.m_admin eq '0' || (authInfo.m_admin ne '0' && authInfo.mode eq '0'))}">
 													<a class="dropdown-item" href="/YPCinema/cartList"><i class="fas fa-fw fa-folder mr-2 text-gray-400" ></i>Cart&nbsp;&nbsp;<small>장바구니</small></a>
 													</c:if>
-													<!-- 일반회원 -->
-													<c:if test="${!empty authInfo && empty companyAuthInfo}">	
+													<c:if test="${!empty authInfo && authInfo.m_admin eq '0'}">		<!-- 일반회원 -->
+													<a class="dropdown-item" href="/YPCinema/member_myApply"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Resume&nbsp;&nbsp;<small>지원내역</small></a>
+													</c:if>
+													<c:if test="${!empty authInfo && empty companyAuthInfo}">
 													<a class="dropdown-item" href="/YPCinema/mySeries"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>My Series&nbsp;&nbsp;<small>나의 ...</small></a>
 													</c:if>
-													<!-- 협력업체 -->
-													<c:if test="${empty authInfo && !empty companyAuthInfo}">	
+													<c:if test="${empty authInfo && !empty companyAuthInfo}">	<!-- 협력업체 -->
 													<a class="dropdown-item" href="/YPCinema/companyMyPage"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile&nbsp;&nbsp;<small>나의 업체정보</small></a>
 													</c:if>
 													<div class="dropdown-divider"></div>

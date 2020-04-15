@@ -18,6 +18,9 @@ public class PaymentListController {
 	
 	@RequestMapping("/myMovies")
 	public String paymentList(PaymentCommand paymentCommand, HttpSession session, Model model) {
+		if (((AuthInfo)session.getAttribute("authInfo")) == null) {
+			return "redirect:/login";
+		}
 		paymentCommand.setM_num(((AuthInfo)session.getAttribute("authInfo")).getM_num());
 		paymentListService.selectPaymentListByInfo(paymentCommand, model);
 		return "member/member_my_payment_list";

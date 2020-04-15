@@ -18,9 +18,5 @@ public class ScreenListService {
 		System.out.println("theater_num: " + theater_num);
 		List<ScreenDTO> lists = screenRepository.selectScreenByTheaterNum(theater_num);
 		model.addAttribute("lists", lists);
-		System.out.println("!!");
-		for(ScreenDTO s : lists) {
-			System.out.println("지점번호: " + s.getScreen_num());
-		}
 	}
 }
